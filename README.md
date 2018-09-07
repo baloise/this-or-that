@@ -7,4 +7,4 @@ A template to use when starting a new project.
 
 ## the [docs](docs/index.md)
 
-## our [code of conduct](https://baloise.github.io/open-source/docs/md/guides/governance.html#code-of-conduct)
+## our [code of conduct](CODE_OF_CONDUCT.md)
