@@ -4,17 +4,74 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.baloise.open.repository-template-java</groupId>
-  <artifactId>root-pom</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
+  <organization>
+    <name>Baloise Group</name>
+    <url>https://www.baloise.com</url>
+  </organization>
 
-  <name>pom-root</name>
+  <groupId>com.baloise.open.repository-template-java</groupId>
+  <artifactId>template-main</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <ciManagement>
+    <system>Travis CI</system>
+    <url>https://travis-ci.org/baloise/repository-template-java</url>
+  </ciManagement>
+
+  <name>template-main</name>
   <url>https://github.com/baloise/repository-template-java</url>
+
+  <scm>
+    <url>https://github.com/baloise/repository-template-java.git</url>
+    <connection>scm:git:git@github.com:baloise/repository-template-java.git</connection>
+    <tag>HEAD</tag>
+  </scm>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+  
+    <junit.jupiter.version>5.2.0</junit.jupiter.version>
+    <junit.platform.version>1.2.0</junit.platform.version>
+    <org.hamcrest.version>1.3</org.hamcrest.version>
   </properties>
+  
+  <dependencies>
+      <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-library</artifactId>
+      <version>${org.hamcrest.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <!-- JUnit 5 requires Surefire version 2.22.0 or higher -->
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.0</version>
+      </plugin>
+    </plugins>
+  </build>
 </project>
