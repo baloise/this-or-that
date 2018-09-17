@@ -10,7 +10,7 @@
   </organization>
 
   <groupId>com.baloise.open.repository-template-java</groupId>
-  <artifactId>template-main</artifactId>
+  <artifactId>repository-template-java</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
