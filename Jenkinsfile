@@ -17,7 +17,7 @@ pipeline {
     triggers {
         // at least once a day
         cron('H H(0-7) * * *')
-        // every sixty minutes
+        // check every sixty minutes for changes
         pollSCM('H/60 * * * *')
     }
 
