@@ -99,6 +99,27 @@
             <check />
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <version>1.16</version>
+        <executions>
+          <execution>
+            <id>add-third-party</id>
+            <goals>
+              <goal>add-third-party</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
+    <resources>
+      <resource>
+        <directory>.</directory>
+        <excludes>
+          <exclude>target/</exclude>
+        </excludes>
+      </resource>
+    </resources>
   </build>
 </project>
