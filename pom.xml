@@ -33,7 +33,7 @@
     <url>https://travis-ci.org/baloise/repository-template-java</url>
   </ciManagement>
 
-  <name>template-main</name>
+  <name>repository-template-java-main</name>
   <url>https://github.com/baloise/repository-template-java</url>
 
   <scm>
