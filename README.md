@@ -6,4 +6,4 @@
 [![Codecov](https://img.shields.io/codecov/c/github/baloise/this-or-that.svg)](https://codecov.io/gh/baloise/this-or-that)
 [![gitpod-IDE](https://img.shields.io/badge/open--IDE-as--gitpod-blue.svg?style=flat&label=openIDE)](https://gitpod.io#https://github.com/baloise/this-or-that)
 
-## the [docs](docs/index.md)
+
