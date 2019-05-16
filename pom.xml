@@ -23,22 +23,22 @@
     <url>https://www.baloise.com</url>
   </organization>
 
-  <groupId>com.baloise.open.repository-template-java</groupId>
-  <artifactId>repository-template-java</artifactId>
+  <groupId>com.baloise.open.this-or-that</groupId>
+  <artifactId>this-or-that</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <ciManagement>
     <system>Travis CI</system>
-    <url>https://travis-ci.org/baloise/repository-template-java</url>
+    <url>https://travis-ci.org/baloise/this-or-that</url>
   </ciManagement>
 
-  <name>repository-template-java-main</name>
-  <url>https://github.com/baloise/repository-template-java</url>
+  <name>this-or-that-main</name>
+  <url>https://github.com/baloise/this-or-that</url>
 
   <scm>
-    <url>https://github.com/baloise/repository-template-java.git</url>
-    <connection>scm:git:git@github.com:baloise/repository-template-java.git</connection>
+    <url>https://github.com/baloise/this-or-that.git</url>
+    <connection>scm:git:git@github.com:baloise/this-or-that.git</connection>
     <tag>HEAD</tag>
   </scm>
 
