@@ -1,0 +1,212 @@
+{
+  "info": {
+    "_postman_id": "8fdfa1ee-b838-4a09-ab0d-847738726ede",
+    "name": "ThisOrThat",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "createSurvey",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"perspective\":\"test\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/survey",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "survey"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "createImage",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n \"file\": \"this is a file\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/survey/4v8y/image",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "survey",
+            "4v8y",
+            "image"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "startSurvey",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/survey/4v8y/start",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "survey",
+            "4v8y",
+            "start"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getVote",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/survey/4v8y/vote",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "survey",
+            "4v8y",
+            "vote"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "setVote",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"winner\": \"0\",\n\t\"loser\": \"1\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/survey/4v8y/vote",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "survey",
+            "4v8y",
+            "vote"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "stopSurvey",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/survey/4v8y/stop",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "survey",
+            "4v8y",
+            "stop"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "persistSurvey",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/survey/4v8y/persist",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "survey",
+            "4v8y",
+            "persist"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getScore",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/survey/4v8y/score",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "survey",
+            "4v8y",
+            "score"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
