@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.baloise.open.template;
+package com.baloise.open.thisorthat.api.dto;
 
-/**
- * @author Markus Tiede
- */
-public class App {
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
-    }
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Builder
+public class ImageRequest {
+    private String file;
 }
