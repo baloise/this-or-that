@@ -6,11 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="this-or-that" />
+        <module name="this-or-that-client" />
+        <module name="this-or-that-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="this-or-that" target="1.8" />
+      <module name="this-or-that-client" target="1.8" />
+      <module name="this-or-that-server" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
