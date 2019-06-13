@@ -70,7 +70,6 @@
       <option name="Make" enabled="true" />
       <option name="BuildArtifacts" enabled="true">
         <artifact name="oc-california-this-or-that-web-app:war exploded" />
-        <artifact name="this-or-that:war exploded" />
         <artifact name="this-or-that-server:war exploded" />
       </option>
     </method>
