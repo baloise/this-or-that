@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/server.iml" filepath="$PROJECT_DIR$/server/server.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/this-or-that.iml" filepath="$PROJECT_DIR$/.idea/this-or-that.iml" />
       <module fileurl="file://$PROJECT_DIR$/this-or-that-client/this-or-that-client.iml" filepath="$PROJECT_DIR$/this-or-that-client/this-or-that-client.iml" />
-      <module fileurl="file://$PROJECT_DIR$/this-or-that-server/this-or-that-server.iml" filepath="$PROJECT_DIR$/this-or-that-server/this-or-that-server.iml" />
-      <module fileurl="file://$PROJECT_DIR$/this_or_that_app/this_or_that_app.iml" filepath="$PROJECT_DIR$/this_or_that_app/this_or_that_app.iml" />
     </modules>
   </component>
 </project>

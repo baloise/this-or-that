@@ -11,7 +11,7 @@
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="this-or-that-server" />
+          <element id="module-output" name="server" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-jdk14:1.7.26" />
@@ -51,7 +51,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/this-or-that-server/target/this-or-that-server-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/server/target/this-or-that-server-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="this-or-that-server/web/Web" />
     </root>
