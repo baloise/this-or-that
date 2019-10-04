@@ -20,14 +20,7 @@
                                 <br/>
                                 <br/>
                                 <br/>
-                                <iframe
-                                        src="https://giphy.com/embed/3oipPTHYlTpCw8oBBy"
-                                        width="100%"
-                                        height="100%"
-                                        frameborder="0"
-                                        class="giphy-embed"
-                                        allowfullscreen
-                                ></iframe>
+                                <img alt="robot" src="../../assets/this_or_that_robot_tranparent.gif"/>
                             </div>
                             <!-- </div> -->
                         </div>
