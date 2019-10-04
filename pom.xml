@@ -23,7 +23,7 @@
         <url>https://www.baloise.com</url>
     </organization>
     <modules>
-        <module>this-or-that-server</module>
+        <module>server</module>
     </modules>
 
     <groupId>com.baloise.open.this-or-that</groupId>
