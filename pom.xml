@@ -23,7 +23,6 @@
         <url>https://www.baloise.com</url>
     </organization>
     <modules>
-        <module>this-or-that-client</module>
         <module>this-or-that-server</module>
     </modules>
 

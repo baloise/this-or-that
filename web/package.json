@@ -1,0 +1,48 @@
+{
+	"name": "this-or-that-web",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"postinstall": "if test \"$NODE_ENV\" = \"production\" ; then npm run build ; fi ",
+		"start": "node server.js",
+		"serve": "vue-cli-service serve",
+		"build": "vue-cli-service build",
+		"format": "prettier --write \"src/**/*.ts\"",
+		"lint": "vue-cli-service lint"
+	},
+	"dependencies": {
+		"@fortawesome/fontawesome-svg-core": "^1.2.25",
+		"@fortawesome/free-solid-svg-icons": "^5.11.2",
+		"@fortawesome/vue-fontawesome": "^0.1.7",
+		"@types/vuelidate": "^0.7.7",
+		"axios": "^0.19.0",
+		"buefy": "^0.8.4",
+		"bulma": "^0.7.5",
+		"class-transformer": "^0.2.3",
+		"express": "^4.17.1",
+		"express-force-https": "^1.0.0",
+		"gitmoji-cli": "^2.0.0",
+		"logdown": "^3.2.8",
+		"register-service-worker": "^1.6.2",
+		"vue": "^2.6.10",
+		"vue-class-component": "^7.0.2",
+		"vue-i18n": "^8.14.1",
+		"vue-property-decorator": "^8.1.0",
+		"vue-router": "^3.0.3",
+		"vuelidate": "^0.7.4",
+		"vuex": "^3.0.1",
+		"vuex-class": "^0.3.2"
+	},
+	"devDependencies": {
+		"@vue/cli-plugin-pwa": "^3.11.0",
+		"@vue/cli-plugin-typescript": "^3.11.0",
+		"@vue/cli-service": "^3.11.0",
+		"node-sass": "^4.9.0",
+		"prettier": "^1.18.2",
+		"sass-loader": "^7.1.0",
+		"tslint-config-prettier": "^1.18.0",
+		"tslint-plugin-prettier": "^2.0.1",
+		"typescript": "^3.4.3",
+		"vue-template-compiler": "^2.6.10"
+	}
+}

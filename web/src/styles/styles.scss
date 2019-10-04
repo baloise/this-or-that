@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,800&display=swap');
+
+// Import Bulma's core
+@import '~bulma/sass/utilities/_all';
+
+$family-secondary: 'Open Sans', sans-serif;
+$weight-bold: 700;
+
+// Import Bulma and Buefy styles
+@import '~bulma';
+@import '~buefy/src/scss/buefy';
+
+@import 'override';
+
+.is-center {
+  text-align: center;
+}
