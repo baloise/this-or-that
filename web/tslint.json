@@ -1,19 +1,39 @@
 {
   "defaultSeverity": "error",
-  "extends": ["tslint:recommended", "tslint-plugin-prettier", "tslint-config-prettier"],
+  "extends": [
+    "tslint:recommended"
+  ],
   "linterOptions": {
-    "exclude": ["node_modules/**"]
+    "exclude": [
+      "node_modules/**"
+    ]
   },
   "rules": {
-    "prettier": true,
-    "indent": [true, "spaces", 2],
-    "semicolon": [true],
+    "indent": [
+      true,
+      "spaces",
+      4
+    ],
+    "semicolon": [
+      true
+    ],
     "no-consecutive-blank-lines": false,
-    "quotemark": [true, "single"],
-    "member-access": [false],
-    "ordered-imports": [false],
-    "member-ordering": [false],
-    "interface-name": [false],
+    "quotemark": [
+      true,
+      "single"
+    ],
+    "member-access": [
+      false
+    ],
+    "ordered-imports": [
+      false
+    ],
+    "member-ordering": [
+      false
+    ],
+    "interface-name": [
+      false
+    ],
     "arrow-parens": false,
     "object-literal-sort-keys": false
   }
