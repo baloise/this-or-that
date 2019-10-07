@@ -1,9 +1,6 @@
 const webpack = require('webpack');
-
+var node_env = process.env.VUE_APP_MODE !== 'development' ? 'production' : 'development'
 module.exports = {
-  devServer: {
-    port: 4200,
-  },
   configureWebpack: {
     plugins: [
       new webpack.DefinePlugin({
@@ -18,5 +15,18 @@ module.exports = {
         jQuery: 'jquery',
       }),
     ],
+    mode: node_env
+
   },
+  devServer: node_env
+      ? {
+        proxy: {
+          '^/api': {
+            target: 'http://localhost:8080',
+            ws: true,
+            changeOrigin: true
+          }
+        }
+      }
+      : {}
 };

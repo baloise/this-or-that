@@ -11,4 +11,9 @@ export const routes: RouteConfig[] = [
         name: 'about',
         component: () => import('@/app/views/AboutContainer.vue'),
     },
+    {
+        path: '/create',
+        name: 'create',
+        component: () => import('@/app/views/CreateSurveyContainer.vue'),
+    },
 ];

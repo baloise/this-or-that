@@ -15,7 +15,7 @@
                                 <h4 class="subtitle is-4">With This-or-That, prioritizing is fun and fast.</h4>
                                 <br/>
                                 <br/>
-                                <button class="button is-primary is-medium">Create Poll</button>
+                                <button @click="create()" class="button is-primary is-medium">Create Survey</button>
                                 <br/>
                                 <br/>
                                 <br/>
@@ -39,5 +39,9 @@
         components: {},
     })
     export default class HomeContainer extends Vue {
+
+        public create() {
+            this.$router.push('create');
+        }
     }
 </script>
