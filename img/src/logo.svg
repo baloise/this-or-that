@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>ThisOrThat-Logo</title>
+    <desc>Created with Sketch.</desc>
+    <g id="ThisOrThat-Logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Logo" transform="translate(22.000000, 56.000000)">
+            <g id="This-That" transform="translate(232.000000, 197.000000) rotate(-10.000000) translate(-232.000000, -197.000000) translate(26.000000, 34.000000)">
+                <g id="Arrow-Left">
+                    <path d="M20.2482238,2.66136319e-14 L341.989024,3.28626015e-14 C343.355407,3.26116009e-14 344.662265,0.559190958 345.605738,1.54755477 L409.085347,68.0475548 C410.929728,69.9796923 410.929728,73.0203077 409.085347,74.9524452 L345.605738,141.452445 C344.662265,142.440809 343.355407,143 341.989024,143 L6.93394418,143 C4.17252043,143 1.93394418,140.761424 1.93394418,138 C1.93394418,137.833674 1.94224349,137.667451 1.95881114,137.501953 L15.2730908,4.50195254 C15.5289431,1.94617319 17.67967,3.06699019e-14 20.2482238,3.01980663e-14 Z" id="Figure" fill="#00D5B1" transform="translate(206.190492, 71.500000) scale(-1, 1) translate(-206.190492, -71.500000) "></path>
+                    <g id="Label" stroke-width="1" transform="translate(82.591022, -15.342857)" font-family="OpenSans-ExtraBold, Open Sans" font-size="120" font-weight="600" stroke="#363636">
+                        <text id="Shadow" fill="#363636">
+                            <tspan x="7.53772795" y="137.939286">THIS</tspan>
+                        </text>
+                        <text fill="#FFFFFF">
+                            <tspan x="0.859423706" y="128.746429">THIS</tspan>
+                        </text>
+                    </g>
+                </g>
+                <g id="Arrow-Right" transform="translate(0.000000, 183.000000)">
+                    <path d="M7.4583225,5.95676362e-14 L341.989024,7.10542736e-14 C343.355407,7.0803273e-14 344.662265,0.559190958 345.605738,1.54755477 L409.085347,68.0475548 C410.929728,69.9796923 410.929728,73.0203077 409.085347,74.9524452 L345.605738,141.452445 C344.662265,142.440809 343.355407,143 341.989024,143 L20.475666,143 C17.9028795,143 15.7500574,141.047598 15.499444,138.487047 L2.48210047,5.48704655 C2.21311209,2.73875502 4.22298441,0.292766358 6.97127594,0.0237779737 C7.13314145,0.00793542567 7.29568355,5.77614736e-14 7.4583225,5.77315973e-14 Z" id="Figure" fill="#1871E4"></path>
+                    <g id="Label" stroke-width="1" transform="translate(33.795511, -15.342857)" font-family="OpenSans-ExtraBold, Open Sans" font-size="120" font-weight="600" stroke="#363636">
+                        <text id="Shadow" fill="#363636">
+                            <tspan x="7.23108732" y="137.939286">THAT</tspan>
+                        </text>
+                        <text fill="#FFFFFF">
+                            <tspan x="0.552783081" y="128.746429">THAT</tspan>
+                        </text>
+                    </g>
+                </g>
+            </g>
+            <g id="OR" transform="translate(186.000000, 152.000000)">
+                <circle id="Oval" fill="#363636" cx="48" cy="48" r="48"></circle>
+                <text font-family="OpenSans-ExtraBold, Open Sans" font-size="40" font-weight="600" fill="#FFFFFF">
+                    <tspan x="19.0273438" y="61">OR</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
