@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 class VoteScreen extends StatelessWidget {
+
+  final String surveyCode;
+
+  VoteScreen({Key key, @required this.surveyCode}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +17,7 @@ class VoteScreen extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Text('Go back!'),
+          child: Text('Go back: ' + surveyCode),
         ),
       ),
     );
