@@ -15,9 +15,15 @@
                                 <h4 class="subtitle is-4">With This-or-That, prioritizing is fun and fast.</h4>
                                 <br/>
                                 <br/>
-                                <button class="button is-primary is-medium">Create Poll</button>
+                                <button @click="create()" class="button is-primary is-medium">Create Survey</button>
                                 <br/>
                                 <br/>
+                                <b-field label="Survey Code">
+                                    <b-input v-model="surveyCode"></b-input>
+                                </b-field>
+                                <button :disabled="surveyCode.length === 0"
+                                        class="button is-primary is-medium">Manage Survey
+                                </button>
                                 <br/>
                                 <br/>
                                 <img alt="robot" src="../../assets/this_or_that_robot_tranparent.gif"/>
@@ -33,11 +39,18 @@
 </template>
 
 <script lang="ts">
-    import {Component, Vue} from 'vue-property-decorator';
+    import {Component, Vue} from "vue-property-decorator";
 
     @Component({
         components: {},
     })
     export default class HomeContainer extends Vue {
+
+        public surveyCode = '';
+
+        public create() {
+            this.$router.push('create');
+        }
+
     }
 </script>

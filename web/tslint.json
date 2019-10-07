@@ -35,6 +35,10 @@
       false
     ],
     "arrow-parens": false,
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": false,
+    "max-line-length": [
+      true,
+      240
+    ]
   }
 }

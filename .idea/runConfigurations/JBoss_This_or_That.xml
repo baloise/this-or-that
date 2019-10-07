@@ -5,7 +5,7 @@
     <option name="COMMON_VM_ARGUMENTS" value="-Dthisorthat.environment=LOCAL -Dthisorthat.mongodb.server.url=localhost -Dthisorthat.mongodb.server.port=27017 -Dthisorthat.mongodb.username=user -Dthisorthat.mongodb.password=12345678" />
     <option name="UPDATING_POLICY" value="restart-server" />
     <deployment>
-      <artifact name="this-or-that-server:war exploded">
+      <artifact name="server:war exploded">
         <settings />
       </artifact>
     </deployment>
@@ -79,7 +79,7 @@
       <option name="Make" enabled="true" />
       <option name="BuildArtifacts" enabled="true">
         <artifact name="oc-california-this-or-that-web-app:war exploded" />
-        <artifact name="this-or-that-server:war exploded" />
+        <artifact name="server:war exploded" />
       </option>
     </method>
   </configuration>

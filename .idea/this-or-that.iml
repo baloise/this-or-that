@@ -23,11 +23,11 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/target/generated-sources/license" isTestSource="false" generated="true" />
+      <excludeFolder url="file://$MODULE_DIR$/app/build" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
       <excludeFolder url="file://$MODULE_DIR$/this-or-that-client/dist" />
       <excludeFolder url="file://$MODULE_DIR$/this-or-that-client/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/this_or_that_app/.pub" />
-      <excludeFolder url="file://$MODULE_DIR$/app/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
