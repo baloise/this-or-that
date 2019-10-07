@@ -5,6 +5,9 @@ import 'package:flutter/services.dart';
 import 'admin.dart';
 import 'vote.dart';
 
+const String VOTE_STRING = "/vote/";
+const String URL_START = "http://";
+
 class StartScreen extends StatefulWidget {
   StartScreen({Key key, this.title}) : super(key: key);
 
@@ -99,10 +102,18 @@ class StartScreenState extends State<StartScreen> {
     Navigator.push(context, MaterialPageRoute(builder: (context) => AdminScreen()));
   }
 
+  String cleanBarcode(String url) {
+    if (url.startsWith(URL_START)) {
+      return url.substring(url.indexOf(VOTE_STRING) + VOTE_STRING.length);
+    }
+    return url;
+  }
+
   Future scan() async {
     try {
       String barcode = await BarcodeScanner.scan();
-      setState(() => this.txtId.text = barcode);
+      setState(() => this.txtId.text = cleanBarcode(barcode));
+      openVote();
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.CameraAccessDenied) {
         setState(() {
