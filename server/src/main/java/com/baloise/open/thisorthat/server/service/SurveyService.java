@@ -162,6 +162,11 @@ public class SurveyService {
                 .orElseThrow(() -> new ImageNotFoundException("survey " + survey.getCode() + " image " + imageId + " not found"));
     }
 
+    public Image getImageFromSurvey(String surveyCode, String imageId) {
+        Survey survey = databaseInMemory.getSurvey(surveyCode);
+        return getImageFromSurvey(survey, imageId);
+    }
+
     public String addImageToSurvey(String surveyCode, Image image) {
         LOGGER.info("survey {} added image", surveyCode);
         return databaseInMemory.addImageToSurvey(surveyCode, image);

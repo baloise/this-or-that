@@ -175,7 +175,15 @@ public class SurveyRestService {
         } catch (Exception e) {
             return errorHandler(e);
         }
+    }
 
+    @GET
+    @Path("/{code}/image/{imageId}")
+    @Produces("image/jpeg")
+    public byte[] getImage(@PathParam("code") String surveyCode, @PathParam("imageId") String imageId) {
+        Image image = surveyService.getImageFromSurvey(surveyCode, imageId);
+        String base64Image = image.getFile().split(",")[1];
+        return javax.xml.bind.DatatypeConverter.parseBase64Binary(base64Image);
     }
 
     private String getUserId() {
