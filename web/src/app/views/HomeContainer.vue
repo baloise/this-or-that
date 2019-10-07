@@ -18,6 +18,12 @@
                                 <button @click="create()" class="button is-primary is-medium">Create Survey</button>
                                 <br/>
                                 <br/>
+                                <b-field label="Survey Code">
+                                    <b-input v-model="surveyCode"></b-input>
+                                </b-field>
+                                <button :disabled="surveyCode.length === 0" @click="manage()"
+                                        class="button is-primary is-medium">Manage Survey
+                                </button>
                                 <br/>
                                 <br/>
                                 <img alt="robot" src="../../assets/this_or_that_robot_tranparent.gif"/>
@@ -40,8 +46,14 @@
     })
     export default class HomeContainer extends Vue {
 
+        public surveyCode = '';
+
         public create() {
             this.$router.push('create');
+        }
+
+        public manage() {
+            console.log('manage')
         }
     }
 </script>

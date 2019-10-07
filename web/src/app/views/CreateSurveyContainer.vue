@@ -38,10 +38,22 @@
                                 <button @click="deleteImages()" class="button is-text">Remove Selected Images</button>
                                 <br>
                                 <br>
-                                <button @click="create()" class="button is-primary is-medium">Create Survey</button>
+                                <div class="columns is-desktop">
+                                    <div class="column">
+                                        <button @click="back()" class="button is-primary is-medium">Back</button>
+                                    </div>
+                                    <div class="column">
+                                        <button :disabled="this.droppedFiles.length === 0" @click="create()"
+                                                class="button is-primary is-medium">Create Survey
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="content is-center" v-if="this.surveyCode">
                                 <h1>Your surveyCode: {{this.surveyCode}}</h1>
+                                <button @click="createAnother()" class="button is-primary is-medium">Create another
+                                    Survey
+                                </button>
                             </div>
                         </div>
                         <div class="column"></div>
@@ -49,6 +61,7 @@
                 </div>
             </div>
         </section>
+        <b-loading :active.sync="isLoading" :can-cancel="true" :is-full-page="true"></b-loading>
     </div>
 </template>
 
@@ -66,8 +79,10 @@
         public perspective: string = '';
         public droppedFiles: File[] = [];
         public surveyCode = '';
+        public isLoading = false;
 
         public async create() {
+            this.isLoading = true;
             console.log('create survey perspective: ' + this.perspective);
             console.log('image in array: ' + this.droppedFiles.length);
             const createSurveyRequest: CreateSurveyRequest = new CreateSurveyRequest();
@@ -83,9 +98,15 @@
                     await createImage(createImageRequest, response.code);
                 }));
                 await startSurvey(response.code);
+                this.isLoading = false;
             } catch (error) {
+                this.isLoading = false;
                 console.log('error');
             }
+        }
+
+        public createAnother() {
+            location.reload();
         }
 
         public deleteImages() {
@@ -99,6 +120,10 @@
                 reader.onload = () => resolve(reader.result as string);
                 reader.onerror = error => reject(error);
             });
+        }
+
+        public back() {
+            this.$router.push('/')
         }
 
     }
