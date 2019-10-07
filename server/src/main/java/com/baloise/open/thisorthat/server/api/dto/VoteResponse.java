@@ -25,8 +25,6 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class VoteResponse {
-    private String file1;
-    private String file2;
     private String id1;
     private String id2;
     private Boolean surveyIsRunning;

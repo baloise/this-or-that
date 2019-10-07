@@ -48,6 +48,7 @@
           <element id="library" level="project" name="Maven: org.mongodb:mongodb-driver:3.8.2" />
           <element id="library" level="project" name="Maven: org.mongodb:bson:3.8.2" />
           <element id="library" level="project" name="Maven: org.mongodb:mongodb-driver-core:3.8.2" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.13" />
         </element>
       </element>
       <element id="directory" name="META-INF">
