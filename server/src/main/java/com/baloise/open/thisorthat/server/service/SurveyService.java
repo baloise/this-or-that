@@ -97,9 +97,7 @@ public class SurveyService {
         VoteItem voteItem = randomAlgorithm.getVote(surveyCode, userId);
         LOGGER.info("survey {} get vote from {} image1: {} image2: {}", surveyCode, userId, voteItem.getFile1().getId(), voteItem.getFile2().getId());
         return VoteResponse.builder()
-                .file1(voteItem.getFile1().getFile())
                 .id1(voteItem.getFile1().getId())
-                .file2(voteItem.getFile2().getFile())
                 .id2(voteItem.getFile2().getId())
                 .perspective(databaseInMemory.getSurvey(surveyCode).getPerspective())
                 .surveyIsRunning(true)
