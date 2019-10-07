@@ -21,7 +21,7 @@
                                 <b-field label="Survey Code">
                                     <b-input v-model="surveyCode"></b-input>
                                 </b-field>
-                                <button :disabled="surveyCode.length === 0" @click="manage()"
+                                <button :disabled="surveyCode.length === 0"
                                         class="button is-primary is-medium">Manage Survey
                                 </button>
                                 <br/>
@@ -39,7 +39,7 @@
 </template>
 
 <script lang="ts">
-    import {Component, Vue} from 'vue-property-decorator';
+    import {Component, Vue} from "vue-property-decorator";
 
     @Component({
         components: {},
@@ -52,8 +52,5 @@
             this.$router.push('create');
         }
 
-        public manage() {
-            console.log('manage')
-        }
     }
 </script>

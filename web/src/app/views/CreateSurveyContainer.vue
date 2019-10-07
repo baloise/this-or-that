@@ -66,7 +66,7 @@
 </template>
 
 <script lang="ts">
-    import {Component, Vue} from 'vue-property-decorator';
+    import {Component, Vue} from "vue-property-decorator";
     import {createImage, createSurvey, startSurvey} from "@/app/api/survey.api";
     import {CreateSurveyRequest} from "@/app/models/create-survey-request";
     import {CreateImageRequest} from "@/app/models/create-image-request";
@@ -83,8 +83,6 @@
 
         public async create() {
             this.isLoading = true;
-            console.log('create survey perspective: ' + this.perspective);
-            console.log('image in array: ' + this.droppedFiles.length);
             const createSurveyRequest: CreateSurveyRequest = new CreateSurveyRequest();
             createSurveyRequest.perspective = this.perspective;
             try {
@@ -101,7 +99,6 @@
                 this.isLoading = false;
             } catch (error) {
                 this.isLoading = false;
-                console.log('error');
             }
         }
 
@@ -123,7 +120,7 @@
         }
 
         public back() {
-            this.$router.push('/')
+            this.$router.push("/");
         }
 
     }

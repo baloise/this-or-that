@@ -2,8 +2,8 @@ import Vue from 'vue';
 import {classToPlain, plainToClass} from 'class-transformer';
 import {CreateSurveyRequest} from '@/app/models/create-survey-request';
 import {CreateSurveyResponse} from '@/app/models/create-survey-response';
-import {CreateImageRequest} from "@/app/models/create-image-request";
-import {CreateImageResponse} from "@/app/models/create-image-response";
+import {CreateImageRequest} from '@/app/models/create-image-request';
+import {CreateImageResponse} from '@/app/models/create-image-response';
 
 const BASE_PATH = '/api/survey';
 
