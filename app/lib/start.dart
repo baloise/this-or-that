@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
 
+import 'admin.dart';
 import 'vote.dart';
 
 class StartScreen extends StatefulWidget {
@@ -21,7 +22,7 @@ class StartScreenState extends State<StartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('First Screen'),
+        title: Text('This or That'),
       ),
       body: Center(
         child: Column(
@@ -31,7 +32,7 @@ class StartScreenState extends State<StartScreen> {
               padding: const EdgeInsets.all(8.0),
               child: MaterialButton(
                 onPressed: scan,
-                child: Text("QR Code scannen", style: TextStyle(fontSize: 20)),
+                child: Text("Scan QR code", style: TextStyle(fontSize: 20)),
                 color: Theme.of(context).primaryColor,
                 textColor: Colors.white,
                 splashColor: Colors.white,
@@ -40,10 +41,16 @@ class StartScreenState extends State<StartScreen> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "or"
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Zugangscode',
+                  labelText: 'Enter survey code',
                 ),
                 controller: txtId,
               ),
@@ -52,14 +59,32 @@ class StartScreenState extends State<StartScreen> {
               padding: const EdgeInsets.all(8.0),
               child: MaterialButton(
                 onPressed: openVote,
-                child: Text("Mit Zugangscode öffnen",
+                child: Text("Open with survey code",
                     style: TextStyle(fontSize: 20)),
                 color: Theme.of(context).primaryColor,
                 textColor: Colors.white,
                 splashColor: Colors.white,
                 minWidth: double.infinity,
               ),
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Divider(
+                color: Colors.grey
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: MaterialButton(
+                onPressed: openAdmin,
+                child: Text("Manage surveys",
+                    style: TextStyle(fontSize: 20)),
+                color: Theme.of(context).primaryColor,
+                textColor: Colors.white,
+                splashColor: Colors.white,
+                minWidth: double.infinity,
+              ),
+            ),
           ],
         ),
       ),
@@ -68,6 +93,10 @@ class StartScreenState extends State<StartScreen> {
 
   void openVote() {
     Navigator.push(context, MaterialPageRoute(builder: (context) => VoteScreen(surveyCode: this.txtId.text)));
+  }
+
+  void openAdmin() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => AdminScreen()));
   }
 
   Future scan() async {
