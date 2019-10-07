@@ -16,6 +16,10 @@ allprojects {
         google()
         jcenter()
     }
+    configurations.all {
+        resolutionStrategy.force "androidx.core:core:1.0.1"
+        resolutionStrategy.force "androidx.appcompat:appcompat:1.0.2"
+    }
 }
 
 rootProject.buildDir = '../build'
@@ -29,3 +33,5 @@ subprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+
