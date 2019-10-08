@@ -47,56 +47,69 @@ class VoteScreenState extends State<VoteScreen> {
                 future: decisionSetFuture,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-                    return new OrientationBuilder(
-                        builder: (context, orientation) {
-                      if (orientation == Orientation.portrait) {
-                        return new Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              VoteImageWidget(
-                                surveyId: surveyCode,
-                                imageId: snapshot.data.id1,
-                                winnerCallback: () {
-                                  voteFor(new DecisionChoice(winner: snapshot.data.id1, loser: snapshot.data.id2));
-                                },
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.all(OR_DIVIDER_PADDING),
-                                child: OrDividerWidget(),
-                              ),
-                              VoteImageWidget(
-                                surveyId: surveyCode,
-                                imageId: snapshot.data.id2,
-                                winnerCallback: () {
-                                  voteFor(new DecisionChoice(winner: snapshot.data.id2, loser: snapshot.data.id1));
-                                },
-                              ),
-                            ]);
-                      }
-                      return new Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            VoteImageWidget(
-                              surveyId: surveyCode,
-                              imageId: snapshot.data.id1,
-                              winnerCallback: () {
-                                voteFor(new DecisionChoice(winner: snapshot.data.id1, loser: snapshot.data.id2));
-                              },
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(OR_DIVIDER_PADDING),
-                              child: OrDividerVerticalWidget(),
-                            ),
-                            VoteImageWidget(
-                              surveyId: surveyCode,
-                              imageId: snapshot.data.id2,
-                              winnerCallback: () {
-                                voteFor(new DecisionChoice(winner: snapshot.data.id2, loser: snapshot.data.id1));
-                              },
-                            ),
-                          ]);
-                    });
+                    if (snapshot.data.surveyIsRunning) {
+                      return new OrientationBuilder(
+                          builder: (context, orientation) {
+                            if (orientation == Orientation.portrait) {
+                              return new Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    VoteImageWidget(
+                                      surveyId: surveyCode,
+                                      imageId: snapshot.data.id1,
+                                      winnerCallback: () {
+                                        voteFor(new DecisionChoice(
+                                            winner: snapshot.data.id1,
+                                            loser: snapshot.data.id2));
+                                      },
+                                    ),
+                                    Padding(
+                                      padding:
+                                      const EdgeInsets.all(OR_DIVIDER_PADDING),
+                                      child: OrDividerWidget(),
+                                    ),
+                                    VoteImageWidget(
+                                      surveyId: surveyCode,
+                                      imageId: snapshot.data.id2,
+                                      winnerCallback: () {
+                                        voteFor(new DecisionChoice(
+                                            winner: snapshot.data.id2,
+                                            loser: snapshot.data.id1));
+                                      },
+                                    ),
+                                  ]);
+                            }
+                            return new Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  VoteImageWidget(
+                                    surveyId: surveyCode,
+                                    imageId: snapshot.data.id1,
+                                    winnerCallback: () {
+                                      voteFor(new DecisionChoice(
+                                          winner: snapshot.data.id1,
+                                          loser: snapshot.data.id2));
+                                    },
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(
+                                        OR_DIVIDER_PADDING),
+                                    child: OrDividerVerticalWidget(),
+                                  ),
+                                  VoteImageWidget(
+                                    surveyId: surveyCode,
+                                    imageId: snapshot.data.id2,
+                                    winnerCallback: () {
+                                      voteFor(new DecisionChoice(
+                                          winner: snapshot.data.id2,
+                                          loser: snapshot.data.id1));
+                                    },
+                                  ),
+                                ]);
+                          });
+                    } else {
+                      return FinishedWidget();
+                    }
                   } else if (snapshot.hasError) {
                     return ErrorWidget();
                   }
@@ -110,6 +123,51 @@ class VoteScreenState extends State<VoteScreen> {
 
     ApiService.postDecisionChoice(surveyCode, choice);
     loadNewDecisionSet();
+  }
+}
+
+class FinishedWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Text("The survey was closed.",
+              style: TextStyle(fontSize: 20)),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: MaterialButton(
+            height: 60,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text("Back to homepage", style: TextStyle(fontSize: 20)),
+            color: Colors.blueAccent[700],
+            textColor: Colors.white,
+            splashColor: Colors.white,
+            minWidth: double.infinity,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: MaterialButton(
+            height: 60,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text("View results", style: TextStyle(fontSize: 20)),
+            color: Colors.blueAccent[700],
+            textColor: Colors.white,
+            splashColor: Colors.white,
+            minWidth: double.infinity,
+          ),
+        ),
+      ],
+    );
   }
 }
 
@@ -132,7 +190,7 @@ class ErrorWidget extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Text("Go back", style: TextStyle(fontSize: 20)),
+            child: Text("Back to homepage", style: TextStyle(fontSize: 20)),
             color: Colors.blueAccent[700],
             textColor: Colors.white,
             splashColor: Colors.white,
