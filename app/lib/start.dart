@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
 
-import 'admin.dart';
 import 'common/logo.dart';
 import 'common/or_divider.dart';
 import 'vote.dart';
+
+const String VOTE_STRING = "/vote/";
+const String URL_START = "http://";
 
 class StartScreen extends StatefulWidget {
   StartScreen({Key key, this.title}) : super(key: key);
@@ -73,7 +75,7 @@ class StartScreenState extends State<StartScreen> {
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                   child: MaterialButton(
                     height: 60,
-                    onPressed: openVote,
+                    onPressed: scan,
                     child: Text("Scan survey qr-code",
                         style: TextStyle(fontSize: 20)),
                     color: Colors.blueAccent[700],
@@ -105,15 +107,11 @@ class StartScreenState extends State<StartScreen> {
             builder: (context) => VoteScreen(surveyCode: this.txtId.text)));
   }
 
-  void openAdmin() {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => AdminScreen()));
-  }
-
   Future scan() async {
     try {
       String barcode = await BarcodeScanner.scan();
-      setState(() => this.txtId.text = barcode);
+      setState(() => this.txtId.text = cleanBarcode(barcode));
+      openVote();
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.CameraAccessDenied) {
         setState(() {
@@ -128,5 +126,12 @@ class StartScreenState extends State<StartScreen> {
     } catch (e) {
       setState(() => this.barcode = 'Unknown error: $e');
     }
+  }
+
+  String cleanBarcode(String url) {
+    if (url.startsWith(URL_START)) {
+      return url.substring(url.indexOf(VOTE_STRING) + VOTE_STRING.length);
+    }
+    return url;
   }
 }
