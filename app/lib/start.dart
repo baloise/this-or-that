@@ -42,6 +42,7 @@ class StartScreenState extends State<StartScreen> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                   child: TextFormField(
+                    controller: txtId,
                       validator: (value) {
                         if (value.isEmpty) {
                           return 'Please enter some text';
@@ -76,7 +77,7 @@ class StartScreenState extends State<StartScreen> {
                   child: MaterialButton(
                     height: 60,
                     onPressed: scan,
-                    child: Text("Scan survey qr-code",
+                    child: Text("Scan survey QR-code",
                         style: TextStyle(fontSize: 20)),
                     color: Colors.blueAccent[700],
                     textColor: Colors.white,

@@ -13,7 +13,7 @@ class OrDividerWidget extends StatelessWidget {
             padding: const EdgeInsets.all(30.0),
             child: Container(
               decoration: new BoxDecoration(
-                color: Colors.black.withOpacity(0.75),
+                color: Color.fromRGBO(54, 54, 54, 1.0),
                 shape: BoxShape.circle,
               ),
               child: Padding(
