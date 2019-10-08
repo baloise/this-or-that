@@ -44,10 +44,11 @@ class StartScreenState extends State<StartScreen> {
                   child: TextFormField(
                       validator: (value) {
                         if (value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Please enter a valid survey code';
                         }
                         return null;
                       },
+                      controller: txtId,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Enter survey code',
@@ -105,13 +106,6 @@ class StartScreenState extends State<StartScreen> {
         context,
         MaterialPageRoute(
             builder: (context) => VoteScreen(surveyCode: this.txtId.text)));
-  }
-
-  String cleanBarcode(String url) {
-    if (url.startsWith(URL_START)) {
-      return url.substring(url.indexOf(VOTE_STRING) + VOTE_STRING.length);
-    }
-    return url;
   }
 
   Future scan() async {
