@@ -62,7 +62,7 @@
         }
 
         public vote() {
-            this.$router.push("vote");
+            this.$router.push("vote/" + this.surveyCode);
         }
 
     }
