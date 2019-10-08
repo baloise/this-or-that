@@ -21,6 +21,19 @@ class ApiService {
     }
   }
 
+  static Future<ScoreSummary> fetchScoreData(String surveyId) async {
+    String url = API_BASE_URL + "/" + surveyId + "/score";
+    final response = await http.get(url);
+
+    print("=>" + response.body);
+
+    if (response.statusCode == 200) {
+      return ScoreSummary.fromJson(json.decode(response.body));
+    } else {
+      throw Exception("Error");
+    }
+  }
+
   static Future<void> postDecisionChoice(String surveyId, DecisionChoice choice) async {
     String url = API_BASE_URL + "/" + surveyId + "/vote";
     String body = json.encode(choice.toMap());
