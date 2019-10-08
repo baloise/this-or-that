@@ -3,6 +3,8 @@ import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
 
 import 'admin.dart';
+import 'common/logo.dart';
+import 'common/or_divider.dart';
 import 'vote.dart';
 
 class StartScreen extends StatefulWidget {
@@ -15,88 +17,97 @@ class StartScreen extends StatefulWidget {
 }
 
 class StartScreenState extends State<StartScreen> {
-  String barcode = null;
+  String barcode;
   var txtId = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('This or That'),
+        backgroundColor: Colors.blueAccent[700],
+        title: Text("This or That"),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: MaterialButton(
-                onPressed: scan,
-                child: Text("Scan QR code", style: TextStyle(fontSize: 20)),
-                color: Theme.of(context).primaryColor,
-                textColor: Colors.white,
-                splashColor: Colors.white,
-                minWidth: double.infinity,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "or"
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Enter survey code',
+      body: Container(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                LogoImageWidget(),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  child: TextFormField(
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Enter survey code',
+                      )),
                 ),
-                controller: txtId,
-              ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: MaterialButton(
+                    height: 60,
+                    onPressed: () {
+                      if (_formKey.currentState.validate()) {
+                        openVote();
+                      }
+                    },
+                    child: Text("Let's vote", style: TextStyle(fontSize: 20)),
+                    color: Colors.blueAccent[700],
+                    textColor: Colors.white,
+                    splashColor: Colors.white,
+                    disabledColor: Colors.grey[300],
+                    minWidth: double.infinity,
+                  ),
+                ),
+                OrDividerWidget(),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: MaterialButton(
+                    height: 60,
+                    onPressed: openVote,
+                    child: Text("Scan survey qr-code",
+                        style: TextStyle(fontSize: 20)),
+                    color: Colors.blueAccent[700],
+                    textColor: Colors.white,
+                    splashColor: Colors.white,
+                    minWidth: double.infinity,
+                  ),
+                ),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: MaterialButton(
-                onPressed: openVote,
-                child: Text("Open with survey code",
-                    style: TextStyle(fontSize: 20)),
-                color: Theme.of(context).primaryColor,
-                textColor: Colors.white,
-                splashColor: Colors.white,
-                minWidth: double.infinity,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Divider(
-                color: Colors.grey
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: MaterialButton(
-                onPressed: openAdmin,
-                child: Text("Manage surveys",
-                    style: TextStyle(fontSize: 20)),
-                color: Theme.of(context).primaryColor,
-                textColor: Colors.white,
-                splashColor: Colors.white,
-                minWidth: double.infinity,
-              ),
-            ),
-          ],
+          ),
         ),
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: Colors.tealAccent[400],
+      //   onPressed: createNewSurvey,
+      //   tooltip: 'Create a new survey',
+      //   child: const Icon(Icons.add),
+      // ),
     );
   }
 
+  void createNewSurvey() {}
+
   void openVote() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => VoteScreen(surveyCode: this.txtId.text)));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => VoteScreen(surveyCode: this.txtId.text)));
   }
 
   void openAdmin() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => AdminScreen()));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => AdminScreen()));
   }
 
   Future scan() async {
@@ -113,10 +124,9 @@ class StartScreenState extends State<StartScreen> {
       }
     } on FormatException {
       setState(() => this.barcode =
-      'null (User returned using the "back"-button before scanning anything. Result)');
+          'null (User returned using the "back"-button before scanning anything. Result)');
     } catch (e) {
       setState(() => this.barcode = 'Unknown error: $e');
     }
   }
-
 }
