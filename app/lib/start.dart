@@ -46,10 +46,11 @@ class StartScreenState extends State<StartScreen> {
                   child: TextFormField(
                       validator: (value) {
                         if (value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Please enter a valid survey code';
                         }
                         return null;
                       },
+                      controller: txtId,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Enter survey code',
