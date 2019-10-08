@@ -107,13 +107,6 @@ class StartScreenState extends State<StartScreen> {
             builder: (context) => VoteScreen(surveyCode: this.txtId.text)));
   }
 
-  String cleanBarcode(String url) {
-    if (url.startsWith(URL_START)) {
-      return url.substring(url.indexOf(VOTE_STRING) + VOTE_STRING.length);
-    }
-    return url;
-  }
-
   Future scan() async {
     try {
       String barcode = await BarcodeScanner.scan();
