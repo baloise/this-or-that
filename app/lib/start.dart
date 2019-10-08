@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
+import 'package:package_info/package_info.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'common/logo.dart';
 import 'common/or_divider.dart';
@@ -76,7 +78,7 @@ class StartScreenState extends State<StartScreen> {
                   child: MaterialButton(
                     height: 60,
                     onPressed: scan,
-                    child: Text("Scan survey qr-code",
+                    child: Text("Scan survey QR-code",
                         style: TextStyle(fontSize: 20)),
                     color: Colors.blueAccent[700],
                     textColor: Colors.white,
@@ -89,12 +91,12 @@ class StartScreenState extends State<StartScreen> {
           ),
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: Colors.tealAccent[400],
-      //   onPressed: createNewSurvey,
-      //   tooltip: 'Create a new survey',
-      //   child: const Icon(Icons.add),
-      // ),
+       floatingActionButton: FloatingActionButton(
+         backgroundColor: Colors.tealAccent[400],
+         onPressed: openAbout,
+         tooltip: 'About this app',
+         child: const Icon(Icons.add),
+       ),
     );
   }
 
@@ -105,6 +107,35 @@ class StartScreenState extends State<StartScreen> {
         context,
         MaterialPageRoute(
             builder: (context) => VoteScreen(surveyCode: this.txtId.text)));
+  }
+
+  void openAbout() {
+    String version = "";
+    String buildNumber = "";
+
+    PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
+      version = packageInfo.version;
+      buildNumber = packageInfo.buildNumber;
+    });
+
+    showDialog(
+        context: context,
+        builder: (context) => AboutDialog(
+            applicationVersion: "Version: " + version + " #" + buildNumber,
+            applicationLegalese: "Apache 2.0 License"),
+            //child: RaisedButton(
+            //  onPressed: _launchURL,
+            //  child: Text('Show on GitHub')),
+            );
+  }
+
+  _launchURL() async {
+    const url = 'https://github.com/baloise/this-or-that';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   String cleanBarcode(String url) {
@@ -133,12 +164,5 @@ class StartScreenState extends State<StartScreen> {
     } catch (e) {
       setState(() => this.barcode = 'Unknown error: $e');
     }
-  }
-
-  String cleanBarcode(String url) {
-    if (url.startsWith(URL_START)) {
-      return url.substring(url.indexOf(VOTE_STRING) + VOTE_STRING.length);
-    }
-    return url;
   }
 }
