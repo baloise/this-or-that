@@ -21,4 +21,9 @@ export const routes: RouteConfig[] = [
         name: 'vote',
         component: () => import('@/app/views/VoteContainer.vue'),
     },
+    {
+        path: '/admin/:surveyCode',
+        name: 'admin',
+        component: () => import('@/app/views/AdminContainer.vue'),
+    },
 ];

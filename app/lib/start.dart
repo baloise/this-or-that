@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
+import 'package:package_info/package_info.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-import 'admin.dart';
+import 'common/logo.dart';
+import 'common/or_divider.dart';
 import 'vote.dart';
 
 const String VOTE_STRING = "/vote/";
@@ -18,88 +21,122 @@ class StartScreen extends StatefulWidget {
 }
 
 class StartScreenState extends State<StartScreen> {
-  String barcode = null;
+  String barcode;
   var txtId = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('This or That'),
+        backgroundColor: Colors.blueAccent[700],
+        title: Text("This or That"),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: MaterialButton(
-                onPressed: scan,
-                child: Text("Scan QR code", style: TextStyle(fontSize: 20)),
-                color: Theme.of(context).primaryColor,
-                textColor: Colors.white,
-                splashColor: Colors.white,
-                minWidth: double.infinity,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "or"
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Enter survey code',
+      body: Container(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                LogoImageWidget(),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  child: TextFormField(
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Please enter a valid survey code';
+                        }
+                        return null;
+                      },
+                      controller: txtId,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Enter survey code',
+                      )),
                 ),
-                controller: txtId,
-              ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: MaterialButton(
+                    height: 60,
+                    onPressed: () {
+                      if (_formKey.currentState.validate()) {
+                        openVote();
+                      }
+                    },
+                    child: Text("Let's vote", style: TextStyle(fontSize: 20)),
+                    color: Colors.blueAccent[700],
+                    textColor: Colors.white,
+                    splashColor: Colors.white,
+                    disabledColor: Colors.grey[300],
+                    minWidth: double.infinity,
+                  ),
+                ),
+                OrDividerWidget(),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: MaterialButton(
+                    height: 60,
+                    onPressed: scan,
+                    child: Text("Scan survey QR-code",
+                        style: TextStyle(fontSize: 20)),
+                    color: Colors.blueAccent[700],
+                    textColor: Colors.white,
+                    splashColor: Colors.white,
+                    minWidth: double.infinity,
+                  ),
+                ),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: MaterialButton(
-                onPressed: openVote,
-                child: Text("Open with survey code",
-                    style: TextStyle(fontSize: 20)),
-                color: Theme.of(context).primaryColor,
-                textColor: Colors.white,
-                splashColor: Colors.white,
-                minWidth: double.infinity,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Divider(
-                color: Colors.grey
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: MaterialButton(
-                onPressed: openAdmin,
-                child: Text("Manage surveys",
-                    style: TextStyle(fontSize: 20)),
-                color: Theme.of(context).primaryColor,
-                textColor: Colors.white,
-                splashColor: Colors.white,
-                minWidth: double.infinity,
-              ),
-            ),
-          ],
+          ),
         ),
       ),
+       floatingActionButton: FloatingActionButton(
+         backgroundColor: Colors.tealAccent[400],
+         onPressed: openAbout,
+         tooltip: 'About this app',
+         child: const Icon(Icons.add),
+       ),
     );
   }
 
+  void createNewSurvey() {}
+
   void openVote() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => VoteScreen(surveyCode: this.txtId.text)));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => VoteScreen(surveyCode: this.txtId.text)));
   }
 
-  void openAdmin() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => AdminScreen()));
+  void openAbout() {
+    String version = "";
+    String buildNumber = "";
+
+    PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
+      version = packageInfo.version;
+      buildNumber = packageInfo.buildNumber;
+    });
+
+    showDialog(
+        context: context,
+        builder: (context) => AboutDialog(
+            applicationVersion: "Version: " + version + " #" + buildNumber,
+            applicationLegalese: "Apache 2.0 License"),
+            //child: RaisedButton(
+            //  onPressed: _launchURL,
+            //  child: Text('Show on GitHub')),
+            );
+  }
+
+  _launchURL() async {
+    const url = 'https://github.com/baloise/this-or-that';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   String cleanBarcode(String url) {
@@ -124,10 +161,9 @@ class StartScreenState extends State<StartScreen> {
       }
     } on FormatException {
       setState(() => this.barcode =
-      'null (User returned using the "back"-button before scanning anything. Result)');
+          'null (User returned using the "back"-button before scanning anything. Result)');
     } catch (e) {
       setState(() => this.barcode = 'Unknown error: $e');
     }
   }
-
 }

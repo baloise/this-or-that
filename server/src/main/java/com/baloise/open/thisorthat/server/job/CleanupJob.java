@@ -35,9 +35,8 @@ public class CleanupJob implements Runnable {
         LOGGER.info("ENTRY CleanupJob RUN()");
         DatabaseService databaseService = DatabaseServiceProvider.getInMemoryDBServiceInstance();
         Calendar yesterday = Calendar.getInstance();
-        yesterday.add(Calendar.DAY_OF_MONTH, -3);
-        List<Survey> oldSurveys;
-        oldSurveys = databaseService.getSurveysOlderThan(yesterday.getTime());
+        yesterday.add(Calendar.DAY_OF_MONTH, -7);
+        List<Survey> oldSurveys = databaseService.getSurveysOlderThan(yesterday.getTime());
         LOGGER.info("Removing {} surveys", oldSurveys.size());
         for (Survey survey : oldSurveys) {
             try {

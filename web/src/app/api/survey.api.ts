@@ -6,6 +6,7 @@ import {CreateImageRequest} from '@/app/models/create-image-request';
 import {CreateImageResponse} from '@/app/models/create-image-response';
 import {VoteRequest} from '@/app/models/vote-request';
 import {VoteResponse} from '@/app/models/vote-response';
+import {ScoreResponse} from '@/app/models/score-response';
 
 const BASE_PATH = '/api/survey';
 
@@ -39,4 +40,13 @@ export async function getVote(surveyCode: string): Promise<VoteResponse> {
 
 export async function setVote(surveyCode: string, voteRequest: VoteRequest): Promise<Response> {
     return await Vue.$http.post(BASE_PATH + '/' + surveyCode + '/vote', classToPlain(voteRequest));
+}
+  
+export async function stopSurvey(surveyCode: string): Promise<Response> {
+    return await Vue.$http.post(BASE_PATH + '/' + surveyCode + '/stop');
+}
+
+export async function getScore(surveyCode: string): Promise<ScoreResponse> {
+    const response = await Vue.$http.get(BASE_PATH + '/' + surveyCode + '/score');
+    return plainToClass(ScoreResponse, response.data);
 }

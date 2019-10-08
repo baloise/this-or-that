@@ -21,9 +21,10 @@
                                 <b-field label="Survey Code">
                                     <b-input v-model="surveyCode"></b-input>
                                 </b-field>
+
                                 <div class="columns is-desktop">
                                     <div class="column">
-                                        <button :disabled="surveyCode.length === 0" class="button is-primary is-medium">
+                                        <button @click="manageSurvey()" :disabled="surveyCode.length === 0" class="button is-primary is-medium">
                                             Manage Survey
                                         </button>
                                     </div>
@@ -63,6 +64,10 @@
 
         public vote() {
             this.$router.push("vote/" + this.surveyCode);
+        }
+  
+        public manageSurvey() {
+            this.$router.push('admin/' + this.surveyCode);
         }
 
     }

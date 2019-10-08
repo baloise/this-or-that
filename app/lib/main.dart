@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => StartScreen(),
-        '/vote': (context) => VoteScreen(),
+        '/vote': (context) => VoteScreen(surveyCode: null,),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
