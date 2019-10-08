@@ -46,67 +46,81 @@ class VoteScreenState extends State<VoteScreen> {
             child: FutureBuilder<DecisionSet>(
                 future: decisionSetFuture,
                 builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+                  if (snapshot.connectionState == ConnectionState.done &&
+                      snapshot.hasData) {
                     if (snapshot.data.surveyIsRunning) {
                       return new OrientationBuilder(
                           builder: (context, orientation) {
-                            if (orientation == Orientation.portrait) {
-                              return new Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    VoteImageWidget(
-                                      surveyId: surveyCode,
-                                      imageId: snapshot.data.id1,
-                                      winnerCallback: () {
-                                        voteFor(new DecisionChoice(
-                                            winner: snapshot.data.id1,
-                                            loser: snapshot.data.id2));
-                                      },
-                                    ),
-                                    Padding(
-                                      padding:
+                        if (orientation == Orientation.portrait) {
+                          return new Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                VoteImageWidget(
+                                  surveyId: surveyCode,
+                                  imageId: snapshot.data.id1,
+                                  winnerCallback: () {
+                                    voteFor(new DecisionChoice(
+                                        winner: snapshot.data.id1,
+                                        loser: snapshot.data.id2));
+                                  },
+                                ),
+                                Padding(
+                                  padding:
                                       const EdgeInsets.all(OR_DIVIDER_PADDING),
-                                      child: OrDividerWidget(),
-                                    ),
-                                    VoteImageWidget(
-                                      surveyId: surveyCode,
-                                      imageId: snapshot.data.id2,
-                                      winnerCallback: () {
-                                        voteFor(new DecisionChoice(
-                                            winner: snapshot.data.id2,
-                                            loser: snapshot.data.id1));
-                                      },
-                                    ),
-                                  ]);
-                            }
-                            return new Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  VoteImageWidget(
-                                    surveyId: surveyCode,
-                                    imageId: snapshot.data.id1,
-                                    winnerCallback: () {
-                                      voteFor(new DecisionChoice(
-                                          winner: snapshot.data.id1,
-                                          loser: snapshot.data.id2));
-                                    },
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(
-                                        OR_DIVIDER_PADDING),
-                                    child: OrDividerVerticalWidget(),
-                                  ),
-                                  VoteImageWidget(
-                                    surveyId: surveyCode,
-                                    imageId: snapshot.data.id2,
-                                    winnerCallback: () {
-                                      voteFor(new DecisionChoice(
-                                          winner: snapshot.data.id2,
-                                          loser: snapshot.data.id1));
-                                    },
-                                  ),
-                                ]);
-                          });
+                                  child: OrDividerWidget(),
+                                ),
+                                VoteImageWidget(
+                                  surveyId: surveyCode,
+                                  imageId: snapshot.data.id2,
+                                  winnerCallback: () {
+                                    voteFor(new DecisionChoice(
+                                        winner: snapshot.data.id2,
+                                        loser: snapshot.data.id1));
+                                  },
+                                ),
+                                FloatingActionButton.extended(
+                                  backgroundColor: Colors.blueAccent[700],
+                                  onPressed: () {},
+                                  tooltip: 'Create a new survey',
+                                  label: Text("Close survey"),
+                                  icon: Icon(Icons.close),
+                                ),
+                              ]);
+                        }
+                        return new Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              VoteImageWidget(
+                                surveyId: surveyCode,
+                                imageId: snapshot.data.id1,
+                                winnerCallback: () {
+                                  voteFor(new DecisionChoice(
+                                      winner: snapshot.data.id1,
+                                      loser: snapshot.data.id2));
+                                },
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.all(OR_DIVIDER_PADDING),
+                                child: OrDividerVerticalWidget(),
+                              ),
+                              VoteImageWidget(
+                                surveyId: surveyCode,
+                                imageId: snapshot.data.id2,
+                                winnerCallback: () {
+                                  voteFor(new DecisionChoice(
+                                      winner: snapshot.data.id2,
+                                      loser: snapshot.data.id1));
+                                },
+                              ),
+                              FloatingActionButton(
+                                backgroundColor: Colors.blueAccent[700],
+                                onPressed: () {},
+                                tooltip: 'Create a new survey',
+                                child: Icon(Icons.close),
+                              ),
+                            ]);
+                      });
                     } else {
                       return FinishedWidget();
                     }
@@ -135,8 +149,7 @@ class FinishedWidget extends StatelessWidget {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Text("The survey was closed.",
-              style: TextStyle(fontSize: 20)),
+          child: Text("The survey was closed.", style: TextStyle(fontSize: 20)),
         ),
         Padding(
           padding: const EdgeInsets.all(20.0),
