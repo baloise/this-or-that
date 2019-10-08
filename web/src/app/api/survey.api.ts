@@ -4,6 +4,8 @@ import {CreateSurveyRequest} from '@/app/models/create-survey-request';
 import {CreateSurveyResponse} from '@/app/models/create-survey-response';
 import {CreateImageRequest} from '@/app/models/create-image-request';
 import {CreateImageResponse} from '@/app/models/create-image-response';
+import {ScoreResponse} from '@/app/models/score-response';
+
 
 const BASE_PATH = '/api/survey';
 
@@ -19,4 +21,13 @@ export async function createImage(createImageRequest: CreateImageRequest, survey
 
 export async function startSurvey(surveyCode: string): Promise<Response> {
     return await Vue.$http.post(BASE_PATH + '/' + surveyCode + '/start');
+}
+
+export async function stopSurvey(surveyCode: string): Promise<Response> {
+    return await Vue.$http.post(BASE_PATH + '/' + surveyCode + '/stop');
+}
+
+export async function getScore(surveyCode: string): Promise<ScoreResponse> {
+    const response = await Vue.$http.get(BASE_PATH + '/' + surveyCode + '/score');
+    return plainToClass(ScoreResponse, response.data);
 }
