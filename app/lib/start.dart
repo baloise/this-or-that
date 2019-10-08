@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'common/logo.dart';
@@ -31,61 +31,63 @@ class StartScreenState extends State<StartScreen> {
         backgroundColor: Colors.blueAccent[700],
         title: Text("This or That"),
       ),
-      body: Container(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: <Widget>[
-                LogoImageWidget(),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                  child: TextFormField(
-                    controller: txtId,
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return 'Please enter some text';
+      body: SafeArea(
+        child: Container(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+            child: Form(
+              key: _formKey,
+              child: ListView(
+                children: <Widget>[
+                  LogoImageWidget(),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    child: TextFormField(
+                        controller: txtId,
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Enter survey code',
+                        )),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                    child: MaterialButton(
+                      height: 60,
+                      onPressed: () {
+                        if (_formKey.currentState.validate()) {
+                          openVote();
                         }
-                        return null;
                       },
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Enter survey code',
-                      )),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  child: MaterialButton(
-                    height: 60,
-                    onPressed: () {
-                      if (_formKey.currentState.validate()) {
-                        openVote();
-                      }
-                    },
-                    child: Text("Let's vote", style: TextStyle(fontSize: 20)),
-                    color: Colors.blueAccent[700],
-                    textColor: Colors.white,
-                    splashColor: Colors.white,
-                    disabledColor: Colors.grey[300],
-                    minWidth: double.infinity,
+                      child: Text("Let's vote", style: TextStyle(fontSize: 20)),
+                      color: Colors.blueAccent[700],
+                      textColor: Colors.white,
+                      splashColor: Colors.white,
+                      disabledColor: Colors.grey[300],
+                      minWidth: double.infinity,
+                    ),
                   ),
-                ),
-                OrDividerWidget(),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  child: MaterialButton(
-                    height: 60,
-                    onPressed: scan,
-                    child: Text("Scan survey QR-code",
-                        style: TextStyle(fontSize: 20)),
-                    color: Colors.blueAccent[700],
-                    textColor: Colors.white,
-                    splashColor: Colors.white,
-                    minWidth: double.infinity,
+                  OrDividerWidget(),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                    child: MaterialButton(
+                      height: 60,
+                      onPressed: scan,
+                      child: Text("Scan survey QR-code",
+                          style: TextStyle(fontSize: 20)),
+                      color: Colors.blueAccent[700],
+                      textColor: Colors.white,
+                      splashColor: Colors.white,
+                      minWidth: double.infinity,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
