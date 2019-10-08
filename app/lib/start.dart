@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 import 'common/logo.dart';
 import 'common/or_divider.dart';
+import 'results.dart';
 import 'vote.dart';
 
 const String VOTE_STRING = "/vote/";
@@ -92,12 +93,6 @@ class StartScreenState extends State<StartScreen> {
           ),
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: Colors.tealAccent[400],
-      //   onPressed: createNewSurvey,
-      //   tooltip: 'Create a new survey',
-      //   child: const Icon(Icons.add),
-      // ),
     );
   }
 

@@ -3,6 +3,7 @@ import 'package:this_or_that_app/service/api-service.dart';
 
 import 'common/or_divider.dart';
 import 'common/or_divider_vertical.dart';
+import 'results.dart';
 import 'service/dtos.dart';
 
 const double OR_DIVIDER_PADDING = 30.0;
@@ -122,7 +123,9 @@ class VoteScreenState extends State<VoteScreen> {
                             ]);
                       });
                     } else {
-                      return FinishedWidget();
+                      return FinishedWidget(
+                        resultCallback: openResults,
+                      );
                     }
                   } else if (snapshot.hasError) {
                     return ErrorWidget();
@@ -138,9 +141,20 @@ class VoteScreenState extends State<VoteScreen> {
     ApiService.postDecisionChoice(surveyCode, choice);
     loadNewDecisionSet();
   }
+
+  openResults() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ResultScreen(surveyCode: surveyCode)));
+  }
 }
 
 class FinishedWidget extends StatelessWidget {
+
+  final VoidCallback resultCallback;
+
+  FinishedWidget({this.resultCallback});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -169,9 +183,7 @@ class FinishedWidget extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
           child: MaterialButton(
             height: 60,
-            onPressed: () {
-              Navigator.pop(context);
-            },
+            onPressed: resultCallback,
             child: Text("View results", style: TextStyle(fontSize: 20)),
             color: Colors.blueAccent[700],
             textColor: Colors.white,
