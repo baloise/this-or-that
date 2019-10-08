@@ -20,10 +20,7 @@ import com.baloise.open.thisorthat.server.dto.ScoreItem;
 import com.baloise.open.thisorthat.server.dto.Survey;
 import com.baloise.open.thisorthat.server.dto.Vote;
 import com.baloise.open.thisorthat.server.exception.*;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientOptions;
-import com.mongodb.MongoCredential;
-import com.mongodb.ServerAddress;
+import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.result.DeleteResult;
@@ -62,9 +59,10 @@ public class MongoDatabaseService implements DatabaseService {
             final String username = System.getProperty("thisorthat.mongodb.username");
             final String password = System.getProperty("thisorthat.mongodb.password");
             MongoCredential credentials = MongoCredential.createCredential(username, MONGO_DB_NAME, password.toCharArray());
-            mongoClient = new MongoClient(new ServerAddress(serverUrl, Integer.valueOf(port)), credentials, MongoClientOptions.builder().build());
+            mongoClient = new MongoClient(new ServerAddress(serverUrl, Integer.parseInt(port)), credentials, MongoClientOptions.builder().build());
         } else {
-            throw new IllegalStateException("not supported environment");
+            MongoClientURI connectionString = new MongoClientURI(System.getProperty("thisorthat.mongodb.server.connectionString"));
+            mongoClient = new MongoClient(connectionString);
         }
         MongoDatabase database = mongoClient.getDatabase(MONGO_DB_NAME);
         database = database.withCodecRegistry(pojoCodecRegistry);
