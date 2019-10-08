@@ -11,7 +11,6 @@ class VoteScreen extends StatefulWidget {
 }
 
 class VoteScreenState extends State<VoteScreen> {
-
   final String surveyCode;
   bool loading = false;
 
@@ -20,9 +19,9 @@ class VoteScreenState extends State<VoteScreen> {
   @override
   void initState() {
     this.loading = true;
-    http.get("http://api.holzenkamp.me/spring-test/slow").then((response) {
-      setState(() => this.loading = false);
-    });
+    // // http.get("http://api.holzenkamp.me/spring-test/slow").then((response) {
+    //   setState(() => this.loading = false);
+    // });
   }
 
   @override
@@ -35,10 +34,7 @@ class VoteScreenState extends State<VoteScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Visibility(
-                visible: loading,
-                child: CircularProgressIndicator()
-            ),
+            Visibility(visible: loading, child: CircularProgressIndicator()),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text("Survey-ID: " + surveyCode),
