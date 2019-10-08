@@ -44,6 +44,7 @@ class StartScreenState extends State<StartScreen> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                   child: TextFormField(
+                    controller: txtId,
                       validator: (value) {
                         if (value.isEmpty) {
                           return 'Please enter a valid survey code';
