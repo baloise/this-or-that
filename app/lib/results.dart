@@ -1,12 +1,7 @@
-import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-import 'common/logo.dart';
-import 'common/or_divider.dart';
 import 'service/api-service.dart';
 import 'service/dtos.dart';
-import 'vote.dart';
 
 class ResultScreen extends StatefulWidget {
   ResultScreen({Key key, @required this.surveyCode}) : super(key: key);
@@ -70,8 +65,11 @@ class ResultScreenState extends State<ResultScreen> {
                                 return Card(
                                   child: Column(
                                     children: <Widget>[
-                                      Image.network(buildImageUrl(snapshot.data.scores[index].imageId)),
-                                      Text("Score: " + snapshot.data.scores[index].score.toString())
+                                      Image.network(buildImageUrl(
+                                          snapshot.data.scores[index].imageId)),
+                                      Text("Score: " +
+                                          snapshot.data.scores[index].score
+                                              .toString())
                                     ],
                                   ),
                                 );

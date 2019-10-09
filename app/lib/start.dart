@@ -2,11 +2,9 @@ import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:package_info/package_info.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import 'common/logo.dart';
 import 'common/or_divider.dart';
-import 'results.dart';
 import 'vote.dart';
 
 const String VOTE_STRING = "/vote/";
@@ -31,8 +29,13 @@ class StartScreenState extends State<StartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueAccent[700],
         title: Text("This or That"),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.info),
+              tooltip: 'About this app',
+              onPressed: openAbout)
+        ],
       ),
       body: SafeArea(
         child: Container(
@@ -71,7 +74,6 @@ class StartScreenState extends State<StartScreen> {
                       color: Colors.blueAccent[700],
                       textColor: Colors.white,
                       splashColor: Colors.white,
-                      disabledColor: Colors.grey[300],
                       minWidth: double.infinity,
                     ),
                   ),
@@ -95,12 +97,12 @@ class StartScreenState extends State<StartScreen> {
           ),
         ),
       ),
-       floatingActionButton: FloatingActionButton(
-         backgroundColor: Colors.tealAccent[400],
-         onPressed: openAbout,
-         tooltip: 'About this app',
-         child: const Icon(Icons.add),
-       ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: Colors.tealAccent[400],
+      //   onPressed: createNewSurvey,
+      //   tooltip: 'Create survex',
+      //   child: const Icon(Icons.add),
+      // ),
     );
   }
 
@@ -123,23 +125,11 @@ class StartScreenState extends State<StartScreen> {
     });
 
     showDialog(
-        context: context,
-        builder: (context) => AboutDialog(
-            applicationVersion: "Version: " + version + " #" + buildNumber,
-            applicationLegalese: "Apache 2.0 License"),
-            //child: RaisedButton(
-            //  onPressed: _launchURL,
-            //  child: Text('Show on GitHub')),
-            );
-  }
-
-  _launchURL() async {
-    const url = 'https://github.com/baloise/this-or-that';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
+      context: context,
+      builder: (context) => AboutDialog(
+          applicationVersion: "Version: " + version + " #" + buildNumber,
+          applicationLegalese: "Apache 2.0 License"),
+    );
   }
 
   String cleanBarcode(String url) {
