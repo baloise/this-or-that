@@ -53,7 +53,6 @@ class StartScreenState extends State<StartScreen> {
                           }
                           return null;
                         },
-                      controller: txtId,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Enter survey code',
