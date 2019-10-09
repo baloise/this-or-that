@@ -13,29 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.baloise.open.thisorthat;
+package com.baloise.open.thisorthat.api.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public class VoteRequest {
-    private String winner;
-    private String loser;
-
-    public VoteRequest() {
-    }
-
-    public String getWinner() {
-        return winner;
-    }
-
-    public void setWinner(String winner) {
-        this.winner = winner;
-    }
-
-    public String getLoser() {
-        return loser;
-    }
-
-    public void setLoser(String loser) {
-        this.loser = loser;
-    }
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Builder
+public class ImageRequest {
+    private String file;
 }
