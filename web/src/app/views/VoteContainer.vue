@@ -36,13 +36,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { getImageURL, getVote, setVote } from "@/app/api/survey.api";
-import { VoteRequest } from "@/app/models/vote-request";
-import { VoteResponse } from "@/app/models/vote-response";
+import { Component, Vue } from 'vue-property-decorator';
+import { getImageURL, getVote, setVote } from '@/app/api/survey.api';
+import { VoteRequest } from '@/app/models/vote-request';
+import { VoteResponse } from '@/app/models/vote-response';
 
 @Component({
-  components: {}
+  components: {},
 })
 export default class VoteContainer extends Vue {
   public isLoading = false;

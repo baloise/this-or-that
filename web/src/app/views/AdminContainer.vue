@@ -55,22 +55,22 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue } from 'vue-property-decorator';
 import {
   getImageURL,
   createImage,
   stopSurvey,
   getScore,
-  getVote
-} from "@/app/api/survey.api";
-import { ErrorCode, getErrorCode } from "@/app/api/error";
-import { CreateSurveyRequest } from "@/app/models/create-survey-request";
-import { CreateImageRequest } from "@/app/models/create-image-request";
-import { ScoreResponse } from "@/app/models/score-response";
-import { VoteResponse } from "@/app/models/vote-response";
+  getVote,
+} from '@/app/api/survey.api';
+import { ErrorCode, getErrorCode } from '@/app/api/error';
+import { CreateSurveyRequest } from '@/app/models/create-survey-request';
+import { CreateImageRequest } from '@/app/models/create-image-request';
+import { ScoreResponse } from '@/app/models/score-response';
+import { VoteResponse } from '@/app/models/vote-response';
 
 @Component({
-  components: {}
+  components: {},
 })
 export default class AdminContainer extends Vue {
   public isLoading = false;
@@ -81,7 +81,7 @@ export default class AdminContainer extends Vue {
     if (this.voteResponse != null) {
       return getImageURL(
         this.$route.params.surveyCode,
-        this.score.scores[idx].imageId
+        this.score.scores[idx].imageId,
       );
     }
     return null;
@@ -113,7 +113,7 @@ export default class AdminContainer extends Vue {
   }
 
   public back() {
-    this.$router.push("/");
+    this.$router.push('/');
   }
 }
 </script>
