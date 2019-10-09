@@ -75,7 +75,7 @@ before_script:
 
 script:
   # Build Android APK as debug: skips signing
-  - "cd app && flutter build apk --debug && cd .."
+  - "cd app && flutter build apk && cd .."
 
   # Build Vue application
   - "cd web && yarn run build && cd .."
