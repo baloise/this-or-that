@@ -7,6 +7,7 @@ import {CreateImageResponse} from '@/app/models/create-image-response';
 import {VoteRequest} from '@/app/models/vote-request';
 import {VoteResponse} from '@/app/models/vote-response';
 import {ScoreResponse} from '@/app/models/score-response';
+import {appConfig} from '@/config/app.config';
 
 const BASE_PATH = '';
 
@@ -21,7 +22,7 @@ export async function createImage(createImageRequest: CreateImageRequest, survey
 }
 
 export function getImageURL(surveyCode: string, imageId: string): string {
-    return BASE_PATH + '/' + surveyCode + '/image/' + imageId;
+    return appConfig.apiPath + BASE_PATH + '/' + surveyCode + '/image/' + imageId;
 }
 
 export async function getImage(surveyCode: string, imageId: string): Promise<string> {
