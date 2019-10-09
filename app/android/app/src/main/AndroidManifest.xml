@@ -10,6 +10,7 @@
             android:name="io.flutter.app.FlutterApplication"
             android:label="this_or_that_app"
             android:icon="@mipmap/ic_launcher">
+        <activity android:name="com.apptreesoftware.barcodescan.BarcodeScannerActivity"/>
         <activity
                 android:name=".MainActivity"
                 android:launchMode="singleTop"
