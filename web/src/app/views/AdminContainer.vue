@@ -19,7 +19,7 @@
                   v-if="!this.score.surveyIsRunning"
                 >Your survey: {{this.voteResponse.perspective}}</h2>
                 <div class="content is-center" v-if="this.score.surveyIsRunning">
-                  <h1>The servey hasn't finished yet.</h1>
+                  <h1>The survey hasn't finished yet.</h1>
                   <button @click="finishSurvey()" class="button is-primary is-medium">Finish survey</button>
                 </div>
                 <div class="content is-center" v-if="!this.score.surveyIsRunning">
