@@ -41,7 +41,7 @@ export async function getVote(surveyCode: string): Promise<VoteResponse> {
 export async function setVote(surveyCode: string, voteRequest: VoteRequest): Promise<Response> {
     return await Vue.$http.post(BASE_PATH + '/' + surveyCode + '/vote', classToPlain(voteRequest));
 }
-  
+
 export async function stopSurvey(surveyCode: string): Promise<Response> {
     return await Vue.$http.post(BASE_PATH + '/' + surveyCode + '/stop');
 }

@@ -36,13 +36,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { getImageURL, getVote, setVote } from "@/app/api/survey.api";
-import { VoteRequest } from "@/app/models/vote-request";
-import { VoteResponse } from "@/app/models/vote-response";
+import { Component, Vue } from 'vue-property-decorator';
+import { getImageURL, getVote, setVote } from '@/app/api/survey.api';
+import { VoteRequest } from '@/app/models/vote-request';
+import { VoteResponse } from '@/app/models/vote-response';
 
 @Component({
-  components: {}
+  components: {},
 })
 export default class VoteContainer extends Vue {
   public isLoading = false;
@@ -68,7 +68,6 @@ export default class VoteContainer extends Vue {
       this.voteResponse = await getVote(this.$route.params.surveyCode);
       this.isLoading = false;
     } catch (error) {
-      console.log(error);
       this.isLoading = false;
     }
   }
@@ -78,42 +77,17 @@ export default class VoteContainer extends Vue {
     try {
       if (this.voteResponse != null) {
         const winner =
-          selectedImage == 1 ? this.voteResponse.id1 : this.voteResponse.id2;
+          selectedImage === 1 ? this.voteResponse.id1 : this.voteResponse.id2;
         const loser =
-          selectedImage == 1 ? this.voteResponse.id2 : this.voteResponse.id1;
+          selectedImage === 1 ? this.voteResponse.id2 : this.voteResponse.id1;
         const voteRequest: VoteRequest = { winner, loser };
         await setVote(this.$route.params.surveyCode, voteRequest);
         this.voteResponse = await getVote(this.$route.params.surveyCode);
       }
       this.isLoading = false;
     } catch (error) {
-      console.log(error);
       this.isLoading = false;
     }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-img.element {
-  z-index: 2;
-  max-width: 100%;
-  max-height: 100%;
-  min-height: 1px;
-  min-width: 0;
-  width: 100%;
-  object-fit: scale-down;
-  position: relative;
-  border: 1px solid #ccc;
-  box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.3);
-  transition: opacity, box-shadow 0.2s;
-  &:focus,
-  &:active {
-    box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
-    &.dragging {
-      z-index: 3;
-      box-shadow: 8px 8px 12px 0px rgba(0, 0, 0, 0.3);
-    }
-  }
-}
-</style>
