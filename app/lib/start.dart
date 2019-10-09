@@ -1,11 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:package_info/package_info.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'common/logo.dart';
 import 'common/or_divider.dart';
+import 'results.dart';
 import 'vote.dart';
 
 const String VOTE_STRING = "/vote/";
@@ -33,61 +34,64 @@ class StartScreenState extends State<StartScreen> {
         backgroundColor: Colors.blueAccent[700],
         title: Text("This or That"),
       ),
-      body: Container(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: <Widget>[
-                LogoImageWidget(),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                  child: TextFormField(
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return 'Please enter a valid survey code';
-                        }
-                        return null;
-                      },
+      body: SafeArea(
+        child: Container(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+            child: Form(
+              key: _formKey,
+              child: ListView(
+                children: <Widget>[
+                  LogoImageWidget(),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    child: TextFormField(
+                        controller: txtId,
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please enter a valid survey code';
+                          }
+                          return null;
+                        },
                       controller: txtId,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Enter survey code',
-                      )),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  child: MaterialButton(
-                    height: 60,
-                    onPressed: () {
-                      if (_formKey.currentState.validate()) {
-                        openVote();
-                      }
-                    },
-                    child: Text("Let's vote", style: TextStyle(fontSize: 20)),
-                    color: Colors.blueAccent[700],
-                    textColor: Colors.white,
-                    splashColor: Colors.white,
-                    disabledColor: Colors.grey[300],
-                    minWidth: double.infinity,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Enter survey code',
+                        )),
                   ),
-                ),
-                OrDividerWidget(),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  child: MaterialButton(
-                    height: 60,
-                    onPressed: scan,
-                    child: Text("Scan survey QR-code",
-                        style: TextStyle(fontSize: 20)),
-                    color: Colors.blueAccent[700],
-                    textColor: Colors.white,
-                    splashColor: Colors.white,
-                    minWidth: double.infinity,
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                    child: MaterialButton(
+                      height: 60,
+                      onPressed: () {
+                        if (_formKey.currentState.validate()) {
+                          openVote();
+                        }
+                      },
+                      child: Text("Let's vote", style: TextStyle(fontSize: 20)),
+                      color: Colors.blueAccent[700],
+                      textColor: Colors.white,
+                      splashColor: Colors.white,
+                      disabledColor: Colors.grey[300],
+                      minWidth: double.infinity,
+                    ),
                   ),
-                ),
-              ],
+                  OrDividerWidget(),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                    child: MaterialButton(
+                      height: 60,
+                      onPressed: scan,
+                      child: Text("Scan survey QR-code",
+                          style: TextStyle(fontSize: 20)),
+                      color: Colors.blueAccent[700],
+                      textColor: Colors.white,
+                      splashColor: Colors.white,
+                      minWidth: double.infinity,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
