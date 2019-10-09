@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:this_or_that_app/service/api-service.dart';
+
+import 'common/or_divider.dart';
+import 'common/or_divider_vertical.dart';
+import 'results.dart';
+import 'service/dtos.dart';
+
+const double OR_DIVIDER_PADDING = 30.0;
 
 class VoteScreen extends StatefulWidget {
   VoteScreen({Key key, @required this.surveyCode}) : super(key: key);
@@ -12,34 +19,251 @@ class VoteScreen extends StatefulWidget {
 
 class VoteScreenState extends State<VoteScreen> {
   final String surveyCode;
-  bool loading = false;
+
+  String firstElement;
+  String secondElement;
+  Future<DecisionSet> decisionSetFuture;
 
   VoteScreenState({Key key, @required this.surveyCode}) : super();
 
   @override
   void initState() {
-    this.loading = true;
-    // // http.get("http://api.holzenkamp.me/spring-test/slow").then((response) {
-    //   setState(() => this.loading = false);
-    // });
+    this.loadNewDecisionSet();
+  }
+
+  void loadNewDecisionSet() {
+    setState(() {
+      decisionSetFuture = ApiService.fetchNewDecisionSet(surveyCode);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Survey"),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Visibility(visible: loading, child: CircularProgressIndicator()),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text("Survey-ID: " + surveyCode),
-            )
-          ],
+        appBar: AppBar(
+          title: Text("Survey (Code: " + surveyCode + ")"),
+        ),
+        body: SafeArea(
+            child: FutureBuilder<DecisionSet>(
+                future: decisionSetFuture,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done &&
+                      snapshot.hasData) {
+                    if (snapshot.data.surveyIsRunning) {
+                      return new OrientationBuilder(
+                          builder: (context, orientation) {
+                        if (orientation == Orientation.portrait) {
+                          return new Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                VoteImageWidget(
+                                  surveyId: surveyCode,
+                                  imageId: snapshot.data.id1,
+                                  winnerCallback: () {
+                                    voteFor(new DecisionChoice(
+                                        winner: snapshot.data.id1,
+                                        loser: snapshot.data.id2));
+                                  },
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.all(OR_DIVIDER_PADDING),
+                                  child: OrDividerWidget(),
+                                ),
+                                VoteImageWidget(
+                                  surveyId: surveyCode,
+                                  imageId: snapshot.data.id2,
+                                  winnerCallback: () {
+                                    voteFor(new DecisionChoice(
+                                        winner: snapshot.data.id2,
+                                        loser: snapshot.data.id1));
+                                  },
+                                ),
+                                FloatingActionButton.extended(
+                                  backgroundColor: Colors.blueAccent[700],
+                                  onPressed: () {},
+                                  tooltip: 'Create a new survey',
+                                  label: Text("Close survey"),
+                                  icon: Icon(Icons.close),
+                                ),
+                              ]);
+                        }
+                        return new Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              VoteImageWidget(
+                                surveyId: surveyCode,
+                                imageId: snapshot.data.id1,
+                                winnerCallback: () {
+                                  voteFor(new DecisionChoice(
+                                      winner: snapshot.data.id1,
+                                      loser: snapshot.data.id2));
+                                },
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.all(OR_DIVIDER_PADDING),
+                                child: OrDividerVerticalWidget(),
+                              ),
+                              VoteImageWidget(
+                                surveyId: surveyCode,
+                                imageId: snapshot.data.id2,
+                                winnerCallback: () {
+                                  voteFor(new DecisionChoice(
+                                      winner: snapshot.data.id2,
+                                      loser: snapshot.data.id1));
+                                },
+                              ),
+                              FloatingActionButton(
+                                backgroundColor: Colors.blueAccent[700],
+                                onPressed: () {},
+                                tooltip: 'Create a new survey',
+                                child: Icon(Icons.close),
+                              ),
+                            ]);
+                      });
+                    } else {
+                      return FinishedWidget(
+                        resultCallback: openResults,
+                      );
+                    }
+                  } else if (snapshot.hasError) {
+                    return ErrorWidget();
+                  }
+
+                  return Center(child: CircularProgressIndicator());
+                })));
+  }
+
+  voteFor(DecisionChoice choice) {
+    print("Choice: " + choice.winner);
+
+    ApiService.postDecisionChoice(surveyCode, choice);
+    loadNewDecisionSet();
+  }
+
+  openResults() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ResultScreen(surveyCode: surveyCode)));
+  }
+}
+
+class FinishedWidget extends StatelessWidget {
+
+  final VoidCallback resultCallback;
+
+  FinishedWidget({this.resultCallback});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Text("The survey was closed.", style: TextStyle(fontSize: 20)),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: MaterialButton(
+            height: 60,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text("Back to homepage", style: TextStyle(fontSize: 20)),
+            color: Colors.blueAccent[700],
+            textColor: Colors.white,
+            splashColor: Colors.white,
+            minWidth: double.infinity,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: MaterialButton(
+            height: 60,
+            onPressed: resultCallback,
+            child: Text("View results", style: TextStyle(fontSize: 20)),
+            color: Colors.blueAccent[700],
+            textColor: Colors.white,
+            splashColor: Colors.white,
+            minWidth: double.infinity,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class ErrorWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Text("The requested survey could not be found.",
+              style: TextStyle(fontSize: 20)),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: MaterialButton(
+            height: 60,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text("Back to homepage", style: TextStyle(fontSize: 20)),
+            color: Colors.blueAccent[700],
+            textColor: Colors.white,
+            splashColor: Colors.white,
+            minWidth: double.infinity,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class VoteImageWidget extends StatelessWidget {
+  final String surveyId;
+  final String imageId;
+  final VoidCallback winnerCallback;
+
+  VoteImageWidget({this.surveyId, this.imageId, this.winnerCallback});
+
+  String buildImageUrl() {
+    return ApiService.buildImageUrl(surveyId, imageId);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: InkWell(
+          onTap: winnerCallback,
+          child: new ClipRRect(
+            borderRadius: new BorderRadius.circular(8.0),
+            child: Image.network(
+              buildImageUrl(),
+              fit: BoxFit.fitWidth,
+              loadingBuilder: (BuildContext context, Widget child,
+                  ImageChunkEvent loadingProgress) {
+                if (loadingProgress == null) return child;
+                return Center(
+                  child: CircularProgressIndicator(
+                    value: loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded /
+                            loadingProgress.expectedTotalBytes
+                        : null,
+                  ),
+                );
+              },
+            ),
+          ),
         ),
       ),
     );

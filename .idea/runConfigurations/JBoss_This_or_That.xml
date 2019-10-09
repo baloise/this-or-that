@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="JBoss This or That" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="jboss" ALTERNATIVE_JRE_ENABLED="false">
+  <configuration default="false" name="JBoss This or That" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="jboss" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="10">
     <option name="OPEN_IN_BROWSER" value="false" />
     <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/this-or-that-0.0.1-SNAPSHOT/" />
     <option name="COMMON_VM_ARGUMENTS" value="-Dthisorthat.environment=LOCAL -Dthisorthat.mongodb.server.url=localhost -Dthisorthat.mongodb.server.port=27017 -Dthisorthat.mongodb.username=user -Dthisorthat.mongodb.password=12345678" />
@@ -15,9 +15,9 @@
       <option name="DOMAIN" value="false" />
       <option name="SERVER_GROUP" />
       <option name="USERNAME" value="" />
-      <option name="CREDENTIAL_ALIAS" />
+      <option name="PASSWORD" value="" />
     </server-settings>
-    <predefined_log_file enabled="true" id="JBoss" />
+    <predefined_log_file id="JBoss" enabled="true" />
     <extension name="net.ashald.envfile">
       <option name="IS_ENABLED" value="false" />
       <option name="IS_SUBST" value="false" />
