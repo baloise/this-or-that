@@ -79,7 +79,7 @@ matrix:
       script:
       - "cd app && flutter doctor -v"
       # Run Flutter build
-      - ./flutter/bin/flutter build apk
+      - "cd app && flutter build apk"
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
