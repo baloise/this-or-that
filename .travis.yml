@@ -74,13 +74,9 @@ matrix:
       - openjdk8
       script:
       - "mvn clean verify"
-  include: # app
-    - language: node_js
-      script:
-      - "cd app && flutter doctor -v && flutter build apk --debug"
-  include: # web
+  include: # app & web
     - language: node_js
       before_script:
-      - "cd web && yarn install"
+      - "cd web && yarn install && cd .."
       script:
-      - "yarn run build"
+      - "cd app && flutter doctor -v && flutter build apk --debug && cd ../web && yarn run build"
