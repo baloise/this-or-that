@@ -8,8 +8,8 @@
          FlutterApplication and put your custom class here. -->
     <application
             android:name="io.flutter.app.FlutterApplication"
-            android:label="this_or_that_app"
-            android:icon="@mipmap/ic_launcher">
+            android:label="This or That"
+            android:icon="@mipmap/launcher_icon">
         <activity android:name="com.apptreesoftware.barcodescan.BarcodeScannerActivity"/>
         <activity
                 android:name=".MainActivity"
