@@ -68,16 +68,22 @@ before_script:
   - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
 
 matrix:
-  include:
+  include: # server
     - language: java
       jdk:
       - openjdk8
       script:
       - "mvn cobertura:cobertura"
-  include:
+  include: # app
     - language: node_js
       script:
       - "cd app && flutter doctor -v && flutter build apk --debug"
+  include: # web
+    - language: node_js
+      before_script:
+      - "cd web && yarn install"
+      script:
+      - "yarn run build"
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

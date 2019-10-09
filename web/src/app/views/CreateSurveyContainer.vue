@@ -80,18 +80,18 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { createImage, createSurvey, startSurvey } from "@/app/api/survey.api";
-import { CreateSurveyRequest } from "@/app/models/create-survey-request";
-import { CreateImageRequest } from "@/app/models/create-image-request";
+import { Component, Vue } from 'vue-property-decorator';
+import { createImage, createSurvey, startSurvey } from '@/app/api/survey.api';
+import { CreateSurveyRequest } from '@/app/models/create-survey-request';
+import { CreateImageRequest } from '@/app/models/create-image-request';
 
 @Component({
-  components: {}
+  components: {},
 })
 export default class CreateSurveyContainer extends Vue {
-  public perspective: string = "";
+  public perspective: string = '';
   public droppedFiles: File[] = [];
-  public surveyCode = "";
+  public surveyCode = '';
   public isLoading = false;
 
   public async create() {
@@ -102,15 +102,15 @@ export default class CreateSurveyContainer extends Vue {
       const response = await createSurvey(createSurveyRequest);
       this.surveyCode = response.code;
       const allBase64 = await Promise.all(
-        this.droppedFiles.map(f => this.toBase64(f))
+        this.droppedFiles.map(f => this.toBase64(f)),
       );
       await Promise.all(
         allBase64.map(async file => {
           const createImageRequest: CreateImageRequest = {
-            file
+            file,
           };
           await createImage(createImageRequest, response.code);
-        })
+        }),
       );
       await startSurvey(response.code);
       this.isLoading = false;
@@ -137,15 +137,15 @@ export default class CreateSurveyContainer extends Vue {
   }
 
   public back() {
-    this.$router.push("/");
+    this.$router.push('/');
   }
 
   public manageSurvey() {
-    this.$router.push(his.surveyCode + "/admin");
+    this.$router.push(this.surveyCode + '/admin');
   }
 
   public vote() {
-    this.$router.push(this.surveyCode + "/vote");
+    this.$router.push(this.surveyCode + '/vote');
   }
 }
 </script>

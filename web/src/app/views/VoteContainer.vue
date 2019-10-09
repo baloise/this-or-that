@@ -36,13 +36,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { getImageURL, getVote, setVote } from "@/app/api/survey.api";
-import { VoteRequest } from "@/app/models/vote-request";
-import { VoteResponse } from "@/app/models/vote-response";
+import { Component, Vue } from 'vue-property-decorator';
+import { getImageURL, getVote, setVote } from '@/app/api/survey.api';
+import { VoteRequest } from '@/app/models/vote-request';
+import { VoteResponse } from '@/app/models/vote-response';
 
 @Component({
-  components: {}
+  components: {},
 })
 export default class VoteContainer extends Vue {
   public isLoading = false;
@@ -68,7 +68,6 @@ export default class VoteContainer extends Vue {
       this.voteResponse = await getVote(this.$route.params.surveyCode);
       this.isLoading = false;
     } catch (error) {
-      console.log(error);
       this.isLoading = false;
     }
   }
@@ -78,16 +77,15 @@ export default class VoteContainer extends Vue {
     try {
       if (this.voteResponse != null) {
         const winner =
-          selectedImage == 1 ? this.voteResponse.id1 : this.voteResponse.id2;
+          selectedImage === 1 ? this.voteResponse.id1 : this.voteResponse.id2;
         const loser =
-          selectedImage == 1 ? this.voteResponse.id2 : this.voteResponse.id1;
+          selectedImage === 1 ? this.voteResponse.id2 : this.voteResponse.id1;
         const voteRequest: VoteRequest = { winner, loser };
         await setVote(this.$route.params.surveyCode, voteRequest);
         this.voteResponse = await getVote(this.$route.params.surveyCode);
       }
       this.isLoading = false;
     } catch (error) {
-      console.log(error);
       this.isLoading = false;
     }
   }

@@ -55,33 +55,33 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue } from 'vue-property-decorator';
 import {
   getImageURL,
   createImage,
   stopSurvey,
   getScore,
-  getVote
-} from "@/app/api/survey.api";
-import { ErrorCode, getErrorCode } from "@/app/api/error";
-import { CreateSurveyRequest } from "@/app/models/create-survey-request";
-import { CreateImageRequest } from "@/app/models/create-image-request";
-import { ScoreResponse } from "@/app/models/score-response";
-import { VoteResponse } from "@/app/models/vote-response";
+  getVote,
+} from '@/app/api/survey.api';
+import { ErrorCode, getErrorCode } from '@/app/api/error';
+import { CreateSurveyRequest } from '@/app/models/create-survey-request';
+import { CreateImageRequest } from '@/app/models/create-image-request';
+import { ScoreResponse } from '@/app/models/score-response';
+import { VoteResponse } from '@/app/models/vote-response';
 
 @Component({
-  components: {}
+  components: {},
 })
 export default class AdminContainer extends Vue {
   public isLoading = false;
   public score: ScoreResponse | null = null;
   public voteResponse: VoteResponse | null = null;
 
-  public getImageURL(idx: int) {
-    if (this.voteResponse != null) {
+  public getImageURL(idx: number) {
+    if (this.score != null) {
       return getImageURL(
         this.$route.params.surveyCode,
-        this.score.scores[idx].imageId
+        this.score.scores[idx].imageId,
       );
     }
     return null;
@@ -92,10 +92,8 @@ export default class AdminContainer extends Vue {
     try {
       this.voteResponse = await getVote(this.$route.params.surveyCode);
       this.score = await getScore(this.$route.params.surveyCode);
-      console.log(this.score);
       this.isLoading = false;
     } catch (error) {
-      console.log(error);
       this.isLoading = false;
     }
   }
@@ -107,13 +105,12 @@ export default class AdminContainer extends Vue {
       this.score = await getScore(this.$route.params.surveyCode);
       this.isLoading = false;
     } catch (error) {
-      console.log(error);
       this.isLoading = false;
     }
   }
 
   public back() {
-    this.$router.push("/");
+    this.$router.push('/');
   }
 }
 </script>

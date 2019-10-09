@@ -49,26 +49,26 @@
 </template>
 
 <script lang="ts">
-    import {Component, Vue} from "vue-property-decorator";
+import {Component, Vue} from 'vue-property-decorator';
 
-    @Component({
-        components: {},
-    })
-    export default class HomeContainer extends Vue {
+@Component({
+    components: {},
+})
+export default class HomeContainer extends Vue {
 
-        public surveyCode = '';
+    public surveyCode = '';
 
-        public create() {
-            this.$router.push('create');
-        }
-
-        public vote() {
-            this.$router.push(this.surveyCode + "/vote");
-        }
-  
-        public manageSurvey() {
-            this.$router.push(this.surveyCode + '/admin');
-        }
-
+    public create() {
+        this.$router.push('create');
     }
+
+    public vote() {
+        this.$router.push(this.surveyCode + '/vote');
+    }
+
+    public manageSurvey() {
+        this.$router.push(this.surveyCode + '/admin');
+    }
+
+}
 </script>
