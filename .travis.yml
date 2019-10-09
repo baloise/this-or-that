@@ -73,7 +73,7 @@ matrix:
       jdk:
       - openjdk8
       script:
-      - "mvn cobertura:cobertura"
+      - "mvn clean verify"
   include: # app
     - language: node_js
       script:
@@ -84,6 +84,3 @@ matrix:
       - "cd web && yarn install"
       script:
       - "yarn run build"
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
