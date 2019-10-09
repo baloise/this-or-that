@@ -34,10 +34,9 @@ public class ApiController {
     public SurveyResponse createSurvey(@RequestBody CreateSurveyRequest createSurveyRequest) {
         try {
             Survey survey = surveyService.createSurvey(createSurveyRequest.getPerspective());
-            SurveyResponse build = SurveyResponse.builder()
+            return SurveyResponse.builder()
                     .code(survey.getCode())
                     .build();
-            return build;
         } catch (Exception e) {
             throw buildError(e);
         }
@@ -76,10 +75,9 @@ public class ApiController {
 
     @GetMapping(value = "/{code}/vote")
     @CrossOrigin(origins = "*")
-    public VoteResponse getSurvey(@PathVariable("code") String surveyCode) {
+    public VoteResponse getVote(@PathVariable("code") String surveyCode) {
         try {
-            VoteResponse vote = surveyService.getVote(surveyCode, getUserId());
-            return vote;
+            return surveyService.getVote(surveyCode, getUserId());
         } catch (Throwable t) {
             throw buildError(t);
         }
@@ -87,7 +85,7 @@ public class ApiController {
 
     @PostMapping(value = "/{code}/vote", consumes = "application/json")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<VoteResponse> postSurvey(@PathVariable("code") String surveyCode, @RequestBody VoteRequest voteRequest) {
+    public ResponseEntity<VoteResponse> setVote(@PathVariable("code") String surveyCode, @RequestBody VoteRequest voteRequest) {
         try {
             surveyService.setVote(surveyCode, voteRequest, getUserId());
             return ok().build();
@@ -100,8 +98,7 @@ public class ApiController {
     @CrossOrigin(origins = "*")
     public ScoreResponse getScore(@PathVariable("code") String surveyCode) {
         try {
-            ScoreResponse scoreResponse = surveyService.getScore(surveyCode);
-            return scoreResponse;
+            return surveyService.getScore(surveyCode);
         } catch (Exception e) {
             throw buildError(e);
         }
@@ -109,18 +106,16 @@ public class ApiController {
 
     @PostMapping(value = "/{code}/image", consumes = "application/json")
     @CrossOrigin(origins = "*")
-    public ImageResponse createImage(@PathVariable("code") String surveyCode, @RequestBody ImageRequest imageRequest) {
+    public ImageResponse addImageToSurvey(@PathVariable("code") String surveyCode, @RequestBody ImageRequest imageRequest) {
         try {
             Image image = Image.builder()
                     .file(imageRequest.getFile())
                     .build();
             String id = surveyService.addImageToSurvey(surveyCode, image);
-            ImageResponse build = ImageResponse.builder()
-                    .id(id)
-                    .file(imageRequest.getFile())
-                    .build();
 
-            return build;
+            return ImageResponse.builder()
+                    .id(id)
+                    .build();
         } catch (Exception e) {
             throw buildError(e);
         }
@@ -128,7 +123,7 @@ public class ApiController {
 
     @GetMapping(value = "/{code}/image/{imageId}", produces = "image/jpeg")
     @CrossOrigin(origins = "*")
-    public byte[] getImage(@PathVariable("code") String surveyCode, @PathVariable("imageId") String imageId) {
+    public byte[] getImageFromSurvey(@PathVariable("code") String surveyCode, @PathVariable("imageId") String imageId) {
         try {
             Image image = surveyService.getImageFromSurvey(surveyCode, imageId);
             String base64Image = image.getFile().split(",")[1];
