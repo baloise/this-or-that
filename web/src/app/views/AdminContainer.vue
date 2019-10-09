@@ -19,7 +19,7 @@
                   v-if="!this.score.surveyIsRunning"
                 >Your survey: {{this.voteResponse.perspective}}</h2>
                 <div class="content is-center" v-if="this.score.surveyIsRunning">
-                  <h1>The servey hasn't finished yet.</h1>
+                  <h1>The survey hasn't finished yet.</h1>
                   <button @click="finishSurvey()" class="button is-primary is-medium">Finish survey</button>
                 </div>
                 <div class="content is-center" v-if="!this.score.surveyIsRunning">
@@ -92,8 +92,11 @@ export default class AdminContainer extends Vue {
     try {
       this.voteResponse = await getVote(this.$route.params.surveyCode);
       this.score = await getScore(this.$route.params.surveyCode);
-      this.isLoading = false;
     } catch (error) {
+      if (error.response.status === 404) {
+            this.$router.push('/404');
+      }
+    } finally {
       this.isLoading = false;
     }
   }
@@ -103,8 +106,7 @@ export default class AdminContainer extends Vue {
     try {
       await stopSurvey(this.$route.params.surveyCode);
       this.score = await getScore(this.$route.params.surveyCode);
-      this.isLoading = false;
-    } catch (error) {
+    } finally {
       this.isLoading = false;
     }
   }

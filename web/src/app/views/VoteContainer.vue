@@ -15,7 +15,7 @@
               <!-- <div class="tile box has-background-light"> -->
               <div class="content is-center">
                 <h2 class="title is-2">{{this.voteResponse.perspective}}</h2>
-                <div class="columns is-desktop">
+                <div class="columns is-desktop" v-if="this.voteResponse.id1 != null">
                   <div class="column">
                     <img class="element" @click="vote(1)" :src="this.getImageURL1()" />
                   </div>
@@ -23,6 +23,22 @@
                     <img class="element" @click="vote(2)" :src="this.getImageURL2()" />
                   </div>
                 </div>
+                <div class="columns is-desktop" v-if="this.voteResponse.id1 == null">
+                  <div class="column">
+                    <h2 class="title is-2">Its over ...</h2>
+                    <p>... survay has already finished, but you can view the results</p>
+                    <button @click="manageSurvey()" class="button is-primary is-medium">View survey results</button>
+                  </div>
+                </div>
+              </div>
+              <div class="modal">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                  <p class="image is-4by3">
+                    <img src="../../assets/error.png" alt />
+                  </p>
+                </div>
+                <button class="modal-close is-large" aria-label="close"></button>
               </div>
               <!-- </div> -->
             </div>
@@ -41,9 +57,7 @@ import { getImageURL, getVote, setVote } from '@/app/api/survey.api';
 import { VoteRequest } from '@/app/models/vote-request';
 import { VoteResponse } from '@/app/models/vote-response';
 
-@Component({
-  components: {},
-})
+@Component
 export default class VoteContainer extends Vue {
   public isLoading = false;
   public voteResponse: VoteResponse | null = null;
@@ -66,8 +80,11 @@ export default class VoteContainer extends Vue {
     this.isLoading = true;
     try {
       this.voteResponse = await getVote(this.$route.params.surveyCode);
-      this.isLoading = false;
     } catch (error) {
+      if (error.response.status === 404) {
+            this.$router.push('/404');
+      }
+    } finally {
       this.isLoading = false;
     }
   }
@@ -84,10 +101,13 @@ export default class VoteContainer extends Vue {
         await setVote(this.$route.params.surveyCode, voteRequest);
         this.voteResponse = await getVote(this.$route.params.surveyCode);
       }
-      this.isLoading = false;
-    } catch (error) {
+    } finally {
       this.isLoading = false;
     }
+  }
+
+  public manageSurvey() {
+    this.$router.push('admin');
   }
 }
 </script>
