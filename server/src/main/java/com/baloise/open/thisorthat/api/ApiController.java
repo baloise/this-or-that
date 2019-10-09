@@ -1,18 +1,18 @@
 package com.baloise.open.thisorthat.api;
 
-import com.baloise.open.thisorthat.api.dto.Score;
-import com.baloise.open.thisorthat.api.dto.ScoreResponse;
-import com.baloise.open.thisorthat.api.dto.VoteRequest;
-import com.baloise.open.thisorthat.api.dto.VoteResponse;
+import com.baloise.open.thisorthat.api.dto.*;
+import com.baloise.open.thisorthat.dto.Image;
+import com.baloise.open.thisorthat.dto.Survey;
 import com.baloise.open.thisorthat.service.SurveyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Arrays;
+import javax.xml.bind.DatatypeConverter;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 public class ApiController {
@@ -24,57 +24,122 @@ public class ApiController {
         return sessionId != null ? sessionId : "sessionIdUnavailable";
     }
 
-    @RequestMapping(value = "/{code}/vote", method = GET)
-    @ResponseBody
-    public ResponseEntity<VoteResponse> getSurvey(@PathVariable("code") String surveyCode) {
+    private ResponseStatusException buildError(Throwable t) {
+        // FIXME
+        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "An error occured: " + t.getMessage(), t);
+    }
+
+    @PostMapping(consumes = "application/json")
+    public ResponseEntity<SurveyResponse> createSurvey(@RequestBody CreateSurveyRequest createSurveyRequest) {
         try {
-            VoteResponse voteResponse = surveyService.getVote(surveyCode, getUserId());
-            return new ResponseEntity<>(new VoteResponse(), HttpStatus.OK);
-        } catch (Throwable t) {
-            VoteResponse voteResponse = new VoteResponse();
-            voteResponse.setPerspective(t.getMessage());
-            return new ResponseEntity<>(voteResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            Survey survey = surveyService.createSurvey(createSurveyRequest.getPerspective());
+            SurveyResponse build = SurveyResponse.builder()
+                    .code(survey.getCode())
+                    .build();
+            return new ResponseEntity<>(build, HttpStatus.OK);
+        } catch (Exception e) {
+            throw buildError(e);
         }
     }
 
-    @RequestMapping(value = "/{code}/score", method = GET)
-    @ResponseBody
-    public ResponseEntity<ScoreResponse> getScore(@PathVariable("code") String surveyCode) {
-        ScoreResponse scoreResponse = new ScoreResponse();
-        scoreResponse.setNumberOfUsers(2);
-        scoreResponse.setNumberOfVotes(30);
-        scoreResponse.setPerspective("Some topic");
-        scoreResponse.setSurveyIsRunning(false);
-        scoreResponse.setScores(Arrays.asList(
-                new Score("0", "0", 6),
-                new Score("1", "1", 4),
-                new Score("2", "2", 15),
-                new Score("3", "3", 5)
-        ));
-
-        return new ResponseEntity<ScoreResponse>(scoreResponse, HttpStatus.OK);
+    @DeleteMapping
+    public ResponseEntity deleteSurvey(@PathVariable("code") String surveyCode) {
+        try {
+            surveyService.deleteSurvey(surveyCode);
+            return ok().build();
+        } catch (Exception e) {
+            throw buildError(e);
+        }
     }
 
-    @PostMapping("/{code}/vote")
-    public void setWinner(@PathVariable("code") String surveyCode, VoteRequest voteRequest) {
-        // do nothing
+    @PostMapping("/{code}/start")
+    public ResponseEntity startSurvey(@PathVariable("code") String surveyCode) {
+        try {
+            surveyService.startSurvey(surveyCode);
+            return ok().build();
+        } catch (Exception e) {
+            throw buildError(e);
+        }
+    }
+
+    @PostMapping("/{code}/stop")
+    public ResponseEntity stopSurvey(@PathVariable("code") String surveyCode) {
+        try {
+            surveyService.stopSurvey(surveyCode);
+            return ok().build();
+        } catch (Exception e) {
+            throw buildError(e);
+        }
+    }
+
+    @PostMapping("/{code}/persist")
+    public ResponseEntity persistSurvey(@PathVariable("code") String surveyCode) {
+        try {
+            surveyService.persistSurvey(surveyCode);
+            return ok().build();
+        } catch (Exception e) {
+            throw buildError(e);
+        }
+    }
+
+    @GetMapping(value = "/{code}/vote")
+    public ResponseEntity<VoteResponse> getSurvey(@PathVariable("code") String surveyCode) {
+        try {
+            VoteResponse vote = surveyService.getVote(surveyCode, getUserId());
+            return new ResponseEntity<>(vote, HttpStatus.OK);
+        } catch (Throwable t) {
+            throw buildError(t);
+        }
+    }
+
+    @PostMapping(value = "/{code}/vote", consumes = "application/json")
+    public ResponseEntity<VoteResponse> postSurvey(@PathVariable("code") String surveyCode, @RequestBody VoteRequest voteRequest) {
+        try {
+            surveyService.setVote(surveyCode, voteRequest, getUserId());
+            return ok().build();
+        } catch (Throwable t) {
+            throw buildError(t);
+        }
+    }
+
+    @GetMapping(value = "/{code}/score")
+    public ResponseEntity<ScoreResponse> getScore(@PathVariable("code") String surveyCode) {
+        try {
+            ScoreResponse scoreResponse = surveyService.getScore(surveyCode);
+            return new ResponseEntity<>(scoreResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            throw buildError(e);
+        }
+    }
+
+    @PostMapping(value = "/{code}/image", consumes = "application/json")
+    public ResponseEntity<ImageResponse> createImage(@PathVariable("code") String surveyCode, @RequestBody ImageRequest imageRequest) {
+        try {
+            Image image = Image.builder()
+                    .file(imageRequest.getFile())
+                    .build();
+            String id = surveyService.addImageToSurvey(surveyCode, image);
+            ImageResponse build = ImageResponse.builder()
+                    .id(id)
+                    .file(imageRequest.getFile())
+                    .build();
+
+            return new ResponseEntity<>(build, HttpStatus.OK);
+        } catch (Exception e) {
+            throw buildError(e);
+        }
     }
 
     @GetMapping(value = "/{code}/image/{imageId}", produces = "image/jpeg")
-    public ResponseEntity<byte[]> getSurvey(@PathVariable("code") String surveyCode, @PathVariable("imageId") String
-            imageId) {
-        /*if (imageId.equalsIgnoreCase("0")) {
-            return new ResponseEntity<byte[]>(javax.xml.bind.DatatypeConverter.parseBase64Binary(Img.img1), HttpStatus.OK);
+    public ResponseEntity<byte[]> getImage(@PathVariable("code") String surveyCode, @PathVariable("imageId") String imageId) {
+        try {
+            Image image = surveyService.getImageFromSurvey(surveyCode, imageId);
+            String base64Image = image.getFile().split(",")[1];
+            byte[] bytes = DatatypeConverter.parseBase64Binary(base64Image);
+            return new ResponseEntity<>(bytes, HttpStatus.OK);
+        } catch (Exception e) {
+            throw buildError(e);
         }
-        if (imageId.equalsIgnoreCase("1")) {
-            return new ResponseEntity<byte[]>(javax.xml.bind.DatatypeConverter.parseBase64Binary(Img.img2), HttpStatus.OK);
-        }
-        if (imageId.equalsIgnoreCase("2")) {
-            return new ResponseEntity<byte[]>(javax.xml.bind.DatatypeConverter.parseBase64Binary(Img.img3), HttpStatus.OK);
-        }
-        return new ResponseEntity<byte[]>(javax.xml.bind.DatatypeConverter.parseBase64Binary(Img.img4), HttpStatus.OK);
-        */
-        return null;
     }
 
 }
