@@ -77,7 +77,7 @@ matrix:
   include: # app
     - language: node_js
       script:
-      - "cd app && flutter doctor -v && flutter build apk"
+      - "cd app && flutter doctor -v && flutter build apk --debug"
   include: # web
     - language: node_js
       before_script:

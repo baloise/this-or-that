@@ -42,6 +42,12 @@ class VoteScreenState extends State<VoteScreen> {
     return Scaffold(
         appBar: AppBar(
           title: Text("Survey (Code: " + surveyCode + ")"),
+          actions: <Widget>[
+            // IconButton(
+            //     icon: Icon(Icons.close),
+            //     tooltip: 'Close survey',
+            //     onPressed: null)
+          ],
         ),
         body: SafeArea(
             child: FutureBuilder<DecisionSet>(
@@ -79,13 +85,6 @@ class VoteScreenState extends State<VoteScreen> {
                                         loser: snapshot.data.id1));
                                   },
                                 ),
-                                FloatingActionButton.extended(
-                                  backgroundColor: Colors.blueAccent[700],
-                                  onPressed: () {},
-                                  tooltip: 'Create a new survey',
-                                  label: Text("Close survey"),
-                                  icon: Icon(Icons.close),
-                                ),
                               ]);
                         }
                         return new Row(
@@ -114,12 +113,6 @@ class VoteScreenState extends State<VoteScreen> {
                                       loser: snapshot.data.id1));
                                 },
                               ),
-                              FloatingActionButton(
-                                backgroundColor: Colors.blueAccent[700],
-                                onPressed: () {},
-                                tooltip: 'Create a new survey',
-                                child: Icon(Icons.close),
-                              ),
                             ]);
                       });
                     } else {
@@ -145,12 +138,12 @@ class VoteScreenState extends State<VoteScreen> {
   openResults() {
     Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => ResultScreen(surveyCode: surveyCode)));
+        MaterialPageRoute(
+            builder: (context) => ResultScreen(surveyCode: surveyCode)));
   }
 }
 
 class FinishedWidget extends StatelessWidget {
-
   final VoidCallback resultCallback;
 
   FinishedWidget({this.resultCallback});
