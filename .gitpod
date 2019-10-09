@@ -1,7 +1,7 @@
 # Command to start on workspace startup (optional)
 tasks:
-  - init: yarn --version && cd web && yarn install
-    command: "mvn clean verify && cd web && yarn run serve"
+  - init: "yarn --version && cd web && yarn install && cd .."
+    command: "mvn clean verify && cd web && yarn run serve && cd .."
 # Ports to expose on workspace startup (optional)
 ports:
   - port: 8080
