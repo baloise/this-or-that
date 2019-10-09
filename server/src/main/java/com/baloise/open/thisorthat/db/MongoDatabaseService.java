@@ -61,7 +61,8 @@ public class MongoDatabaseService implements DatabaseService {
             MongoCredential credentials = MongoCredential.createCredential(username, MONGO_DB_NAME, password.toCharArray());
             mongoClient = new MongoClient(new ServerAddress(serverUrl, Integer.parseInt(port)), credentials, MongoClientOptions.builder().build());
         } else {
-            MongoClientURI connectionString = new MongoClientURI("fixme");
+            String mongoDBConnectionString = System.getenv("MongoDBConnectionString");
+            MongoClientURI connectionString = new MongoClientURI(mongoDBConnectionString);
             mongoClient = new MongoClient(connectionString);
         }
         MongoDatabase database = mongoClient.getDatabase(MONGO_DB_NAME);

@@ -238,24 +238,21 @@ class VoteImageWidget extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: InkWell(
           onTap: winnerCallback,
-          child: new ClipRRect(
-            borderRadius: new BorderRadius.circular(8.0),
-            child: Image.network(
-              buildImageUrl(),
-              fit: BoxFit.fitWidth,
-              loadingBuilder: (BuildContext context, Widget child,
-                  ImageChunkEvent loadingProgress) {
-                if (loadingProgress == null) return child;
-                return Center(
-                  child: CircularProgressIndicator(
-                    value: loadingProgress.expectedTotalBytes != null
-                        ? loadingProgress.cumulativeBytesLoaded /
-                            loadingProgress.expectedTotalBytes
-                        : null,
-                  ),
-                );
-              },
-            ),
+          child: Image.network(
+            buildImageUrl(),
+            fit: BoxFit.fitWidth,
+            loadingBuilder: (BuildContext context, Widget child,
+                ImageChunkEvent loadingProgress) {
+              if (loadingProgress == null) return child;
+              return Center(
+                child: CircularProgressIndicator(
+                  value: loadingProgress.expectedTotalBytes != null
+                      ? loadingProgress.cumulativeBytesLoaded /
+                          loadingProgress.expectedTotalBytes
+                      : null,
+                ),
+              );
+            },
           ),
         ),
       ),

@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 import 'dtos.dart';
 
-const API_BASE_URL = "http://api.holzenkamp.me/spring-test";
+const API_BASE_URL = "https://this-or-that-api.azurewebsites.net/this-or-that";
 
 class ApiService {
 
