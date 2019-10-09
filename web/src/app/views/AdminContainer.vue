@@ -70,7 +70,7 @@ import { CreateSurveyRequest } from '@/app/models/create-survey-request';
 import { CreateImageRequest } from '@/app/models/create-image-request';
 import { ScoreResponse } from '@/app/models/score-response';
 import { VoteResponse } from '@/app/models/vote-response';
-import QrcodeVue from 'qrcode.vue'
+import QrcodeVue from 'qrcode.vue';
 
 @Component({
   components: {QrcodeVue},
