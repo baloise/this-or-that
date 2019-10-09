@@ -59,6 +59,8 @@
               </div>
               <div class="content is-center" v-if="this.surveyCode">
                 <h1>Your surveyCode: {{this.surveyCode}}</h1>
+                <qrcode-vue :value="this.surveyCode" level="H"></qrcode-vue>
+                <br />
                 <div class="columns is-desktop">
                   <div class="column">
                     <button
@@ -92,8 +94,11 @@ import { Component, Vue } from 'vue-property-decorator';
 import { createImage, createSurvey, startSurvey } from '@/app/api/survey.api';
 import { CreateSurveyRequest } from '@/app/models/create-survey-request';
 import { CreateImageRequest } from '@/app/models/create-image-request';
+import QrcodeVue from 'qrcode.vue'
 
-@Component
+@Component({
+  components: {QrcodeVue},
+})
 export default class CreateSurveyContainer extends Vue {
   public perspective: string = '';
   public droppedFiles: File[] = [];
