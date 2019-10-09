@@ -63,11 +63,11 @@
         }
 
         public vote() {
-            this.$router.push("vote/" + this.surveyCode);
+            this.$router.push(this.surveyCode + "/vote");
         }
   
         public manageSurvey() {
-            this.$router.push('admin/' + this.surveyCode);
+            this.$router.push(this.surveyCode + '/admin');
         }
 
     }
