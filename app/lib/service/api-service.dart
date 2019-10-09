@@ -77,6 +77,46 @@ class ApiService {
 
     return null;
   }
+
+  static Future<void> postImage(String code, File file) async {
+    String url = API_BASE_URL + "/" + code + "/image";
+
+    List<int> imageBytes = file.readAsBytesSync();
+    String base64Image =
+        Base64Encoder().convert(imageBytes); //BASE64.encode(imageBytes);
+
+    var map = new Map<String, dynamic>();
+    map["file"] = base64Image;
+    String body = json.encode(map);
+    print("URL: " + url);
+    print("POST-BODY: " + body);
+
+    final response = await http.post(
+      url,
+      body: body,
+      headers: {"Content-Type": "application/json"},
+    );
+
+    if (response.statusCode == 200) {
+      return CreateSurveyResponse.fromJson(json.decode(response.body));
+    }
+
+    return null;
+  }
+
+  static Future<void> startSurvey(String code) async {
+    String url = API_BASE_URL + "/" + code + "/start";
+
+    print("URL: " + url);
+
+    final response = await http.post(url);
+
+    if (response.statusCode == 200) {
+      return null;
+    }
+
+    return null;
+  }
 }
 
 class CreateSurveyResponse {
@@ -86,7 +126,7 @@ class CreateSurveyResponse {
 
   factory CreateSurveyResponse.fromJson(Map<String, dynamic> json) {
     return CreateSurveyResponse(
-      perspective: json['perspective'],
+      perspective: json['code'],
     );
   }
 }

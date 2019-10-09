@@ -77,10 +77,14 @@ class CreateScreenState extends State<CreateScreen> {
 
   Future createSurvey() async {
     CreateSurveyResponse response = await ApiService.postSurvey(txtId.text);
+    String code = response.perspective;
     print('!!!!!!!!!!!!!!!!');
     print('!!!!!!!!!!!!!!!!');
     print('!!!!!!!!!!!!!!!!');
-    print(response.perspective);
+    print(code);
+    await Future.wait(_files.map((file) => ApiService.postImage(code, file)));
+    print('wuuuhuuuu');
+    await ApiService.startSurvey(code);
   }
 
   Future choose() async {
