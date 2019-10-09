@@ -102,7 +102,7 @@ class StartScreenState extends State<StartScreen> {
         backgroundColor: Colors.tealAccent[400],
         foregroundColor: Colors.white,
         onPressed: createNewSurvey,
-        tooltip: 'Create survex',
+        tooltip: 'Create survey',
         child: const Icon(Icons.add),
       ),
     );
