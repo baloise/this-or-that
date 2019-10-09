@@ -2,6 +2,7 @@ import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:package_info/package_info.dart';
+import 'package:this_or_that_app/create.dart';
 
 import 'common/logo.dart';
 import 'common/or_divider.dart';
@@ -97,16 +98,20 @@ class StartScreenState extends State<StartScreen> {
           ),
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: Colors.tealAccent[400],
-      //   onPressed: createNewSurvey,
-      //   tooltip: 'Create survex',
-      //   child: const Icon(Icons.add),
-      // ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.tealAccent[400],
+        foregroundColor: Colors.white,
+        onPressed: createNewSurvey,
+        tooltip: 'Create survex',
+        child: const Icon(Icons.add),
+      ),
     );
   }
 
-  void createNewSurvey() {}
+  void createNewSurvey() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => CreateScreen()));
+  }
 
   void openVote() {
     Navigator.push(

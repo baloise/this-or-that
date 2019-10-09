@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:this_or_that_app/create.dart';
 
 import 'results.dart';
 import 'start.dart';
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => StartScreen(),
+        '/create': (context) => CreateScreen(),
         '/vote': (context) => VoteScreen(
               surveyCode: null,
             ),
