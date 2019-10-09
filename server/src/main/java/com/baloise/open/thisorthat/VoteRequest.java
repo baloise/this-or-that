@@ -13,15 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.baloise.open.thisorthat.server.api.dto;
+package com.baloise.open.thisorthat;
 
-public enum ErrorCode {
-    SURVEY_INCOMPLETE,
-    SURVEY_NOT_FOUND,
-    IMAGE_NOT_FOUND,
-    ALGORITHM_ERROR,
-    DATABASE_ERROR,
-    UNKNOWN_ERROR,
-    UPDATE_FAILED_ERROR,
-    DELETE_FAILED_ERROR
+
+public class VoteRequest {
+    private String winner;
+    private String loser;
+
+    public VoteRequest() {
+    }
+
+    public String getWinner() {
+        return winner;
+    }
+
+    public void setWinner(String winner) {
+        this.winner = winner;
+    }
+
+    public String getLoser() {
+        return loser;
+    }
+
+    public void setLoser(String loser) {
+        this.loser = loser;
+    }
 }
