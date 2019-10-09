@@ -77,8 +77,8 @@ export default class AdminContainer extends Vue {
   public score: ScoreResponse | null = null;
   public voteResponse: VoteResponse | null = null;
 
-  public getImageURL(idx: int) {
-    if (this.voteResponse != null) {
+  public getImageURL(idx: number) {
+    if (this.score != null) {
       return getImageURL(
         this.$route.params.surveyCode,
         this.score.scores[idx].imageId,
@@ -92,10 +92,8 @@ export default class AdminContainer extends Vue {
     try {
       this.voteResponse = await getVote(this.$route.params.surveyCode);
       this.score = await getScore(this.$route.params.surveyCode);
-      console.log(this.score);
       this.isLoading = false;
     } catch (error) {
-      console.log(error);
       this.isLoading = false;
     }
   }
@@ -107,7 +105,6 @@ export default class AdminContainer extends Vue {
       this.score = await getScore(this.$route.params.surveyCode);
       this.isLoading = false;
     } catch (error) {
-      console.log(error);
       this.isLoading = false;
     }
   }

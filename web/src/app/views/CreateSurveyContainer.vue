@@ -141,7 +141,7 @@ export default class CreateSurveyContainer extends Vue {
   }
 
   public manageSurvey() {
-    this.$router.push(his.surveyCode + '/admin');
+    this.$router.push(this.surveyCode + '/admin');
   }
 
   public vote() {
