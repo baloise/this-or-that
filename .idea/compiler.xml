@@ -12,7 +12,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="server" target="7" />
+      <module name="server" target="8" />
       <module name="this-or-that" target="1.8" />
       <module name="this-or-that-client" target="1.8" />
     </bytecodeTargetLevel>
