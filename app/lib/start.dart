@@ -10,7 +10,7 @@ import 'vote.dart';
 const String VOTE_STRING = "/vote/";
 const String URL_START = "http://";
 
-class asdfasdfasdf extends StatefulWidget {
+class StartScreen extends StatefulWidget {
   StartScreen({Key key, this.title}) : super(key: key);
 
   final String title;
