@@ -16,3 +16,25 @@ $weight-bold: 700;
 .is-center {
   text-align: center;
 }
+
+img.element {
+  z-index: 2;
+  max-width: 100%;
+  max-height: 100%;
+  min-height: 1px;
+  min-width: 0;
+  width: 100%;
+  object-fit: scale-down;
+  position: relative;
+  border: 1px solid #ccc;
+  box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.3);
+  transition: opacity, box-shadow 0.2s;
+  &:focus,
+  &:active {
+    box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
+    &.dragging {
+      z-index: 3;
+      box-shadow: 8px 8px 12px 0px rgba(0, 0, 0, 0.3);
+    }
+  }
+}

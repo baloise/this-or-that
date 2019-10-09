@@ -10,10 +10,33 @@
             <div class="column"></div>
             <div class="column is-two-thirds-tablet is-half-desktop">
               <div class="content is-center" v-if="this.score != null">
-                <h2 class="title is-2">Your survey: {{this.score.perspective}}</h2>
+                <h2
+                  class="title is-2"
+                  v-if="this.score.surveyIsRunning"
+                >Your survey: {{this.voteResponse.perspective}}</h2>
+                <h2
+                  class="title is-2"
+                  v-if="!this.score.surveyIsRunning"
+                >Your survey: {{this.voteResponse.perspective}}</h2>
                 <div class="content is-center" v-if="this.score.surveyIsRunning">
                   <h1>The servey hasn't finished yet.</h1>
                   <button @click="finishSurvey()" class="button is-primary is-medium">Finish survey</button>
+                </div>
+                <div class="content is-center" v-if="!this.score.surveyIsRunning">
+                  <p>Number of participants: {{this.score.numberOfUsers}}</p>
+                  <p>Number of votes: {{this.score.numberOfVotes}}</p>
+                  <div class="columns is-desktop">
+                    <div
+                      class="column"
+                      v-for="(score, idx) in this.score.scores"
+                      v-bind:key="score.imageId"
+                    >
+                      <div class="vote-result">
+                        <img class="element" :src="getImageURL(idx)" />
+                        <div class="score">Score: {{score.score}}</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <br />
                 <br />
@@ -33,26 +56,46 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { createImage, stopSurvey, getScore } from "@/app/api/survey.api";
+import {
+  getImageURL,
+  createImage,
+  stopSurvey,
+  getScore,
+  getVote
+} from "@/app/api/survey.api";
 import { ErrorCode, getErrorCode } from "@/app/api/error";
 import { CreateSurveyRequest } from "@/app/models/create-survey-request";
 import { CreateImageRequest } from "@/app/models/create-image-request";
-import { ScoreResponse } from '@/app/models/score-response';
+import { ScoreResponse } from "@/app/models/score-response";
+import { VoteResponse } from "@/app/models/vote-response";
 
 @Component({
   components: {}
 })
 export default class AdminContainer extends Vue {
   public isLoading = false;
-  public score: ScoreResponse | null   = null;
+  public score: ScoreResponse | null = null;
+  public voteResponse: VoteResponse | null = null;
+
+  public getImageURL(idx: int) {
+    if (this.voteResponse != null) {
+      return getImageURL(
+        this.$route.params.surveyCode,
+        this.score.scores[idx].imageId
+      );
+    }
+    return null;
+  }
 
   public async mounted() {
     this.isLoading = true;
     try {
+      this.voteResponse = await getVote(this.$route.params.surveyCode);
       this.score = await getScore(this.$route.params.surveyCode);
       console.log(this.score);
       this.isLoading = false;
     } catch (error) {
+      console.log(error);
       this.isLoading = false;
     }
   }
@@ -64,6 +107,7 @@ export default class AdminContainer extends Vue {
       this.score = await getScore(this.$route.params.surveyCode);
       this.isLoading = false;
     } catch (error) {
+      console.log(error);
       this.isLoading = false;
     }
   }
@@ -73,3 +117,18 @@ export default class AdminContainer extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.vote-result {
+  position: relative;
+
+  .score {
+    position: absolute;
+    z-index: 5;
+    top: 3px;
+    left: 3px;
+    padding: 2px;
+    background: rgba(255, 255, 255, 0.5);
+  }
+}
+</style>

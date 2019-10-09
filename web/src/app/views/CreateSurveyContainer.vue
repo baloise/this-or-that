@@ -62,6 +62,11 @@
                       Survey
                     </button>
                   </div>
+                  <div class="column">
+                    <button @click="vote()" class="button is-primary is-medium">
+                      Vote
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -136,7 +141,11 @@ export default class CreateSurveyContainer extends Vue {
   }
 
   public manageSurvey() {
-    this.$router.push("admin/" + this.surveyCode);
+    this.$router.push(his.surveyCode + "/admin");
+  }
+
+  public vote() {
+    this.$router.push(this.surveyCode + "/vote");
   }
 }
 </script>
