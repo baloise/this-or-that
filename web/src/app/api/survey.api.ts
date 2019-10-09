@@ -8,10 +8,10 @@ import {VoteRequest} from '@/app/models/vote-request';
 import {VoteResponse} from '@/app/models/vote-response';
 import {ScoreResponse} from '@/app/models/score-response';
 
-const BASE_PATH = '/api/survey';
+const BASE_PATH = '';
 
 export async function createSurvey(createSurveyRequest: CreateSurveyRequest): Promise<CreateSurveyResponse> {
-    const response = await Vue.$http.post(BASE_PATH, classToPlain(createSurveyRequest));
+    const response = await Vue.$http.post(BASE_PATH + '/create', classToPlain(createSurveyRequest));
     return plainToClass(CreateSurveyResponse, response.data);
 }
 

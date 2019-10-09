@@ -92,8 +92,11 @@ export default class AdminContainer extends Vue {
     try {
       this.voteResponse = await getVote(this.$route.params.surveyCode);
       this.score = await getScore(this.$route.params.surveyCode);
-      this.isLoading = false;
     } catch (error) {
+      if (error.response.status === 404) {
+            this.$router.push('/404');
+      }
+    } finally {
       this.isLoading = false;
     }
   }
@@ -103,8 +106,7 @@ export default class AdminContainer extends Vue {
     try {
       await stopSurvey(this.$route.params.surveyCode);
       this.score = await getScore(this.$route.params.surveyCode);
-      this.isLoading = false;
-    } catch (error) {
+    } finally {
       this.isLoading = false;
     }
   }

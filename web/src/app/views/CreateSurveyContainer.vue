@@ -31,7 +31,17 @@
                   You have selected {{this.droppedFiles.length}}
                   images to upload!
                 </h1>
-                <button @click="deleteImages()" class="button is-text">Remove Selected Images</button>
+                <div class="tags">
+                  <span v-for="(file, index) in droppedFiles" :key="index" class="tag is-primary">
+                    {{file.name}}
+                    <button
+                      class="delete is-small"
+                      type="button"
+                      @click="deleteDroppedFile(index)"
+                    ></button>
+                  </span>
+                </div>
+                <button v-if="droppedFiles.length > 0" @click="deleteDroppedFiles()" class="button is-text">Remove All Images</button>
                 <br />
                 <br />
                 <div class="columns is-desktop">
@@ -63,9 +73,7 @@
                     </button>
                   </div>
                   <div class="column">
-                    <button @click="vote()" class="button is-primary is-medium">
-                      Vote
-                    </button>
+                    <button @click="vote()" class="button is-primary is-medium">Vote</button>
                   </div>
                 </div>
               </div>
@@ -85,9 +93,7 @@ import { createImage, createSurvey, startSurvey } from '@/app/api/survey.api';
 import { CreateSurveyRequest } from '@/app/models/create-survey-request';
 import { CreateImageRequest } from '@/app/models/create-image-request';
 
-@Component({
-  components: {},
-})
+@Component
 export default class CreateSurveyContainer extends Vue {
   public perspective: string = '';
   public droppedFiles: File[] = [];
@@ -113,8 +119,7 @@ export default class CreateSurveyContainer extends Vue {
         }),
       );
       await startSurvey(response.code);
-      this.isLoading = false;
-    } catch (error) {
+    } finally {
       this.isLoading = false;
     }
   }
@@ -123,8 +128,12 @@ export default class CreateSurveyContainer extends Vue {
     location.reload();
   }
 
-  public deleteImages() {
+  public deleteDroppedFiles() {
     this.droppedFiles = [];
+  }
+
+  public deleteDroppedFile(index: number) {
+    this.droppedFiles.splice(index, 1);
   }
 
   private toBase64(file: File): Promise<string> {
