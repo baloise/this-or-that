@@ -1,0 +1,325 @@
+Privacybeleid  
+=============
+
+Ingangsdatum: October 09, 2019
+
+That or This ("ons", "wij" of "onze") beheert de That or This mobiele App
+("hierna genoemd Dienst").
+
+Deze pagina bevat informatie over ons beleid met betrekking tot de
+verzameling, het gebruik en de openbaarmaking van uw persoonsgegevens wanneer
+u onze Dienst gebruikt en de keuzes die u hebt met betrekking tot die
+gegevens.
+
+Wij gebruiken uw gegevens om de Dienst te leveren en te verbeteren. Wanneer u
+de Dienst gebruikt, gaat u akkoord met de verzameling en het gebruik van
+informatie in overeenstemming met dit beleid. Tenzij anders bepaald in dit
+Privacybeleid heeft de terminologie die wordt gebruikt in dit Privacybeleid
+dezelfde betekenis als in onze Algemene voorwaarden.
+
+Definities  
+----------
+
+  * Dienst
+
+     Onder dienst verstaan wij de That or This mobiele App beheerd door That
+     or This
+
+  * Gebruiksgegevens
+
+     Onder gebruiksgegevens verstaan wij automatisch verzamelde gegevens die
+     worden gegenereerd door het gebruik van de Dienst of van de
+     infrastructuur van de Dienst zelf (bijvoorbeeld, de duur van het bezoek
+     aan een pagina).
+
+  * Gebruiksgegevens
+
+     Onder gebruiksgegevens verstaan wij automatisch verzamelde gegevens die
+     worden gegenereerd door het gebruik van de Dienst of van de
+     infrastructuur van de Dienst zelf (bijvoorbeeld, de duur van het bezoek
+     aan een pagina).
+
+  * Cookies
+
+     Cookies zijn informatiebestandjes die worden opgeslagen op uw apparaat
+     (computer of mobiele apparaat).
+
+  * Gegevensbeheerder
+
+     Onder gegevensbeheerder verstaan wij de natuurlijke of rechtspersoon die
+     (alleen, gezamenlijk of gemeenschappelijk met andere personen) de
+     doeleinden bepaalt waarvoor en de wijze waarop persoonsgegevens worden of
+     zullen worden verwerkt.
+
+    In het kader van dit Privacybeleid zijn wij een Gegevensbeheerder van uw
+    Persoonsgegevens.
+
+  * Gegevensverwerkers (of Dienstverleners)
+
+     Onder Gegevensverwerkers (of Dienstverleners) verstaan wij elke
+     natuurlijke of rechtspersoon die de gegevens verwerkt in naam van de
+     Gegevensverwerker.
+
+    Wij kunnen de diensten gebruiken van verschillende Dienstverleners om uw
+    gegevens efficiënter te kunnen verwerken.
+
+  * Betrokkene (of Gebruiker)
+
+     De Betrokkene is elke levende persoon die gebruik maakt van onze Dienst
+     en die het onderwerp is van Persoonsgegevens.
+
+Gegevensverzameling en gebruik  
+------------------------------
+
+Wij verzamelen verschillende soorten gegevens voor uiteenlopende doeleinden om
+onze Dienst aan u te kunnen leveren en om hem te verbeteren.
+
+Soorten gegevens die worden verzameld  
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Persoonsgegevens  
+****************
+
+Wanneer u onze Dienst gebruikt, kunnen wij u vragen ons bepaalde persoonlijk
+identificeerbare informatie te verstrekken die kan worden gebruikt om contact
+op te nemen met u of om u te identificeren ("Persoonsgegevens"). Deze
+persoonlijk identificeerbare informatie kan omvatten maar is niet beperkt tot:
+
+  * Cookies en Gebruiksgegevens
+
+Gebruiksgegevens  
+****************
+
+Wanneer u toegang krijgt tot de Dienst met of via een mobiele apparaat kunnen
+wij bepaalde gegevens automatisch verzamelen, inclusief, maar niet beperkt
+tot, het mobiele apparaat dat u gebruikt, de unieke ID van uw mobiele
+apparaat, het IP-adres van uw mobiele apparaat, uw mobiel besturingssysteem,
+de mobiele internetbrowser die u gebruikt, de unieke apparaat-ID en andere
+diagnostische gegevens ("Gebruiksgegevens").
+
+Tracking & cookiegegevens  
+**************
+
+Wij gebruiken cookies en soortgelijke volgtechnologieën om de activiteit op
+onze Dienst te volgen en we bewaren bepaalde informatie.
+
+Cookies zijn bestanden met een kleine hoeveelheid gegevens die een anonieme
+unieke ID kunnen bevatten. Cookies worden van een website verzonden naar uw
+browser en opgeslagen op uw apparaat. Er worden ook andere volgtechnologieën
+gebruikt zoals beacons, tags en scripts om gegevens te verzamelen en te volgen
+en om onze Dienst te verbeteren en te analyseren.
+
+U kunt uw browser instellen om alle cookies te weigeren of om aan te geven
+wanneer een cookie wordt verzonden. Maar als u geen cookies aanvaardt, kunt u
+mogelijk niet alle functies van onze Dienst gebruiken.
+
+Voorbeelden van cookies die wij gebruiken:
+
+  * Sessiecookies. Wij gebruiken Sessiecookies om onze Dienst te beheren.
+  * Voorkeurcookies. Wij gebruiken Voorkeurcookies om uw voorkeuren en
+    uiteenlopende instellingen bij te houden.
+  * Veiligheidscookies. Wij gebruiken Veiligheidscookies voor
+    veiligheidsdoeleinden.
+
+Gebruik van gegevens  
+--------------------
+
+That or This gebruikt de verzamelde gegevens voor uiteenlopende doeleinden:
+
+  * Om onze Dienst te leveren en te onderhouden
+  * Om u wijzigingen in onze Dienst te melden
+  * Om u de mogelijkheid te bieden om, indien gewenst, deel te nemen aan de
+    interactieve functies van onze Dienst
+  * Om onze klanten steun te verlenen
+  * Om analyse- of waardevolle gegevens te verzamelen die we kunnen toepassen
+    om onze Dienst te verbeteren
+  * Om toezicht te houden op het gebruik van onze Dienst
+  * Om technische problemen te detecteren, te voorkomen en te behandelen
+
+Juridische basis voor de verwerking van Persoonsgegevens onder de Algemene
+verordening persoonsgegevens (AVG)  
+-------------------------------------------------------------------------------------------------------------
+
+Als u inwoner bent van de Europese Economische Ruimte (EER) hangt de
+juridische basis van, That or This voor de verzameling en het gebruik van de
+persoonsgegevens zoals beschreven in dit Privacybeleid af van de
+Persoonsgegevens die wij verzamelen en de specifieke context waarin wij ze
+verzamelen.
+
+That or This kan uw Persoonsgegevens gebruiken omdat:
+
+  * Wij een contract moeten afsluiten met u
+  * U ons de toestemming hebt gegeven
+  * De verwerking in ons legitiem belang is en niet wordt opgeheven door uw
+    rechten
+  * In naleving van de wet
+
+Bewaren van gegevens  
+--------------------
+
+That or This bewaart uw Persoonsgegevens slechts zolang dit nodig is voor de
+doeleinden vermeld in dit Privacybeleid. Wij bewaren en gebruiken uw
+Persoonsgegevens in de mate dit noodzakelijk is om te voldoen aan onze
+wettelijke verplichtingen (bijv. als we uw gegevens moeten bewaren in naleving
+van de geldende wetgeving), om geschillen op te lossen en om onze wettelijke
+overeenkomsten en beleid toe te passen.
+
+That or This bewaart uw Gebruiksgegevens ook voor interne analytische
+doeleinden. Gebruiksgegevens worden gewoonlijk voor een kortere periode
+bewaard, tenzij deze gegevens worden gebruikt om de veiligheid te versterken
+of de werking van onze Dienst te verbeteren, of indien wij wettelijk verplicht
+zijn deze gegevens gedurende een langere periode te bewaren.
+
+Overdracht van gegevens  
+-----------------------
+
+Uw gegevens, inclusief Persoonsgegevens, kunnen worden overgedragen naar - en
+bewaard op - computers die zich buiten het rechtsgebied van uw provincie, land
+of een andere overheidsinstantie bevinden waar de wetgeving inzake
+gegevensbescherming kan verschillen van de wetgeving in uw rechtsgebied.
+
+Let erop dat, als u zich buiten Germany bevindt en u ons gegevens verstrekt,
+wij deze gegevens, inclusief Persoonsgegevens, overdragen naar Germany en ze
+daar verwerken.
+
+Uw instemming met dit Privacybeleid gevolgd door uw indiening van dergelijke
+gegevens geven aan dat u akkoord gaat met die overdracht.
+
+That or This zal alle redelijkerwijs noodzakelijke stappen ondernemen om
+ervoor te zorgen dat uw gegevens veilig en in overeenstemming met dit
+Privacybeleid worden behandeld en dat uw Persoonsgegevens nooit worden
+overgedragen aan een organisatie of een land als er geen gepaste controles
+zijn ingesteld, inclusief de veiligheid van uw gegevens en andere
+persoonsgegevens.
+
+Openbaarmaking van gegevens  
+---------------------------
+
+Wettelijke vereisten  
+~~~~~~~~~~~~~~~~~~~~
+
+That or This kan uw Persoonsgegevens openbaar maken als het te goeder trouw de
+mening is toegedaan dat een dergelijke handeling noodzakelijk is:
+
+  * Om te voldoen aan een wettelijke verplichting
+  * Om de rechten en eigendom van That or This te beschermen en te verdedigen
+  * Om mogelijke misstanden te voorkomen of te onderzoeken in verband met de
+    Dienst
+  * Om de persoonlijke veiligheid van gebruikers van de Dienst of het publiek
+    te beschermen
+  * Als bescherming tegen juridische aansprakelijkheid
+
+Veiligheid van gegevens  
+-----------------------
+
+De veiligheid van uw gegevens is belangrijk voor ons, maar vergeet niet dat
+geen enkele methode van verzending via het internet of elektronische methode
+van opslag 100% veilig is. Hoewel wij ernaar streven commercieel aanvaardbare
+middelen toe te passen om uw Persoonsgegevens te beschermen, kunnen wij de
+absolute veiligheid niet waarborgen.
+
+Uw rechten inzake gegevensbescherming onder de Algemene verordening
+persoonsgegevens (AVG)  
+------------------------------------------------------------------------------------------
+
+Als u inwoner bent van de Europese Economische Ruimte (EER) hebt u bepaalde
+rechten op het gebied van gegevensbescherming. That or This streeft er naar
+redelijke maatregelen te nemen om u de mogelijkheid te bieden het gebruik van
+uw Persoonsgegevens te corrigeren, te wijzigen, te verwijderen of te beperken.
+
+Als u wilt weten welke Persoonsgegevens wij van u bezitten en als u wenst te
+worden verwijderd uit onze systemen kunt u contact opnemen met ons.
+
+In bepaalde omstandigheden hebt u de volgende rechten op het gebied van
+gegevensbescherming:
+
+  * Het recht van toegang, bijwerking of verwijdering van de informatie die
+    wij van u bezitten. Waar mogelijk hebt u toegang tot uw Persoonsgegevens
+    en kunt u ze bijwerken of de verwijdering rechtstreeks in uw
+    accountinstellingen aanvragen. Als u deze acties niet zelf kunt uitvoeren,
+    kunt u contact opnemen met ons om u te helpen.
+
+  * Het recht op correctie. U hebt het recht uw informatie te laten corrigeren
+    als die informatie onnauwkeurig of onvolledig is.
+
+  * Het recht om bezwaar te maken. U hebt het recht om bezwaar te maken tegen
+    de verwerking van uw Persoonsgegevens.
+
+  * Het recht op beperking. U hebt het recht te vragen dat wij de verwerking
+    van uw Persoonsgegevens beperken.
+
+  * Het recht op gegevensportabiliteit. U hebt het recht een kopie te
+    ontvangen van de informatie die wij van u bezitten in een gestructureerd,
+    machinaal leesbaar en algemeen gebruikt formaat.
+
+  * Het recht uw toestemming in te trekken. U hebt ook het recht uw
+    toestemming op elk moment in te trekken waar That or This uw
+    persoonsgegevens verwerkt op basis van uw toestemming.
+
+
+Denk eraan dat wij u kunnen vragen uw identiteit te verifiëren voor wij ingaan
+op dergelijke aanvragen.
+
+U hebt het recht een klacht in te dienen bij de Autoriteit Persoonsgegevens
+met betrekking tot onze verzameling en gebruik van uw Persoonsgegevens. Voor
+meer informatie kunt u contact opnemen met uw lokale Autoriteit
+Persoonsgegevens in de Europese Economische Ruimte (EER).
+
+Dienstverleners  
+---------------
+
+Wij kunnen externe bedrijven en personen aanstellen om onze Dienst
+("Dienstverleners") te vereenvoudigen, om de Dienst te leveren in onze naam,
+om diensten uit te voeren in het kader van onze Dienst of om ons te helpen bij
+de analyse van hoe onze Dienst wordt gebruikt.
+
+Deze externe partijen hebben enkel toegang tot uw Persoonsgegevens om deze
+taken uit te voeren in onze naam en zij mogen deze niet openbaar maken aan
+anderen of ze gebruiken voor andere doeleinden.
+
+Links naar andere sites  
+-----------------------
+
+Onze Dienst kan links bevatten naar andere sites die niet door ons worden
+beheerd. Als u klikt op een link van een externe partij wordt u naar de site
+van die externe partij gebracht. Wij raden u sterk aan het Privacybeleid te
+verifiëren van elke site die u bezoekt.
+
+Wij hebben geen controle over en aanvaarden geen aansprakelijkheid met
+betrekking tot de inhoud, het privacybeleid of de privacypraktijken van de
+sites of diensten van een externe partij.
+
+Privacy van kinderen  
+--------------------
+
+Onze dienst richt zich niet op personen die jonger zijn dan 18 ("Kinderen").
+
+Wij verzamelen nooit bewust persoonlijk identificeerbare informatie van iemand
+die jonger is dan 18 jaar oud. Als u een ouder of voogd bent en u stelt vast
+dat uw kind ons persoonsgegevens heeft geleverd, vragen wij u contact op te
+nemen met ons. Als u vaststelt dat wij persoonsgegevens hebben verzameld van
+kinderen zonder de verificatie van ouderlijk toezicht zullen wij de nodige
+stappen ondernemen om die informatie te verwijderen van onze servers.
+
+Wijzigingen aan dit Privacybeleid  
+---------------------------------
+
+Wij kunnen ons Privacybeleid op gezette tijden bijwerken. Wij zullen u op de
+hoogte brengen van eventuele wijzigingen door het nieuwe Privacybeleid te
+publiceren op deze pagina.
+
+Wij zullen u op de hoogte brengen via e-mail en/of een duidelijke melding op
+onze Dienst voor de wijzigingen van kracht gaan en wij zullen de
+"aanvangsdatum" bijwerken die vermeld staat bovenaan in dit Privacybeleid.
+
+Wij raden u aan dit Privacybeleid regelmatig te controleren op eventuele
+wijzigingen. Wijzigingen aan dit Privacybeleid gaan van kracht op het moment
+dat ze worden gepubliceerd op deze pagina.
+
+Contact opnemen  
+---------------
+
+Als u vragen hebt over dit Privacybeleid kunt u contact opnemen met ons:
+
+  * Via email: markus.tiede@open-co.de
+
