@@ -83,7 +83,7 @@ matrix:
       before_script:
       - "cd web && yarn install"
       script:
-      - "cd web && yarn run build"
+      - "yarn run build"
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
