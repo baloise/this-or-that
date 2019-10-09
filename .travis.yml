@@ -77,7 +77,7 @@ matrix:
   include:
     - language: node_js
       script:
-      - "cd app && flutter doctor -v && flutter build appbundle"
+      - "cd app && flutter doctor -v && flutter build apk"
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
