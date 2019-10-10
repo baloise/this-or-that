@@ -5,6 +5,7 @@ import 'package:package_info/package_info.dart';
 
 import 'common/logo.dart';
 import 'common/or_divider.dart';
+import 'create/create.dart';
 import 'vote.dart';
 
 const String VOTE_STRING = "/vote/";
@@ -97,16 +98,20 @@ class StartScreenState extends State<StartScreen> {
           ),
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: Colors.tealAccent[400],
-      //   onPressed: createNewSurvey,
-      //   tooltip: 'Create survex',
-      //   child: const Icon(Icons.add),
-      // ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.tealAccent[400],
+        foregroundColor: Colors.white,
+        onPressed: createNewSurvey,
+        tooltip: 'Create survey',
+        child: const Icon(Icons.add),
+      ),
     );
   }
 
-  void createNewSurvey() {}
+  void createNewSurvey() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => CreateScreen()));
+  }
 
   void openVote() {
     Navigator.push(
