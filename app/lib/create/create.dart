@@ -89,7 +89,11 @@ class CreateScreenState extends State<CreateScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.tealAccent[400],
         foregroundColor: Colors.white,
-        onPressed: createSurvey,
+        onPressed: () {
+          if (_formKey.currentState.validate()) {
+            createSurvey();
+          }
+        },
         tooltip: 'Create survey',
         child: const Icon(Icons.save),
       ),
