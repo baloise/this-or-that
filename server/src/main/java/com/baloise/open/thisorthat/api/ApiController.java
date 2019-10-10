@@ -23,7 +23,7 @@ public class ApiController {
         throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "An error occured: " + t.getMessage(), t);
     }
 
-    @PostMapping(consumes = "application/json")
+    @PostMapping(path = "/create", consumes = "application/json")
     @CrossOrigin(origins = "*")
     public SurveyResponse createSurvey(@RequestBody CreateSurveyRequest createSurveyRequest) {
         try {
