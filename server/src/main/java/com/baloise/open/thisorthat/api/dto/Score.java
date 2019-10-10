@@ -26,6 +26,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Score {
     private String imageId;
-    private String file;
     private Integer score;
 }

@@ -135,7 +135,6 @@ public class SurveyService {
                 .map(scoreItem -> {
                     Image file = getImageFromSurvey(finalSurvey, scoreItem.getImageId());
                     return Score.builder()
-                            .file(file.getFile())
                             .score(scoreItem.getScore())
                             .imageId(file.getId())
                             .build();
