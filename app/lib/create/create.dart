@@ -7,6 +7,7 @@ import 'package:this_or_that_app/create/success.dart';
 import 'package:this_or_that_app/service/api-service.dart';
 import 'package:this_or_that_app/utlis/image.util.dart';
 
+import 'failed.dart';
 import 'image.dart';
 
 class CreateScreen extends StatefulWidget {
@@ -19,18 +20,24 @@ class CreateScreenState extends State<CreateScreen> {
 
   List<File> _files = [];
   List<Widget> _images = [];
+  String _loadingText = "";
   String _code = "";
   String _title = "";
   bool _hasSucceeded = false;
+  bool _hasFailed = false;
   bool _isLoading = false;
 
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    if (this._hasFailed) {
+      return FailedWidget();
+    }
     if (this._isLoading) {
       return LoadingWidget(
         title: _title,
+        message: _loadingText,
       );
     }
     if (this._hasSucceeded) {
@@ -89,7 +96,7 @@ class CreateScreenState extends State<CreateScreen> {
           ],
         ),
       )),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Colors.tealAccent[400],
         foregroundColor: Colors.white,
         onPressed: () {
@@ -97,8 +104,9 @@ class CreateScreenState extends State<CreateScreen> {
             createSurvey();
           }
         },
-        tooltip: 'Create survey',
-        child: const Icon(Icons.save),
+        tooltip: 'Save survey',
+        label: Text("Save survey"),
+        icon: Icon(Icons.save),
       ),
     );
   }
@@ -106,25 +114,41 @@ class CreateScreenState extends State<CreateScreen> {
   Future createSurvey() async {
     setState(() {
       _isLoading = true;
+      _loadingText = "Start creating the survey";
     });
-    CreateSurveyResponse response = await ApiService.postSurvey(txtId.text);
-    String code = response.perspective;
-    setState(() {
-      _code = code;
-    });
+    try {
+      CreateSurveyResponse response = await ApiService.postSurvey(txtId.text);
+      String code = response.perspective;
+      setState(() {
+        _code = code;
+        _loadingText = "Survey created. Start resizing the images";
+      });
 
-    List<String> listOfBase64DataUris = await Future.wait(
-        _files.map((file) => ImageUtil.convertImages(code, file)));
+      List<String> listOfBase64DataUris = await Future.wait(
+          _files.map((file) => ImageUtil.convertImages(code, file)));
+      setState(() {
+        _loadingText = "Uploading images";
+      });
 
-    await Future.wait(listOfBase64DataUris
-        .map((base64DataUri) => ApiService.postImage(code, base64DataUri)));
+      await Future.wait(listOfBase64DataUris
+          .map((base64DataUri) => ApiService.postImage(code, base64DataUri)));
 
-    await ApiService.startSurvey(code);
-    setState(() {
-      _title = txtId.text;
-      _isLoading = false;
-      _hasSucceeded = true;
-    });
+      setState(() {
+        _loadingText = "Finished the images uploade.";
+      });
+
+      await ApiService.startSurvey(code);
+      setState(() {
+        _title = txtId.text;
+        _isLoading = false;
+        _loadingText = "";
+        _hasSucceeded = true;
+      });
+    } catch (e) {
+      setState(() {
+        _hasFailed = true;
+      });
+    }
   }
 
   Future choose() async {

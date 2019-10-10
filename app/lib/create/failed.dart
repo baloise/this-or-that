@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 
-class LoadingWidget extends StatelessWidget {
-  final String title;
-  final String message;
-
-  LoadingWidget({this.title, this.message});
-
+class FailedWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,11 +14,10 @@ class LoadingWidget extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
             child: Column(
               children: <Widget>[
-                CircularProgressIndicator(),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                   child: Text(
-                    title,
+                    "Could not create survey",
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
@@ -31,7 +25,7 @@ class LoadingWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  message,
+                  "Please retry it in a few minutes",
                   style: TextStyle(
                     fontSize: 18,
                   ),
