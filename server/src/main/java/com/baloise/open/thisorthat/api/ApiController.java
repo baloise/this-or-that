@@ -3,10 +3,7 @@ package com.baloise.open.thisorthat.api;
 import com.baloise.open.thisorthat.api.dto.*;
 import com.baloise.open.thisorthat.dto.Image;
 import com.baloise.open.thisorthat.dto.Survey;
-import com.baloise.open.thisorthat.exception.ImageNotFoundException;
-import com.baloise.open.thisorthat.exception.SurveyAlreadyStoppedException;
-import com.baloise.open.thisorthat.exception.SurveyNotFoundException;
-import com.baloise.open.thisorthat.exception.SurveyStillRunningException;
+import com.baloise.open.thisorthat.exception.*;
 import com.baloise.open.thisorthat.service.SurveyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,20 +19,6 @@ public class ApiController {
 
     private final SurveyService surveyService = new SurveyService();
 
-    private ResponseStatusException buildError(Exception exception) {
-        if (exception instanceof SurveyNotFoundException) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
-        } else if (exception instanceof ImageNotFoundException) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
-        } else if (exception instanceof SurveyStillRunningException) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
-        } else if (exception instanceof SurveyAlreadyStoppedException) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
-        } else {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "An error occured: " + exception.getMessage(), exception);
-        }
-    }
-
     @PostMapping(path = "/create", consumes = "application/json")
     @CrossOrigin(origins = "*")
     public SurveyResponse createSurvey(@RequestBody CreateSurveyRequest createSurveyRequest) {
@@ -45,6 +28,7 @@ public class ApiController {
                     .code(survey.getCode())
                     .build();
         } catch (Exception e) {
+
             throw buildError(e);
         }
     }
@@ -137,6 +121,22 @@ public class ApiController {
             return DatatypeConverter.parseBase64Binary(base64Image);
         } catch (Exception e) {
             throw buildError(e);
+        }
+    }
+
+    private ResponseStatusException buildError(Exception exception) {
+        if (exception instanceof SurveyNotFoundException) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+        } else if (exception instanceof ImageNotFoundException) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+        } else if (exception instanceof SurveyStillRunningException) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+        } else if (exception instanceof SurveyStoppedException) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+        } else if (exception instanceof SurveyAlreadyStartedException) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+        } else {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "An error occured: " + exception.getMessage(), exception);
         }
     }
 

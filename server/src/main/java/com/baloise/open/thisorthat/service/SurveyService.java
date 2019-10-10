@@ -74,23 +74,20 @@ public class SurveyService {
     }
 
     public void startSurvey(String surveyCode) {
+        checkIfSurveyIsAlreadyStarted(surveyCode);
         databaseInMemory.startSurvey(surveyCode);
         randomAlgorithm.initialize(surveyCode);
         LOGGER.info("survey {} started and initialized", surveyCode);
     }
 
     public void stopSurvey(String surveyCode) {
+        checkIfSurveyIsStopped(surveyCode);
         randomAlgorithm.calculateScoresAndStopSurvey(surveyCode);
         LOGGER.info("survey {} stopped", surveyCode);
     }
 
     public VoteResponse getVote(String surveyCode, String userId) {
-        if (databaseInMemory.getSurvey(surveyCode).getStarted() == null || !databaseInMemory.getSurvey(surveyCode).getStarted()) {
-            LOGGER.warn("survey {} is not running", surveyCode);
-            return VoteResponse.builder()
-                    .surveyIsRunning(false)
-                    .build();
-        }
+        checkIfSurveyIsStopped(surveyCode);
         VoteItem voteItem = randomAlgorithm.getVote(surveyCode, userId);
         LOGGER.info("survey {} get vote from {} image1: {} image2: {}", surveyCode, userId, voteItem.getFile1().getId(), voteItem.getFile2().getId());
         return VoteResponse.builder()
@@ -102,10 +99,9 @@ public class SurveyService {
     }
 
     public void setVote(String surveyCode, VoteRequest voteRequest, String userId) {
-        if (databaseInMemory.getSurvey(surveyCode).getStarted() != null && databaseInMemory.getSurvey(surveyCode).getStarted()) {
-            randomAlgorithm.setVote(surveyCode, voteRequest.getWinner(), voteRequest.getLoser(), userId);
-            LOGGER.info("survey {} set vote by {} winnerId: {} looserId: {}", surveyCode, userId, voteRequest.getWinner(), voteRequest.getLoser());
-        }
+        checkIfSurveyIsStopped(surveyCode);
+        randomAlgorithm.setVote(surveyCode, voteRequest.getWinner(), voteRequest.getLoser(), userId);
+        LOGGER.info("survey {} set vote by {} winnerId: {} looserId: {}", surveyCode, userId, voteRequest.getWinner(), voteRequest.getLoser());
     }
 
     public ScoreResponse getScore(String surveyCode) {
@@ -167,11 +163,13 @@ public class SurveyService {
     }
 
     public void deleteSurvey(String surveyCode) {
+        checkIfSurveyIsStopped(surveyCode);
         LOGGER.info("survey {} deleted", surveyCode);
         databaseInMemory.removeSurvey(surveyCode);
     }
 
     public void persistSurvey(String surveyCode) {
+        checkIfSurveyIsStopped(surveyCode);
         Survey survey = databaseInMemory.getSurvey(surveyCode);
         if (survey.getStarted()) {
             LOGGER.error("survey {} is not stopped", survey.getCode());
@@ -179,6 +177,20 @@ public class SurveyService {
         }
         databaseMongo.updateSurvey(survey);
         LOGGER.info("survey {} persist", surveyCode);
+    }
+
+    private void checkIfSurveyIsAlreadyStarted(String surveyCode) {
+        if (databaseInMemory.getSurvey(surveyCode).getStarted() != null && databaseInMemory.getSurvey(surveyCode).getStarted()) {
+            LOGGER.warn("survey {} is not running", surveyCode);
+            throw new SurveyAlreadyStartedException("survey " + surveyCode + " is already started");
+        }
+    }
+
+    private void checkIfSurveyIsStopped(String surveyCode) {
+        if (databaseInMemory.getSurvey(surveyCode).getStarted() != null && !databaseInMemory.getSurvey(surveyCode).getStarted()) {
+            LOGGER.warn("survey {} is not running", surveyCode);
+            throw new SurveyStoppedException("survey " + surveyCode + " is already stopped");
+        }
     }
 
 }

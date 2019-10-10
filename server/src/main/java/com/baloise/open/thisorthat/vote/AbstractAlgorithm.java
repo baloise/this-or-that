@@ -19,7 +19,7 @@ import com.baloise.open.thisorthat.db.DatabaseService;
 import com.baloise.open.thisorthat.dto.ScoreItem;
 import com.baloise.open.thisorthat.dto.Survey;
 import com.baloise.open.thisorthat.dto.Vote;
-import com.baloise.open.thisorthat.exception.SurveyAlreadyStoppedException;
+import com.baloise.open.thisorthat.exception.SurveyStoppedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,7 +61,7 @@ abstract class AbstractAlgorithm {
     public void calculateScoresAndStopSurvey(String surveyCode) {
         Survey survey = database.getSurvey(surveyCode);
         if (!survey.getStarted()) {
-            throw new SurveyAlreadyStoppedException("survey " + surveyCode + " already stopped");
+            throw new SurveyStoppedException("survey " + surveyCode + " already stopped");
         }
         survey.setScores(calculateScores(surveyCode));
         database.stopSurvey(surveyCode);
