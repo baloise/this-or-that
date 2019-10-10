@@ -77,6 +77,12 @@ export default class VoteContainer extends Vue {
       if (localStorage.getItem(`this-or-that:${this.$route.params.surveyCode}`) !== null) {
         this.submittedVotes = parseInt(localStorage.getItem(`this-or-that:${this.$route.params.surveyCode}`)!, 10);
       }
+    } catch (error) {
+      if ('response' in error && 'status' in error.response && error.response.status === 404) {
+        this.$router.push('/404');
+        return;
+      }
+      throw error;
     } finally {
       this.isLoading = false;
     }

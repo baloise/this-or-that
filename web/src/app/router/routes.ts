@@ -17,6 +17,10 @@ export const routes: RouteConfig[] = [
         component: () => import('@/app/views/CreateSurveyContainer.vue'),
     },
     {
+        path: '/404',
+        component: () => import('@/app/views/NotFound.vue'),
+    },
+    {
         path: '/:surveyCode/vote',
         name: 'vote',
         component: () => import('@/app/views/VoteContainer.vue'),
@@ -32,6 +36,6 @@ export const routes: RouteConfig[] = [
     },
     {
         path: '*',
-        component: () => import('@/app/views/NotFound.vue'),
+        redirect: '/404',
     },
 ];

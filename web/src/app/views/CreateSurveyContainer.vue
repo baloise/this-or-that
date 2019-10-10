@@ -57,7 +57,7 @@
                   </div>
                 </div>
               </div>
-              <div class="content is-center" v-if="this.surveyCode">
+              <div class="content is-center" v-if="this.surveyCode && !this.isLoading">
                 <h1>Your surveyCode: {{this.surveyCode}}</h1>
                 <qrcode-vue :value="this.surveyCode" level="H"></qrcode-vue>
                 <br />
