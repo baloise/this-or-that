@@ -15,7 +15,7 @@
  */
 package com.baloise.open.thisorthat.exception;
 
-public class SurveyIncompleteException extends DatabaseException {
+public class SurveyIncompleteException extends RuntimeException {
     public SurveyIncompleteException(String message) {
         super(message);
     }

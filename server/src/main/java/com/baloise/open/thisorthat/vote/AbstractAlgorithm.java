@@ -19,7 +19,7 @@ import com.baloise.open.thisorthat.db.DatabaseService;
 import com.baloise.open.thisorthat.dto.ScoreItem;
 import com.baloise.open.thisorthat.dto.Survey;
 import com.baloise.open.thisorthat.dto.Vote;
-import com.baloise.open.thisorthat.dto.VoteItem;
+import com.baloise.open.thisorthat.exception.SurveyAlreadyStoppedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +29,9 @@ import java.util.stream.Collectors;
 
 abstract class AbstractAlgorithm {
 
-    static final Logger LOGGER = LoggerFactory.getLogger("APPL." + MethodHandles.lookup().lookupClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger("APPL." + MethodHandles.lookup().lookupClass());
+
+    private static final double DEFAULT_WEIGHT_PER_VOTE = 10.0;
 
     final DatabaseService database;
 
@@ -37,22 +39,18 @@ abstract class AbstractAlgorithm {
         this.database = database;
     }
 
-    public abstract void initialize(String surveyCode);
-
-    public abstract VoteItem getVote(String surveyCode, String userId);
-
     protected abstract List<ScoreItem> calculateScores(String surveyCode);
 
     /**
      * The weight of a users vote is normalized to the number of images
      */
-    double getWeight(Survey survey, String userId, double defaultWeightPerVote) {
+    double getWeight(Survey survey, String userId) {
         List<Vote> votes = survey.getVotes().stream()
                 .filter(v -> v.getUserId().equals(userId)).collect(Collectors.toList());
         if ((votes.size() * 2) <= survey.getImages().size()) { // if votes * 2 are less or equal than number of images each picture has been evaluated once at max!
-            return defaultWeightPerVote;
+            return DEFAULT_WEIGHT_PER_VOTE;
         }
-        return defaultWeightPerVote * (double) (survey.getImages().size()) / (double) (votes.size() * 2);
+        return DEFAULT_WEIGHT_PER_VOTE * (double) (survey.getImages().size()) / (double) (votes.size() * 2);
     }
 
     public void setVote(String surveyCode, String imageIdWinner, String imageIdLooser, String userId) {
@@ -60,12 +58,11 @@ abstract class AbstractAlgorithm {
         LOGGER.info("voted for {} winner {} looser {}", surveyCode, imageIdWinner, imageIdLooser);
     }
 
-    public Survey getSurvey(String surveyCode) {
-        return database.getSurvey(surveyCode);
-    }
-
     public void calculateScoresAndStopSurvey(String surveyCode) {
         Survey survey = database.getSurvey(surveyCode);
+        if (!survey.getStarted()) {
+            throw new SurveyAlreadyStoppedException("survey " + surveyCode + " already stopped");
+        }
         survey.setScores(calculateScores(surveyCode));
         database.stopSurvey(surveyCode);
     }

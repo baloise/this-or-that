@@ -19,7 +19,10 @@ import com.baloise.open.thisorthat.dto.Image;
 import com.baloise.open.thisorthat.dto.ScoreItem;
 import com.baloise.open.thisorthat.dto.Survey;
 import com.baloise.open.thisorthat.dto.Vote;
-import com.baloise.open.thisorthat.exception.*;
+import com.baloise.open.thisorthat.exception.DeleteFailedException;
+import com.baloise.open.thisorthat.exception.ImageNotFoundException;
+import com.baloise.open.thisorthat.exception.SurveyNotFoundException;
+import com.baloise.open.thisorthat.exception.UpdateFailedException;
 import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -37,7 +40,8 @@ import java.util.List;
 
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Filters.lt;
-import static com.mongodb.client.model.Updates.*;
+import static com.mongodb.client.model.Updates.addToSet;
+import static com.mongodb.client.model.Updates.set;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
@@ -152,20 +156,6 @@ public class MongoDatabaseService implements DatabaseService {
     }
 
     @Override
-    public void increaseScore(String surveyCode, String imageId) {
-        int score = getScore(surveyCode, imageId).getScore() + 1;
-        setScore(surveyCode, imageId, score);
-        LOGGER.info("increased score for {} imageId {}", surveyCode, imageId);
-    }
-
-    @Override
-    public void decreaseScore(String surveyCode, String imageId) {
-        int score = getScore(surveyCode, imageId).getScore() - 1;
-        setScore(surveyCode, imageId, score);
-        LOGGER.info("decreased score for {} imageId {}", surveyCode, imageId);
-    }
-
-    @Override
     public void addScore(String surveyCode, ScoreItem scoreItem) {
         UpdateResult updateResult = surveys.updateOne(eq("code", surveyCode), addToSet("scores", scoreItem));
         updateResultHandler(updateResult);
@@ -173,39 +163,10 @@ public class MongoDatabaseService implements DatabaseService {
     }
 
     @Override
-    public void removeScore(String surveyCode, String imageId) {
-        UpdateResult updateResult = surveys.updateOne(eq("code", surveyCode), pull("scores.image.id", imageId));
-        updateResultHandler(updateResult);
-        LOGGER.info("removed score imageId {} survey {}", imageId, surveyCode);
-    }
-
-    @Override
     public void persistVote(String surveyCode, Vote vote) {
         UpdateResult updateResult = surveys.updateOne(eq("code", surveyCode), addToSet("votes", vote));
         updateResultHandler(updateResult);
         LOGGER.info("saved vote for {} userId {}", surveyCode, vote.getUserId());
-    }
-
-    @Override
-    public ScoreItem getScore(String surveyCode, String imageId) {
-        Survey survey = getSurvey(surveyCode);
-        return survey.getScores().stream()
-                .filter(scoreItem -> scoreItem.getImageId().equals(imageId))
-                .findFirst()
-                .orElseThrow(() -> new ImageNotFoundException("survey " + surveyCode + " could not find image " + imageId));
-    }
-
-    @Override
-    public void setScore(String surveyCode, String imageId, int scoreValue) {
-        Survey survey = getSurvey(surveyCode);
-        removeSurvey(surveyCode);
-        survey.getScores().stream()
-                .filter(scoreItem -> scoreItem.getImageId().equals(imageId))
-                .findFirst()
-                .orElseThrow(() -> new DatabaseException("survey " + surveyCode + " could not find score for " + imageId))
-                .setScore(scoreValue);
-        addSurvey(survey);
-        LOGGER.info("set score {} on survey {} image {}", scoreValue, surveyCode, imageId);
     }
 
     @Override

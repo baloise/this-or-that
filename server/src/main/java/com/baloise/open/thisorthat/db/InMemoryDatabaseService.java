@@ -106,28 +106,9 @@ public class InMemoryDatabaseService implements DatabaseService {
                 .orElseThrow(() -> new ImageNotFoundException("survey" + surveyCode + " image " + imageId + "not found "));
     }
 
-    public void increaseScore(String surveyCode, String imageId) {
-        ScoreItem scoreItem1 = getScoreItemFromImageId(surveyCode, imageId);
-        scoreItem1.setScore(scoreItem1.getScore() + 1);
-    }
-
-    public void setScore(String surveyCode, String imageId, int score) {
-        ScoreItem scoreItem1 = getScoreItemFromImageId(surveyCode, imageId);
-        scoreItem1.setScore(score);
-    }
-
     @Override
     public List<Survey> getSurveysOlderThan(Date cutOffDate) {
         return surveys.stream().filter(s -> s.getCreationDate().before(cutOffDate)).collect(Collectors.toList());
-    }
-
-    public ScoreItem getScore(String surveyCode, String imageId) {
-        return getScoreItemFromImageId(surveyCode, imageId);
-    }
-
-    public void decreaseScore(String surveyCode, String imageId) {
-        ScoreItem scoreItem1 = getScoreItemFromImageId(surveyCode, imageId);
-        scoreItem1.setScore(scoreItem1.getScore() - 1);
     }
 
     @Override
@@ -135,22 +116,9 @@ public class InMemoryDatabaseService implements DatabaseService {
         getSurvey(surveyCode).getScores().add(scoreItem);
     }
 
-    @Override
-    public void removeScore(String surveyCode, String imageId) {
-        getSurvey(surveyCode).getScores()
-                .removeIf(scoreItem -> scoreItem.getImageId().equals(imageId));
-    }
-
     public void persistVote(String surveyCode, Vote vote) {
         Survey survey = getSurvey(surveyCode);
         survey.getVotes().add(vote);
-    }
-
-    private ScoreItem getScoreItemFromImageId(String surveyCode, String imageId) {
-        return getSurvey(surveyCode).getScores().stream()
-                .filter(scoreItem -> scoreItem.getImageId().equals(imageId))
-                .findFirst()
-                .orElseThrow(() -> new ImageNotFoundException("survey " + surveyCode + " image" + imageId + " in score not found "));
     }
 
 }

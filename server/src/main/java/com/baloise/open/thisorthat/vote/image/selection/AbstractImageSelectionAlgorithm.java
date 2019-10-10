@@ -13,15 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.baloise.open.thisorthat.api.dto;
+package com.baloise.open.thisorthat.vote.image.selection;
 
-public enum ErrorCode {
-    SURVEY_INCOMPLETE,
-    SURVEY_NOT_FOUND,
-    IMAGE_NOT_FOUND,
-    ALGORITHM_ERROR,
-    DATABASE_ERROR,
-    UNKNOWN_ERROR,
-    UPDATE_FAILED_ERROR,
-    DELETE_FAILED_ERROR
+import com.baloise.open.thisorthat.dto.Image;
+import com.baloise.open.thisorthat.dto.Pair;
+
+public abstract class AbstractImageSelectionAlgorithm {
+
+    public abstract Pair<Image> getNextImagePair(String surveyCode, String userId);
 }

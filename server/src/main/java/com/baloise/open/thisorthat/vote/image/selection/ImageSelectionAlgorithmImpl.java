@@ -13,33 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.baloise.open.thisorthat.vote;
+package com.baloise.open.thisorthat.vote.image.selection;
 
 import com.baloise.open.thisorthat.db.DatabaseService;
 import com.baloise.open.thisorthat.dto.Image;
 import com.baloise.open.thisorthat.dto.Pair;
-import com.baloise.open.thisorthat.exception.DatabaseException;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-class ImageSelectionAlgorithmImpl extends AbstractImageSelectionAlgorithm {
+public class ImageSelectionAlgorithmImpl extends AbstractImageSelectionAlgorithm {
 
     private final DatabaseService databaseService;
     private final Random rand = new Random();
 
-    ImageSelectionAlgorithmImpl(DatabaseService databaseService) {
+    public ImageSelectionAlgorithmImpl(DatabaseService databaseService) {
         this.databaseService = databaseService;
     }
 
-    /**
-     * Algorithm that prioritizes to show each image to every user at least once!
-     *
-     * @param surveyCode
-     * @param userId
-     * @return
-     * @throws DatabaseException
-     */
     @Override
     public Pair<Image> getNextImagePair(String surveyCode, String userId) {
         List<String> ids = getImageIdsNotYetVotedFor(surveyCode, userId);

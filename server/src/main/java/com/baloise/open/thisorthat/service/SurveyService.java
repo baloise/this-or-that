@@ -24,10 +24,7 @@ import com.baloise.open.thisorthat.db.DatabaseServiceProvider;
 import com.baloise.open.thisorthat.dto.Image;
 import com.baloise.open.thisorthat.dto.Survey;
 import com.baloise.open.thisorthat.dto.VoteItem;
-import com.baloise.open.thisorthat.exception.DatabaseException;
-import com.baloise.open.thisorthat.exception.ImageNotFoundException;
-import com.baloise.open.thisorthat.exception.SurveyIncompleteException;
-import com.baloise.open.thisorthat.exception.SurveyNotFoundException;
+import com.baloise.open.thisorthat.exception.*;
 import com.baloise.open.thisorthat.vote.SimpleAlgorithm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -120,7 +117,7 @@ public class SurveyService {
             survey = databaseMongo.getSurvey(surveyCode);
         }
         if (survey.getStarted() != null && survey.getStarted()) { // survey still running. Scores are not available yet!
-            return ScoreResponse.builder().scores(new LinkedList<>()).surveyIsRunning(true).build();
+            throw new SurveyStillRunningException("survey " + surveyCode + " is still running:");
         }
         //extract numberOfUsers for Response
         Set<String> userIdSet = new HashSet<>();

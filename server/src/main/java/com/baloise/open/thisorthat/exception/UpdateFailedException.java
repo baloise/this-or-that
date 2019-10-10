@@ -15,7 +15,7 @@
  */
 package com.baloise.open.thisorthat.exception;
 
-public class UpdateFailedException extends DatabaseException {
+public class UpdateFailedException extends RuntimeException {
     public UpdateFailedException(String message) {
         super(message);
     }

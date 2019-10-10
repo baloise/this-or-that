@@ -3,6 +3,10 @@ package com.baloise.open.thisorthat.api;
 import com.baloise.open.thisorthat.api.dto.*;
 import com.baloise.open.thisorthat.dto.Image;
 import com.baloise.open.thisorthat.dto.Survey;
+import com.baloise.open.thisorthat.exception.ImageNotFoundException;
+import com.baloise.open.thisorthat.exception.SurveyAlreadyStoppedException;
+import com.baloise.open.thisorthat.exception.SurveyNotFoundException;
+import com.baloise.open.thisorthat.exception.SurveyStillRunningException;
 import com.baloise.open.thisorthat.service.SurveyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +20,20 @@ import static org.springframework.http.ResponseEntity.ok;
 @RestController
 public class ApiController {
 
-    private SurveyService surveyService = new SurveyService();
+    private final SurveyService surveyService = new SurveyService();
 
-    private ResponseStatusException buildError(Throwable t) {
-        // FIXME
-        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "An error occured: " + t.getMessage(), t);
+    private ResponseStatusException buildError(Exception exception) {
+        if (exception instanceof SurveyNotFoundException) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+        } else if (exception instanceof ImageNotFoundException) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+        } else if (exception instanceof SurveyStillRunningException) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+        } else if (exception instanceof SurveyAlreadyStoppedException) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+        } else {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "An error occured: " + exception.getMessage(), exception);
+        }
     }
 
     @PostMapping(path = "/create", consumes = "application/json")
@@ -72,8 +85,8 @@ public class ApiController {
     public VoteResponse getVote(@RequestHeader("userId") String userId, @PathVariable("code") String surveyCode) {
         try {
             return surveyService.getVote(surveyCode, userId);
-        } catch (Throwable t) {
-            throw buildError(t);
+        } catch (Exception e) {
+            throw buildError(e);
         }
     }
 
@@ -83,8 +96,8 @@ public class ApiController {
         try {
             surveyService.setVote(surveyCode, voteRequest, userId);
             return ok().build();
-        } catch (Throwable t) {
-            throw buildError(t);
+        } catch (Exception e) {
+            throw buildError(e);
         }
     }
 

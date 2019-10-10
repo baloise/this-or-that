@@ -43,19 +43,9 @@ public interface DatabaseService {
 
     Image getImageFromSurvey(String surveyCode, String imageId);
 
-    void increaseScore(String surveyCode, String imageId);
-
-    void decreaseScore(String surveyCode, String imageId);
-
     void addScore(String surveyCode, ScoreItem scoreItem);
 
-    void removeScore(String surveyCode, String imageId);
-
     void persistVote(String surveyCode, Vote build);
-
-    ScoreItem getScore(String surveyCode, String imageId);
-
-    void setScore(String surveyCode, String imageId, int score);
 
     List<Survey> getSurveysOlderThan(Date cutOffDate);
 
