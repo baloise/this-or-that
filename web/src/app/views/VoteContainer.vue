@@ -34,15 +34,6 @@
                   </div>
                 </div>
               </div>
-              <div class="modal">
-                <div class="modal-background"></div>
-                <div class="modal-content">
-                  <p class="image is-4by3">
-                    <img src="../../assets/error.png" alt />
-                  </p>
-                </div>
-                <button class="modal-close is-large" aria-label="close"></button>
-              </div>
               <!-- </div> -->
             </div>
             <div class="column"></div>
@@ -50,7 +41,6 @@
         </div>
       </div>
     </section>
-    <b-loading :active.sync="isLoading" :can-cancel="true" :is-full-page="true"></b-loading>
   </div>
 </template>
 
