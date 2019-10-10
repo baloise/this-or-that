@@ -24,13 +24,13 @@
 
                                 <div class="columns is-desktop">
                                     <div class="column">
-                                        <button @click="manageSurvey()" :disabled="surveyCode.length === 0" class="button is-primary is-medium">
-                                            Manage Survey
+                                        <button :disabled="surveyCode.length === 0" @click="vote()"
+                                                class="button is-primary is-medium">Vote
                                         </button>
                                     </div>
                                     <div class="column">
-                                        <button :disabled="surveyCode.length === 0" @click="vote()"
-                                                class="button is-primary is-medium">Vote
+                                        <button @click="manageSurvey()" :disabled="surveyCode.length === 0" class="button is-primary is-medium">
+                                            Close Survey
                                         </button>
                                     </div>
                                 </div>
@@ -49,9 +49,9 @@
 </template>
 
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator';
+    import {Component, Vue} from "vue-property-decorator";
 
-@Component
+    @Component
 export default class HomeContainer extends Vue {
 
     public surveyCode = '';

@@ -169,7 +169,6 @@ public class SurveyService {
     }
 
     public void persistSurvey(String surveyCode) {
-        checkIfSurveyIsStopped(surveyCode);
         Survey survey = databaseInMemory.getSurvey(surveyCode);
         if (survey.getStarted()) {
             LOGGER.error("survey {} is not stopped", survey.getCode());

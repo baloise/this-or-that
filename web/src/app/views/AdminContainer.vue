@@ -9,22 +9,10 @@
           <div class="columns">
             <div class="column"></div>
             <div class="column is-two-thirds-tablet is-half-desktop">
-              <div class="content is-center" v-if="this.score != null">
-                <h2
-                  class="title is-2"
-                  v-if="this.score.surveyIsRunning"
-                >Your survey: {{this.voteResponse.perspective}}</h2>
-                <h2
-                  class="title is-2"
-                  v-if="!this.score.surveyIsRunning"
-                >Your survey: {{this.voteResponse.perspective}}</h2>
-                <div class="content is-center" v-if="this.score.surveyIsRunning">
-                  <h1>The survey hasn't finished yet.</h1>
-                  <qrcode-vue :value="$route.params.surveyCode" level="H"></qrcode-vue>
-                  <br />
-                  <button @click="finishSurvey()" class="button is-primary is-medium">Finish survey</button>
-                </div>
-                <div class="content is-center" v-if="!this.score.surveyIsRunning">
+              <div class="content is-center">
+                <h2 class="title is-2">Your survey: {{this.$route.params.surveyCode}}</h2>
+                <div class="content is-center">
+                  <p>Perspective: {{this.score.perspective}}</p>
                   <p>Number of participants: {{this.score.numberOfUsers}}</p>
                   <p>Number of votes: {{this.score.numberOfVotes}}</p>
                   <div v-for="(chunk, idx) in this.getImageRows()"
@@ -35,7 +23,7 @@
                         v-for="score in chunk"
                         v-bind:key="score.imageId">
                         <div class="vote-result">
-                          <img class="element" :src="getImageURL(score.imageId)" />
+                          <img :src="getImageURL(score.imageId)" alt="img" class="element"/>
                           <div class="score">Score: {{score.score}}</div>
                         </div>
                       </div>
@@ -59,29 +47,18 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import {
-  getImageURL,
-  createImage,
-  stopSurvey,
-  getScore,
-  getVote,
-} from '@/app/api/survey.api';
-import { ErrorCode, getErrorCode } from '@/app/api/error';
-import { CreateSurveyRequest } from '@/app/models/create-survey-request';
-import { CreateImageRequest } from '@/app/models/create-image-request';
-import { ScoreResponse } from '@/app/models/score-response';
-import { VoteResponse } from '@/app/models/vote-response';
-import QrcodeVue from 'qrcode.vue';
+  import {Component, Vue} from "vue-property-decorator";
+  import {getImageURL, getScore, stopSurvey,} from "@/app/api/survey.api";
+  import {ScoreResponse} from "@/app/models/score-response";
+  import QrcodeVue from "qrcode.vue";
 
-@Component({
+  @Component({
   components: {QrcodeVue},
 })
 export default class AdminContainer extends Vue {
   public isLoading = false;
   public score: ScoreResponse | null = null;
-  public voteResponse: VoteResponse | null = null;
-  public voteURL: string | null = null;
+    public isSurveyRunning: boolean = false;
 
   public getImageURL(imageId: string) {
     if (this.score != null) {
@@ -96,7 +73,7 @@ export default class AdminContainer extends Vue {
   public async mounted() {
     this.isLoading = true;
     try {
-      this.voteResponse = await getVote(this.$route.params.surveyCode);
+      await stopSurvey(this.$route.params.surveyCode);
       this.score = await getScore(this.$route.params.surveyCode);
     } finally {
       this.isLoading = false;
@@ -119,6 +96,7 @@ export default class AdminContainer extends Vue {
     try {
       await stopSurvey(this.$route.params.surveyCode);
       this.score = await getScore(this.$route.params.surveyCode);
+      this.isSurveyRunning = false;
     } finally {
       this.isLoading = false;
     }
