@@ -67,20 +67,15 @@ before_script:
   # Add Flutter to the PATH environment variable.
   - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
 
-matrix:
-  include: # server
-    - language: java
-      jdk:
-      - openjdk8
-      script:
-      - "mvn clean verify"
-  include: # app
-    - language: node_js
-      script:
-      - "cd app && flutter doctor -v && flutter build apk --debug"
-  include: # web
-    - language: node_js
-      before_script:
-      - "cd web && yarn install"
-      script:
-      - "yarn run build"
+  # Install yarn dependencies
+  - "cd web && yarn install && cd .."
+
+  # Check flutter state
+  - "cd app && flutter doctor -v && cd .."
+
+script:
+  # Build Android APK as debug: skips signing
+  - "cd app && flutter build apk --debug && cd .."
+
+  # Build Vue application
+  - "cd web && yarn run build && cd .."

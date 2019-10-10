@@ -19,7 +19,9 @@
                   v-if="!this.score.surveyIsRunning"
                 >Your survey: {{this.voteResponse.perspective}}</h2>
                 <div class="content is-center" v-if="this.score.surveyIsRunning">
-                  <h1>The servey hasn't finished yet.</h1>
+                  <h1>The survey hasn't finished yet.</h1>
+                  <qrcode-vue :value="$route.params.surveyCode" level="H"></qrcode-vue>
+                  <br />
                   <button @click="finishSurvey()" class="button is-primary is-medium">Finish survey</button>
                 </div>
                 <div class="content is-center" v-if="!this.score.surveyIsRunning">
@@ -68,14 +70,16 @@ import { CreateSurveyRequest } from '@/app/models/create-survey-request';
 import { CreateImageRequest } from '@/app/models/create-image-request';
 import { ScoreResponse } from '@/app/models/score-response';
 import { VoteResponse } from '@/app/models/vote-response';
+import QrcodeVue from 'qrcode.vue';
 
 @Component({
-  components: {},
+  components: {QrcodeVue},
 })
 export default class AdminContainer extends Vue {
   public isLoading = false;
   public score: ScoreResponse | null = null;
   public voteResponse: VoteResponse | null = null;
+  public voteURL: string | null = null;
 
   public getImageURL(idx: number) {
     if (this.score != null) {
@@ -92,8 +96,11 @@ export default class AdminContainer extends Vue {
     try {
       this.voteResponse = await getVote(this.$route.params.surveyCode);
       this.score = await getScore(this.$route.params.surveyCode);
-      this.isLoading = false;
     } catch (error) {
+      if (error.response.status === 404) {
+            this.$router.push('/404');
+      }
+    } finally {
       this.isLoading = false;
     }
   }
@@ -103,8 +110,7 @@ export default class AdminContainer extends Vue {
     try {
       await stopSurvey(this.$route.params.surveyCode);
       this.score = await getScore(this.$route.params.surveyCode);
-      this.isLoading = false;
-    } catch (error) {
+    } finally {
       this.isLoading = false;
     }
   }
