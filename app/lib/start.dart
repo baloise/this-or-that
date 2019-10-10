@@ -118,14 +118,6 @@ class StartScreenState extends State<StartScreen> {
           ),
         ),
       ),
-      // floatingActionButton: FloatingActionButton.extended(
-      //   backgroundColor: Colors.tealAccent[400],
-      //   foregroundColor: Colors.white,
-      //   onPressed: createNewSurvey,
-      //   tooltip: 'Create survey',
-      //   label: Text("Create survey"),
-      //   icon: Icon(Icons.add),
-      // ),
     );
   }
 
