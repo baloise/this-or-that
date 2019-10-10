@@ -1,6 +1,18 @@
-# this_or_that_app
+# app
 
-A new Flutter project.
+## building / releasing
+
+### iOS
+
+Currently the building profile is maintained by @MarkusTiede.
+
+```
+cd app && flutter clean && flutter pub get && flutter build ios
+```
+
+Afterwards continue building and publishing in Xcode.
+
+### Android
 
 ## Getting Started
 
