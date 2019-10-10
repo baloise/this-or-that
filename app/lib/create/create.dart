@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:this_or_that_app/create/loading.dart';
 import 'package:this_or_that_app/create/success.dart';
 import 'package:this_or_that_app/service/api-service.dart';
+import 'package:this_or_that_app/utlis/image.util.dart';
 
 import 'image.dart';
 
@@ -104,7 +105,13 @@ class CreateScreenState extends State<CreateScreen> {
     setState(() {
       _code = code;
     });
-    await Future.wait(_files.map((file) => ApiService.postImage(code, file)));
+
+    List<String> listOfBase64DataUris = await Future.wait(
+        _files.map((file) => ImageUtil.convertImages(code, file)));
+
+    await Future.wait(listOfBase64DataUris
+        .map((base64DataUri) => ApiService.postImage(code, base64DataUri)));
+
     await ApiService.startSurvey(code);
     setState(() {
       _title = txtId.text;

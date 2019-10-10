@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:image/image.dart';
 import 'package:uuid/uuid.dart';
-import 'package:uuid/uuid_util.dart';
 import 'dtos.dart';
 
 Uuid uuid = new Uuid();
@@ -87,19 +86,9 @@ class ApiService {
     return null;
   }
 
-  static Future<void> postImage(String code, File file) async {
-    print("decodeImage");
-    Image image = decodeImage(file.readAsBytesSync());
-    print("copyResize");
-    Image thumbnail = copyResize(image, width: 1024);
-
-    print("encodeJpg");
-    List<int> imageBytes = encodeJpg(thumbnail);
-
-    print("base64Encode");
-    String base64Image = base64Encode(imageBytes);
+  static Future<void> postImage(String code, String base64DataUri) async {
     var map = new Map<String, dynamic>();
-    map["file"] = "data:image/jpg;base64," + base64Image;
+    map["file"] = base64DataUri;
     String body = json.encode(map);
 
     String url = API_BASE_URL + "/" + code + "/image";
