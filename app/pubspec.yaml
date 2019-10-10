@@ -23,6 +23,9 @@ dependencies:
   image_picker: 0.6.1+4
   shared_preferences: 0.5.3+4
   intl: 0.16.0
+  uuid: 2.0.2
+  image: 2.1.4
+  qr_flutter: ^3.0.1
   flutter:
     sdk: flutter
 

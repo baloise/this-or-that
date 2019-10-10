@@ -2,12 +2,12 @@ import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:package_info/package_info.dart';
-import 'package:this_or_that_app/create.dart';
 
 import 'common/logo.dart';
 import 'common/or_divider.dart';
 import 'history.dart';
 import 'service/local-storage-service.dart';
+import 'create/create.dart';
 import 'vote.dart';
 
 const String VOTE_STRING = "/vote/";
@@ -134,20 +134,17 @@ class StartScreenState extends State<StartScreen> {
   }
 
   void openAbout() {
-    String version = "";
-    String buildNumber = "";
-
     PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
-      version = packageInfo.version;
-      buildNumber = packageInfo.buildNumber;
-    });
+      String version = packageInfo.version;
+      String buildNumber = packageInfo.buildNumber;
 
-    showDialog(
-      context: context,
-      builder: (context) => AboutDialog(
-          applicationVersion: "Version: " + version + " #" + buildNumber,
-          applicationLegalese: "Apache 2.0 License"),
-    );
+      showDialog(
+        context: context,
+        builder: (context) => AboutDialog(
+            applicationVersion: "Version: " + version + " #" + buildNumber,
+            applicationLegalese: "Apache 2.0 License"),
+      );
+    });
   }
 
   String cleanBarcode(String url) {

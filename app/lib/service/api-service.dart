@@ -1,17 +1,22 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-
+import 'package:image/image.dart';
+import 'package:uuid/uuid.dart';
 import 'dtos.dart';
 import 'local-storage-service.dart';
 
+Uuid uuid = new Uuid();
+String USER_ID = uuid.v4();
 const API_BASE_URL = "https://this-or-that-test.azurewebsites.net/this-or-that";
 const NOT_CLOSED_ERR = "NOT_CLOSED_ERR";
 
 class ApiService {
   static Future<DecisionSet> fetchNewDecisionSet(String surveyId) async {
     String url = API_BASE_URL + "/" + surveyId + "/vote";
-    final response = await http.get(url, headers: {"userId": "test"});
+    final response = await http.get(url, headers: {
+      "userId": USER_ID,
+    });
 
     print("=>" + response.body);
 
@@ -52,7 +57,10 @@ class ApiService {
     final response = await http.post(
       url,
       body: body,
-      headers: {"Content-Type": "application/json", "userId": "test"},
+      headers: {
+        "Content-Type": "application/json",
+        "userId": USER_ID,
+      },
     );
     if (response.statusCode != 200) {
       throw new Exception("Error");
@@ -84,6 +92,40 @@ class ApiService {
 
     return null;
   }
+
+  static Future<void> postImage(String code, String base64DataUri) async {
+    var map = new Map<String, dynamic>();
+    map["file"] = base64DataUri;
+    String body = json.encode(map);
+
+    String url = API_BASE_URL + "/" + code + "/image";
+    print("URL: " + url);
+    final response = await http.post(
+      url,
+      body: body,
+      headers: {"Content-Type": "application/json"},
+    );
+
+    if (response.statusCode == 200) {
+      return CreateSurveyResponse.fromJson(json.decode(response.body));
+    }
+
+    return null;
+  }
+
+  static Future<void> startSurvey(String code) async {
+    String url = API_BASE_URL + "/" + code + "/start";
+
+    print("URL: " + url);
+
+    final response = await http.post(url);
+
+    if (response.statusCode == 200) {
+      return null;
+    }
+
+    return null;
+  }
 }
 
 class CreateSurveyResponse {
@@ -93,7 +135,7 @@ class CreateSurveyResponse {
 
   factory CreateSurveyResponse.fromJson(Map<String, dynamic> json) {
     return CreateSurveyResponse(
-      perspective: json['perspective'],
+      perspective: json['code'],
     );
   }
 }
