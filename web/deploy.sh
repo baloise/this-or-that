@@ -3,8 +3,11 @@
 # abort on errors
 set -e
 
+# update local setup
+yarn install
+
 # build
-npm run build
+yarn run build
 
 # navigate into the build output directory
 cd dist
