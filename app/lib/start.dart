@@ -5,6 +5,9 @@ import 'package:package_info/package_info.dart';
 
 import 'common/logo.dart';
 import 'common/or_divider.dart';
+import 'history.dart';
+import 'service/local-storage-service.dart';
+import 'create/create.dart';
 import 'vote.dart';
 
 const String VOTE_STRING = "/vote/";
@@ -32,9 +35,13 @@ class StartScreenState extends State<StartScreen> {
         title: Text("This or That"),
         actions: <Widget>[
           IconButton(
+              icon: Icon(Icons.history),
+              tooltip: 'History',
+              onPressed: openHistory),
+          IconButton(
               icon: Icon(Icons.info),
               tooltip: 'About this app',
-              onPressed: openAbout)
+              onPressed: openAbout),
         ],
       ),
       body: SafeArea(
@@ -91,22 +98,33 @@ class StartScreenState extends State<StartScreen> {
                       minWidth: double.infinity,
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                    child: Divider(),
+                  ),
+                  MaterialButton(
+                    height: 60,
+                    onPressed: createNewSurvey,
+                    child:
+                        Text("Create a survey", style: TextStyle(fontSize: 20)),
+                    color: Colors.tealAccent[400],
+                    textColor: Colors.white,
+                    splashColor: Colors.white,
+                    minWidth: double.infinity,
+                  ),
                 ],
               ),
             ),
           ),
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: Colors.tealAccent[400],
-      //   onPressed: createNewSurvey,
-      //   tooltip: 'Create survex',
-      //   child: const Icon(Icons.add),
-      // ),
     );
   }
 
-  void createNewSurvey() {}
+  void createNewSurvey() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => CreateScreen()));
+  }
 
   void openVote() {
     Navigator.push(
@@ -115,21 +133,23 @@ class StartScreenState extends State<StartScreen> {
             builder: (context) => VoteScreen(surveyCode: this.txtId.text)));
   }
 
+  void openHistory() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => HistoryScreen()));
+  }
+
   void openAbout() {
-    String version = "";
-    String buildNumber = "";
-
     PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
-      version = packageInfo.version;
-      buildNumber = packageInfo.buildNumber;
-    });
+      String version = packageInfo.version;
+      String buildNumber = packageInfo.buildNumber;
 
-    showDialog(
-      context: context,
-      builder: (context) => AboutDialog(
-          applicationVersion: "Version: " + version + " #" + buildNumber,
-          applicationLegalese: "Apache 2.0 License"),
-    );
+      showDialog(
+        context: context,
+        builder: (context) => AboutDialog(
+            applicationVersion: "Version: " + version + " #" + buildNumber,
+            applicationLegalese: "Apache 2.0 License"),
+      );
+    });
   }
 
   String cleanBarcode(String url) {

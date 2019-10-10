@@ -165,7 +165,7 @@ class FinishedWidget extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Text("Back to homepage", style: TextStyle(fontSize: 20)),
+            child: Text("Go back", style: TextStyle(fontSize: 20)),
             color: Colors.blueAccent[700],
             textColor: Colors.white,
             splashColor: Colors.white,
@@ -208,7 +208,7 @@ class ErrorWidget extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Text("Back to homepage", style: TextStyle(fontSize: 20)),
+            child: Text("Go back", style: TextStyle(fontSize: 20)),
             color: Colors.blueAccent[700],
             textColor: Colors.white,
             splashColor: Colors.white,

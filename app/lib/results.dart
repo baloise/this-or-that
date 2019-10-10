@@ -79,9 +79,77 @@ class ResultScreenState extends State<ResultScreen> {
                         ],
                       ),
                     );
+                  } else if (snapshot.hasError) {
+                    print(snapshot.error);
+                    if (snapshot.error.toString().contains(NOT_CLOSED_ERR)) {
+                      return NotClosedYetWidget();
+                    }
+                    return ErrorWidget();
                   }
 
                   return Center(child: CircularProgressIndicator());
                 })));
+  }
+}
+
+class NotClosedYetWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Text("The survey is not closed yet, so no results can be loaded at this time.",
+              style: TextStyle(fontSize: 20)),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: MaterialButton(
+            height: 60,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text("Go back", style: TextStyle(fontSize: 20)),
+            color: Colors.blueAccent[700],
+            textColor: Colors.white,
+            splashColor: Colors.white,
+            minWidth: double.infinity,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class ErrorWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Text("The results could not be loaded.",
+              style: TextStyle(fontSize: 20)),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: MaterialButton(
+            height: 60,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text("Go back", style: TextStyle(fontSize: 20)),
+            color: Colors.blueAccent[700],
+            textColor: Colors.white,
+            splashColor: Colors.white,
+            minWidth: double.infinity,
+          ),
+        ),
+      ],
+    );
   }
 }
