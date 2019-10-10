@@ -126,9 +126,9 @@ public class ApiController {
 
     private ResponseStatusException buildError(Exception exception) {
         if (exception instanceof SurveyNotFoundException) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, exception.getMessage());
         } else if (exception instanceof ImageNotFoundException) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, exception.getMessage());
         } else if (exception instanceof SurveyStillRunningException) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
         } else if (exception instanceof SurveyStoppedException) {
