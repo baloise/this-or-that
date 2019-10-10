@@ -11,6 +11,16 @@
 "This or That" is an online tool to make group decisions.
 Each participant of the voting can make votes based on image by selecting one of two displayed images.
 
+## Environments
+### Client
+https://baloise.github.io/this-or-that
+
+### Server
+
+#### Test
+https://this-or-that-test.azurewebsites.net/this-or-that
+#### Prod
+http://this-or-that-api.azurewebsites.net/this-or-that
 ## Requirements
 ### Server
  * Java 8
@@ -18,6 +28,10 @@ Each participant of the voting can make votes based on image by selecting one of
  * Maven
  * MongoDB
 
- ### Client
+ ### Client Vue
  * NodeJS
  * NPM
+ 
+ ### Client Flutter
+ * Flutter
+ 

@@ -7,7 +7,6 @@ import com.baloise.open.thisorthat.service.SurveyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.xml.bind.DatatypeConverter;
@@ -19,17 +18,12 @@ public class ApiController {
 
     private SurveyService surveyService = new SurveyService();
 
-    private String getUserId() {
-        String sessionId = RequestContextHolder.currentRequestAttributes().getSessionId();
-        return sessionId != null ? sessionId : "sessionIdUnavailable";
-    }
-
     private ResponseStatusException buildError(Throwable t) {
         // FIXME
         throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "An error occured: " + t.getMessage(), t);
     }
 
-    @PostMapping(consumes = "application/json")
+    @PostMapping(path = "/create", consumes = "application/json")
     @CrossOrigin(origins = "*")
     public SurveyResponse createSurvey(@RequestBody CreateSurveyRequest createSurveyRequest) {
         try {
@@ -42,7 +36,7 @@ public class ApiController {
         }
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{code}/delete")
     @CrossOrigin(origins = "*")
     public void deleteSurvey(@PathVariable("code") String surveyCode) {
         try {
@@ -75,9 +69,9 @@ public class ApiController {
 
     @GetMapping(value = "/{code}/vote")
     @CrossOrigin(origins = "*")
-    public VoteResponse getVote(@PathVariable("code") String surveyCode) {
+    public VoteResponse getVote(@RequestHeader("userId") String userId, @PathVariable("code") String surveyCode) {
         try {
-            return surveyService.getVote(surveyCode, getUserId());
+            return surveyService.getVote(surveyCode, userId);
         } catch (Throwable t) {
             throw buildError(t);
         }
@@ -85,9 +79,9 @@ public class ApiController {
 
     @PostMapping(value = "/{code}/vote", consumes = "application/json")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<VoteResponse> setVote(@PathVariable("code") String surveyCode, @RequestBody VoteRequest voteRequest) {
+    public ResponseEntity<VoteResponse> setVote(@RequestHeader("userId") String userId, @PathVariable("code") String surveyCode, @RequestBody VoteRequest voteRequest) {
         try {
-            surveyService.setVote(surveyCode, voteRequest, getUserId());
+            surveyService.setVote(surveyCode, voteRequest, userId);
             return ok().build();
         } catch (Throwable t) {
             throw buildError(t);
