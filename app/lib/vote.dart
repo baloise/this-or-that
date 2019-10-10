@@ -40,6 +40,38 @@ class VoteScreenState extends State<VoteScreen> {
     });
   }
 
+  void closeSurveyDialog() {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Text("Close Survey"),
+              content: Text(
+                  "Are you sure you want to close this survey? This can not be undone."),
+              actions: <Widget>[
+                FlatButton(
+                  onPressed: () {
+                    closeSurvey();
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("Yes"),
+                ),
+                FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("No"),
+                )
+              ],
+            ));
+  }
+
+  void closeSurvey() {
+    ApiService.postCloseSurvey(surveyCode);
+    setState(() {
+      wasClosedByThisUser = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,20 +81,16 @@ class VoteScreenState extends State<VoteScreen> {
             FutureBuilder<bool>(
                 future: LocalStorageService.isAdminOfSurvey(surveyCode),
                 builder: (context, snapshot) {
-                  if (snapshot.data != null && snapshot.data && !wasClosedByThisUser) {
-                    return IconButton(
-                        icon: Icon(Icons.close),
-                        tooltip: 'Close survey',
-                        onPressed: () {
-                          ApiService.postCloseSurvey(surveyCode);
-                          setState(() {
-                            wasClosedByThisUser = true;
-                          });
-                        });
-                  }
-                  return Container();
-                }
-            ),
+                  //if (snapshot.data != null &&
+                  //    snapshot.data &&
+                  //    !wasClosedByThisUser) {
+                  return IconButton(
+                      icon: Icon(Icons.close),
+                      tooltip: 'Close survey',
+                      onPressed: closeSurveyDialog);
+                  //}
+                  //return Container();
+                }),
           ],
         ),
         body: SafeArea(
@@ -74,70 +102,77 @@ class VoteScreenState extends State<VoteScreen> {
                     if (snapshot.data.surveyIsRunning && !wasClosedByThisUser) {
                       return new OrientationBuilder(
                           builder: (context, orientation) {
-                            if (orientation == Orientation.portrait) {
-                              return new Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    VoteImageWidget(
-                                      surveyId: surveyCode,
-                                      imageId: snapshot.data.id1,
-                                      winnerCallback: () {
-                                        voteFor(new DecisionChoice(
-                                            winner: snapshot.data.id1,
-                                            loser: snapshot.data.id2));
-                                      },
-                                    ),
-                                    Padding(
-                                      padding:
+                        if (orientation == Orientation.portrait) {
+                          return new Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                VoteImageWidget(
+                                  surveyId: surveyCode,
+                                  imageId: snapshot.data.id1,
+                                  winnerCallback: () {
+                                    voteFor(new DecisionChoice(
+                                        winner: snapshot.data.id1,
+                                        loser: snapshot.data.id2));
+                                  },
+                                ),
+                                Padding(
+                                  padding:
                                       const EdgeInsets.all(OR_DIVIDER_PADDING),
-                                      child: OrDividerWidget(),
-                                    ),
-                                    VoteImageWidget(
-                                      surveyId: surveyCode,
-                                      imageId: snapshot.data.id2,
-                                      winnerCallback: () {
-                                        voteFor(new DecisionChoice(
-                                            winner: snapshot.data.id2,
-                                            loser: snapshot.data.id1));
-                                      },
-                                    ),
-                                  ]);
-                            }
-                            return new Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  VoteImageWidget(
-                                    surveyId: surveyCode,
-                                    imageId: snapshot.data.id1,
-                                    winnerCallback: () {
-                                      voteFor(new DecisionChoice(
-                                          winner: snapshot.data.id1,
-                                          loser: snapshot.data.id2));
-                                    },
-                                  ),
-                                  Padding(
-                                    padding:
+                                  child: OrDividerWidget(),
+                                ),
+                                VoteImageWidget(
+                                  surveyId: surveyCode,
+                                  imageId: snapshot.data.id2,
+                                  winnerCallback: () {
+                                    voteFor(new DecisionChoice(
+                                        winner: snapshot.data.id2,
+                                        loser: snapshot.data.id1));
+                                  },
+                                ),
+                              ]);
+                        }
+                        return new Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              VoteImageWidget(
+                                surveyId: surveyCode,
+                                imageId: snapshot.data.id1,
+                                winnerCallback: () {
+                                  voteFor(new DecisionChoice(
+                                      winner: snapshot.data.id1,
+                                      loser: snapshot.data.id2));
+                                },
+                              ),
+                              Padding(
+                                padding:
                                     const EdgeInsets.all(OR_DIVIDER_PADDING),
-                                    child: OrDividerVerticalWidget(),
-                                  ),
-                                  VoteImageWidget(
-                                    surveyId: surveyCode,
-                                    imageId: snapshot.data.id2,
-                                    winnerCallback: () {
-                                      voteFor(new DecisionChoice(
-                                          winner: snapshot.data.id2,
-                                          loser: snapshot.data.id1));
-                                    },
-                                  ),
-                                ]);
-                          });
+                                child: OrDividerVerticalWidget(),
+                              ),
+                              VoteImageWidget(
+                                surveyId: surveyCode,
+                                imageId: snapshot.data.id2,
+                                winnerCallback: () {
+                                  voteFor(new DecisionChoice(
+                                      winner: snapshot.data.id2,
+                                      loser: snapshot.data.id1));
+                                },
+                              ),
+                            ]);
+                      });
                     } else {
                       return FinishedWidget(
                         resultCallback: openResults,
                       );
                     }
                   } else if (snapshot.hasError) {
-                    return ErrorWidget();
+                    if (snapshot.error.toString().contains(ALREADY_CLOSED_ERR)) {
+                      return FinishedWidget(
+                        resultCallback: openResults,
+                      );
+                    }
+                    if (snapshot.error.toString().contains(NOT_FOUND_ERROR)) {
+                      return ErrorWidget();
+                    }
                   }
 
                   return Center(child: CircularProgressIndicator());
@@ -264,7 +299,7 @@ class VoteImageWidget extends StatelessWidget {
                 child: CircularProgressIndicator(
                   value: loadingProgress.expectedTotalBytes != null
                       ? loadingProgress.cumulativeBytesLoaded /
-                      loadingProgress.expectedTotalBytes
+                          loadingProgress.expectedTotalBytes
                       : null,
                 ),
               );
