@@ -2,10 +2,10 @@ import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:package_info/package_info.dart';
-import 'package:this_or_that_app/create.dart';
 
 import 'common/logo.dart';
 import 'common/or_divider.dart';
+import 'create/create.dart';
 import 'vote.dart';
 
 const String VOTE_STRING = "/vote/";

@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' as prefix0;
 import 'package:image_picker/image_picker.dart';
+import 'package:this_or_that_app/create/loading.dart';
+import 'package:this_or_that_app/create/success.dart';
 import 'package:this_or_that_app/service/api-service.dart';
-import 'package:this_or_that_app/success.dart';
+
+import 'image.dart';
 
 class CreateScreen extends StatefulWidget {
   @override
@@ -13,13 +15,29 @@ class CreateScreen extends StatefulWidget {
 
 class CreateScreenState extends State<CreateScreen> {
   var txtId = TextEditingController();
+
   List<File> _files = [];
   List<Widget> _images = [];
+  String _code = "";
+  String _title = "";
+  bool _hasSucceeded = false;
+  bool _isLoading = false;
 
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    if (this._isLoading) {
+      return LoadingWidget(
+        title: _title,
+      );
+    }
+    if (this._hasSucceeded) {
+      return SuccessWidget(
+        code: _code,
+        title: _title,
+      );
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text("Create Survey"),
@@ -78,26 +96,21 @@ class CreateScreenState extends State<CreateScreen> {
   }
 
   Future createSurvey() async {
+    setState(() {
+      _isLoading = true;
+    });
     CreateSurveyResponse response = await ApiService.postSurvey(txtId.text);
     String code = response.perspective;
-    print('!!!!!!!!!!!!!!!!');
-    print('!!!!!!!!!!!!!!!!');
-    print('!!!!!!!!!!!!!!!!');
-    print(code);
+    setState(() {
+      _code = code;
+    });
     await Future.wait(_files.map((file) => ApiService.postImage(code, file)));
-    print('wuuuhuuuu');
-    print('wuuuhuuuu');
-    print('wuuuhuuuu');
     await ApiService.startSurvey(code);
-    goToSuccessScreen(txtId.text, code);
-  }
-
-  void goToSuccessScreen(String title, String surveyCode) {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                SuccessScreen(title: title, surveyCode: surveyCode)));
+    setState(() {
+      _title = txtId.text;
+      _isLoading = false;
+      _hasSucceeded = true;
+    });
   }
 
   Future choose() async {
@@ -117,21 +130,5 @@ class CreateScreenState extends State<CreateScreen> {
       _files = files;
       _images = images;
     });
-  }
-}
-
-class ImageWidget extends StatelessWidget {
-  final File file;
-
-  ImageWidget({this.file});
-
-  @override
-  Widget build(BuildContext context) {
-    if (this.file != null) {
-      return Container(
-        child: Image.file(file),
-      );
-    }
-    return Container();
   }
 }

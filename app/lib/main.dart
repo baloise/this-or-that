@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:this_or_that_app/create.dart';
 
+import 'create/create.dart';
 import 'results.dart';
 import 'start.dart';
 import 'vote.dart';

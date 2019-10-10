@@ -3,15 +3,19 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:image/image.dart';
+import 'package:uuid/uuid.dart';
+import 'package:uuid/uuid_util.dart';
 import 'dtos.dart';
 
+Uuid uuid = new Uuid();
+String USER_ID = uuid.v4();
 const API_BASE_URL = "https://this-or-that-api.azurewebsites.net/this-or-that";
 
 class ApiService {
   static Future<DecisionSet> fetchNewDecisionSet(String surveyId) async {
     String url = API_BASE_URL + "/" + surveyId + "/vote";
     final response = await http.get(url, headers: {
-      "userId": "helmut",
+      "userId": USER_ID,
     });
 
     print("=>" + response.body);
@@ -49,7 +53,7 @@ class ApiService {
       body: body,
       headers: {
         "Content-Type": "application/json",
-        "userId": "helmut",
+        "userId": USER_ID,
       },
     );
     if (response.statusCode != 200) {
@@ -84,8 +88,6 @@ class ApiService {
   }
 
   static Future<void> postImage(String code, File file) async {
-    print("----------------");
-    print("----------------");
     print("decodeImage");
     Image image = decodeImage(file.readAsBytesSync());
     print("copyResize");
