@@ -6,6 +6,8 @@ import 'package:this_or_that_app/create.dart';
 
 import 'common/logo.dart';
 import 'common/or_divider.dart';
+import 'history.dart';
+import 'service/local-storage-service.dart';
 import 'vote.dart';
 
 const String VOTE_STRING = "/vote/";
@@ -33,9 +35,13 @@ class StartScreenState extends State<StartScreen> {
         title: Text("This or That"),
         actions: <Widget>[
           IconButton(
+              icon: Icon(Icons.history),
+              tooltip: 'History',
+              onPressed: openHistory),
+          IconButton(
               icon: Icon(Icons.info),
               tooltip: 'About this app',
-              onPressed: openAbout)
+              onPressed: openAbout),
         ],
       ),
       body: SafeArea(
@@ -114,10 +120,18 @@ class StartScreenState extends State<StartScreen> {
   }
 
   void openVote() {
+    LocalStorageService.saveParticipated(this.txtId.text);
     Navigator.push(
         context,
         MaterialPageRoute(
             builder: (context) => VoteScreen(surveyCode: this.txtId.text)));
+  }
+
+  void openHistory() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => HistoryScreen()));
   }
 
   void openAbout() {

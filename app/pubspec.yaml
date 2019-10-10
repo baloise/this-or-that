@@ -21,6 +21,7 @@ dependencies:
   barcode_scan: 1.0.0
   package_info: ^0.4.0+6
   image_picker: 0.6.1+4
+  shared_preferences: ^0.5.3+4
   flutter:
     sdk: flutter
 

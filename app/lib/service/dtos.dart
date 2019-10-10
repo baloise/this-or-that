@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class DecisionSet {
 
   String id1;
@@ -73,6 +75,34 @@ class ItemScore {
       file: json['file'],
       score: json['score'],
     );
+  }
+
+}
+
+class ParticipatedSurvey {
+
+  final SEPARATION_CHAR = ";";
+
+  String surveyId;
+  DateTime dateTime;
+  String perspective;
+
+  ParticipatedSurvey({this.surveyId, this.dateTime, this.perspective});
+
+  factory ParticipatedSurvey.fromJson(Map<String, dynamic> json) {
+    return ParticipatedSurvey(
+      surveyId: json['surveyId'],
+      dateTime: json['dateTime'],
+      perspective: json['perspective'],
+    );
+  }
+
+  String serialize() {
+    return json.encode(this);
+  }
+
+  ParticipatedSurvey deserialize(String json) {
+    return json.decode(json);
   }
 
 }
