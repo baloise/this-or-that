@@ -47,10 +47,10 @@
 </template>
 
 <script lang="ts">
-  import {Component, Vue} from "vue-property-decorator";
-  import {getImageURL, getScore, stopSurvey,} from "@/app/api/survey.api";
-  import {ScoreResponse} from "@/app/models/score-response";
-  import QrcodeVue from "qrcode.vue";
+import {Component, Vue} from 'vue-property-decorator';
+  import {getImageURL, getScore, stopSurvey} from '@/app/api/survey.api';
+  import {ScoreResponse} from '@/app/models/score-response';
+  import QrcodeVue from 'qrcode.vue';
 
   @Component({
   components: {QrcodeVue},
