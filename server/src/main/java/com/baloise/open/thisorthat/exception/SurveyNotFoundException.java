@@ -15,7 +15,7 @@
  */
 package com.baloise.open.thisorthat.exception;
 
-public class SurveyNotFoundException extends DatabaseException {
+public class SurveyNotFoundException extends RuntimeException {
     public SurveyNotFoundException(String message) {
         super(message);
     }

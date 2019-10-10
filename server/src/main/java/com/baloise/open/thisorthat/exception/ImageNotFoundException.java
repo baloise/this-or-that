@@ -15,7 +15,7 @@
  */
 package com.baloise.open.thisorthat.exception;
 
-public class ImageNotFoundException extends DatabaseException {
+public class ImageNotFoundException extends RuntimeException {
     public ImageNotFoundException(String message) {
         super(message);
     }

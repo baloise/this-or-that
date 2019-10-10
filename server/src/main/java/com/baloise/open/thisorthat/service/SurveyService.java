@@ -24,10 +24,7 @@ import com.baloise.open.thisorthat.db.DatabaseServiceProvider;
 import com.baloise.open.thisorthat.dto.Image;
 import com.baloise.open.thisorthat.dto.Survey;
 import com.baloise.open.thisorthat.dto.VoteItem;
-import com.baloise.open.thisorthat.exception.DatabaseException;
-import com.baloise.open.thisorthat.exception.ImageNotFoundException;
-import com.baloise.open.thisorthat.exception.SurveyIncompleteException;
-import com.baloise.open.thisorthat.exception.SurveyNotFoundException;
+import com.baloise.open.thisorthat.exception.*;
 import com.baloise.open.thisorthat.vote.SimpleAlgorithm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,23 +74,20 @@ public class SurveyService {
     }
 
     public void startSurvey(String surveyCode) {
+        checkIfSurveyIsAlreadyStarted(surveyCode);
         databaseInMemory.startSurvey(surveyCode);
         randomAlgorithm.initialize(surveyCode);
         LOGGER.info("survey {} started and initialized", surveyCode);
     }
 
     public void stopSurvey(String surveyCode) {
+        checkIfSurveyIsStopped(surveyCode);
         randomAlgorithm.calculateScoresAndStopSurvey(surveyCode);
         LOGGER.info("survey {} stopped", surveyCode);
     }
 
     public VoteResponse getVote(String surveyCode, String userId) {
-        if (databaseInMemory.getSurvey(surveyCode).getStarted() == null || !databaseInMemory.getSurvey(surveyCode).getStarted()) {
-            LOGGER.warn("survey {} is not running", surveyCode);
-            return VoteResponse.builder()
-                    .surveyIsRunning(false)
-                    .build();
-        }
+        checkIfSurveyIsStopped(surveyCode);
         VoteItem voteItem = randomAlgorithm.getVote(surveyCode, userId);
         LOGGER.info("survey {} get vote from {} image1: {} image2: {}", surveyCode, userId, voteItem.getFile1().getId(), voteItem.getFile2().getId());
         return VoteResponse.builder()
@@ -105,10 +99,9 @@ public class SurveyService {
     }
 
     public void setVote(String surveyCode, VoteRequest voteRequest, String userId) {
-        if (databaseInMemory.getSurvey(surveyCode).getStarted() != null && databaseInMemory.getSurvey(surveyCode).getStarted()) {
-            randomAlgorithm.setVote(surveyCode, voteRequest.getWinner(), voteRequest.getLoser(), userId);
-            LOGGER.info("survey {} set vote by {} winnerId: {} looserId: {}", surveyCode, userId, voteRequest.getWinner(), voteRequest.getLoser());
-        }
+        checkIfSurveyIsStopped(surveyCode);
+        randomAlgorithm.setVote(surveyCode, voteRequest.getWinner(), voteRequest.getLoser(), userId);
+        LOGGER.info("survey {} set vote by {} winnerId: {} looserId: {}", surveyCode, userId, voteRequest.getWinner(), voteRequest.getLoser());
     }
 
     public ScoreResponse getScore(String surveyCode) {
@@ -120,7 +113,7 @@ public class SurveyService {
             survey = databaseMongo.getSurvey(surveyCode);
         }
         if (survey.getStarted() != null && survey.getStarted()) { // survey still running. Scores are not available yet!
-            return ScoreResponse.builder().scores(new LinkedList<>()).surveyIsRunning(true).build();
+            throw new SurveyStillRunningException("survey " + surveyCode + " is still running:");
         }
         //extract numberOfUsers for Response
         Set<String> userIdSet = new HashSet<>();
@@ -170,6 +163,7 @@ public class SurveyService {
     }
 
     public void deleteSurvey(String surveyCode) {
+        checkIfSurveyIsStopped(surveyCode);
         LOGGER.info("survey {} deleted", surveyCode);
         databaseInMemory.removeSurvey(surveyCode);
     }
@@ -182,6 +176,20 @@ public class SurveyService {
         }
         databaseMongo.updateSurvey(survey);
         LOGGER.info("survey {} persist", surveyCode);
+    }
+
+    private void checkIfSurveyIsAlreadyStarted(String surveyCode) {
+        if (databaseInMemory.getSurvey(surveyCode).getStarted() != null && databaseInMemory.getSurvey(surveyCode).getStarted()) {
+            LOGGER.warn("survey {} is not running", surveyCode);
+            throw new SurveyAlreadyStartedException("survey " + surveyCode + " is already started");
+        }
+    }
+
+    private void checkIfSurveyIsStopped(String surveyCode) {
+        if (databaseInMemory.getSurvey(surveyCode).getStarted() != null && !databaseInMemory.getSurvey(surveyCode).getStarted()) {
+            LOGGER.warn("survey {} is not running", surveyCode);
+            throw new SurveyStoppedException("survey " + surveyCode + " is already stopped");
+        }
     }
 
 }

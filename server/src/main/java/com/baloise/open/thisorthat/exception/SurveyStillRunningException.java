@@ -13,18 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.baloise.open.thisorthat.api.dto;
+package com.baloise.open.thisorthat.exception;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
-@Builder
-public class Error {
-    private ErrorCode error;
-    private String message;
+public class SurveyStillRunningException extends RuntimeException {
+    public SurveyStillRunningException(String message) {
+        super(message);
+    }
 }

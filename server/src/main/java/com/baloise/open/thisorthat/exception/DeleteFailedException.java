@@ -15,7 +15,7 @@
  */
 package com.baloise.open.thisorthat.exception;
 
-public class DeleteFailedException extends DatabaseException {
+public class DeleteFailedException extends RuntimeException {
     public DeleteFailedException(String message) {
         super(message);
     }

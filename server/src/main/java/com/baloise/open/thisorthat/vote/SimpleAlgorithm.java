@@ -17,6 +17,8 @@ package com.baloise.open.thisorthat.vote;
 
 import com.baloise.open.thisorthat.db.DatabaseService;
 import com.baloise.open.thisorthat.dto.*;
+import com.baloise.open.thisorthat.vote.image.selection.AbstractImageSelectionAlgorithm;
+import com.baloise.open.thisorthat.vote.image.selection.ImageSelectionAlgorithmImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,8 +27,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class SimpleAlgorithm extends AbstractAlgorithm {
-
-    private static final double DEFAULT_WEIGHT_PER_VOTE = 10.0;
 
     private static final Logger LOGGER = LoggerFactory.getLogger("APPL." + MethodHandles.lookup().lookupClass());
 
@@ -37,7 +37,6 @@ public class SimpleAlgorithm extends AbstractAlgorithm {
         imageSelectionAlgorithm = new ImageSelectionAlgorithmImpl(database);
     }
 
-    @Override
     public void initialize(String surveyCode) {
         List<ScoreItem> scores = new ArrayList<>();
         database.getSurvey(surveyCode).getImages().forEach(image -> {
@@ -53,7 +52,6 @@ public class SimpleAlgorithm extends AbstractAlgorithm {
         LOGGER.info("initialized algorithm for {}", database.getSurvey(surveyCode).getCode());
     }
 
-    @Override
     public VoteItem getVote(String surveyCode, String userId) {
         Pair<Image> images = imageSelectionAlgorithm.getNextImagePair(surveyCode, userId);
         return VoteItem.builder()
@@ -72,7 +70,7 @@ public class SimpleAlgorithm extends AbstractAlgorithm {
         for (String userId : usersIds) {
             List<Vote> votes = survey.getVotes().stream()
                     .filter(v -> v.getUserId().equals(userId)).collect(Collectors.toList());
-            double weight = getWeight(survey, userId, DEFAULT_WEIGHT_PER_VOTE);
+            double weight = getWeight(survey, userId);
             votes.forEach(v -> {
                 imageScores.putIfAbsent(v.getLoser(), 0.0);
                 imageScores.putIfAbsent(v.getWinner(), 0.0);
