@@ -98,18 +98,25 @@ class StartScreenState extends State<StartScreen> {
                       minWidth: double.infinity,
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                    child: Divider(),
+                  ),
+                  MaterialButton(
+                    height: 60,
+                    onPressed: createNewSurvey,
+                    child:
+                        Text("Create a survey", style: TextStyle(fontSize: 20)),
+                    color: Colors.tealAccent[400],
+                    textColor: Colors.white,
+                    splashColor: Colors.white,
+                    minWidth: double.infinity,
+                  ),
                 ],
               ),
             ),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.tealAccent[400],
-        foregroundColor: Colors.white,
-        onPressed: createNewSurvey,
-        tooltip: 'Create survey',
-        child: const Icon(Icons.add),
       ),
     );
   }
@@ -128,9 +135,7 @@ class StartScreenState extends State<StartScreen> {
 
   void openHistory() {
     Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => HistoryScreen()));
+        context, MaterialPageRoute(builder: (context) => HistoryScreen()));
   }
 
   void openAbout() {
