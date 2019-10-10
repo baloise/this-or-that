@@ -116,20 +116,17 @@ class StartScreenState extends State<StartScreen> {
   }
 
   void openAbout() {
-    String version = "";
-    String buildNumber = "";
-
     PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
-      version = packageInfo.version;
-      buildNumber = packageInfo.buildNumber;
-    });
+      String version = packageInfo.version;
+      String buildNumber = packageInfo.buildNumber;
 
-    showDialog(
-      context: context,
-      builder: (context) => AboutDialog(
-          applicationVersion: "Version: " + version + " #" + buildNumber,
-          applicationLegalese: "Apache 2.0 License"),
-    );
+      showDialog(
+        context: context,
+        builder: (context) => AboutDialog(
+            applicationVersion: "Version: " + version + " #" + buildNumber,
+            applicationLegalese: "Apache 2.0 License"),
+      );
+    });
   }
 
   String cleanBarcode(String url) {
