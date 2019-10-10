@@ -1,14 +1,15 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:image/image.dart';
 import 'package:uuid/uuid.dart';
 import 'dtos.dart';
+import 'local-storage-service.dart';
 
 Uuid uuid = new Uuid();
 String USER_ID = uuid.v4();
-const API_BASE_URL = "https://this-or-that-api.azurewebsites.net/this-or-that";
+const API_BASE_URL = "https://this-or-that-test.azurewebsites.net/this-or-that";
+const NOT_CLOSED_ERR = "NOT_CLOSED_ERR";
 
 class ApiService {
   static Future<DecisionSet> fetchNewDecisionSet(String surveyId) async {
@@ -20,7 +21,9 @@ class ApiService {
     print("=>" + response.body);
 
     if (response.statusCode == 200) {
-      return DecisionSet.fromJson(json.decode(response.body));
+      var decisionSet = DecisionSet.fromJson(json.decode(response.body));
+      LocalStorageService.saveParticipated(surveyId, decisionSet.perspective);
+      return decisionSet;
     } else {
       throw Exception("Error");
     }
@@ -35,7 +38,11 @@ class ApiService {
     if (response.statusCode == 200) {
       return ScoreSummary.fromJson(json.decode(response.body));
     } else {
-      throw Exception("Error");
+      if (response.statusCode == 400) {
+        throw Exception(NOT_CLOSED_ERR);
+      } else {
+        throw Exception("Error");
+      }
     }
   }
 

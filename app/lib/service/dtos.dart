@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class DecisionSet {
 
   String id1;
@@ -73,6 +75,41 @@ class ItemScore {
       file: json['file'],
       score: json['score'],
     );
+  }
+
+}
+
+class ParticipatedSurvey {
+
+  String surveyId;
+  DateTime dateTime;
+  String perspective;
+
+  ParticipatedSurvey({this.surveyId, this.dateTime, this.perspective});
+
+  factory ParticipatedSurvey.fromJson(Map<String, dynamic> json) {
+    return ParticipatedSurvey(
+      surveyId: json['surveyId'],
+      dateTime: DateTime.fromMillisecondsSinceEpoch(json['dateTime']),
+      perspective: json['perspective'],
+    );
+  }
+
+  Map toMap() {
+    var map = new Map<String, dynamic>();
+    map["surveyId"] = surveyId;
+    map["dateTime"] = dateTime.millisecondsSinceEpoch;
+    map["perspective"] = perspective;
+
+    return map;
+  }
+
+  String serialize() {
+    return jsonEncode(this.toMap());
+  }
+
+  static ParticipatedSurvey deserialize(String json) {
+    return ParticipatedSurvey.fromJson(jsonDecode(json));
   }
 
 }
