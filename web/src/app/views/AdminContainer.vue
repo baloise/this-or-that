@@ -9,7 +9,7 @@
           <div class="columns">
             <div class="column"></div>
             <div class="column is-two-thirds-tablet is-half-desktop">
-              <div class="content is-center">
+              <div class="content is-center" v-if="this.score != null">
                 <h2 class="title is-2">Your survey: {{this.$route.params.surveyCode}}</h2>
                 <div class="content is-center">
                   <p>Perspective: {{this.score.perspective}}</p>
@@ -58,7 +58,6 @@ import QrcodeVue from 'qrcode.vue';
 export default class AdminContainer extends Vue {
   public isLoading = false;
   public score: ScoreResponse | null = null;
-    public isSurveyRunning: boolean = false;
 
   public getImageURL(imageId: string) {
     if (this.score != null) {
@@ -73,10 +72,27 @@ export default class AdminContainer extends Vue {
   public async mounted() {
     this.isLoading = true;
     try {
-      await stopSurvey(this.$route.params.surveyCode);
+      await this.stopSurveyIfNotClosed();
       this.score = await getScore(this.$route.params.surveyCode);
+    } catch (error) {
+      if ('response' in error && 'status' in error.response && error.response.status === 404) {
+        this.$router.push('/404');
+        return;
+      }
+      throw error;
     } finally {
       this.isLoading = false;
+    }
+  }
+
+  public async stopSurveyIfNotClosed() {
+    try {
+      await stopSurvey(this.$route.params.surveyCode);
+    } catch (error) {
+      if ('response' in error && 'status' in error.response && error.response.status === 400) {
+        return;
+      }
+      throw error;
     }
   }
 
@@ -89,17 +105,6 @@ export default class AdminContainer extends Vue {
       );
     }
     return [];
-  }
-
-  public async finishSurvey() {
-    this.isLoading = true;
-    try {
-      await stopSurvey(this.$route.params.surveyCode);
-      this.score = await getScore(this.$route.params.surveyCode);
-      this.isSurveyRunning = false;
-    } finally {
-      this.isLoading = false;
-    }
   }
 
   public back() {
