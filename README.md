@@ -19,17 +19,23 @@ https://baloise.github.io/this-or-that
 https://this-or-that-test.azurewebsites.net/this-or-that
 #### Prod
 http://this-or-that-api.azurewebsites.net/this-or-that
+
 ## Requirements
+
 ### Server
- * Java 8
- * JBoss / Wildfly
+ * spring-boot
  * Maven
  * MongoDB
 
- ### Client Vue
+### Client 
+#### Web
  * NodeJS
- * NPM
- 
- ### Client Flutter
+ * NPM 
+
+#### Apps
  * Flutter
+ * Dart
  
+##### iOS
+ * Xcode
+ * cocoapods
