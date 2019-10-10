@@ -1,14 +1,15 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:image/image.dart';
 import 'package:uuid/uuid.dart';
 import 'dtos.dart';
 import 'local-storage-service.dart';
 
 Uuid uuid = new Uuid();
 String USER_ID = uuid.v4();
-const API_BASE_URL = "https://this-or-that-test.azurewebsites.net/this-or-that";
+const API_BASE_URL_TEST = "https://this-or-that-test.azurewebsites.net/this-or-that";
+const API_BASE_URL_PROD = "https://this-or-that-api.azurewebsites.net/this-or-that";
+const API_BASE_URL = API_BASE_URL_PROD;
 const NOT_CLOSED_ERR = "NOT_CLOSED_ERR";
 
 class ApiService {
