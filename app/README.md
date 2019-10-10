@@ -14,6 +14,12 @@ Afterwards continue building and publishing in Xcode.
 
 ### Android
 
+Currently the building profile is maintained by @hirsch88.
+
+```
+cd app && flutter clean && flutter pub get && flutter build appbundle --build-name=Maj.Min.Patch+BuildNo
+```
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
