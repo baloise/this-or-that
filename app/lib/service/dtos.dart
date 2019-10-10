@@ -81,8 +81,6 @@ class ItemScore {
 
 class ParticipatedSurvey {
 
-  final SEPARATION_CHAR = ";";
-
   String surveyId;
   DateTime dateTime;
   String perspective;
@@ -92,17 +90,26 @@ class ParticipatedSurvey {
   factory ParticipatedSurvey.fromJson(Map<String, dynamic> json) {
     return ParticipatedSurvey(
       surveyId: json['surveyId'],
-      dateTime: json['dateTime'],
+      dateTime: DateTime.fromMillisecondsSinceEpoch(json['dateTime']),
       perspective: json['perspective'],
     );
   }
 
-  String serialize() {
-    return json.encode(this);
+  Map toMap() {
+    var map = new Map<String, dynamic>();
+    map["surveyId"] = surveyId;
+    map["dateTime"] = dateTime.millisecondsSinceEpoch;
+    map["perspective"] = perspective;
+
+    return map;
   }
 
-  ParticipatedSurvey deserialize(String json) {
-    return json.decode(json);
+  String serialize() {
+    return jsonEncode(this.toMap());
+  }
+
+  static ParticipatedSurvey deserialize(String json) {
+    return ParticipatedSurvey.fromJson(jsonDecode(json));
   }
 
 }

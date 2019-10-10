@@ -120,7 +120,6 @@ class StartScreenState extends State<StartScreen> {
   }
 
   void openVote() {
-    LocalStorageService.saveParticipated(this.txtId.text);
     Navigator.push(
         context,
         MaterialPageRoute(
