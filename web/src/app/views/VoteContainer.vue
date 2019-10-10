@@ -80,10 +80,6 @@ export default class VoteContainer extends Vue {
     this.isLoading = true;
     try {
       this.voteResponse = await getVote(this.$route.params.surveyCode);
-    } catch (error) {
-      if (error.response.status === 404) {
-            this.$router.push('/404');
-      }
     } finally {
       this.isLoading = false;
     }
