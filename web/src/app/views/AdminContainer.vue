@@ -25,15 +25,17 @@
                 <div class="content is-center" v-if="!this.score.surveyIsRunning">
                   <p>Number of participants: {{this.score.numberOfUsers}}</p>
                   <p>Number of votes: {{this.score.numberOfVotes}}</p>
-                  <div class="columns is-desktop">
-                    <div
-                      class="column"
-                      v-for="(score, idx) in this.score.scores"
-                      v-bind:key="score.imageId"
-                    >
-                      <div class="vote-result">
-                        <img class="element" :src="getImageURL(idx)" />
-                        <div class="score">Score: {{score.score}}</div>
+                  <div v-for="(chunk, idx) in this.getImageRows()"
+                      v-bind:key="idx">
+                    <div class="columns is-desktop">
+                      <div
+                        class="column"
+                        v-for="score in chunk"
+                        v-bind:key="score.imageId">
+                        <div class="vote-result">
+                          <img class="element" :src="getImageURL(score.imageId)" />
+                          <div class="score">Score: {{score.score}}</div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -77,11 +79,11 @@ export default class AdminContainer extends Vue {
   public score: ScoreResponse | null = null;
   public voteResponse: VoteResponse | null = null;
 
-  public getImageURL(idx: number) {
+  public getImageURL(imageId: string) {
     if (this.score != null) {
       return getImageURL(
         this.$route.params.surveyCode,
-        this.score.scores[idx].imageId,
+        imageId,
       );
     }
     return null;
@@ -92,13 +94,20 @@ export default class AdminContainer extends Vue {
     try {
       this.voteResponse = await getVote(this.$route.params.surveyCode);
       this.score = await getScore(this.$route.params.surveyCode);
-    } catch (error) {
-      if (error.response.status === 404) {
-            this.$router.push('/404');
-      }
     } finally {
       this.isLoading = false;
     }
+  }
+
+  public getImageRows() {
+    const chunkSize = 2;
+    if (this.score != null) {
+      const chunkCount = Math.ceil(this.score.scores.length / chunkSize);
+      return Array.from(Array(chunkCount).keys()).map(n =>
+        this.score != null ? this.score.scores.slice(n * chunkSize, (n + 1) * chunkSize) : [],
+      );
+    }
+    return [];
   }
 
   public async finishSurvey() {
