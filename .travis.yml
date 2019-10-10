@@ -78,4 +78,12 @@ script:
   - "cd app && flutter build apk --debug && cd .."
 
   # Build Vue application
-  - "cd web && yarn run build && cd .."
+  - "cd web && npm run build && cd .."
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: web/dist
+  on:
+   branch: GH-91
