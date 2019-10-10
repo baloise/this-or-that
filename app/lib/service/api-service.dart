@@ -5,10 +5,14 @@ import 'package:http/http.dart' as http;
 import 'dtos.dart';
 import 'local-storage-service.dart';
 
-const API_BASE_URL_TEST = "https://this-or-that-test.azurewebsites.net/this-or-that";
-const API_BASE_URL_PROD = "https://this-or-that-api.azurewebsites.net/this-or-that";
+const API_BASE_URL_TEST =
+    "https://this-or-that-test.azurewebsites.net/this-or-that";
+const API_BASE_URL_PROD =
+    "https://this-or-that-api.azurewebsites.net/this-or-that";
 const API_BASE_URL = API_BASE_URL_PROD;
 const NOT_CLOSED_ERR = "NOT_CLOSED_ERR";
+const ALREADY_CLOSED_ERR = "ALREADY_CLOSED_ERR";
+const NOT_FOUND_ERROR = "NOT_FOUND_ERROR";
 
 class ApiService {
   static String getUserId() {
@@ -30,6 +34,12 @@ class ApiService {
       LocalStorageService.saveParticipated(surveyId, decisionSet.perspective);
       return decisionSet;
     } else {
+      if (response.statusCode == 400) {
+        throw Exception(ALREADY_CLOSED_ERR);
+      }
+      if (response.statusCode == 404) {
+        throw Exception(NOT_FOUND_ERROR);
+      }
       throw Exception("Error");
     }
   }
@@ -45,9 +55,11 @@ class ApiService {
     } else {
       if (response.statusCode == 400) {
         throw Exception(NOT_CLOSED_ERR);
-      } else {
-        throw Exception("Error");
       }
+      if (response.statusCode == 404) {
+        throw Exception(NOT_FOUND_ERROR);
+      }
+      throw Exception("Error");
     }
   }
 

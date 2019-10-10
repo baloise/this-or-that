@@ -165,7 +165,14 @@ class VoteScreenState extends State<VoteScreen> {
                       );
                     }
                   } else if (snapshot.hasError) {
-                    return ErrorWidget();
+                    if (snapshot.error.toString().contains(ALREADY_CLOSED_ERR)) {
+                      return FinishedWidget(
+                        resultCallback: openResults,
+                      );
+                    }
+                    if (snapshot.error.toString().contains(NOT_FOUND_ERROR)) {
+                      return ErrorWidget();
+                    }
                   }
 
                   return Center(child: CircularProgressIndicator());
