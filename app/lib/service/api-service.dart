@@ -2,11 +2,12 @@ import 'dart:convert';
 
 import 'package:device_id/device_id.dart';
 import 'package:http/http.dart' as http;
-
 import 'dtos.dart';
 import 'local-storage-service.dart';
 
-const API_BASE_URL = "https://this-or-that-test.azurewebsites.net/this-or-that";
+const API_BASE_URL_TEST = "https://this-or-that-test.azurewebsites.net/this-or-that";
+const API_BASE_URL_PROD = "https://this-or-that-api.azurewebsites.net/this-or-that";
+const API_BASE_URL = API_BASE_URL_PROD;
 const NOT_CLOSED_ERR = "NOT_CLOSED_ERR";
 
 class ApiService {

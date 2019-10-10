@@ -6,8 +6,6 @@
 [![Build Status](https://travis-ci.org/baloise/this-or-that.svg?branch=master)](https://travis-ci.org/baloise/this-or-that)
 [![gitpod-IDE](https://img.shields.io/badge/open--IDE-as--gitpod-blue.svg?style=flat&label=openIDE)](https://gitpod.io#https://github.com/baloise/this-or-that)
 
-## the [docs](docs/index.md)
-
 "This or That" is an online tool to make group decisions.
 Each participant of the voting can make votes based on image by selecting one of two displayed images.
 
@@ -21,17 +19,23 @@ https://baloise.github.io/this-or-that
 https://this-or-that-test.azurewebsites.net/this-or-that
 #### Prod
 http://this-or-that-api.azurewebsites.net/this-or-that
+
 ## Requirements
+
 ### Server
- * Java 8
- * JBoss / Wildfly
+ * spring-boot
  * Maven
  * MongoDB
 
- ### Client Vue
+### Client 
+#### Web
  * NodeJS
- * NPM
- 
- ### Client Flutter
+ * NPM 
+
+#### Apps
  * Flutter
+ * Dart
  
+##### iOS
+ * Xcode
+ * cocoapods

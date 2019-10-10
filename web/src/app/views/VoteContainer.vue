@@ -15,13 +15,16 @@
               <!-- <div class="tile box has-background-light"> -->
               <div class="content is-center">
                 <h2 class="title is-2">{{this.voteResponse.perspective}}</h2>
-                <div class="columns is-desktop" v-if="this.voteResponse.id1 != null">
-                  <div class="column">
-                    <img class="element" @click="vote(1)" :src="this.getImageURL1()" />
+                <div v-if="this.voteResponse.id1 != null">
+                  <div class="columns is-desktop">
+                    <div class="column">
+                      <img class="element" @click="vote(1)" :src="this.getImageURL1()" />
+                    </div>
+                    <div class="column">
+                      <img class="element" @click="vote(2)" :src="this.getImageURL2()" />
+                    </div>
                   </div>
-                  <div class="column">
-                    <img class="element" @click="vote(2)" :src="this.getImageURL2()" />
-                  </div>
+                  <p v-if="this.submittedVotes > 0">Submitted votes: {{this.submittedVotes}}</p>
                 </div>
                 <div class="columns is-desktop" v-if="this.voteResponse.id1 == null">
                   <div class="column">
@@ -61,6 +64,7 @@ import { VoteResponse } from '@/app/models/vote-response';
 export default class VoteContainer extends Vue {
   public isLoading = false;
   public voteResponse: VoteResponse | null = null;
+  public submittedVotes: number = 0;
 
   public getImageURL1() {
     if (this.voteResponse != null) {
@@ -80,6 +84,9 @@ export default class VoteContainer extends Vue {
     this.isLoading = true;
     try {
       this.voteResponse = await getVote(this.$route.params.surveyCode);
+      if (localStorage.getItem(`this-or-that:${this.$route.params.surveyCode}`) !== null) {
+        this.submittedVotes = parseInt(localStorage.getItem(`this-or-that:${this.$route.params.surveyCode}`)!, 10);
+      }
     } finally {
       this.isLoading = false;
     }
@@ -96,6 +103,8 @@ export default class VoteContainer extends Vue {
         const voteRequest: VoteRequest = { winner, loser };
         await setVote(this.$route.params.surveyCode, voteRequest);
         this.voteResponse = await getVote(this.$route.params.surveyCode);
+        this.submittedVotes += 1;
+        localStorage.setItem(`this-or-that:${this.$route.params.surveyCode}`, this.submittedVotes.toString());
       }
     } finally {
       this.isLoading = false;
