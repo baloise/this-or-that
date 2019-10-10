@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as prefix0;
 import 'package:image_picker/image_picker.dart';
 import 'package:this_or_that_app/service/api-service.dart';
+import 'package:this_or_that_app/success.dart';
 
 class CreateScreen extends StatefulWidget {
   @override
@@ -84,7 +86,18 @@ class CreateScreenState extends State<CreateScreen> {
     print(code);
     await Future.wait(_files.map((file) => ApiService.postImage(code, file)));
     print('wuuuhuuuu');
+    print('wuuuhuuuu');
+    print('wuuuhuuuu');
     await ApiService.startSurvey(code);
+    goToSuccessScreen(txtId.text, code);
+  }
+
+  void goToSuccessScreen(String title, String surveyCode) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                SuccessScreen(title: title, surveyCode: surveyCode)));
   }
 
   Future choose() async {

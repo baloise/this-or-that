@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
-
+import 'package:image/image.dart';
 import 'dtos.dart';
 
 const API_BASE_URL = "https://this-or-that-api.azurewebsites.net/this-or-that";
@@ -10,7 +10,9 @@ const API_BASE_URL = "https://this-or-that-api.azurewebsites.net/this-or-that";
 class ApiService {
   static Future<DecisionSet> fetchNewDecisionSet(String surveyId) async {
     String url = API_BASE_URL + "/" + surveyId + "/vote";
-    final response = await http.get(url);
+    final response = await http.get(url, headers: {
+      "userId": "helmut",
+    });
 
     print("=>" + response.body);
 
@@ -45,7 +47,10 @@ class ApiService {
     final response = await http.post(
       url,
       body: body,
-      headers: {"Content-Type": "application/json"},
+      headers: {
+        "Content-Type": "application/json",
+        "userId": "helmut",
+      },
     );
     if (response.statusCode != 200) {
       throw new Exception("Error");
@@ -79,18 +84,24 @@ class ApiService {
   }
 
   static Future<void> postImage(String code, File file) async {
-    String url = API_BASE_URL + "/" + code + "/image";
+    print("----------------");
+    print("----------------");
+    print("decodeImage");
+    Image image = decodeImage(file.readAsBytesSync());
+    print("copyResize");
+    Image thumbnail = copyResize(image, width: 1024);
 
-    List<int> imageBytes = file.readAsBytesSync();
-    String base64Image =
-        Base64Encoder().convert(imageBytes); //BASE64.encode(imageBytes);
+    print("encodeJpg");
+    List<int> imageBytes = encodeJpg(thumbnail);
 
+    print("base64Encode");
+    String base64Image = base64Encode(imageBytes);
     var map = new Map<String, dynamic>();
-    map["file"] = base64Image;
+    map["file"] = "data:image/jpg;base64," + base64Image;
     String body = json.encode(map);
-    print("URL: " + url);
-    print("POST-BODY: " + body);
 
+    String url = API_BASE_URL + "/" + code + "/image";
+    print("URL: " + url);
     final response = await http.post(
       url,
       body: body,
