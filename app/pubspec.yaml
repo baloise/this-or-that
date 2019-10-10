@@ -25,7 +25,8 @@ dependencies:
   intl: 0.16.0
   uuid: 2.0.2
   image: 2.1.4
-  qr_flutter: ^3.0.1
+  qr_flutter: 3.0.1
+  device_id: 0.2.0
   flutter:
     sdk: flutter
 

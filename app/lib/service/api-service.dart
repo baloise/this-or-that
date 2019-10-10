@@ -1,21 +1,25 @@
 import 'dart:convert';
 
+import 'package:device_id/device_id.dart';
 import 'package:http/http.dart' as http;
-import 'package:image/image.dart';
-import 'package:uuid/uuid.dart';
+
 import 'dtos.dart';
 import 'local-storage-service.dart';
 
-Uuid uuid = new Uuid();
-String USER_ID = uuid.v4();
 const API_BASE_URL = "https://this-or-that-test.azurewebsites.net/this-or-that";
 const NOT_CLOSED_ERR = "NOT_CLOSED_ERR";
 
 class ApiService {
+  static String getUserId() {
+    DeviceId.getID.then((id) {
+      return id;
+    });
+  }
+
   static Future<DecisionSet> fetchNewDecisionSet(String surveyId) async {
     String url = API_BASE_URL + "/" + surveyId + "/vote";
     final response = await http.get(url, headers: {
-      "userId": USER_ID,
+      "userId": getUserId(),
     });
 
     print("=>" + response.body);
@@ -59,9 +63,18 @@ class ApiService {
       body: body,
       headers: {
         "Content-Type": "application/json",
-        "userId": USER_ID,
+        "userId": getUserId(),
       },
     );
+    if (response.statusCode != 200) {
+      throw new Exception("Error");
+    }
+  }
+
+  static Future<void> postCloseSurvey(String surveyId) async {
+    String url = API_BASE_URL + "/" + surveyId + "/stop";
+
+    final response = await http.post(url);
     if (response.statusCode != 200) {
       throw new Exception("Error");
     }
@@ -121,6 +134,7 @@ class ApiService {
     final response = await http.post(url);
 
     if (response.statusCode == 200) {
+      LocalStorageService.saveAdmin(code);
       return null;
     }
 
