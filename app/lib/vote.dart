@@ -76,20 +76,28 @@ class VoteScreenState extends State<VoteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Survey (Code: " + surveyCode + ")"),
+          title: FutureBuilder<DecisionSet>(
+              future: decisionSetFuture,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done &&
+                    snapshot.hasData) {
+                  return Text(snapshot.data.perspective);
+                }
+                return Text("Survey (Code: " + surveyCode + ")");
+              }),
           actions: <Widget>[
             FutureBuilder<bool>(
                 future: LocalStorageService.isAdminOfSurvey(surveyCode),
                 builder: (context, snapshot) {
-                  //if (snapshot.data != null &&
-                  //    snapshot.data &&
-                  //    !wasClosedByThisUser) {
+                  if (snapshot.data != null &&
+                      snapshot.data &&
+                      !wasClosedByThisUser) {
                   return IconButton(
                       icon: Icon(Icons.close),
                       tooltip: 'Close survey',
                       onPressed: closeSurveyDialog);
-                  //}
-                  //return Container();
+                  }
+                  return Container();
                 }),
           ],
         ),
@@ -165,7 +173,9 @@ class VoteScreenState extends State<VoteScreen> {
                       );
                     }
                   } else if (snapshot.hasError) {
-                    if (snapshot.error.toString().contains(ALREADY_CLOSED_ERR)) {
+                    if (snapshot.error
+                        .toString()
+                        .contains(ALREADY_CLOSED_ERR)) {
                       return FinishedWidget(
                         resultCallback: openResults,
                       );
