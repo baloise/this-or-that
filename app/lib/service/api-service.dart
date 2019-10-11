@@ -15,16 +15,17 @@ const ALREADY_CLOSED_ERR = "ALREADY_CLOSED_ERR";
 const NOT_FOUND_ERROR = "NOT_FOUND_ERROR";
 
 class ApiService {
-  static String getUserId() {
-    DeviceId.getID.then((id) {
-      return id;
-    });
+  static Future<String> getUserId() async {
+    var deviceId = await DeviceId.getID;
+    return deviceId;
   }
 
   static Future<DecisionSet> fetchNewDecisionSet(String surveyId) async {
+    String userId = await getUserId();
+
     String url = API_BASE_URL + "/" + surveyId + "/vote";
     final response = await http.get(url, headers: {
-      "userId": getUserId(),
+      "userId": userId,
     });
 
     print("=>" + response.body);
@@ -65,6 +66,8 @@ class ApiService {
 
   static Future<void> postDecisionChoice(
       String surveyId, DecisionChoice choice) async {
+    String userId = await getUserId();
+
     String url = API_BASE_URL + "/" + surveyId + "/vote";
 
     String body = json.encode(choice.toMap());
@@ -76,7 +79,7 @@ class ApiService {
       body: body,
       headers: {
         "Content-Type": "application/json",
-        "userId": getUserId(),
+        "userId": userId,
       },
     );
     if (response.statusCode != 200) {
