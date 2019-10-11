@@ -121,8 +121,6 @@ export default class CreateSurveyContainer extends Vue {
     this.isLoading = true;
     const createSurveyRequest: CreateSurveyRequest = new CreateSurveyRequest();
     createSurveyRequest.perspective = this.perspective;
-    console.log(this.perspective);
-    console.log(createSurveyRequest);
     try {
       const response = await createSurvey(createSurveyRequest);
       this.surveyCode = response.code;
