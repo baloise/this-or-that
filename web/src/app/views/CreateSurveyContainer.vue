@@ -103,20 +103,20 @@
 
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
-  import {createImage, createSurvey, startSurvey} from '@/app/api/survey.api';
-  import {CreateSurveyRequest} from '@/app/models/create-survey-request';
-  import {CreateImageRequest} from '@/app/models/create-image-request';
-  import QrcodeVue from 'qrcode.vue';
+import {createImage, createSurvey, startSurvey} from '@/app/api/survey.api';
+import {CreateSurveyRequest} from '@/app/models/create-survey-request';
+import {CreateImageRequest} from '@/app/models/create-image-request';
+import QrcodeVue from 'qrcode.vue';
 
-  @Component({
+@Component({
   components: { QrcodeVue },
 })
 export default class CreateSurveyContainer extends Vue {
   public perspective: string = '';
   public droppedFiles: File[] = [];
-        public surveyCode: string = '';
+  public surveyCode: string = '';
   public isLoading = false;
-        public qrCodeUrl: string = '';
+  public qrCodeUrl: string = '';
 
   public async create() {
     this.isLoading = true;
