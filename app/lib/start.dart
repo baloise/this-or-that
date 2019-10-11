@@ -5,13 +5,12 @@ import 'package:package_info/package_info.dart';
 
 import 'common/logo.dart';
 import 'common/or_divider.dart';
-import 'history.dart';
-import 'service/local-storage-service.dart';
 import 'create/create.dart';
+import 'history.dart';
 import 'vote.dart';
 
-const String VOTE_STRING = "/vote/";
-const String URL_START = "http://";
+const String VOTE_STRING_BEFORE = "/this-or-that/";
+const String VOTE_STRING_AFTER = "/vote";
 
 class StartScreen extends StatefulWidget {
   StartScreen({Key key, this.title}) : super(key: key);
@@ -153,8 +152,9 @@ class StartScreenState extends State<StartScreen> {
   }
 
   String cleanBarcode(String url) {
-    if (url.startsWith(URL_START)) {
-      return url.substring(url.indexOf(VOTE_STRING) + VOTE_STRING.length);
+    if (url.startsWith("http://") || url.startsWith("https://")) {
+      var substring = url.substring(url.indexOf(VOTE_STRING_BEFORE) + VOTE_STRING_BEFORE.length);
+      return substring.replaceAll(VOTE_STRING_AFTER, "");
     }
     return url;
   }
