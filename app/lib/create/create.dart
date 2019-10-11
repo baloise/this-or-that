@@ -26,8 +26,15 @@ class CreateScreenState extends State<CreateScreen> {
   bool _hasSucceeded = false;
   bool _hasFailed = false;
   bool _isLoading = false;
+  bool _hasNoImages = false;
 
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    this._images = [];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,22 +99,40 @@ class CreateScreenState extends State<CreateScreen> {
                 crossAxisCount: 3,
                 children: _images == null ? [] : _images,
               ),
-            )
+            ),
+            Visibility(
+              visible: _hasNoImages,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Please select at least 2 images.", style: TextStyle(fontSize: 20, color: Colors.red)),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+              child: MaterialButton(
+                height: 60,
+                onPressed: () {
+                  if (_formKey.currentState.validate()) {
+                    if (_files.length >= 2) {
+                      createSurvey();
+                    } else {
+                      setState(() {
+                        _hasNoImages = true;
+                      });
+                    }
+                  }
+                },
+                child:
+                Text("Create a survey", style: TextStyle(fontSize: 20)),
+                color: Colors.tealAccent[400],
+                textColor: Colors.white,
+                splashColor: Colors.white,
+                minWidth: double.infinity,
+              ),
+            ),
           ],
         ),
       )),
-      floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: Colors.tealAccent[400],
-        foregroundColor: Colors.white,
-        onPressed: () {
-          if (_formKey.currentState.validate()) {
-            createSurvey();
-          }
-        },
-        tooltip: 'Save survey',
-        label: Text("Save survey"),
-        icon: Icon(Icons.save),
-      ),
     );
   }
 
