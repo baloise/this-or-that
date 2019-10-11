@@ -107,7 +107,6 @@ import {createImage, createSurvey, startSurvey} from '@/app/api/survey.api';
 import {CreateSurveyRequest} from '@/app/models/create-survey-request';
 import {CreateImageRequest} from '@/app/models/create-image-request';
 import QrcodeVue from 'qrcode.vue';
-import {appConfig} from '@/config/app.config';
 
 @Component({
   components: { QrcodeVue },
@@ -126,7 +125,8 @@ export default class CreateSurveyContainer extends Vue {
     try {
       const response = await createSurvey(createSurveyRequest);
       this.surveyCode = response.code;
-      this.qrCodeUrl = appConfig.apiPath + '/#/' + this.surveyCode + '/vote';
+      const href = window.location.href;
+      this.qrCodeUrl = href.split('#')[0] + '#/' + this.surveyCode + '/vote';
       const allBase64 = await Promise.all(
           this.droppedFiles.map(f => this.toBase64(f)),
       );
