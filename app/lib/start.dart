@@ -9,7 +9,7 @@ import 'create/create.dart';
 import 'history.dart';
 import 'vote.dart';
 
-const String VOTE_STRING_BEFORE = "/this-or-that/";
+const String VOTE_STRING_BEFORE = "/this-or-that/#/";
 const String VOTE_STRING_AFTER = "/vote";
 
 class StartScreen extends StatefulWidget {
