@@ -2,7 +2,7 @@
   <div class="home">
     <section class="hero is-light is-bold is-fullheight">
       <div class="hero-header">
-        <img alt="logo" src="../../assets/logo.png" style="margin: 5px;" width="120px" />
+        <img @click="back()" alt="logo" src="../../assets/logo.png" style="margin: 5px;" width="120px" />
       </div>
       <div class="hero-body" style="align-items: flex-start;">
         <div class="container">
@@ -109,6 +109,10 @@ export default class VoteContainer extends Vue {
 
   public manageSurvey() {
     this.$router.push('admin');
+  }
+
+  public back() {
+    this.$router.push('/');
   }
 }
 </script>

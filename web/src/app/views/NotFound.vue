@@ -2,7 +2,7 @@
     <div class="home">
         <section class="hero is-light is-bold is-fullheight">
             <div class="hero-header">
-                <img src="../../assets/logo.png" alt="logo" width="120px" style="margin: 5px;"/>
+                <img @click="back()" src="../../assets/logo.png" alt="logo" width="120px" style="margin: 5px;"/>
             </div>
             <div class="hero-body" style="align-items: flex-start;">
                 <div class="container">
@@ -24,6 +24,13 @@
     </div>
 </template>
 
-<script>
-export default {};
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+
+@Component
+export default class NotFound extends Vue {
+  public back() {
+    this.$router.push('/');
+  }
+}
 </script>

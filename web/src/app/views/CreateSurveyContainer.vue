@@ -2,7 +2,13 @@
   <div class="home">
     <section class="hero is-light is-bold is-fullheight">
       <div class="hero-header">
-        <img alt="logo" src="../../assets/logo.png" style="margin: 5px;" width="120px" />
+        <img
+          @click="back()"
+          alt="logo"
+          src="../../assets/logo.png"
+          style="margin: 5px;"
+          width="120px"
+        />
       </div>
       <div class="hero-body" style="align-items: flex-start;">
         <div class="container">
@@ -11,22 +17,36 @@
             <div class="column is-two-thirds-tablet is-half-desktop">
               <div class="content is-center" v-if="!this.surveyCode">
                 <h2 class="title is-2">Create A Survey</h2>
-                <b-field label="Choose a perspective for your survey!">
-                  <b-input v-model="perspective"></b-input>
-                </b-field>
-                <label class="label">Upload your Images!</label>
-                <b-field>
-                  <b-upload accept="image/*" drag-drop multiple v-model="droppedFiles">
-                    <section class="section">
-                      <div class="content has-text-centered">
-                        <p>
-                          <b-icon icon="upload" size="is-large"></b-icon>
-                        </p>
-                        <p>Drop your files here or click to upload</p>
-                      </div>
-                    </section>
-                  </b-upload>
-                </b-field>
+
+                <label class="label">Choose a perspective for your survey!</label>
+                <div class="field has-addons has-addons-centered">
+                  <div class="control">
+                    <input class="input" type="text" placeholder="Enter name" />
+                  </div>
+                  <div class="control">
+                    <button
+                      :disabled="this.droppedFiles.length === 0"
+                      @click="create()"
+                      class="button is-primary"
+                    >Create Survey</button>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="label">Upload your Images!</label>
+                  <b-field>
+                    <b-upload accept="image/*" drag-drop multiple v-model="droppedFiles">
+                      <section class="section">
+                        <div class="content has-text-centered">
+                          <p>
+                            <b-icon icon="upload" size="is-large"></b-icon>
+                          </p>
+                          <p>Drop your files here or click to upload</p>
+                        </div>
+                      </section>
+                    </b-upload>
+                  </b-field>
+                </div>
                 <h1 v-if="this.droppedFiles.length > 0">
                   You have selected {{this.droppedFiles.length}}
                   images to upload!
@@ -41,19 +61,14 @@
                     ></button>
                   </span>
                 </div>
-                <button v-if="droppedFiles.length > 0" @click="deleteDroppedFiles()" class="button is-text">Remove All Images</button>
-                <br />
-                <br />
-                <div class="columns is-desktop">
-                  <div class="column">
-                    <button @click="back()" class="button is-primary is-medium">Back</button>
-                  </div>
-                  <div class="column">
-                    <button
-                      :disabled="this.droppedFiles.length === 0"
-                      @click="create()"
-                      class="button is-primary is-medium"
-                    >Create Survey</button>
+                <button
+                  v-if="droppedFiles.length > 0"
+                  @click="deleteDroppedFiles()"
+                  class="button is-text"
+                >Remove All Images</button>
+                <div class="field">
+                  <div class="control has-text-centered">
+                    <button @click="back()" class="button is-primary">Back</button>
                   </div>
                 </div>
               </div>
@@ -61,21 +76,17 @@
                 <h1>Your surveyCode: {{this.surveyCode}}</h1>
                 <qrcode-vue :value="this.surveyCode" level="H"></qrcode-vue>
                 <br />
-                <div class="columns is-desktop">
-                  <div class="column">
-                    <button
-                      @click="manageSurvey()"
-                      class="button is-primary is-medium"
-                    >Close Survey
-                    </button>
+                <div class="field is-grouped is-grouped-centered">
+                  <div class="control">
+                    <button @click="manageSurvey()" class="button is-primary is-medium">Close Survey</button>
                   </div>
-                  <div class="column">
+                  <div class="control">
                     <button @click="createAnother()" class="button is-primary is-medium">
                       Create another
                       Survey
                     </button>
                   </div>
-                  <div class="column">
+                  <div class="control">
                     <button @click="vote()" class="button is-primary is-medium">Vote</button>
                   </div>
                 </div>
@@ -91,14 +102,14 @@
 </template>
 
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator';
-import {createImage, createSurvey, startSurvey} from '@/app/api/survey.api';
-import {CreateSurveyRequest} from '@/app/models/create-survey-request';
-import {CreateImageRequest} from '@/app/models/create-image-request';
+import { Component, Vue } from 'vue-property-decorator';
+import { createImage, createSurvey, startSurvey } from '@/app/api/survey.api';
+import { CreateSurveyRequest } from '@/app/models/create-survey-request';
+import { CreateImageRequest } from '@/app/models/create-image-request';
 import QrcodeVue from 'qrcode.vue';
 
 @Component({
-  components: {QrcodeVue},
+  components: { QrcodeVue },
 })
 export default class CreateSurveyContainer extends Vue {
   public perspective: string = '';
