@@ -74,7 +74,7 @@
               </div>
               <div class="content is-center" v-if="this.surveyCode && !this.isLoading">
                 <h1>Your surveyCode: {{this.surveyCode}}</h1>
-                <qrcode-vue :value="this.surveyCode" level="H"></qrcode-vue>
+                  <qrcode-vue :value="this.qrCodeUrl" level="H"></qrcode-vue>
                 <br />
                 <div class="field is-grouped is-grouped-centered">
                   <div class="control">
@@ -102,20 +102,21 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { createImage, createSurvey, startSurvey } from '@/app/api/survey.api';
-import { CreateSurveyRequest } from '@/app/models/create-survey-request';
-import { CreateImageRequest } from '@/app/models/create-image-request';
-import QrcodeVue from 'qrcode.vue';
+    import {Component, Vue} from "vue-property-decorator";
+    import {createImage, createSurvey, startSurvey} from "@/app/api/survey.api";
+    import {CreateSurveyRequest} from "@/app/models/create-survey-request";
+    import {CreateImageRequest} from "@/app/models/create-image-request";
+    import QrcodeVue from "qrcode.vue";
 
-@Component({
+    @Component({
   components: { QrcodeVue },
 })
 export default class CreateSurveyContainer extends Vue {
   public perspective: string = '';
   public droppedFiles: File[] = [];
-  public surveyCode = '';
+        public surveyCode: string = "";
   public isLoading = false;
+        public qrCodeUrl: string = "";
 
   public async create() {
     this.isLoading = true;
@@ -124,6 +125,7 @@ export default class CreateSurveyContainer extends Vue {
     try {
       const response = await createSurvey(createSurveyRequest);
       this.surveyCode = response.code;
+        this.qrCodeUrl = window.location.origin + "/" + this.surveyCode + "/vote";
       const allBase64 = await Promise.all(
         this.droppedFiles.map(f => this.toBase64(f)),
       );
