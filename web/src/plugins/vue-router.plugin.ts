@@ -15,7 +15,7 @@ import {routes} from '@/app/router';
 Vue.use(VueRouter);
 
 export const router = new VueRouter({
-    mode: 'history',
+    mode: 'hash',
     base: process.env.BASE_URL,
     routes,
 });
