@@ -115,9 +115,9 @@ import {appConfig} from '@/config/app.config';
 export default class CreateSurveyContainer extends Vue {
   public perspective: string = '';
   public droppedFiles: File[] = [];
-        public surveyCode: string = '';
+  public surveyCode: string = '';
   public isLoading = false;
-        public qrCodeUrl: string = '';
+  public qrCodeUrl: string = '';
 
   public async create() {
     this.isLoading = true;
