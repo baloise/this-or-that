@@ -127,7 +127,7 @@ export default class CreateSurveyContainer extends Vue {
       this.surveyCode = response.code;
         this.qrCodeUrl = window.location.origin + "/" + this.surveyCode + "/vote";
       const allBase64 = await Promise.all(
-        this.droppedFiles.map(f => this.toBase64(f)),
+          this.droppedFiles.map(f => this.toBase64(f)),
       );
       await Promise.all(
         allBase64.map(async file => {
