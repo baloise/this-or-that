@@ -6,6 +6,10 @@
 
 Currently the building profile is maintained by @MarkusTiede.
 
+Bundle-ID: `de.open-co.de.baloise.this-or-that`
+
+SKU: `de.open-co.de.baloise.this-or-that.sku`
+
 ```
 cd app && flutter clean && flutter pub get && flutter build ios
 ```
