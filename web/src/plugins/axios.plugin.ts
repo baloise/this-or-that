@@ -18,7 +18,7 @@ import {appConfig} from '@/config/app.config';
 
 const LOCAL_STORAGE_KEY = 'this-or-that';
 if (localStorage.getItem(LOCAL_STORAGE_KEY) === null) {
-    localStorage.setItem(LOCAL_STORAGE_KEY, `'sess:${Math.ceil(Math.random() * 100)}_${Date.now()}`);
+    localStorage.setItem(LOCAL_STORAGE_KEY, `sess:${Math.ceil(Math.random() * 100)}_${Date.now()}`);
 }
 
 Axios.defaults.baseURL = appConfig.apiPath;
