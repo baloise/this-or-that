@@ -28,14 +28,17 @@ http://this-or-that-api.azurewebsites.net/this-or-that
  * MongoDB
 
 ### Client 
+
 #### Web
+![](http://api.qrserver.com/v1/create-qr-code/?color=000000&bgcolor=FFFFFF&data=https%3A%2F%2Fbaloise.github.io%2Fthis-or-that%2F&qzone=1&margin=0&size=200x200&ecc=L)
  * NodeJS
  * NPM 
 
 #### Apps
  * Flutter
  * Dart
- 
+  
 ##### iOS
+![](http://api.qrserver.com/v1/create-qr-code/?color=000000&bgcolor=FFFFFF&data=https%3A%2F%2Ftestflight.apple.com%2Fjoin%2FQGgj2A7e&qzone=1&margin=0&size=200x200&ecc=L)
  * Xcode
  * cocoapods
