@@ -35,7 +35,11 @@
                 <div class="field">
                   <label class="label">Upload your Images!</label>
                   <b-field>
-                    <b-upload accept="image/*" drag-drop multiple v-model="droppedFiles">
+                    <b-upload
+                      accept="image/*"
+                      drag-drop
+                      multiple
+                      v-model="droppedFiles">
                       <section class="section">
                         <div class="content has-text-centered">
                           <p>
@@ -74,7 +78,7 @@
               </div>
               <div class="content is-center" v-if="this.surveyCode && !this.isLoading">
                 <h1>Your surveyCode: {{this.surveyCode}}</h1>
-                  <qrcode-vue :value="this.qrCodeUrl" level="H"></qrcode-vue>
+                <qrcode-vue :value="this.qrCodeUrl" level="H"></qrcode-vue>
                 <br />
                 <div class="field is-grouped is-grouped-centered">
                   <div class="control">
@@ -102,10 +106,10 @@
 </template>
 
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator';
-import {createImage, createSurvey, startSurvey} from '@/app/api/survey.api';
-import {CreateSurveyRequest} from '@/app/models/create-survey-request';
-import {CreateImageRequest} from '@/app/models/create-image-request';
+import { Component, Vue } from 'vue-property-decorator';
+import { createImage, createSurvey, startSurvey } from '@/app/api/survey.api';
+import { CreateSurveyRequest } from '@/app/models/create-survey-request';
+import { CreateImageRequest } from '@/app/models/create-image-request';
 import QrcodeVue from 'qrcode.vue';
 
 @Component({
@@ -128,7 +132,7 @@ export default class CreateSurveyContainer extends Vue {
       const href = window.location.href;
       this.qrCodeUrl = href.split('#')[0] + '#/' + this.surveyCode + '/vote';
       const allBase64 = await Promise.all(
-          this.droppedFiles.map(f => this.toBase64(f)),
+          this.droppedFiles.map(f => this.toCroppedBase64(f)),
       );
       await Promise.all(
         allBase64.map(async file => {
@@ -156,11 +160,29 @@ export default class CreateSurveyContainer extends Vue {
     this.droppedFiles.splice(index, 1);
   }
 
-  private toBase64(file: File): Promise<string> {
+  private toCroppedBase64(file: File): Promise<string> {
+    const maxHeight = 512;
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result as string);
+      reader.onload = event => {
+        const img = new Image();
+        img.src = event.target!.result as string;
+        img.onload = () => {
+          const height = Math.min(maxHeight, img.height);
+          const width = img.width * height / img.height;
+          const xPadding = Math.max(0, (img.width - width) / 2);
+          const yPadding = Math.max(0, (img.height - height) / 2);
+          const elem = document.createElement('canvas');
+          elem.width = width + 2 * xPadding;
+          elem.height = height + 2 * yPadding;
+          const ctx = elem.getContext('2d')!;
+          ctx.fillStyle = 'white';
+          ctx.fillRect(0, 0, width + 2 * xPadding, height + 2 * yPadding);
+          ctx.drawImage(img, xPadding, yPadding, width, height);
+          resolve(elem.toDataURL('image/jpg', 1));
+        };
+      };
       reader.onerror = error => reject(error);
     });
   }
