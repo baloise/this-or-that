@@ -2,13 +2,23 @@
     <div class="home">
         <section class="hero is-light is-bold is-fullheight">
             <div class="hero-header has-text-centered">
-                <img
-                    @click="back()"
-                    alt="logo"
-                    src="../../assets/logo.png"
-                    style="margin: 5px;"
-                    width="120px"
-                />
+                <div class="columns is-mobile">
+                    <div class="column" />
+                    <div class="column">
+                        <img
+                            @click="back()"
+                            alt="logo"
+                            src="../../assets/logo.png"
+                            style="margin: 5px;"
+                            width="120px"
+                        />
+                    </div>
+                    <div class="column">
+                        <a @click="about()">
+                            <b-icon icon="info-circle" size="fas fa-3x is-large"></b-icon>
+                        </a>
+                    </div>
+                </div>
             </div>
             <div class="hero-body" style="align-items: flex-start;">
                 <div class="container">
@@ -34,6 +44,10 @@ import { Component, Vue } from 'vue-property-decorator';
 export default class Layout extends Vue {
     public back() {
         this.$router.push('/');
+    }
+
+    public about() {
+        this.$router.push('/about');
     }
 }
 </script>
