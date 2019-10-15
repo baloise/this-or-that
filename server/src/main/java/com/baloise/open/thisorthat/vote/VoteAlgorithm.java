@@ -13,19 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.baloise.open.thisorthat.db;
+package com.baloise.open.thisorthat.vote;
 
-public class DatabaseServiceProvider {
+import com.baloise.open.thisorthat.dto.ScoreItem;
+import com.baloise.open.thisorthat.dto.VoteItem;
 
-    private static final DatabaseService inMemoryDatabaseService = new InMemoryDatabaseService();
-    private static final DatabaseService mongoDatabaseService = new MongoDatabaseService();
+import java.util.List;
 
-    public static DatabaseService getInMemoryDBServiceInstance() {
-        return inMemoryDatabaseService;
-    }
+public interface VoteAlgorithm {
 
-    public static DatabaseService getMongoDBServiceInstance() {
-        return mongoDatabaseService;
-    }
+    void initialize(String surveyCode);
 
+    VoteItem getVote(String surveyCode, String userId);
+
+    void setVote(String surveyCode, String imageIdWinner, String imageIdLooser, String userId);
+
+    List<ScoreItem> calculateScores(String surveyCode);
 }

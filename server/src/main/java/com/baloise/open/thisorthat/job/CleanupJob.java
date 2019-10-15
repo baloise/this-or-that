@@ -16,36 +16,37 @@
 package com.baloise.open.thisorthat.job;
 
 import com.baloise.open.thisorthat.db.DatabaseService;
-import com.baloise.open.thisorthat.db.DatabaseServiceProvider;
 import com.baloise.open.thisorthat.dto.Survey;
 import com.baloise.open.thisorthat.exception.DatabaseException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import java.lang.invoke.MethodHandles;
 import java.util.Calendar;
 import java.util.List;
 
+@Slf4j
 public class CleanupJob implements Runnable {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("APPL." + MethodHandles.lookup().lookupClass());
+    @Autowired
+    @Qualifier("inMemoryDatabaseService")
+    private DatabaseService databaseService;
 
     @Override
     public void run() {
-        LOGGER.info("ENTRY CleanupJob RUN()");
-        DatabaseService databaseService = DatabaseServiceProvider.getInMemoryDBServiceInstance();
+        log.info("ENTRY CleanupJob RUN()");
         Calendar yesterday = Calendar.getInstance();
         yesterday.add(Calendar.DAY_OF_MONTH, -7);
         List<Survey> oldSurveys = databaseService.getSurveysOlderThan(yesterday.getTime());
-        LOGGER.info("Removing {} surveys", oldSurveys.size());
+        log.info("Removing {} surveys", oldSurveys.size());
         for (Survey survey : oldSurveys) {
             try {
                 databaseService.removeSurvey(survey.getCode());
             } catch (DatabaseException e) {
-                LOGGER.error("Error when trying to remove survey with code {}. Message {}", survey.getCode(), e.getMessage());
+                log.error("Error when trying to remove survey with code {}. Message {}", survey.getCode(), e.getMessage());
             }
         }
-        LOGGER.info("EXIT CleanupJob RUN()");
+        log.info("EXIT CleanupJob RUN()");
     }
 
 }

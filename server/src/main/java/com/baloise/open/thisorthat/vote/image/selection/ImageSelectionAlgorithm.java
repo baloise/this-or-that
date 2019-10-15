@@ -18,7 +18,6 @@ package com.baloise.open.thisorthat.vote.image.selection;
 import com.baloise.open.thisorthat.dto.Image;
 import com.baloise.open.thisorthat.dto.Pair;
 
-public abstract class AbstractImageSelectionAlgorithm {
-
-    public abstract Pair<Image> getNextImagePair(String surveyCode, String userId);
+public interface ImageSelectionAlgorithm {
+    Pair<Image> getNextImagePair(String surveyCode, String userId);
 }
