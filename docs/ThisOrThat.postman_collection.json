@@ -22,15 +22,14 @@
           "raw": "{\n\t\"perspective\":\"test\"\n}"
         },
         "url": {
-          "raw": "http://localhost:8080/api/survey",
-          "protocol": "http",
+          "raw": "{{BASE_PATH}}/this-or-that/1l8g/stop",
           "host": [
-            "localhost"
+            "{{BASE_PATH}}"
           ],
-          "port": "8080",
           "path": [
-            "api",
-            "survey"
+            "this-or-that",
+            "1l8g",
+            "stop"
           ]
         }
       },
@@ -51,16 +50,12 @@
           "raw": "{\n \"file\": \"this is a file\"\n}"
         },
         "url": {
-          "raw": "http://localhost:8080/api/survey/4v8y/image",
-          "protocol": "http",
+          "raw": "{{BASE_PATH}}/42ry/image",
           "host": [
-            "localhost"
+            "{{BASE_PATH}}"
           ],
-          "port": "8080",
           "path": [
-            "api",
-            "survey",
-            "4v8y",
+            "42ry",
             "image"
           ]
         }
@@ -73,14 +68,11 @@
         "method": "POST",
         "header": [],
         "url": {
-          "raw": "http://localhost:8080/api/survey/4v8y/start",
-          "protocol": "http",
+          "raw": "{{BASE_PATH}}/survey/4v8y/start",
           "host": [
-            "localhost"
+            "{{BASE_PATH}}"
           ],
-          "port": "8080",
           "path": [
-            "api",
             "survey",
             "4v8y",
             "start"
@@ -93,18 +85,20 @@
       "name": "getVote",
       "request": {
         "method": "GET",
-        "header": [],
+        "header": [
+          {
+            "key": "userId",
+            "value": "test",
+            "type": "text"
+          }
+        ],
         "url": {
-          "raw": "http://localhost:8080/api/survey/4v8y/vote",
-          "protocol": "http",
+          "raw": "{{BASE_PATH}}/42ry/vote",
           "host": [
-            "localhost"
+            "{{BASE_PATH}}"
           ],
-          "port": "8080",
           "path": [
-            "api",
-            "survey",
-            "4v8y",
+            "42ry",
             "vote"
           ]
         }
@@ -119,6 +113,11 @@
           {
             "key": "Content-Type",
             "value": "application/json"
+          },
+          {
+            "key": "userId",
+            "value": "test",
+            "type": "text"
           }
         ],
         "body": {
@@ -126,16 +125,12 @@
           "raw": "{\n\t\"winner\": \"0\",\n\t\"loser\": \"1\"\n}"
         },
         "url": {
-          "raw": "http://localhost:8080/api/survey/4v8y/vote",
-          "protocol": "http",
+          "raw": "{{BASE_PATH}}/42ry/vote",
           "host": [
-            "localhost"
+            "{{BASE_PATH}}"
           ],
-          "port": "8080",
           "path": [
-            "api",
-            "survey",
-            "4v8y",
+            "42ry",
             "vote"
           ]
         }
@@ -148,39 +143,13 @@
         "method": "POST",
         "header": [],
         "url": {
-          "raw": "http://localhost:8080/api/survey/4v8y/stop",
-          "protocol": "http",
+          "raw": "{{BASE_PATH}}/42ry/stop",
           "host": [
-            "localhost"
+            "{{BASE_PATH}}"
           ],
-          "port": "8080",
           "path": [
-            "api",
-            "survey",
-            "4v8y",
+            "42ry",
             "stop"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "persistSurvey",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:8080/api/survey/4v8y/persist",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "8080",
-          "path": [
-            "api",
-            "survey",
-            "4v8y",
-            "persist"
           ]
         }
       },
@@ -192,17 +161,32 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8080/api/survey/4v8y/score",
-          "protocol": "http",
+          "raw": "{{BASE_PATH}}/42ry/score",
           "host": [
-            "localhost"
+            "{{BASE_PATH}}"
           ],
-          "port": "8080",
           "path": [
-            "api",
-            "survey",
-            "4v8y",
+            "42ry",
             "score"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getImage",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{BASE_PATH}}/y6k4/image/0",
+          "host": [
+            "{{BASE_PATH}}"
+          ],
+          "path": [
+            "y6k4",
+            "image",
+            "0"
           ]
         }
       },
