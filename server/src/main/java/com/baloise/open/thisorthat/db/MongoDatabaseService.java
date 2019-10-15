@@ -32,6 +32,7 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ import static com.mongodb.client.model.Updates.set;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
+@Repository
 public class MongoDatabaseService implements DatabaseService {
 
     private final static String MONGO_DB_NAME = "BV_THIS_OR_THAT";

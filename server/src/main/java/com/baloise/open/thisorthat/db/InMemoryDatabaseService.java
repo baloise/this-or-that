@@ -24,6 +24,7 @@ import com.baloise.open.thisorthat.exception.ImageNotFoundException;
 import com.baloise.open.thisorthat.exception.SurveyNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import java.lang.invoke.MethodHandles;
 import java.util.Date;
@@ -32,6 +33,7 @@ import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
+@Repository
 public class InMemoryDatabaseService implements DatabaseService {
 
     private static final CopyOnWriteArrayList<Survey> surveys = new CopyOnWriteArrayList<>();

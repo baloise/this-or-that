@@ -18,16 +18,20 @@ package com.baloise.open.thisorthat.vote.image.selection;
 import com.baloise.open.thisorthat.db.DatabaseService;
 import com.baloise.open.thisorthat.dto.Image;
 import com.baloise.open.thisorthat.dto.Pair;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ImageSelectionAlgorithmImpl extends AbstractImageSelectionAlgorithm {
+@Service
+public class RandomSelectionAlgorithm implements ImageSelectionAlgorithm {
 
     private final DatabaseService databaseService;
+
     private final Random rand = new Random();
 
-    public ImageSelectionAlgorithmImpl(DatabaseService databaseService) {
+    public RandomSelectionAlgorithm(@Qualifier("inMemoryDatabaseService") DatabaseService databaseService) {
         this.databaseService = databaseService;
     }
 
