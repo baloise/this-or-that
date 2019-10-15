@@ -28,13 +28,11 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
+import lombok.extern.slf4j.Slf4j;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -47,11 +45,10 @@ import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 @Repository
+@Slf4j
 public class MongoDatabaseService implements DatabaseService {
 
     private final static String MONGO_DB_NAME = "BV_THIS_OR_THAT";
-    private final Logger LOGGER = LoggerFactory.getLogger("APPL." + MethodHandles.lookup().lookupClass());
-
 
     private final MongoCollection<Survey> surveys;
 
@@ -84,7 +81,7 @@ public class MongoDatabaseService implements DatabaseService {
     @Override
     public void addSurvey(Survey survey) {
         surveys.insertOne(survey);
-        LOGGER.info("added survey {}", survey.getCode());
+        log.info("added survey {}", survey.getCode());
     }
 
     public void updateSurvey(Survey survey) {
@@ -113,7 +110,7 @@ public class MongoDatabaseService implements DatabaseService {
     public void removeSurvey(String surveyCode) {
         DeleteResult deleteResult = surveys.deleteOne(eq("code", surveyCode));
         deleteResultHandler(deleteResult);
-        LOGGER.info("survey removed {}", surveyCode);
+        log.info("survey removed {}", surveyCode);
     }
 
     @Override
@@ -122,7 +119,7 @@ public class MongoDatabaseService implements DatabaseService {
         if (surveyDocument != null) {
             return surveyDocument;
         }
-        LOGGER.error("survey not found survey {}", surveyCode);
+        log.error("survey not found survey {}", surveyCode);
         throw new SurveyNotFoundException("survey not found");
     }
 
@@ -130,7 +127,7 @@ public class MongoDatabaseService implements DatabaseService {
     public String addImageToSurvey(String surveyCode, Image image) {
         UpdateResult updateResult = surveys.updateOne(eq("code", surveyCode), addToSet("images", image));
         updateResultHandler(updateResult);
-        LOGGER.info("survey {} added image {}", surveyCode, image.getId());
+        log.info("survey {} added image {}", surveyCode, image.getId());
         return image.getId();
     }
 
@@ -138,14 +135,14 @@ public class MongoDatabaseService implements DatabaseService {
     public void startSurvey(String surveyCode) {
         UpdateResult updateResult = surveys.updateOne(eq("code", surveyCode), set("started", true));
         updateResultHandler(updateResult);
-        LOGGER.info("started survey {}", surveyCode);
+        log.info("started survey {}", surveyCode);
     }
 
     @Override
     public void stopSurvey(String surveyCode) {
         UpdateResult updateResult = surveys.updateOne(eq("code", surveyCode), set("started", false));
         updateResultHandler(updateResult);
-        LOGGER.info("stopped survey {}", surveyCode);
+        log.info("stopped survey {}", surveyCode);
     }
 
     @Override
@@ -161,14 +158,14 @@ public class MongoDatabaseService implements DatabaseService {
     public void addScore(String surveyCode, ScoreItem scoreItem) {
         UpdateResult updateResult = surveys.updateOne(eq("code", surveyCode), addToSet("scores", scoreItem));
         updateResultHandler(updateResult);
-        LOGGER.info("added score for {} survey image {} score {}", surveyCode, scoreItem.getImageId(), scoreItem.getScore());
+        log.info("added score for {} survey image {} score {}", surveyCode, scoreItem.getImageId(), scoreItem.getScore());
     }
 
     @Override
     public void persistVote(String surveyCode, Vote vote) {
         UpdateResult updateResult = surveys.updateOne(eq("code", surveyCode), addToSet("votes", vote));
         updateResultHandler(updateResult);
-        LOGGER.info("saved vote for {} userId {}", surveyCode, vote.getUserId());
+        log.info("saved vote for {} userId {}", surveyCode, vote.getUserId());
     }
 
     @Override
@@ -179,14 +176,14 @@ public class MongoDatabaseService implements DatabaseService {
 
     private void updateResultHandler(UpdateResult updateResult) {
         if (updateResult.getMatchedCount() == 0) {
-            LOGGER.error("update on mongoDB failed");
+            log.error("update on mongoDB failed");
             throw new UpdateFailedException("update failed matched count=" + updateResult.getMatchedCount());
         }
     }
 
     private void deleteResultHandler(DeleteResult deleteResult) {
         if (deleteResult.getDeletedCount() == 0) {
-            LOGGER.error("delete on mongoDB failed");
+            log.error("delete on mongoDB failed");
             throw new DeleteFailedException("delete failed delete count=" + deleteResult.getDeletedCount());
         }
     }

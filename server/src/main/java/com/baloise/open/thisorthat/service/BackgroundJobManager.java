@@ -16,30 +16,27 @@
 package com.baloise.open.thisorthat.service;
 
 import com.baloise.open.thisorthat.job.CleanupJob;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import java.lang.invoke.MethodHandles;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 @WebListener
+@Slf4j
 public class BackgroundJobManager implements ServletContextListener {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger("APPL." + MethodHandles.lookup().lookupClass());
 
     private ScheduledExecutorService scheduler;
 
     @Override
     public void contextInitialized(ServletContextEvent event) {
-        LOGGER.info("ENTRY contextInitialized()");
+        log.info("ENTRY contextInitialized()");
         scheduler = Executors.newSingleThreadScheduledExecutor();
         scheduler.scheduleAtFixedRate(new CleanupJob(), 0, 1, TimeUnit.HOURS);
-        LOGGER.info("EXIT contextInitialized()");
+        log.info("EXIT contextInitialized()");
     }
 
     @Override

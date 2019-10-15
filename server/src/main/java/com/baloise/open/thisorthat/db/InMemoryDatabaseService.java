@@ -22,11 +22,9 @@ import com.baloise.open.thisorthat.dto.Vote;
 import com.baloise.open.thisorthat.exception.DeleteFailedException;
 import com.baloise.open.thisorthat.exception.ImageNotFoundException;
 import com.baloise.open.thisorthat.exception.SurveyNotFoundException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
-import java.lang.invoke.MethodHandles;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -34,11 +32,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 @Repository
+@Slf4j
 public class InMemoryDatabaseService implements DatabaseService {
 
     private static final CopyOnWriteArrayList<Survey> surveys = new CopyOnWriteArrayList<>();
-    private final Logger LOGGER = LoggerFactory.getLogger("APPL." + MethodHandles.lookup().lookupClass());
-
 
     @Override
     public long surveyCount() {
@@ -58,15 +55,15 @@ public class InMemoryDatabaseService implements DatabaseService {
 
     public void addSurvey(Survey survey) {
         surveys.add(survey);
-        LOGGER.info("added survey {}", survey.getCode());
+        log.info("added survey {}", survey.getCode());
     }
 
     public void removeSurvey(String code) {
         boolean removed = surveys.removeIf(survey -> survey.getCode().equals(code));
         if (removed) {
-            LOGGER.info("survey deleted {}", code);
+            log.info("survey deleted {}", code);
         } else {
-            LOGGER.error("survey with {} could not be deleted", code);
+            log.error("survey with {} could not be deleted", code);
             throw new DeleteFailedException("survey " + code + " could not be deleted");
         }
     }
@@ -76,7 +73,7 @@ public class InMemoryDatabaseService implements DatabaseService {
         if (surveyOptional.isPresent()) {
             return surveyOptional.get();
         } else {
-            LOGGER.error("survey {} not found", code);
+            log.error("survey {} not found", code);
             throw new SurveyNotFoundException("survey " + code + " not found");
         }
     }
@@ -86,18 +83,18 @@ public class InMemoryDatabaseService implements DatabaseService {
         survey.getImages().add(image);
         String id = Integer.toString(survey.getImages().indexOf(image));
         image.setId(id);
-        LOGGER.info("added image {} to {}", image.getId(), surveyCode);
+        log.info("added image {} to {}", image.getId(), surveyCode);
         return id;
     }
 
     public void startSurvey(String surveyCode) {
         getSurvey(surveyCode).setStarted(true);
-        LOGGER.info("started survey {}", surveyCode);
+        log.info("started survey {}", surveyCode);
     }
 
     public void stopSurvey(String surveyCode) {
         getSurvey(surveyCode).setStarted(false);
-        LOGGER.info("closed survey {}", surveyCode);
+        log.info("closed survey {}", surveyCode);
     }
 
     public Image getImageFromSurvey(String surveyCode, String imageId) {
