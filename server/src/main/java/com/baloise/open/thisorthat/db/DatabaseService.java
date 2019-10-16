@@ -27,6 +27,8 @@ public interface DatabaseService {
 
     long surveyCount();
 
+    long imageCount();
+
     void updateSurvey(Survey survey);
 
     void addSurvey(Survey survey);
@@ -35,13 +37,15 @@ public interface DatabaseService {
 
     Survey getSurvey(String code);
 
-    String addImageToSurvey(String surveyCode, Image image);
+    void addImageToSurvey(String surveyCode, Image image);
+
+    Image getImage(String imageId);
 
     void startSurvey(String surveyCode);
 
     void stopSurvey(String surveyCode);
 
-    Image getImageFromSurvey(String surveyCode, String imageId);
+    String getImageIdFromSurvey(String surveyCode, String imageId);
 
     void addScore(String surveyCode, ScoreItem scoreItem);
 

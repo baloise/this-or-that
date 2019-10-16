@@ -19,11 +19,19 @@ import org.hashids.Hashids;
 
 class CodeCreator {
 
-    static String createCode(long surveyIndex) {
+    static String createSurveyCode(long surveyIndex) {
         String stringAlphabet = "abcdefghijklmnopqrstuvwxyz1234567890";
         int minHashLength = 4;
-        String salt = "thisorthat";
+        String salt = "thisorthat_survey";
         Hashids hashids = new Hashids(salt, minHashLength, stringAlphabet);
         return hashids.encode(surveyIndex);
+    }
+
+    static String createImageCode(long imageIndex) {
+        String stringAlphabet = "abcdefghijklmnopqrstuvwxyz1234567890";
+        int minHashLength = 1;
+        String salt = "thisorthat_images";
+        Hashids hashids = new Hashids(salt, minHashLength, stringAlphabet);
+        return hashids.encode(imageIndex);
     }
 }

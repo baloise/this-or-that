@@ -19,18 +19,21 @@ import com.baloise.open.thisorthat.db.DatabaseService;
 import com.baloise.open.thisorthat.dto.Survey;
 import com.baloise.open.thisorthat.exception.DatabaseException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.util.Calendar;
 import java.util.List;
 
 @Slf4j
+@Component
 public class CleanupJob implements Runnable {
 
-    @Autowired
-    @Qualifier("inMemoryDatabaseService")
-    private DatabaseService databaseService;
+    private final DatabaseService databaseService;
+
+    public CleanupJob(@Qualifier("inMemoryDatabaseService") DatabaseService databaseService) {
+        this.databaseService = databaseService;
+    }
 
     @Override
     public void run() {
@@ -41,9 +44,9 @@ public class CleanupJob implements Runnable {
         log.info("Removing {} surveys", oldSurveys.size());
         for (Survey survey : oldSurveys) {
             try {
-                databaseService.removeSurvey(survey.getCode());
+                databaseService.removeSurvey(survey.getId());
             } catch (DatabaseException e) {
-                log.error("Error when trying to remove survey with code {}. Message {}", survey.getCode(), e.getMessage());
+                log.error("Error when trying to remove survey with code {}. Message {}", survey.getId(), e.getMessage());
             }
         }
         log.info("EXIT CleanupJob RUN()");

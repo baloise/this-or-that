@@ -44,7 +44,7 @@ public class ApiController {
         try {
             Survey survey = surveyService.createSurvey(createSurveyRequest.getPerspective());
             return SurveyResponse.builder()
-                    .code(survey.getCode())
+                    .code(survey.getId())
                     .build();
         } catch (Exception e) {
 
@@ -135,7 +135,7 @@ public class ApiController {
     @CrossOrigin(origins = "*")
     public byte[] getImageFromSurvey(@PathVariable("code") String surveyCode, @PathVariable("imageId") String imageId) {
         try {
-            Image image = surveyService.getImageFromSurvey(surveyCode, imageId);
+            Image image = surveyService.getImage(imageId);
             String base64Image = image.getFile().split(",")[1];
             return DatatypeConverter.parseBase64Binary(base64Image);
         } catch (Exception e) {

@@ -36,6 +36,7 @@ import java.util.stream.Collectors;
 public class InMemoryDatabaseService implements DatabaseService {
 
     private static final CopyOnWriteArrayList<Survey> surveys = new CopyOnWriteArrayList<>();
+    private static final CopyOnWriteArrayList<Image> images = new CopyOnWriteArrayList<>();
 
     @Override
     public long surveyCount() {
@@ -43,10 +44,15 @@ public class InMemoryDatabaseService implements DatabaseService {
     }
 
     @Override
+    public long imageCount() {
+        return images.size();
+    }
+
+    @Override
     public void updateSurvey(Survey survey) {
         int index = 0;
         for (int i = 0; i < surveys.size(); i++) {
-            if (surveys.get(i).getCode().equals(survey.getCode())) {
+            if (surveys.get(i).getId().equals(survey.getId())) {
                 index = i;
             }
         }
@@ -55,11 +61,11 @@ public class InMemoryDatabaseService implements DatabaseService {
 
     public void addSurvey(Survey survey) {
         surveys.add(survey);
-        log.info("added survey {}", survey.getCode());
+        log.info("added survey {}", survey.getId());
     }
 
     public void removeSurvey(String code) {
-        boolean removed = surveys.removeIf(survey -> survey.getCode().equals(code));
+        boolean removed = surveys.removeIf(survey -> survey.getId().equals(code));
         if (removed) {
             log.info("survey deleted {}", code);
         } else {
@@ -69,7 +75,7 @@ public class InMemoryDatabaseService implements DatabaseService {
     }
 
     public Survey getSurvey(String code) {
-        Optional<Survey> surveyOptional = surveys.stream().filter(survey -> survey.getCode().equals(code)).findFirst();
+        Optional<Survey> surveyOptional = surveys.stream().filter(survey -> survey.getId().equals(code)).findFirst();
         if (surveyOptional.isPresent()) {
             return surveyOptional.get();
         } else {
@@ -78,13 +84,11 @@ public class InMemoryDatabaseService implements DatabaseService {
         }
     }
 
-    public String addImageToSurvey(String surveyCode, Image image) {
+    public void addImageToSurvey(String surveyCode, Image image) {
+        images.add(image);
         Survey survey = getSurvey(surveyCode);
-        survey.getImages().add(image);
-        String id = Integer.toString(survey.getImages().indexOf(image));
-        image.setId(id);
+        survey.getImages().add(image.getId());
         log.info("added image {} to {}", image.getId(), surveyCode);
-        return id;
     }
 
     public void startSurvey(String surveyCode) {
@@ -97,12 +101,19 @@ public class InMemoryDatabaseService implements DatabaseService {
         log.info("closed survey {}", surveyCode);
     }
 
-    public Image getImageFromSurvey(String surveyCode, String imageId) {
+    public String getImageIdFromSurvey(String surveyCode, String imageId) {
         Survey survey = getSurvey(surveyCode);
         return survey.getImages().stream()
-                .filter(image -> image.getId().equals(imageId))
+                .filter(id -> id.equals(imageId))
                 .findFirst()
                 .orElseThrow(() -> new ImageNotFoundException("survey" + surveyCode + " image " + imageId + "not found "));
+    }
+
+    public Image getImage(String imageId) {
+        return images.stream()
+                .filter(image -> image.getId().equals(imageId))
+                .findFirst()
+                .orElseThrow(() -> new ImageNotFoundException("image " + imageId + "not found "));
     }
 
     @Override

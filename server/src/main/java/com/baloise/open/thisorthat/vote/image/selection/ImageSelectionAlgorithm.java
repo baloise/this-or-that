@@ -15,9 +15,8 @@
  */
 package com.baloise.open.thisorthat.vote.image.selection;
 
-import com.baloise.open.thisorthat.dto.Image;
 import com.baloise.open.thisorthat.dto.Pair;
 
 public interface ImageSelectionAlgorithm {
-    Pair<Image> getNextImagePair(String surveyCode, String userId);
+    Pair<String> getNextImagePair(String surveyCode, String userId);
 }

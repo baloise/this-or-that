@@ -31,8 +31,8 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Survey {
     private Date creationDate;
-    private String code;
-    private List<Image> images;
+    private String id;
+    private List<String> images;
     private Boolean started;
     private List<ScoreItem> scores;
     private List<Vote> votes;

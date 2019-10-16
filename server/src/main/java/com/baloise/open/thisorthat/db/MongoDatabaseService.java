@@ -51,6 +51,7 @@ public class MongoDatabaseService implements DatabaseService {
     private final static String MONGO_DB_NAME = "BV_THIS_OR_THAT";
 
     private final MongoCollection<Survey> surveys;
+    private final MongoCollection<Image> images;
 
     MongoDatabaseService() {
         CodecRegistry pojoCodecRegistry = fromRegistries(MongoClient.getDefaultCodecRegistry(),
@@ -71,6 +72,7 @@ public class MongoDatabaseService implements DatabaseService {
         MongoDatabase database = mongoClient.getDatabase(MONGO_DB_NAME);
         database = database.withCodecRegistry(pojoCodecRegistry);
         surveys = database.getCollection("surveys", Survey.class);
+        images = database.getCollection("images", Image.class);
     }
 
     @Override
@@ -79,43 +81,31 @@ public class MongoDatabaseService implements DatabaseService {
     }
 
     @Override
-    public void addSurvey(Survey survey) {
-        surveys.insertOne(survey);
-        log.info("added survey {}", survey.getCode());
+    public long imageCount() {
+        return images.countDocuments();
     }
 
+    @Override
+    public void addSurvey(Survey survey) {
+        surveys.insertOne(survey);
+        log.info("added survey {}", survey.getId());
+    }
+
+    @Override
     public void updateSurvey(Survey survey) {
-        //add images one per time because there is a request limit on the azure cloud of 2mb
-        List<Image> images = new ArrayList<>(survey.getImages());
-        List<ScoreItem> scores = new ArrayList<>(survey.getScores());
-        Survey copyOfSurvey = Survey.builder()
-                .creationDate(survey.getCreationDate())
-                .code(survey.getCode())
-                .started(survey.getStarted())
-                .perspective(survey.getPerspective())
-                .scores(new ArrayList<>())
-                .votes(survey.getVotes())
-                .images(new ArrayList<>())
-                .build();
-        surveys.replaceOne(eq("code", survey.getCode()), copyOfSurvey);
-        for (Image image : images) {
-            addImageToSurvey(survey.getCode(), image);
-        }
-        for (ScoreItem scoreItem : scores) {
-            addScore(survey.getCode(), scoreItem);
-        }
+        surveys.replaceOne(eq("_id", survey.getId()), survey);
     }
 
     @Override
     public void removeSurvey(String surveyCode) {
-        DeleteResult deleteResult = surveys.deleteOne(eq("code", surveyCode));
+        DeleteResult deleteResult = surveys.deleteOne(eq("_id", surveyCode));
         deleteResultHandler(deleteResult);
         log.info("survey removed {}", surveyCode);
     }
 
     @Override
     public Survey getSurvey(String surveyCode) {
-        Survey surveyDocument = surveys.find(eq("code", surveyCode)).first();
+        Survey surveyDocument = surveys.find(eq("_id", surveyCode)).first();
         if (surveyDocument != null) {
             return surveyDocument;
         }
@@ -124,46 +114,50 @@ public class MongoDatabaseService implements DatabaseService {
     }
 
     @Override
-    public String addImageToSurvey(String surveyCode, Image image) {
-        UpdateResult updateResult = surveys.updateOne(eq("code", surveyCode), addToSet("images", image));
+    public void addImageToSurvey(String surveyCode, Image image) {
+        UpdateResult updateResult = surveys.updateOne(eq("_id", surveyCode), addToSet("images", image));
         updateResultHandler(updateResult);
         log.info("survey {} added image {}", surveyCode, image.getId());
-        return image.getId();
+    }
+
+    @Override
+    public Image getImage(String imageId) {
+        return images.find(eq("_id", imageId)).first();
     }
 
     @Override
     public void startSurvey(String surveyCode) {
-        UpdateResult updateResult = surveys.updateOne(eq("code", surveyCode), set("started", true));
+        UpdateResult updateResult = surveys.updateOne(eq("_id", surveyCode), set("started", true));
         updateResultHandler(updateResult);
         log.info("started survey {}", surveyCode);
     }
 
     @Override
     public void stopSurvey(String surveyCode) {
-        UpdateResult updateResult = surveys.updateOne(eq("code", surveyCode), set("started", false));
+        UpdateResult updateResult = surveys.updateOne(eq("_id", surveyCode), set("started", false));
         updateResultHandler(updateResult);
         log.info("stopped survey {}", surveyCode);
     }
 
     @Override
-    public Image getImageFromSurvey(String surveyCode, String imageId) {
+    public String getImageIdFromSurvey(String surveyCode, String imageId) {
         Survey survey = getSurvey(surveyCode);
         return survey.getImages().stream()
-                .filter(image -> image.getId().equals(imageId))
+                .filter(id -> id.equals(imageId))
                 .findFirst()
                 .orElseThrow(() -> new ImageNotFoundException("survey " + surveyCode + " could not find image " + imageId));
     }
 
     @Override
     public void addScore(String surveyCode, ScoreItem scoreItem) {
-        UpdateResult updateResult = surveys.updateOne(eq("code", surveyCode), addToSet("scores", scoreItem));
+        UpdateResult updateResult = surveys.updateOne(eq("_id", surveyCode), addToSet("scores", scoreItem));
         updateResultHandler(updateResult);
         log.info("added score for {} survey image {} score {}", surveyCode, scoreItem.getImageId(), scoreItem.getScore());
     }
 
     @Override
     public void persistVote(String surveyCode, Vote vote) {
-        UpdateResult updateResult = surveys.updateOne(eq("code", surveyCode), addToSet("votes", vote));
+        UpdateResult updateResult = surveys.updateOne(eq("_id", surveyCode), addToSet("votes", vote));
         updateResultHandler(updateResult);
         log.info("saved vote for {} userId {}", surveyCode, vote.getUserId());
     }

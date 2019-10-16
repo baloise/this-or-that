@@ -53,16 +53,16 @@ public class SurveyService {
     public Survey createSurvey(String perspective) {
         log.info("create survey with perspective {}", perspective);
         long index = databaseMongo.surveyCount();
-        String code = CodeCreator.createCode(index);
+        String code = CodeCreator.createSurveyCode(index);
         log.info("code created: {}", code);
         databaseMongo.addSurvey(Survey.builder()
-                .code(code)
+                .id(code)
                 .creationDate(new Date())
                 .started(false)
                 .build());
         log.info("added empty survey to mongo");
         Survey survey = Survey.builder()
-                .code(code)
+                .id(code)
                 .creationDate(new Date())
                 .perspective(perspective)
                 .images(new ArrayList<>())
@@ -75,6 +75,15 @@ public class SurveyService {
         return survey;
     }
 
+    public String addImageToSurvey(String surveyCode, Image image) {
+        long index = databaseMongo.imageCount();
+        String id = CodeCreator.createImageCode(index);
+        image.setId(id);
+        log.info("survey {} added image", surveyCode);
+        databaseInMemory.addImageToSurvey(surveyCode, image);
+        return id;
+    }
+
     public void startSurvey(String surveyCode) {
         checkIfSurveyIsAlreadyStarted(surveyCode);
         databaseInMemory.startSurvey(surveyCode);
@@ -82,19 +91,13 @@ public class SurveyService {
         log.info("survey {} started and initialized", surveyCode);
     }
 
-    public void stopSurvey(String surveyCode) {
-        checkIfSurveyIsStopped(surveyCode);
-        randomAlgorithm.calculateScoresAndStopSurvey(surveyCode);
-        log.info("survey {} stopped", surveyCode);
-    }
-
     public VoteResponse getVote(String surveyCode, String userId) {
         checkIfSurveyIsStopped(surveyCode);
         VoteItem voteItem = randomAlgorithm.getVote(surveyCode, userId);
-        log.info("survey {} get vote from {} image1: {} image2: {}", surveyCode, userId, voteItem.getFile1().getId(), voteItem.getFile2().getId());
+        log.info("survey {} get vote from {} image1: {} image2: {}", surveyCode, userId, voteItem.getImageId0(), voteItem.getImageId1());
         return VoteResponse.builder()
-                .id1(voteItem.getFile1().getId())
-                .id2(voteItem.getFile2().getId())
+                .id1(voteItem.getImageId0())
+                .id2(voteItem.getImageId1())
                 .perspective(databaseInMemory.getSurvey(surveyCode).getPerspective())
                 .surveyIsRunning(true)
                 .build();
@@ -106,8 +109,25 @@ public class SurveyService {
         log.info("survey {} set vote by {} winnerId: {} looserId: {}", surveyCode, userId, voteRequest.getWinner(), voteRequest.getLoser());
     }
 
+    public void stopSurvey(String surveyCode) {
+        checkIfSurveyIsStopped(surveyCode);
+        randomAlgorithm.calculateScoresAndStopSurvey(surveyCode);
+        log.info("survey {} stopped", surveyCode);
+    }
+
+    public void persistSurvey(String surveyCode) {
+        Survey survey = databaseInMemory.getSurvey(surveyCode);
+        if (survey.getStarted()) {
+            log.error("survey {} is not stopped", survey.getId());
+            throw new DatabaseException("survey " + surveyCode + "is not stopped");
+        }
+        databaseMongo.updateSurvey(survey);
+        log.info("survey {} persist", surveyCode);
+    }
+
     public ScoreResponse getScore(String surveyCode) {
         Survey survey;
+        List<Image> images = new ArrayList<>();
         try {
             survey = databaseInMemory.getSurvey(surveyCode);
         } catch (SurveyNotFoundException error) {
@@ -117,18 +137,18 @@ public class SurveyService {
         if (survey.getStarted() != null && survey.getStarted()) { // survey still running. Scores are not available yet!
             throw new SurveyStillRunningException("survey " + surveyCode + " is still running:");
         }
-        //extract numberOfUsers for Response
-        Set<String> userIdSet = new HashSet<>();
-
         if (survey.getVotes() == null || survey.getScores() == null) {
             throw new SurveyIncompleteException("Incomplete survey");
         }
+
+        //extract numberOfUsers for Response
+        Set<String> userIdSet = new HashSet<>();
         survey.getVotes().forEach(vote -> userIdSet.add(vote.getUserId()));
 
         Survey finalSurvey = survey;
         List<Score> scores = survey.getScores().stream()
                 .map(scoreItem -> {
-                    Image file = getImageFromSurvey(finalSurvey, scoreItem.getImageId());
+                    Image file = databaseInMemory.getImage(scoreItem.getImageId());
                     return Score.builder()
                             .score(scoreItem.getScore())
                             .imageId(file.getId())
@@ -145,39 +165,26 @@ public class SurveyService {
                 .perspective(survey.getPerspective())
                 .build();
     }
+//    private Image getImage(String imageId) {
+//        log.info("survey {} get image {}", survey.getId(), imageId);
+//
+//        String imageId = survey.getImages().stream()
+//                .filter(image -> image.equals(imageId))
+//                .findFirst()
 
-    private Image getImageFromSurvey(Survey survey, String imageId) {
-        log.info("survey {} get image {}", survey.getCode(), imageId);
-        return survey.getImages().stream()
-                .filter(image -> image.getId().equals(imageId))
-                .findFirst()
-                .orElseThrow(() -> new ImageNotFoundException("survey " + survey.getCode() + " image " + imageId + " not found"));
-    }
+//                .orElseThrow(() -> new ImageNotFoundException("survey " + survey.getId() + " image " + imageId + " not found"));
+//    }
+//    public Image getImageFromSurvey(String surveyCode, String imageId) {
+//        Survey survey = databaseInMemory.getSurvey(surveyCode);
 
-    public Image getImageFromSurvey(String surveyCode, String imageId) {
-        Survey survey = databaseInMemory.getSurvey(surveyCode);
-        return getImageFromSurvey(survey, imageId);
-    }
+//        return getImageFromSurvey(survey, imageId);
 
-    public String addImageToSurvey(String surveyCode, Image image) {
-        log.info("survey {} added image", surveyCode);
-        return databaseInMemory.addImageToSurvey(surveyCode, image);
-    }
+//    }
 
     public void deleteSurvey(String surveyCode) {
         checkIfSurveyIsStopped(surveyCode);
         log.info("survey {} deleted", surveyCode);
         databaseInMemory.removeSurvey(surveyCode);
-    }
-
-    public void persistSurvey(String surveyCode) {
-        Survey survey = databaseInMemory.getSurvey(surveyCode);
-        if (survey.getStarted()) {
-            log.error("survey {} is not stopped", survey.getCode());
-            throw new DatabaseException("survey " + surveyCode + "is not stopped");
-        }
-        databaseMongo.updateSurvey(survey);
-        log.info("survey {} persist", surveyCode);
     }
 
     private void checkIfSurveyIsAlreadyStarted(String surveyCode) {
@@ -194,4 +201,7 @@ public class SurveyService {
         }
     }
 
+    public Image getImage(String imageId) {
+        return databaseInMemory.getImage(imageId);
+    }
 }

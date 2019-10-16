@@ -27,6 +27,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class VoteItem {
-    Image file1;
-    Image file2;
+    String imageId0;
+    String imageId1;
 }

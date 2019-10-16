@@ -46,7 +46,7 @@ public class SimpleVoteAlgorithm implements VoteAlgorithm {
         List<ScoreItem> scores = new ArrayList<>();
         database.getSurvey(surveyCode).getImages().forEach(image -> {
             ScoreItem score = ScoreItem.builder()
-                    .imageId(image.getId())
+                    .imageId(image)
                     .score(0)
                     .build();
             scores.add(score);
@@ -54,15 +54,15 @@ public class SimpleVoteAlgorithm implements VoteAlgorithm {
         for (ScoreItem scoreItem : scores) {
             database.addScore(surveyCode, scoreItem);
         }
-        log.info("initialized algorithm for {}", database.getSurvey(surveyCode).getCode());
+        log.info("initialized algorithm for {}", database.getSurvey(surveyCode).getId());
     }
 
     @Override
     public VoteItem getVote(String surveyCode, String userId) {
-        Pair<Image> images = imageSelectionAlgorithm.getNextImagePair(surveyCode, userId);
+        Pair<String> images = imageSelectionAlgorithm.getNextImagePair(surveyCode, userId);
         return VoteItem.builder()
-                .file1(images.getT1())
-                .file2(images.getT2())
+                .imageId0(images.getT1())
+                .imageId1(images.getT2())
                 .build();
     }
 
