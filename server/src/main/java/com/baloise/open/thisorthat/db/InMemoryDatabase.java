@@ -33,33 +33,17 @@ import java.util.stream.Collectors;
 
 @Repository
 @Slf4j
-public class InMemoryDatabaseService implements DatabaseService {
+public class InMemoryDatabase {
 
     private static final CopyOnWriteArrayList<Survey> surveys = new CopyOnWriteArrayList<>();
 
-    @Override
-    public long surveyCount() {
-        return surveys.size();
-    }
-
-    @Override
-    public void updateSurvey(Survey survey) {
-        int index = 0;
-        for (int i = 0; i < surveys.size(); i++) {
-            if (surveys.get(i).getCode().equals(survey.getCode())) {
-                index = i;
-            }
-        }
-        surveys.set(index, survey);
-    }
-
     public void addSurvey(Survey survey) {
         surveys.add(survey);
-        log.info("added survey {}", survey.getCode());
+        log.info("added survey {}", survey.getId());
     }
 
     public void removeSurvey(String code) {
-        boolean removed = surveys.removeIf(survey -> survey.getCode().equals(code));
+        boolean removed = surveys.removeIf(survey -> survey.getId().equals(code));
         if (removed) {
             log.info("survey deleted {}", code);
         } else {
@@ -69,7 +53,7 @@ public class InMemoryDatabaseService implements DatabaseService {
     }
 
     public Survey getSurvey(String code) {
-        Optional<Survey> surveyOptional = surveys.stream().filter(survey -> survey.getCode().equals(code)).findFirst();
+        Optional<Survey> surveyOptional = surveys.stream().filter(survey -> survey.getId().equals(code)).findFirst();
         if (surveyOptional.isPresent()) {
             return surveyOptional.get();
         } else {
@@ -105,12 +89,10 @@ public class InMemoryDatabaseService implements DatabaseService {
                 .orElseThrow(() -> new ImageNotFoundException("survey" + surveyCode + " image " + imageId + "not found "));
     }
 
-    @Override
     public List<Survey> getSurveysOlderThan(Date cutOffDate) {
         return surveys.stream().filter(s -> s.getCreationDate().before(cutOffDate)).collect(Collectors.toList());
     }
 
-    @Override
     public void addScore(String surveyCode, ScoreItem scoreItem) {
         getSurvey(surveyCode).getScores().add(scoreItem);
     }

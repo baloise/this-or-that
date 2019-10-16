@@ -27,11 +27,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Builder
+@Builder(toBuilder = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Survey {
     private Date creationDate;
-    private String code;
+    private String id;
     private List<Image> images;
     private Boolean started;
     private List<ScoreItem> scores;
