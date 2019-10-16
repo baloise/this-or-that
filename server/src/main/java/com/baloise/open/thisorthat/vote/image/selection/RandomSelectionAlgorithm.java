@@ -15,10 +15,9 @@
  */
 package com.baloise.open.thisorthat.vote.image.selection;
 
-import com.baloise.open.thisorthat.db.DatabaseService;
+import com.baloise.open.thisorthat.db.InMemoryDatabase;
 import com.baloise.open.thisorthat.dto.Image;
 import com.baloise.open.thisorthat.dto.Pair;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -27,12 +26,12 @@ import java.util.stream.Collectors;
 @Service
 public class RandomSelectionAlgorithm implements ImageSelectionAlgorithm {
 
-    private final DatabaseService databaseService;
+    private final InMemoryDatabase inMemoryDatabase;
 
     private final Random rand = new Random();
 
-    public RandomSelectionAlgorithm(@Qualifier("inMemoryDatabaseService") DatabaseService databaseService) {
-        this.databaseService = databaseService;
+    public RandomSelectionAlgorithm(InMemoryDatabase inMemoryDatabase) {
+        this.inMemoryDatabase = inMemoryDatabase;
     }
 
     @Override
@@ -59,8 +58,8 @@ public class RandomSelectionAlgorithm implements ImageSelectionAlgorithm {
         }
         List<String> selectionList = new ArrayList<>(selection);
         Collections.shuffle(selectionList);
-        return new Pair<>(databaseService.getImageFromSurvey(surveyCode, selectionList.get(0)),
-                databaseService.getImageFromSurvey(surveyCode, selectionList.get(1)));
+        return new Pair<>(inMemoryDatabase.getImageFromSurvey(surveyCode, selectionList.get(0)),
+                inMemoryDatabase.getImageFromSurvey(surveyCode, selectionList.get(1)));
     }
 
     private Pair<Image> getRandomImages(String surveyCode) {
@@ -74,13 +73,13 @@ public class RandomSelectionAlgorithm implements ImageSelectionAlgorithm {
     }
 
     private Image getRandomImageFromList(String surveyCode) {
-        List<Image> images = databaseService.getSurvey(surveyCode).getImages();
+        List<Image> images = inMemoryDatabase.getSurvey(surveyCode).getImages();
         return images.get(rand.nextInt(images.size()));
     }
 
     private List<String> getImageIdsNotYetVotedFor(String surveyCode, String userId) {
-        List<String> imageIds = databaseService.getSurvey(surveyCode).getImages().stream().map(Image::getId).collect(Collectors.toList());
-        databaseService.getSurvey(surveyCode).getVotes().stream()
+        List<String> imageIds = inMemoryDatabase.getSurvey(surveyCode).getImages().stream().map(Image::getId).collect(Collectors.toList());
+        inMemoryDatabase.getSurvey(surveyCode).getVotes().stream()
                 .filter(f -> f.getUserId().equals(userId))
                 .forEach(f -> {
                     imageIds.remove(f.getLoser());

@@ -15,12 +15,11 @@
  */
 package com.baloise.open.thisorthat.vote;
 
-import com.baloise.open.thisorthat.db.DatabaseService;
+import com.baloise.open.thisorthat.db.InMemoryDatabase;
 import com.baloise.open.thisorthat.dto.*;
 import com.baloise.open.thisorthat.exception.SurveyStoppedException;
 import com.baloise.open.thisorthat.vote.image.selection.ImageSelectionAlgorithm;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -33,18 +32,18 @@ public class SimpleVoteAlgorithm implements VoteAlgorithm {
     private static final double DEFAULT_WEIGHT_PER_VOTE = 10.0;
 
     private final ImageSelectionAlgorithm imageSelectionAlgorithm;
-    private final DatabaseService database;
+    private final InMemoryDatabase inMemoryDatabase;
 
     public SimpleVoteAlgorithm(ImageSelectionAlgorithm imageSelectionAlgorithm,
-                               @Qualifier("inMemoryDatabaseService") DatabaseService database) {
+                               InMemoryDatabase inMemoryDatabase) {
         this.imageSelectionAlgorithm = imageSelectionAlgorithm;
-        this.database = database;
+        this.inMemoryDatabase = inMemoryDatabase;
     }
 
     @Override
     public void initialize(String surveyCode) {
         List<ScoreItem> scores = new ArrayList<>();
-        database.getSurvey(surveyCode).getImages().forEach(image -> {
+        inMemoryDatabase.getSurvey(surveyCode).getImages().forEach(image -> {
             ScoreItem score = ScoreItem.builder()
                     .imageId(image.getId())
                     .score(0)
@@ -52,9 +51,9 @@ public class SimpleVoteAlgorithm implements VoteAlgorithm {
             scores.add(score);
         });
         for (ScoreItem scoreItem : scores) {
-            database.addScore(surveyCode, scoreItem);
+            inMemoryDatabase.addScore(surveyCode, scoreItem);
         }
-        log.info("initialized algorithm for {}", database.getSurvey(surveyCode).getCode());
+        log.info("initialized algorithm for {}", inMemoryDatabase.getSurvey(surveyCode).getId());
     }
 
     @Override
@@ -68,14 +67,14 @@ public class SimpleVoteAlgorithm implements VoteAlgorithm {
 
     @Override
     public void setVote(String surveyCode, String imageIdWinner, String imageIdLooser, String userId) {
-        database.persistVote(surveyCode, Vote.builder().loser(imageIdLooser).winner(imageIdWinner).userId(userId).build());
+        inMemoryDatabase.persistVote(surveyCode, Vote.builder().loser(imageIdLooser).winner(imageIdWinner).userId(userId).build());
         log.info("voted for {} winner {} looser {}", surveyCode, imageIdWinner, imageIdLooser);
     }
 
     @Override
     public List<ScoreItem> calculateScores(String surveyCode) {
         log.info("ENTRY calculateScore(surveyCode={})", surveyCode);
-        Survey survey = database.getSurvey(surveyCode);
+        Survey survey = inMemoryDatabase.getSurvey(surveyCode);
         Set<String> usersIds = survey.getVotes().stream().map(Vote::getUserId).collect(Collectors.toSet());
         Map<String, Double> imageScores = new HashMap<>();
 
@@ -102,12 +101,12 @@ public class SimpleVoteAlgorithm implements VoteAlgorithm {
     }
 
     public void calculateScoresAndStopSurvey(String surveyCode) {
-        Survey survey = database.getSurvey(surveyCode);
+        Survey survey = inMemoryDatabase.getSurvey(surveyCode);
         if (!survey.getStarted()) {
             throw new SurveyStoppedException("survey " + surveyCode + " already stopped");
         }
         survey.setScores(calculateScores(surveyCode));
-        database.stopSurvey(surveyCode);
+        inMemoryDatabase.stopSurvey(surveyCode);
     }
 
     /**

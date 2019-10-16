@@ -19,14 +19,14 @@ import com.baloise.open.thisorthat.api.dto.Score;
 import com.baloise.open.thisorthat.api.dto.ScoreResponse;
 import com.baloise.open.thisorthat.api.dto.VoteRequest;
 import com.baloise.open.thisorthat.api.dto.VoteResponse;
-import com.baloise.open.thisorthat.db.DatabaseService;
+import com.baloise.open.thisorthat.db.InMemoryDatabase;
+import com.baloise.open.thisorthat.db.MongoDatabaseService;
 import com.baloise.open.thisorthat.dto.Image;
 import com.baloise.open.thisorthat.dto.Survey;
 import com.baloise.open.thisorthat.dto.VoteItem;
 import com.baloise.open.thisorthat.exception.*;
 import com.baloise.open.thisorthat.vote.SimpleVoteAlgorithm;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -36,33 +36,33 @@ import java.util.stream.Collectors;
 @Slf4j
 public class SurveyService {
 
-    private final DatabaseService databaseInMemory;
-    private final DatabaseService databaseMongo;
+    private final InMemoryDatabase inMemoryDatabase;
+    private final MongoDatabaseService mongoDatabaseService;
 
     private final SimpleVoteAlgorithm randomAlgorithm;
 
 
-    public SurveyService(@Qualifier("inMemoryDatabaseService") DatabaseService databaseInMemory,
-                         @Qualifier("mongoDatabaseService") DatabaseService databaseMongo,
+    public SurveyService(InMemoryDatabase inMemoryDatabase,
+                         MongoDatabaseService mongoDatabaseService,
                          SimpleVoteAlgorithm randomAlgorithm) {
-        this.databaseInMemory = databaseInMemory;
-        this.databaseMongo = databaseMongo;
+        this.inMemoryDatabase = inMemoryDatabase;
+        this.mongoDatabaseService = mongoDatabaseService;
         this.randomAlgorithm = randomAlgorithm;
     }
 
     public Survey createSurvey(String perspective) {
         log.info("create survey with perspective {}", perspective);
-        long index = databaseMongo.surveyCount();
+        long index = mongoDatabaseService.surveyCount();
         String code = CodeCreator.createCode(index);
         log.info("code created: {}", code);
-        databaseMongo.addSurvey(Survey.builder()
-                .code(code)
+        mongoDatabaseService.initializeSurvey(Survey.builder()
+                .id(code)
                 .creationDate(new Date())
                 .started(false)
                 .build());
         log.info("added empty survey to mongo");
         Survey survey = Survey.builder()
-                .code(code)
+                .id(code)
                 .creationDate(new Date())
                 .perspective(perspective)
                 .images(new ArrayList<>())
@@ -70,14 +70,14 @@ public class SurveyService {
                 .votes(new ArrayList<>())
                 .started(false)
                 .build();
-        databaseInMemory.addSurvey(survey);
+        inMemoryDatabase.addSurvey(survey);
         log.info("added survey to inMemory");
         return survey;
     }
 
     public void startSurvey(String surveyCode) {
         checkIfSurveyIsAlreadyStarted(surveyCode);
-        databaseInMemory.startSurvey(surveyCode);
+        inMemoryDatabase.startSurvey(surveyCode);
         randomAlgorithm.initialize(surveyCode);
         log.info("survey {} started and initialized", surveyCode);
     }
@@ -95,7 +95,7 @@ public class SurveyService {
         return VoteResponse.builder()
                 .id1(voteItem.getFile1().getId())
                 .id2(voteItem.getFile2().getId())
-                .perspective(databaseInMemory.getSurvey(surveyCode).getPerspective())
+                .perspective(inMemoryDatabase.getSurvey(surveyCode).getPerspective())
                 .surveyIsRunning(true)
                 .build();
     }
@@ -107,13 +107,7 @@ public class SurveyService {
     }
 
     public ScoreResponse getScore(String surveyCode) {
-        Survey survey;
-        try {
-            survey = databaseInMemory.getSurvey(surveyCode);
-        } catch (SurveyNotFoundException error) {
-            log.warn("survey not found in memory looking for in database surveyCode {}", surveyCode);
-            survey = databaseMongo.getSurvey(surveyCode);
-        }
+        Survey survey = getSurvey(surveyCode);
         if (survey.getStarted() != null && survey.getStarted()) { // survey still running. Scores are not available yet!
             throw new SurveyStillRunningException("survey " + surveyCode + " is still running:");
         }
@@ -125,10 +119,9 @@ public class SurveyService {
         }
         survey.getVotes().forEach(vote -> userIdSet.add(vote.getUserId()));
 
-        Survey finalSurvey = survey;
         List<Score> scores = survey.getScores().stream()
                 .map(scoreItem -> {
-                    Image file = getImageFromSurvey(finalSurvey, scoreItem.getImageId());
+                    Image file = getImageFromSurvey(survey, scoreItem.getImageId());
                     return Score.builder()
                             .score(scoreItem.getScore())
                             .imageId(file.getId())
@@ -146,49 +139,61 @@ public class SurveyService {
                 .build();
     }
 
+    private Survey getSurvey(String surveyCode) {
+        Survey survey;
+        try {
+            survey = inMemoryDatabase.getSurvey(surveyCode);
+        } catch (SurveyNotFoundException error) {
+            log.warn("survey not found in memory looking for in database surveyCode {}", surveyCode);
+            survey = mongoDatabaseService.getSurvey(surveyCode);
+        }
+        return survey;
+    }
+
     private Image getImageFromSurvey(Survey survey, String imageId) {
-        log.info("survey {} get image {}", survey.getCode(), imageId);
+        log.info("survey {} get image {}", survey.getId(), imageId);
         return survey.getImages().stream()
                 .filter(image -> image.getId().equals(imageId))
                 .findFirst()
-                .orElseThrow(() -> new ImageNotFoundException("survey " + survey.getCode() + " image " + imageId + " not found"));
+                .orElseThrow(() -> new ImageNotFoundException("survey " + survey.getId() + " image " + imageId + " not found"));
     }
 
     public Image getImageFromSurvey(String surveyCode, String imageId) {
-        Survey survey = databaseInMemory.getSurvey(surveyCode);
+        Survey survey = getSurvey(surveyCode);
         return getImageFromSurvey(survey, imageId);
     }
 
     public String addImageToSurvey(String surveyCode, Image image) {
         log.info("survey {} added image", surveyCode);
-        return databaseInMemory.addImageToSurvey(surveyCode, image);
+        return inMemoryDatabase.addImageToSurvey(surveyCode, image);
     }
 
     public void deleteSurvey(String surveyCode) {
         checkIfSurveyIsStopped(surveyCode);
         log.info("survey {} deleted", surveyCode);
-        databaseInMemory.removeSurvey(surveyCode);
+        inMemoryDatabase.removeSurvey(surveyCode);
+        mongoDatabaseService.removeSurvey(surveyCode);
     }
 
     public void persistSurvey(String surveyCode) {
-        Survey survey = databaseInMemory.getSurvey(surveyCode);
+        Survey survey = inMemoryDatabase.getSurvey(surveyCode);
         if (survey.getStarted()) {
-            log.error("survey {} is not stopped", survey.getCode());
+            log.error("survey {} is not stopped", survey.getId());
             throw new DatabaseException("survey " + surveyCode + "is not stopped");
         }
-        databaseMongo.updateSurvey(survey);
+        mongoDatabaseService.persistSurvey(survey);
         log.info("survey {} persist", surveyCode);
     }
 
     private void checkIfSurveyIsAlreadyStarted(String surveyCode) {
-        if (databaseInMemory.getSurvey(surveyCode).getStarted() != null && databaseInMemory.getSurvey(surveyCode).getStarted()) {
+        if (inMemoryDatabase.getSurvey(surveyCode).getStarted() != null && inMemoryDatabase.getSurvey(surveyCode).getStarted()) {
             log.warn("survey {} is not running", surveyCode);
             throw new SurveyAlreadyStartedException("survey " + surveyCode + " is already started");
         }
     }
 
     private void checkIfSurveyIsStopped(String surveyCode) {
-        if (databaseInMemory.getSurvey(surveyCode).getStarted() != null && !databaseInMemory.getSurvey(surveyCode).getStarted()) {
+        if (inMemoryDatabase.getSurvey(surveyCode).getStarted() != null && !inMemoryDatabase.getSurvey(surveyCode).getStarted()) {
             log.warn("survey {} is not running", surveyCode);
             throw new SurveyStoppedException("survey " + surveyCode + " is already stopped");
         }

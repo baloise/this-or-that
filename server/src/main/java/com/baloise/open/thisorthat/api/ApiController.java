@@ -44,7 +44,7 @@ public class ApiController {
         try {
             Survey survey = surveyService.createSurvey(createSurveyRequest.getPerspective());
             return SurveyResponse.builder()
-                    .code(survey.getCode())
+                    .code(survey.getId())
                     .build();
         } catch (Exception e) {
 
