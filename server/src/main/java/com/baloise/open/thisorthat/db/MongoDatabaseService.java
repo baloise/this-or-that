@@ -80,15 +80,15 @@ public class MongoDatabaseService {
     public void persistSurvey(Survey survey) {
         List<Image> images = survey.getImages().stream()
                 .map(image -> Image.builder()
-                        .id(survey.getId() + "_" + image.getId())
+                        .id(createDatabaseImageId(survey.getId(), image.getId()))
                         .build())
                 .collect(Collectors.toList());
         Survey copyOfSurvey = survey.toBuilder()
                 .images(images)
                 .build();
         surveys.replaceOne(eq("_id", survey.getId()), copyOfSurvey);
-        for (Image image : images) {
-            addImage(image);
+        for (Image image : survey.getImages()) {
+            addImage(image.toBuilder().id(createDatabaseImageId(survey.getId(), image.getId())).build());
         }
     }
 
@@ -108,6 +108,10 @@ public class MongoDatabaseService {
         }
         log.error("survey not found survey {}", surveyCode);
         throw new SurveyNotFoundException("survey not found");
+    }
+
+    private String createDatabaseImageId(String surveyId, String imageId) {
+        return surveyId + "_" + imageId;
     }
 
     private List<Image> getImagesFromSurvey(List<Image> images) {
