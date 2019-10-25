@@ -1,96 +1,71 @@
 <template>
-    <layout>
-        <div class="about">
-            <h1>This-or-That</h1>
-            <p>... is built with cutting-edge technology, dedication and a lot of chees.</p>
-            <div class="columns">
-                <div class="column">
-                    <div class="box has-text-centered">
-                        <p>Rudolf Biczok</p>
-                        <a href="https://github.com/RCBiczok">
-                            <figure class="image is-128x128">
-                                <img
-                                    src="https://avatars.githubusercontent.com/u/538973?s=128"
-                                    alt="img_rudolf_biczok"
-                                />
-                            </figure>
-                        </a>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="box">
-                        <p>Gery Hirschfeld</p>
-                        <a href="https://github.com/hirsch88">
-                            <figure class="image is-128x128">
-                                <img
-                                    src="https://avatars.githubusercontent.com/u/6384499?s=128"
-                                    alt="img_gery_hirschfeld"
-                                />
-                            </figure>
-                        </a>
+    <section id="about">
+        <section class="hero is-primary is-bold is-fullheight-with-navbar">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">About This-or-That</h1>
+                    <h2 class="subtitle">... is built with cutting-edge technology, dedication and a lot of chees.</h2>
+                    <div class="columns is-multiline">
+                        <div class="column is-one-third"
+                             v-for="user in contributers" v-bind:key="user.name">
+                            <div class="box has-text-centered" style="min-height: 245px">
+                                <p class="subtitle has-text-grey">{{ user.name }}</p>
+                                <a :href="user.link">
+                                    <figure class="image is-128x128">
+                                        <img :src="user.avatar"/>
+                                    </figure>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="columns">
-                <div class="column">
-                    <div class="box">
-                        <p>Yannick Holzenkamp</p>
-                        <a href="https://github.com/yannickholzenkamp">
-                            <figure class="image is-128x128">
-                                <img
-                                    src="https://avatars.githubusercontent.com/u/9351023?s=128"
-                                    alt="img_yannick_holzenkamp"
-                                />
-                            </figure>
-                        </a>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="box">
-                        <p>Philipp Steiner</p>
-                        <a href="https://github.com/jordilaforge">
-                            <figure class="image is-128x128">
-                                <img
-                                    src="https://avatars.githubusercontent.com/u/9675234?s=128"
-                                    alt="img_philipp_steiner"
-                                />
-                            </figure>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="box">
-                <p>Markus Tiede</p>
-                <a href="https://github.com/MarkusTiede">
-                    <figure class="image is-128x128">
-                        <img
-                            src="https://avatars.githubusercontent.com/u/1764012?s=128"
-                            alt="img_markus_tiede"
-                        />
-                    </figure>
-                </a>
-            </div>
-        </div>
-    </layout>
+        </section>
+    </section>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import Layout from '@/app/components/layout.vue';
+    import {Component, Vue} from 'vue-property-decorator';
 
-@Component({
-    components: { Layout },
-})
-export default class About extends Vue {}
+    @Component
+    export default class About extends Vue {
+
+        contributers = [
+            {
+                name: 'Philipp Steiner',
+                avatar: 'https://avatars.githubusercontent.com/u/9675234?s=128',
+                link: 'https://github.com/jordilaforge',
+            }, {
+                name: 'Gery Hirschfeld',
+                avatar: 'https://avatars.githubusercontent.com/u/6384499?s=128',
+                link: 'https://github.com/hirsch88',
+            }, {
+                name: 'Markus Tiede',
+                avatar: 'https://avatars.githubusercontent.com/u/1764012?s=128',
+                link: 'https://github.com/MarkusTiede',
+            }, {
+                name: 'Rudolf Biczok',
+                avatar: 'https://avatars.githubusercontent.com/u/538973?s=128',
+                link: 'https://github.com/RCBiczok',
+            }, {
+                name: 'Yannick Holzenkamp',
+                avatar: 'https://avatars.githubusercontent.com/u/9351023?s=128',
+                link: 'https://github.com/yannickholzenkamp',
+            },
+
+
+        ];
+
+    }
 </script>
 
 <style lang="scss" scoped>
-.image {
-    margin-left: auto;
-    margin-right: auto;
-}
+    .image {
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-.image img {
-    border-radius: 5px;
-}
+    .image img {
+        border-radius: 5px;
+    }
 </style>
