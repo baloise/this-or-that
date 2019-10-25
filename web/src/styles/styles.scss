@@ -1,11 +1,15 @@
 @charset "UTF-8";
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,800&display=swap');
-// Import Bulma's core
-@import '~bulma/sass/utilities/_all';
 
 $family-secondary: 'Open Sans', sans-serif;
 $weight-bold: 700;
+$info: #1871E4;
+$primary: #00D5B1;
+$tablet: 768px;
+
+// Import Bulma's core
+@import '~bulma/sass/utilities/_all';
 
 // Import Bulma and Buefy styles
 @import '~bulma';
@@ -29,12 +33,20 @@ img.element {
   border: 1px solid #ccc;
   box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.3);
   transition: opacity, box-shadow 0.2s;
+
   &:focus,
   &:active {
     box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
+
     &.dragging {
       z-index: 3;
       box-shadow: 8px 8px 12px 0px rgba(0, 0, 0, 0.3);
     }
+  }
+}
+
+.custom-upload-expanded {
+  label.upload.control, div.upload-draggable {
+    width: 100%;
   }
 }
