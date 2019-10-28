@@ -1,6 +1,6 @@
 <template>
     <section id="vote">
-        <section class="hero is-info is-bold is-fullheight-with-navbar">
+        <section class="hero is-info is-bold is-fullheight">
             <div class="hero-head">
                 <nav class="navbar" role="navigation">
                     <div class="navbar-brand">
@@ -12,6 +12,7 @@
                         <div class="navbar-item"
                              style="flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                             <span class="title"
+                                  v-if="voteResponse"
                                   style="margin-bottom: 0; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
                                 {{ voteResponse.perspective }} <small>(Votes: {{submittedVotes}})</small>
                             </span>
@@ -190,7 +191,6 @@
     }
 
     @include mobile() {
-
         .title {
             font-size: 1.2rem;
             margin-bottom: 0.75rem;
@@ -200,6 +200,5 @@
             font-size: 1rem;
         }
     }
-
 </style>
 

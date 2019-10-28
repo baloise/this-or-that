@@ -1,5 +1,6 @@
 <template>
     <section id="admin">
+        <Header></Header>
         <section class="hero is-info is-bold is-fullheight-with-navbar">
             <div class="hero-body">
                 <div class="container">
@@ -53,9 +54,10 @@
     import {getImageURL, getScore, stopSurvey} from '@/app/api/survey.api';
     import {ScoreResponse} from '@/app/models/score-response';
     import QrcodeVue from 'qrcode.vue';
+    import Header from '@/app/components/Header.vue';
 
     @Component({
-        components: {QrcodeVue},
+        components: {Header, QrcodeVue},
     })
     export default class AdminContainer extends Vue {
         public isLoading = false;

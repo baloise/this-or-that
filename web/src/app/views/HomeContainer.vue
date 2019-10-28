@@ -1,6 +1,7 @@
 <template>
     <section id="home">
-        <section class="hero is-primary is-bold is-fullheight-with-navbar">
+        <Header></Header>
+        <section class="hero is-light is-bold is-fullheight-with-navbar">
             <div class="hero-body">
                 <div class="container has-text-centered">
                     <h1 class="title">Make your prioritization</h1>
@@ -58,9 +59,10 @@
 
 <script lang="ts">
     import {Component, Vue} from 'vue-property-decorator';
+    import Header from '@/app/components/Header.vue';
 
     @Component({
-        components: {},
+        components: {Header},
     })
     export default class HomeContainer extends Vue {
         public surveyCode = '';

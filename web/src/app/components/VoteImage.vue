@@ -30,4 +30,16 @@
             max-width: 240px;
         }
     }
+
+    @include tablet() {
+        .inner {
+            max-width: 260px;
+        }
+    }
+
+    @include desktop() {
+        .inner {
+            max-width: 480px;
+        }
+    }
 </style>

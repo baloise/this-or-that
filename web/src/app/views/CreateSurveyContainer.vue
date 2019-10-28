@@ -1,108 +1,111 @@
 <template>
-    <section id="about" class="hero is-light is-bold is-fullheight-with-navbar">
-        <div class="hero-body">
-            <div class="container">
-                <div class="box" v-if="!this.surveyCode">
-                    <h1 class="title is-3">Create A Survey</h1>
-                    <b-field label="Choose a perspective for your survey!">
-                        <b-input v-model="perspective"
-                                 :disabled="isLoading"
-                                 placeholder="Enter a survey name"></b-input>
-                    </b-field>
-
-                    <label class="label">Upload your Images! (Only PNG & JPG are supported)</label>
-                    <div class="field" v-if="!imageSource" style="max-height: 200px">
-                        <b-field class="custom-upload-expanded" :expanded="true">
-                            <b-upload accept="image/x-png,image/png,image/jpeg" drag-drop v-model="imageFile">
-                                <section class="section">
-                                    <div class="content has-text-centered">
-                                        <p>
-                                            <b-icon icon="upload" size="is-large"></b-icon>
-                                        </p>
-                                        <p>Drop your file here or click to upload</p>
-                                    </div>
-                                </section>
-                            </b-upload>
+    <section id="create">
+        <Header></Header>
+        <section class="hero is-light is-bold is-fullheight-with-navbar">
+            <div class="hero-body">
+                <div class="container">
+                    <div class="box" v-if="!this.surveyCode">
+                        <h1 class="title is-3">Create A Survey</h1>
+                        <b-field label="Choose a perspective for your survey!">
+                            <b-input v-model="perspective"
+                                     :disabled="isLoading"
+                                     placeholder="Enter a survey name"></b-input>
                         </b-field>
-                    </div>
-                    <div class="columns is-centered" v-show="imageSource && imageSource.length > 0">
-                        <div class="column is-half" style="max-width: 512px">
-                            <vue-cropper ref="cropper"
-                                         :src="imageSource"
-                                         :aspect-ratio="1 / 1"
-                                         :view-mode="3"
-                                         alt="">
-                            </vue-cropper>
 
-                            <br>
+                        <label class="label">Upload your Images! (Only PNG & JPG are supported)</label>
+                        <div class="field" v-if="!imageSource" style="max-height: 200px">
+                            <b-field class="custom-upload-expanded" :expanded="true">
+                                <b-upload accept="image/x-png,image/png,image/jpeg" drag-drop v-model="imageFile">
+                                    <section class="section">
+                                        <div class="content has-text-centered">
+                                            <p>
+                                                <b-icon icon="upload" size="is-large"></b-icon>
+                                            </p>
+                                            <p>Drop your file here or click to upload</p>
+                                        </div>
+                                    </section>
+                                </b-upload>
+                            </b-field>
+                        </div>
+                        <div class="columns is-centered" v-show="imageSource && imageSource.length > 0">
+                            <div class="column is-half" style="max-width: 512px">
+                                <vue-cropper ref="cropper"
+                                             :src="imageSource"
+                                             :aspect-ratio="1 / 1"
+                                             :view-mode="3"
+                                             alt="">
+                                </vue-cropper>
+
+                                <br>
+                                <div class="buttons">
+                                    <b-button type="is-info"
+                                              :disabled="isImageProcessing"
+                                              :loading="isImageProcessing"
+                                              @click="cropImage()">Add Image to Survey
+                                    </b-button>
+                                    <b-button type="is-danger"
+                                              :disabled="isImageProcessing"
+                                              :loading="isImageProcessing"
+                                              @click="cancelCrop()">Cancel
+                                    </b-button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="label" v-if="imageSources && imageSources.length > 0">Images</p>
+                        <div class="columns is-mobile is-multiline">
+                            <div class="column is-one-quarter" v-for="(imageSource, index) in imageSources"
+                                 :key="imageSource">
+                                <figure class="image is-square" style="position: relative">
+                                    <button class="delete is-large"
+                                            @click="deleteImage(index)"
+                                            style="position: absolute; z-index: 100; top: 5px; right: 5px"></button>
+                                    <img :src="imageSource" :alt="'Preview ' + (index+1)">
+                                </figure>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="buttons">
+                            <b-button type="is-primary"
+                                      :disabled="this.imageSources.length < 2 || isLoading"
+                                      :loading="isLoading"
+                                      @click="create()"
+                                      size="is-medium">Create Survey
+                            </b-button>
+
+                            <b-button type="is-info"
+                                      :disabled="isLoading"
+                                      :loading="isLoading"
+                                      @click="back()"
+                                      size="is-medium">Cancel
+                            </b-button>
+                        </div>
+
+                    </div>
+
+                    <div class="box has-text-centered" v-if="this.surveyCode && !this.isLoading">
+                        <h3 class="title is-3">Survey is created</h3>
+                        <h3 class="subtitle is-3">Your surveyCode: {{this.surveyCode}}</h3>
+                        <qrcode-vue :value="this.qrCodeUrl" size="200" level="H"></qrcode-vue>
+                        <br/>
+                        <div class="field is-grouped is-grouped-centered">
                             <div class="buttons">
-                                <b-button type="is-info"
-                                          :disabled="isImageProcessing"
-                                          :loading="isImageProcessing"
-                                          @click="cropImage()">Add Image to Survey
+                                <b-button type="is-primary" @click="vote()" size="is-medium">
+                                    Let's Vote
                                 </b-button>
-                                <b-button type="is-danger"
-                                          :disabled="isImageProcessing"
-                                          :loading="isImageProcessing"
-                                          @click="cancelCrop()">Cancel
+                                <b-button type="is-danger" @click="manageSurvey()" size="is-medium">
+                                    Close Survey
                                 </b-button>
                             </div>
                         </div>
                     </div>
-
-                    <p class="label" v-if="imageSources && imageSources.length > 0">Images</p>
-                    <div class="columns is-mobile is-multiline">
-                        <div class="column is-one-quarter" v-for="(imageSource, index) in imageSources"
-                             :key="imageSource">
-                            <figure class="image is-square" style="position: relative">
-                                <button class="delete is-large"
-                                        @click="deleteImage(index)"
-                                        style="position: absolute; z-index: 100; top: 5px; right: 5px"></button>
-                                <img :src="imageSource" :alt="'Preview ' + (index+1)">
-                            </figure>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="buttons">
-                        <b-button type="is-primary"
-                                  :disabled="this.imageSources.length < 2 || isLoading"
-                                  :loading="isLoading"
-                                  @click="create()"
-                                  size="is-medium">Create Survey
-                        </b-button>
-
-                        <b-button type="is-info"
-                                  :disabled="isLoading"
-                                  :loading="isLoading"
-                                  @click="back()"
-                                  size="is-medium">Cancel
-                        </b-button>
-                    </div>
-
-                </div>
-
-                <div class="box has-text-centered" v-if="this.surveyCode && !this.isLoading">
-                    <h3 class="title is-3">Survey is created</h3>
-                    <h3 class="subtitle is-3">Your surveyCode: {{this.surveyCode}}</h3>
-                    <qrcode-vue :value="this.qrCodeUrl" size="200" level="H"></qrcode-vue>
-                    <br/>
-                    <div class="field is-grouped is-grouped-centered">
-                        <div class="buttons">
-                            <b-button type="is-primary" @click="vote()" size="is-medium">
-                                Let's Vote
-                            </b-button>
-                            <b-button type="is-danger" @click="manageSurvey()" size="is-medium">
-                                Close Survey
-                            </b-button>
-                        </div>
-                    </div>
                 </div>
             </div>
-        </div>
-        <b-loading :active.sync="isLoading" :is-full-page="true"></b-loading>
-        <b-loading :active.sync="isImageProcessing" :is-full-page="true"></b-loading>
+            <b-loading :active.sync="isLoading" :is-full-page="true"></b-loading>
+            <b-loading :active.sync="isImageProcessing" :is-full-page="true"></b-loading>
+        </section>
     </section>
 </template>
 
@@ -114,9 +117,10 @@
     import QrcodeVue from 'qrcode.vue';
     import VueCropper from 'vue-cropperjs';
     import 'cropperjs/dist/cropper.css';
+    import Header from '@/app/components/Header.vue';
 
     @Component({
-        components: {QrcodeVue, VueCropper},
+        components: {Header, QrcodeVue, VueCropper},
     })
     export default class CreateSurveyContainer extends Vue {
         public perspective: string = '';
