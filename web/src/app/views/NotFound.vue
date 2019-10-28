@@ -16,10 +16,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Layout from '@/app/components/layout.vue';
 
 @Component({
-    components: { Layout },
 })
 export default class NotFound extends Vue {}
 </script>
