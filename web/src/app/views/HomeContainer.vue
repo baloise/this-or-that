@@ -25,9 +25,10 @@
                                 <div class="content is-center">
                                     <h4 class="title is-5 has-text-grey">Enter your Survey Code</h4>
                                     <video v-show="isScanEnabled" ref="preview"></video>
-                                    <b-field>
+                                    <b-field expanded>
                                         <b-input placeholder="Survey Code"
                                                  v-model="surveyCode"
+                                                 expanded
                                                  size="is-medium">
                                         </b-input>
                                         <p class="control">
