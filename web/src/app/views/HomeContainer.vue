@@ -115,7 +115,8 @@
                             .replace('/this-or-that', '')
                             .replace('/index.html', '')
                             .replace('#/', '')
-                            .replace('/vote', '');
+                            .replace('/vote', '')
+                            .replace(/\//g, '');
                         if (this.stream) {
                             this.stream.getTracks().forEach(value => value.stop());
                         }
