@@ -1,67 +1,92 @@
 <template>
     <section id="home">
         <Header></Header>
-        <section class="hero is-light is-bold is-fullheight-with-navbar">
+
+        <section class="hero is-info is-bold">
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <h1 class="title is-2">Joining a Survey?</h1>
+                    <br>
+                    <div class="columns is-centered">
+                        <div class="column is-half">
+                            <canvas ref="canvas" hidden></canvas>
+                            <video v-show="isScanEnabled" ref="preview"></video>
+                            <b-field expanded>
+                                <b-input placeholder="Enter Survey Code"
+                                         v-model="surveyCode"
+                                         expanded
+                                         size="is-medium">
+                                </b-input>
+                                <p class="control">
+                                    <button class="button is-info is-inverted is-medium"
+                                            :disabled="isScanEnabled"
+                                            :loading="isScanEnabled"
+                                            @click="scan()">
+                                        Scan QR-Code
+                                    </button>
+                                </p>
+                            </b-field>
+                            <br>
+                            <div class="columns is-centered ">
+                                <div class="column is-half">
+                                    <button :disabled="surveyCode.length === 0 && isScanEnabled"
+                                            @click="vote()"
+                                            class="button is-primary is-medium is-fullwidth">
+                                        Let's Vote
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="hero">
             <div class="hero-body">
                 <div class="container has-text-centered">
                     <h1 class="title">Make your prioritization</h1>
                     <h2 class="subtitle">With This-or-That, prioritizing is fun and fast.</h2>
                     <br>
-                    <br>
-                    <canvas ref="canvas" hidden></canvas>
-                    <div class="columns">
-                        <div class="column is-half">
-                            <div class="box" style="min-height: 245px">
-                                <div class="content is-center">
-                                    <img alt="robot" width="160px"
-                                         src="../../assets/this_or_that_robot_tranparent.gif"/>
-                                    <h4 class="title is-5 has-text-grey"></h4>
-                                    <button @click="create()" class="button is-info is-medium">Create a Survey</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="column is-half">
-                            <div class="box" style="min-height: 245px">
-                                <div class="content is-center">
-                                    <h4 class="title is-5 has-text-grey">Enter your Survey Code</h4>
-                                    <video v-show="isScanEnabled" ref="preview"></video>
-                                    <b-field expanded>
-                                        <b-input placeholder="Survey Code"
-                                                 v-model="surveyCode"
-                                                 expanded
-                                                 size="is-medium">
-                                        </b-input>
-                                        <p class="control">
-                                            <button class="button is-info is-medium"
-                                                    :disabled="isScanEnabled"
-                                                    :loading="isScanEnabled"
-                                                    @click="scan()">
-                                                Scan QR-Code
-                                            </button>
-                                        </p>
-                                    </b-field>
-                                    <hr>
-                                    <div class="columns">
-                                        <div class="column is-half">
-                                            <button :disabled="surveyCode.length === 0 && isScanEnabled"
-                                                    @click="vote()"
-                                                    class="button is-primary is-medium is-fullwidth">
-                                                Let's Vote
-                                            </button>
-                                        </div>
-                                        <div class="column is-half">
-                                            <button :disabled="surveyCode.length === 0 && isScanEnabled"
-                                                    @click="manageSurvey()"
-                                                    class="button is-danger is-medium is-fullwidth">
-                                                Close Survey
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="content is-center">
+                        <img alt="robot" width="160px"
+                             src="../../assets/this_or_that_robot_tranparent.gif"/>
+                        <h4 class="title is-5 has-text-grey">Ready to get Started?</h4>
+                    </div>
+                    <div class="columns is-centered ">
+                        <div class="column is-one-quarter">
+                            <button @click="create()" class="button is-info is-medium is-fullwidth">Create a Survey
+                            </button>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
 
+        <section class="hero is-info">
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <h1 class="title">Manage your Survey</h1>
+                    <h2 class="subtitle">This will close a survey for all the participants.</h2>
+                    <br>
+                    <div class="columns is-centered">
+                        <div class="column is-one-quarter">
+                            <b-field expanded>
+                                <b-input placeholder="Enter Survey Code"
+                                         v-model="surveyCode"
+                                         expanded
+                                         size="is-medium">
+                                </b-input>
+                            </b-field>
+                            <br>
+                            <button :disabled="surveyCode.length === 0 && isScanEnabled"
+                                    @click="manageSurvey()"
+                                    class="button is-primary is-medium is-fullwidth">
+                                Close & Show Results
+                            </button>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
