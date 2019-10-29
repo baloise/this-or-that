@@ -54,3 +54,11 @@ img.element {
     width: 100%;
   }
 }
+
+.padded-container {
+  padding: 3rem 1.5rem;
+
+  @include desktop() {
+    padding: 3rem 0;
+  }
+}
