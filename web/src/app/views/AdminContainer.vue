@@ -1,5 +1,6 @@
 <template>
     <section id="admin">
+        <Header></Header>
         <section class="hero is-info is-bold is-fullheight-with-navbar">
             <div class="hero-body">
                 <div class="container">
@@ -13,7 +14,6 @@
                             Back
                         </b-button>
                         <hr>
-
                         <nav class="level">
                             <div class="level-item has-text-centered">
                                 <div>
@@ -31,12 +31,13 @@
 
                         <hr>
 
-                        <div class="columns is-vcentered is-centered is-multiline" v-if="score && score.scores">
-                            <div class="column is-one-quarter" v-for="item in score.scores" v-bind:key="item.imageId">
-                                <div class="vote-result box">
-                                    <img :src="getImageURL(item.imageId)" alt="img" class="element"/>
+                        <div class="columns is-mobile is-multiline" v-if="score && score.scores">
+                            <div class="column is-half-mobile is-one-quarter" v-for="(item, index) in score.scores"
+                                 :key="item.imageId">
+                                <figure class="image is-square" style="position: relative">
+                                    <img :src="getImageURL(item.imageId)" :alt="'Image ' + (index+1)">
                                     <div class="score has-text-grey">Score: <b>{{item.score}}</b></div>
-                                </div>
+                                </figure>
                             </div>
                         </div>
                     </div>
@@ -52,10 +53,10 @@
     import {getImageURL, getScore, stopSurvey} from '@/app/api/survey.api';
     import {ScoreResponse} from '@/app/models/score-response';
     import QrcodeVue from 'qrcode.vue';
-    import Layout from '@/app/components/layout.vue';
+    import Header from '@/app/components/Header.vue';
 
     @Component({
-        components: {QrcodeVue, Layout},
+        components: {Header, QrcodeVue},
     })
     export default class AdminContainer extends Vue {
         public isLoading = false;
@@ -110,21 +111,12 @@
 </script>
 
 <style lang="scss" scoped>
-    .vote-result {
-        position: relative;
-
-        .element {
-            border: none;
-            box-shadow: none;
-        }
-
-        .score {
-            position: absolute;
-            z-index: 5;
-            top: 3px;
-            left: 3px;
-            padding: 0.6rem;
-            background: rgba(255, 255, 255, 0.5);
-        }
+    .score {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 5;
+        padding: 0.6rem;
+        background: rgba(255, 255, 255, 0.75);
     }
 </style>

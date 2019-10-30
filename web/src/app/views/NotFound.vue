@@ -1,5 +1,6 @@
 <template>
     <section id="not-found">
+        <Header></Header>
         <section class="hero is-primary is-bold is-fullheight-with-navbar">
             <div class="hero-body">
                 <div class="container has-text-centered">
@@ -16,10 +17,10 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Layout from '@/app/components/layout.vue';
+import Header from '@/app/components/Header.vue';
 
 @Component({
-    components: { Layout },
+    components: {Header},
 })
 export default class NotFound extends Vue {}
 </script>

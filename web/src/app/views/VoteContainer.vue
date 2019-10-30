@@ -1,28 +1,34 @@
 <template>
     <section id="vote">
-        <section class="hero is-info is-bold is-fullheight-with-navbar">
+        <section class="hero is-info is-bold is-fullheight">
+            <div class="hero-head">
+                <nav class="navbar" role="navigation">
+                    <div class="navbar-brand">
+                        <div class="navbar-item">
+                            <button class="button is-info is-inverted is-outlined" @click="back()">
+                                ⬅️ Back
+                            </button>
+                        </div>
+                        <div class="navbar-item"
+                             style="flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            <span class="title"
+                                  v-if="voteResponse"
+                                  style="margin-bottom: 0; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
+                                {{ voteResponse.perspective }} <small>(Votes: {{submittedVotes}})</small>
+                            </span>
+                        </div>
+                    </div>
+                </nav>
+            </div>
             <div class="hero-body">
                 <div class="container has-text-centered">
                     <div v-if="voteResponse && voteResponse.id1 != null">
-                        <h1 class="title">
-                            {{ voteResponse.perspective }}
-                            <small class="is-hidden-tablet">(Votes: {{submittedVotes}})</small>
-                        </h1>
-                        <h1 class="subtitle is-hidden-mobile">Submitted votes: {{submittedVotes}}</h1>
-                        <div class="columns" :class="isLandscape ? 'is-mobile':''">
+                        <div class="image-container columns is-centered" :class="isLandscape ? 'is-mobile':''">
                             <div class="column is-half">
-                                <div class="box">
-                                    <img class="element"
-                                         @click="vote(1)"
-                                         :src="getImageURL1()"/>
-                                </div>
+                                <VoteImage :src="getImageURL1()" @click.native="vote(1)"></VoteImage>
                             </div>
                             <div class="column is-half">
-                                <div class="box">
-                                    <img class="element"
-                                         @click="vote(2)"
-                                         :src="getImageURL2()"/>
-                                </div>
+                                <VoteImage :src="getImageURL2()" @click.native="vote(2)"></VoteImage>
                             </div>
                         </div>
                     </div>
@@ -55,10 +61,10 @@
     import {getImageURL, getVote, setVote} from '@/app/api/survey.api';
     import {VoteRequest} from '@/app/models/vote-request';
     import {VoteResponse} from '@/app/models/vote-response';
-    import Layout from '@/app/components/layout.vue';
+    import VoteImage from '@/app/components/VoteImage.vue';
 
     @Component({
-        components: {Layout},
+        components: {VoteImage},
     })
     export default class VoteContainer extends Vue {
         public isLoading = true;
@@ -171,41 +177,28 @@
 <style lang="scss" scoped>
     @import "~bulma/sass/utilities/all";
 
-    .box {
-        cursor: pointer;
+    .hero-body, .section {
+        padding: 1.5rem;
+    }
 
-        .element {
-            border: none;
-            box-shadow: none;
-        }
-
-        img {
-            max-height: 400px;
+    .image-container {
+        .column {
+            justify-content: center;
+            align-items: center;
+            display: flex;
         }
 
     }
 
     @include mobile() {
-        .hero-body {
-            padding: 1.5rem 1.5rem;
-        }
-
-        .box {
-            padding: 0.8rem;
-
-            img {
-                max-height: 200px;
-            }
-        }
-
         .title {
             font-size: 1.2rem;
+            margin-bottom: 0.75rem;
         }
 
         .subtitle {
             font-size: 1rem;
         }
     }
-
 </style>
 

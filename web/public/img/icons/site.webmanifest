@@ -1,6 +1,6 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "this-or-that-web",
+    "short_name": "this-or-that-web",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -13,7 +13,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
+    "theme_color": "#FFFFFF",
+    "background_color": "#FFFFFF",
     "display": "standalone"
 }

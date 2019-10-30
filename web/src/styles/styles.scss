@@ -21,6 +21,10 @@ $tablet: 768px;
   text-align: center;
 }
 
+figure {
+  box-shadow: 0 2px 3px rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .1);
+}
+
 img.element {
   z-index: 2;
   max-width: 100%;
@@ -48,5 +52,13 @@ img.element {
 .custom-upload-expanded {
   label.upload.control, div.upload-draggable {
     width: 100%;
+  }
+}
+
+.padded-container {
+  padding: 3rem 1.5rem;
+
+  @include desktop() {
+    padding: 3rem 0;
   }
 }

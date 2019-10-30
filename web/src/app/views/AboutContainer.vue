@@ -1,6 +1,7 @@
 <template>
     <section id="about">
-        <section class="hero is-primary is-bold is-fullheight-with-navbar">
+        <Header></Header>
+        <section class="hero is-light is-bold is-fullheight-with-navbar">
             <div class="hero-body">
                 <div class="container">
                     <h1 class="title">About This-or-That</h1>
@@ -26,8 +27,10 @@
 
 <script lang="ts">
     import {Component, Vue} from 'vue-property-decorator';
-
-    @Component
+    import Header from '@/app/components/Header.vue';
+    @Component({
+        components: {Header},
+    })
     export default class About extends Vue {
 
         contributers = [
@@ -63,9 +66,5 @@
     .image {
         margin-left: auto;
         margin-right: auto;
-    }
-
-    .image img {
-        border-radius: 5px;
     }
 </style>
