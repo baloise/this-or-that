@@ -52,7 +52,7 @@
 
             <p class="label" v-if="imageSources && imageSources.length > 0">Images</p>
             <div class="columns is-mobile is-multiline">
-                <div class="column is-one-quarter" v-for="(imageSource, index) in imageSources"
+                <div class="column is-half-mobile is-one-quarter" v-for="(imageSource, index) in imageSources"
                      :key="imageSource">
                     <figure class="image is-square" style="position: relative">
                         <button class="delete is-large"

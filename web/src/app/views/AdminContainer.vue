@@ -14,7 +14,6 @@
                             Back
                         </b-button>
                         <hr>
-
                         <nav class="level">
                             <div class="level-item has-text-centered">
                                 <div>
@@ -33,7 +32,7 @@
                         <hr>
 
                         <div class="columns is-mobile is-multiline" v-if="score && score.scores">
-                            <div class="column is-one-quarter" v-for="(item, index) in score.scores"
+                            <div class="column is-half-mobile is-one-quarter" v-for="(item, index) in score.scores"
                                  :key="item.imageId">
                                 <figure class="image is-square" style="position: relative">
                                     <img :src="getImageURL(item.imageId)" :alt="'Image ' + (index+1)">

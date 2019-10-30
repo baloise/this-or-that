@@ -2,7 +2,7 @@
     <section id="home">
         <Header></Header>
 
-        <section class="hero is-info is-bold">
+        <section class="hero is-info is-medium is-bold">
             <div class="hero-body">
                 <div class="container has-text-centered">
                     <h1 class="title is-2">Joining a Survey?</h1>
@@ -42,7 +42,7 @@
             </div>
         </section>
 
-        <section class="hero">
+        <section class="hero is-medium ">
             <div class="hero-body">
                 <div class="container has-text-centered">
                     <h1 class="title">Make your prioritization</h1>
@@ -63,7 +63,7 @@
             </div>
         </section>
 
-        <section class="hero is-info">
+        <section class="hero is-light is-medium is-bold">
             <div class="hero-body">
                 <div class="container has-text-centered">
                     <h1 class="title">Manage your Survey</h1>
@@ -81,7 +81,7 @@
                             <br>
                             <button :disabled="surveyCode.length === 0 && isScanEnabled"
                                     @click="manageSurvey()"
-                                    class="button is-primary is-medium is-fullwidth">
+                                    class="button is-info is-medium is-fullwidth">
                                 Close & Show Results
                             </button>
 
