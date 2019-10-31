@@ -5,7 +5,7 @@
             <div class="hero-body">
                 <div class="container">
                     <h1 class="title">About This-or-That</h1>
-                    <h2 class="subtitle">... is built with cutting-edge technology, dedication and a lot of chees.</h2>
+                    <h2 class="subtitle">... is built with cutting-edge technology, dedication and a lot of cheese.</h2>
                     <div class="columns is-multiline">
                         <div class="column is-one-third"
                              v-for="user in contributers" v-bind:key="user.name">
