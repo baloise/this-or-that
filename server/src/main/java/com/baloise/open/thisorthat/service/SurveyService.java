@@ -26,14 +26,14 @@ import com.baloise.open.thisorthat.dto.Survey;
 import com.baloise.open.thisorthat.dto.VoteItem;
 import com.baloise.open.thisorthat.exception.*;
 import com.baloise.open.thisorthat.vote.SimpleVoteAlgorithm;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-@Slf4j
+@Log4j2
 public class SurveyService {
 
     private final InMemoryDatabase inMemoryDatabase;

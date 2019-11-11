@@ -19,14 +19,14 @@ import com.baloise.open.thisorthat.db.InMemoryDatabase;
 import com.baloise.open.thisorthat.dto.*;
 import com.baloise.open.thisorthat.exception.SurveyStoppedException;
 import com.baloise.open.thisorthat.vote.image.selection.ImageSelectionAlgorithm;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
-@Slf4j
+@Log4j2
 public class SimpleVoteAlgorithm implements VoteAlgorithm {
 
     private static final double DEFAULT_WEIGHT_PER_VOTE = 10.0;

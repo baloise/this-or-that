@@ -18,10 +18,6 @@
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter:2.2.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot:2.2.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.2.1.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-logging:2.2.1.RELEASE" />
-          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-to-slf4j:2.12.1" />
-          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.12.1" />
-          <element id="library" level="project" name="Maven: org.slf4j:jul-to-slf4j:1.7.29" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:5.2.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.2.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.yaml:snakeyaml:1.25" />
@@ -97,13 +93,17 @@
           <element id="library" level="project" name="Maven: org.tukaani:xz:1.8" />
           <element id="library" level="project" name="Maven: org.codehaus.plexus:plexus-utils:3.1.0" />
           <element id="library" level="project" name="Maven: org.sonatype.plexus:plexus-build-api:0.0.7" />
-          <element id="library" level="project" name="Maven: com.microsoft.azure:applicationinsights-spring-boot-starter:1.1.2" />
-          <element id="library" level="project" name="Maven: com.microsoft.azure:applicationinsights-core:2.3.1" />
-          <element id="library" level="project" name="Maven: com.microsoft.azure:applicationinsights-web:2.3.1" />
-          <element id="library" level="project" name="Maven: com.microsoft.azure:applicationinsights-logging-logback:2.3.1" />
-          <element id="library" level="project" name="Maven: ch.qos.logback:logback-classic:1.2.3" />
+          <element id="library" level="project" name="Maven: com.microsoft.azure:applicationinsights-spring-boot-starter:2.4.1" />
+          <element id="library" level="project" name="Maven: com.microsoft.azure:applicationinsights-core:2.4.1" />
+          <element id="library" level="project" name="Maven: com.microsoft.azure:applicationinsights-web:2.4.1" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-log4j2:2.2.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-slf4j-impl:2.12.1" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
-          <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.2.3" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.12.1" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.12.1" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-jul:2.12.1" />
+          <element id="library" level="project" name="Maven: org.slf4j:jul-to-slf4j:1.7.29" />
+          <element id="library" level="project" name="Maven: com.microsoft.azure:applicationinsights-logging-log4j2:2.1.1" />
         </element>
       </element>
       <element id="directory" name="META-INF">
