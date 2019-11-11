@@ -14,7 +14,7 @@
                             <span class="title"
                                   v-if="voteResponse"
                                   style="margin-bottom: 0; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
-                                {{ voteResponse.perspective }} <small>(Votes: {{submittedVotes}})</small>
+                                {{ voteResponse.perspective }} <small>(Votes: {{submittedVotes}} SurveyCode: {{this.$route.params.surveyCode}})</small>
                             </span>
                         </div>
                     </div>
@@ -57,11 +57,11 @@
 </template>
 
 <script lang="ts">
-    import {Component, Vue} from 'vue-property-decorator';
-    import {getImageURL, getVote, setVote} from '@/app/api/survey.api';
-    import {VoteRequest} from '@/app/models/vote-request';
-    import {VoteResponse} from '@/app/models/vote-response';
-    import VoteImage from '@/app/components/VoteImage.vue';
+    import {Component, Vue} from "vue-property-decorator";
+    import {getImageURL, getVote, setVote} from "@/app/api/survey.api";
+    import {VoteRequest} from "@/app/models/vote-request";
+    import {VoteResponse} from "@/app/models/vote-response";
+    import VoteImage from "@/app/components/VoteImage.vue";
 
     @Component({
         components: {VoteImage},
