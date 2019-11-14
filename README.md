@@ -9,6 +9,8 @@
 "This or That" is an online tool to make group decisions.
 Each participant of the voting can make votes based on image by selecting one of two displayed images.
 
+# [slides](https://gitpitch.com/baloise/this-or-that/master?p=docs/slides/)
+
 ## Environments
 ### Client
 https://baloise.github.io/this-or-that
