@@ -24,7 +24,7 @@
 
 +++
 
-**About Flutter**
+# About Flutter
 - Open-Source UI Framework 
 - Google, 2017
 - Language: Dart
