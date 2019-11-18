@@ -4,11 +4,17 @@
 
 +++
 
-# intro details
+# Bet This-or-That
+
+- Wurde eingereicht als Bet
+- Ziel schnell und einfach Entscheiden (instant vote)
+- Wurde in 2 Tagen umgesetzt
 
 ---
 
-# part 1
+# Transformation zu OpenSource
+
+![](http://pngimg.com/uploads/github/github_PNG20.png) 
 
 +++
 
