@@ -20,11 +20,7 @@
 
 +++
 
-# About Flutter
-
-+++
-
-## About Flutter
+## About
 - Open-Source UI Framework 
 - Google, 2017
 - Language: Dart
@@ -42,10 +38,6 @@
 
 +++
 
-# Codecamp
-
-+++
-
 ## Codecamp
 - Scope: This-Or-That app for iOS & Android
 - Features:
@@ -54,10 +46,6 @@
     - Create a survey & upload pictures 
     - Survey results
     - History of surveys
-
-+++
-
-# Experience
 
 +++
 
