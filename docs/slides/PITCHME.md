@@ -12,7 +12,7 @@
 
 ## Idee
 
-![Customer Journey](/docs/slides/img/this_or_that_customer_jouney.png)
+<img src="/docs/slides/img/this_or_that_customer_jouney.png" alt="customer Journey" width="200"/>
 
 +++
 
