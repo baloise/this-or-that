@@ -2,7 +2,7 @@
 
 # This-or-That
 
-![Logo](img/src/logo.svg)
+![Logo](/img/src/logo.svg)
 
 +++
 
