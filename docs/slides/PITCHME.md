@@ -30,7 +30,13 @@
 
 ## Abstimmen
 
-![voting](/docs/slides/img/this_or_that_voting.gif)
+![voting](/docs/slides/img/this_or_that_voting.png)
+
++++
+
+## Resultat
+
+![voting](/docs/slides/img/this_or_that_result.png)
 
 +++
 
