@@ -14,9 +14,9 @@
 
 ## Transformation
 
-![GitHub](http://pngimg.com/uploads/github/github_PNG20.png) 
-
-+++
+![GitHub](https://github.githubassets.com/images/modules/logos_page/Octocat.png) 
+https://github.com/baloise/this-or-that
+---
 
 ## part 1 details
 
