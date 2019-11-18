@@ -4,7 +4,7 @@
 
 +++
 
-# Bet This-or-That
+## Bet This-or-That
 
 - Wurde eingereicht als Bet
 - Ziel schnell und einfach Entscheiden (instant vote)
@@ -12,13 +12,13 @@
 
 ---
 
-# Transformation
+## Transformation
 
 ![GitHub](http://pngimg.com/uploads/github/github_PNG20.png) 
 
 +++
 
-# part 1 details
+## part 1 details
 
 ---
 
