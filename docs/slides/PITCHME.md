@@ -1,8 +1,8 @@
 ---
 
-# intro
+# This-or-That
 
-![Logo](http://spark.apache.org/images/spark-logo-trademark.png)
+![Logo](img/src/logo.svg)
 
 +++
 
