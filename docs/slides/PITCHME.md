@@ -25,7 +25,8 @@
 +++
 
 **About Flutter**
-- Open-Source UI Framework (Google, 2017)
+- Open-Source UI Framework 
+- Google, 2017
 - Language: Dart
 - Flutter Engine
 
@@ -61,7 +62,18 @@
 +++
 
 **Experience**
-- Fast development for different devices (short time to market) 
+- Fast development for different devices
+- Integration of plattform APIs was easy 
+- Comfortable development
+    - Device Emulator
+    - Instant refresh
+- We faced no framework issues
+- No iOS Development w/o a Mac (not a Flutter issue)
+- Layouting not trivial
+
++++
+
+# Demo
 
 ---
 
