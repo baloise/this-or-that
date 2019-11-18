@@ -68,8 +68,7 @@
 - Libraries for Plattform API integration
 - Comfortable development (Emulator & instant refresh)
 - No framework issues
-- Styling similar to Web, Layout not
-- <span style="color:grey">No iOS Development w/o a Mac</span>
+- Styling similar to Web, Layout is not
 
 +++
 
