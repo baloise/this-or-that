@@ -2,6 +2,8 @@
 
 # intro
 
+![Logo](http://spark.apache.org/images/spark-logo-trademark.png)
+
 +++
 
 # intro details
