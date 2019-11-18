@@ -69,7 +69,7 @@
 - Comfortable development (Emulator & instant refresh)
 - No framework issues
 - Styling similar to Web, Layout not
-- *No iOS Development w/o a Mac*
+- <span style="color:grey">No iOS Development w/o a Mac</span>
 
 +++
 
