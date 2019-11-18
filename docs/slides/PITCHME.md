@@ -62,7 +62,8 @@
 +++
 
 **Experience**
-- Fast development for different devices
+- Short time to market
+- IDE support
 - Integration of plattform APIs was easy 
 - Comfortable development
     - Device Emulator
