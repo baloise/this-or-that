@@ -10,12 +10,13 @@
 - Ziel schnell und einfach Entscheiden (instant vote)
 - Wurde in 2 Tagen umgesetzt
 
----
++++
 
 ## Transformation
 
-![GitHub](https://github.githubassets.com/images/modules/logos_page/Octocat.png) 
+![GitHub](https://i.pinimg.com/600x315/2c/b6/70/2cb670b6ddd8922a1c1b2fee4f6f758c.jpg) 
 https://github.com/baloise/this-or-that
+
 ---
 
 ## part 1 details
