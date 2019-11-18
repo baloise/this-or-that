@@ -12,7 +12,7 @@
 
 ## Idee
 
-<img src="/docs/slides/img/this_or_that_customer_jouney.png" alt="customer Journey" width="200"/>
+<img src="/docs/slides/img/this_or_that_customer_jouney.png" alt="customer Journey" width="400"/>
 
 +++
 
