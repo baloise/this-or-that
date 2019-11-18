@@ -36,7 +36,7 @@
 
 ## Resultat
 
-![voting](/docs/slides/img/this_or_that_result.png)
+![voting](/docs/slides/img/this_or_that_result.jpg)
 
 +++
 
