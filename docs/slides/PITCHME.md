@@ -8,31 +8,31 @@
 - Ziel schnell und einfach Entscheiden (instant vote)
 - Wurde in 2 Tagen umgesetzt
 
-+++?image=/docs/slides/img/this_or_that_customer_jouney.png&position=bottom
++++?image=/docs/slides/img/this_or_that_customer_jouney.png&position=bottom&size=50%
 
 ## Idee
 
 
 
-+++?image=/docs/slides/img/this_or_that_create_survey.png&position=bottom
++++?image=/docs/slides/img/this_or_that_create_survey.png&position=bottom&size=50%
 
 ## Umfrage erstellen
 
 
 
-+++?image=/docs/slides/img/this_or_that_survey_code_qr.png&position=bottom
++++?image=/docs/slides/img/this_or_that_survey_code_qr.png&position=bottom&size=50%
 
 ## Code - QR
 
 
 
-+++?image=/docs/slides/img/this_or_that_voting.gif&position=bottom
++++?image=/docs/slides/img/this_or_that_voting.gif&position=bottom&size=50%
 
 ## Abstimmen
 
 
 
-+++?image=https://i.pinimg.com/600x315/2c/b6/70/2cb670b6ddd8922a1c1b2fee4f6f758c.jpg&position=bottom
++++?image=https://i.pinimg.com/600x315/2c/b6/70/2cb670b6ddd8922a1c1b2fee4f6f758c.jpg&position=bottom&size=50%
    https://github.com/baloise/this-or-that
 
 ## Transformation
