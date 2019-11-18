@@ -24,7 +24,7 @@
 
 +++
 
-# About
+**About Flutter**
 - Open-Source UI Framework (Google, 2017)
 - Language: Dart
 - Flutter Engine
@@ -42,6 +42,10 @@
 +++
 
 # Codecamp
+
++++
+
+**Codecamp**
 - Scope: This-Or-That app for iOS & Android
 - Features:
     - QR code scanning
@@ -50,7 +54,13 @@
     - Survey results
     - History of surveys
 
++++
+
 # Experience
+
++++
+
+**Experience**
 - Fast development for different devices (short time to market) 
 
 ---
