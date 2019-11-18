@@ -24,7 +24,7 @@
 
 ## Code - QR
 
-<img src="/docs/slides/img/this_or_that_survey_code_qr.png" alt="code" width="400"/>
+<img src="/docs/slides/img/this_or_that_survey_code_qr.png" alt="code" width="600"/>
 
 +++
 
@@ -36,7 +36,8 @@
 
 ## Resultat
 
-![voting](/docs/slides/img/this_or_that_result.jpg)
+<img src="/docs/slides/img/this_or_that_result.jpg" alt="result" width="600"/>
+
 
 +++
 
