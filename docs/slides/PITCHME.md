@@ -4,11 +4,35 @@
 
 +++
 
-## Bet This-or-That
+## Bet
 
 - Wurde eingereicht als Bet
 - Ziel schnell und einfach Entscheiden (instant vote)
 - Wurde in 2 Tagen umgesetzt
+
++++
+
+## Idee
+
+![Customer Journey](/docs/slides/img/this_or_that_customer_jouney.png)
+
++++
+
+## Umfrage erstellen
+
+![create survey](/docs/slides/img/this_or_that_create_survey.png)
+
++++
+
+## Code - QR
+
+![code](/docs/slides/img/this_or_that_survey_code_qr.png)
+
++++
+
+## Abstimmen
+
+![voting](/docs/slides/img/this_or_that_voting.gif)
 
 +++
 
@@ -19,7 +43,10 @@ https://github.com/baloise/this-or-that
 
 ---
 
-## part 1 details
+## Code Camp
+
+### Scope
+- 
 
 ---
 
