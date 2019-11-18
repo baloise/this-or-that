@@ -1,5 +1,5 @@
 ---
----?image=/img/bin/iconset/logo.iconset/icon_512x512.png&size=auto 
+---?image=/img/bin/iconset/logo.iconset/icon_512x512.png&size=auto&position=center
 
 +++
 
