@@ -64,14 +64,12 @@
 ## Experience
 
 - Short time to market
-- IDE support
-- Integration of plattform APIs was easy 
-- Comfortable development
-    - Device Emulator
-    - Instant refresh
-- We faced no framework issues
-- No iOS Development w/o a Mac (not a Flutter issue)
-- Layouting not trivial
+- Good IDE support
+- Libraries for Plattform API integration
+- Comfortable development (Emulator & instant refresh)
+- No framework issues
+- Styling similar to Web, Layout not
+- *No iOS Development w/o a Mac*
 
 +++
 
