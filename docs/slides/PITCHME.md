@@ -14,7 +14,7 @@
 
 # Transformation zu OpenSource
 
-![](http://pngimg.com/uploads/github/github_PNG20.png) 
+![GitHub](http://pngimg.com/uploads/github/github_PNG20.png) 
 
 +++
 
