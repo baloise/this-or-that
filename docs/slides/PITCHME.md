@@ -13,31 +13,31 @@
 
 ## Idee
 
-![Customer Journey](/docs/slides/img/this_or_that_customer_jouney.png)
+---?image=/docs/slides/img/this_or_that_customer_jouney.png
 
 +++
 
 ## Umfrage erstellen
 
-![create survey](/docs/slides/img/this_or_that_create_survey.png)
+---?image=/docs/slides/img/this_or_that_create_survey.png
 
 +++
 
 ## Code - QR
 
-![code](/docs/slides/img/this_or_that_survey_code_qr.png)
+---?image=/docs/slides/img/this_or_that_survey_code_qr.png
 
 +++
 
 ## Abstimmen
 
-![voting](/docs/slides/img/this_or_that_voting.gif)
+---?image=/docs/slides/img/this_or_that_voting.gif
 
 +++
 
 ## Transformation
 
-![GitHub](https://i.pinimg.com/600x315/2c/b6/70/2cb670b6ddd8922a1c1b2fee4f6f758c.jpg) 
+---?image=https://i.pinimg.com/600x315/2c/b6/70/2cb670b6ddd8922a1c1b2fee4f6f758c.jpg
 https://github.com/baloise/this-or-that
 
 ---
