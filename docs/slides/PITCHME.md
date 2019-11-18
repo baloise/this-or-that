@@ -2,7 +2,7 @@
 
 # This-or-That
 
-![Logo](/img/bin/PNG/logo/256x256x32.png)
+![Logo](/img/bin/iconset/logo.iconset/icon_512x512@2x.png)
 
 +++
 
