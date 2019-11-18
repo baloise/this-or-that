@@ -24,7 +24,7 @@
 
 ## Code - QR
 
-![code](/docs/slides/img/this_or_that_survey_code_qr.png)
+<img src="/docs/slides/img/this_or_that_survey_code_qr.png" alt="code" width="400"/>
 
 +++
 
