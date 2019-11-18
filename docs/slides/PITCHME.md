@@ -1,5 +1,5 @@
 ---
----?image=/img/bin/iconset/logo.iconset/icon_512x512.png&size=50%&position=center
+?image=/img/bin/iconset/logo.iconset/icon_512x512.png&size=50%&position=center
 
 +++
 
@@ -13,31 +13,31 @@
 
 ## Idee
 
----?image=/docs/slides/img/this_or_that_customer_jouney.png
+?image=/docs/slides/img/this_or_that_customer_jouney.png
 
 +++
 
 ## Umfrage erstellen
 
----?image=/docs/slides/img/this_or_that_create_survey.png
+?image=/docs/slides/img/this_or_that_create_survey.png
 
 +++
 
 ## Code - QR
 
----?image=/docs/slides/img/this_or_that_survey_code_qr.png
+?image=/docs/slides/img/this_or_that_survey_code_qr.png
 
 +++
 
 ## Abstimmen
 
----?image=/docs/slides/img/this_or_that_voting.gif
+?image=/docs/slides/img/this_or_that_voting.gif
 
 +++
 
 ## Transformation
 
----?image=https://i.pinimg.com/600x315/2c/b6/70/2cb670b6ddd8922a1c1b2fee4f6f758c.jpg
+?image=https://i.pinimg.com/600x315/2c/b6/70/2cb670b6ddd8922a1c1b2fee4f6f758c.jpg
 https://github.com/baloise/this-or-that
 
 ---
