@@ -61,7 +61,8 @@
 
 +++
 
-**Experience**
+# Experience
+
 - Short time to market
 - IDE support
 - Integration of plattform APIs was easy 
