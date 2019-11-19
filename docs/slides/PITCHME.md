@@ -384,7 +384,7 @@ https://github.com/baloise/this-or-that
 
 ---?color=#1871e4
 
-# Lesson Learned
+### Lesson Learned
 
 - changing to Spring Boot was very easy
 - Azure is not suited for Java Applications
