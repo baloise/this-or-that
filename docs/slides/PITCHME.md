@@ -147,7 +147,7 @@ https://github.com/baloise/this-or-that
 
 @snap[east span-50 text-center h3-white text-white text-08]
 
-@fa[quote-left text-gray](Only one week time for developing)
+@fa[north quote-left text-white](Only one week time for developing)
 
 - Simple to learn
 - Easy to deploy (github pages)
