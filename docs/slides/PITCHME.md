@@ -121,13 +121,9 @@ https://github.com/baloise/this-or-that
 
 # part 2 details
 
----?image=https://miro.medium.com/max/3920/1*Vc0m5dS9SlhieEbR6n8wFg.jpeg
+---
 
-+++?image=/docs/slides/img/js-frameworks-stat.png
-
-+++
-
-## Why
+## Web Client
 
 @fa[quote-left](Only one week time for developing)
 
@@ -135,6 +131,14 @@ https://github.com/baloise/this-or-that
 - Easy to deploy (github pages)
 - A good documentation & community
 - Progressive Web Application Support
+
++++?image=/docs/slides/img/js-frameworks-stat.png
+
++++?image=https://miro.medium.com/max/3920/1*Vc0m5dS9SlhieEbR6n8wFg.jpeg
+
++++
+
+
 
 ---
 
