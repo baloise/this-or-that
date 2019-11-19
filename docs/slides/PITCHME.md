@@ -121,7 +121,7 @@ https://github.com/baloise/this-or-that
 
 # part 2 details
 
----?image=https://www.clientresourcesinc.com/wp-content/uploads/2018/06/vuejs_logo.png
+---?image=https://miro.medium.com/max/3920/1*Vc0m5dS9SlhieEbR6n8wFg.jpeg
 
 +++
 
