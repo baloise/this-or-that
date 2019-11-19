@@ -160,13 +160,15 @@ https://github.com/baloise/this-or-that
 
 +++?color=linear-gradient(100deg, white 40%, #40b984 40.2%)
 
-@snap[west span-30]
+@snap[west span-30 text-gray]
+
 ![logo](https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png)
+
+# Vue.js
+
 @snapend
 
-@snap[east span-60 h3-white h4-white text-white text-08]
-
-## Vue.js
+@snap[east span-60 text-white text-08]
 
 - Open-Source Framework
 - Simple & Flexible
