@@ -70,7 +70,7 @@ https://github.com/baloise/this-or-that
 
 +++
 
-@snap[midpoint span-60]
+@snap[midpoint span-80]
 
 ### Code Camp Scope
 - new frontend without baloise branding
