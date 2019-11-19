@@ -164,7 +164,7 @@ https://github.com/baloise/this-or-that
 
 +++
 
-@snap[north snap-100]
+@snap[north span-100]
 
 ##  PWA
 
