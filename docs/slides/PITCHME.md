@@ -11,43 +11,62 @@
 
 +++
 
-## Idea
+@snap[midpoint span-40]
 
+## Idea
 <img src="/docs/slides/img/this_or_that_customer_jouney.png" alt="customer Journey" width="400"/>
 
+@snapend
+
 +++
+
+@snap[midpoint span-40]
 
 ## Create Survey
-
 ![create survey](/docs/slides/img/this_or_that_create_survey.png)
 
+@snapend
+
 +++
+
+@snap[midpoint span-40]
 
 ## Code - QR
-
 <img src="/docs/slides/img/this_or_that_survey_code_qr.png" alt="code" width="600"/>
 
+@snapend
+
 +++
+
+@snap[midpoint span-40]
 
 ## Voting
-
 ![voting](/docs/slides/img/this_or_that_voting.png)
 
+@snapend
+
 +++
+
+@snap[midpoint span-40]
 
 ## Result
-
 <img src="/docs/slides/img/this_or_that_result.jpg" alt="result" width="600"/>
 
+@snapend
 
 +++
 
-## Transformation
+@snap[midpoint span-40]
 
+## Transformation
 ![GitHub](https://i.pinimg.com/600x315/2c/b6/70/2cb670b6ddd8922a1c1b2fee4f6f758c.jpg) 
 https://github.com/baloise/this-or-that
 
+@snapend
+
 +++
+
+@snap[midpoint span-40]
 
 ## Code Camp Scope
 - new frontend without baloise branding
@@ -55,7 +74,11 @@ https://github.com/baloise/this-or-that
 - backend with Spring Boot
 - improve Azure Cloud hosting
 
+@snapend
+
 ---
+
+@snap[midpoint span-40]
 
 ## Backend
 <img src="https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png" alt="java" width="100"/>
@@ -65,7 +88,11 @@ https://github.com/baloise/this-or-that
 <img src="https://webassets.mongodb.com/_com_assets/cms/MongoDB_Logo_FullColorBlack_RGB-4td3yuxzjs.png" alt="lombok" width="200"/>
 <img src="https://www.ictshore.com/wp-content/uploads/2018/08/sfw0002-01-REST_Architecture.png" alt="rest" width="200"/>
 
+@snapend
+
 +++
+
+@snap[midpoint span-40]
 
 ## REST
 1. createSurvey 
@@ -77,9 +104,6 @@ https://github.com/baloise/this-or-that
 3. startSurvey 
     * POST
     * path: /{code}/start
-    
-+++
-
 4. getVote 
     * GET
     * path: /{code}/vote
@@ -89,8 +113,6 @@ https://github.com/baloise/this-or-that
 6. setVote 
     * POST
     * path: /{code}/vote
-    
-+++
 7. stopSurvey
     * POST 
     * path: /{code}/stop
@@ -98,15 +120,19 @@ https://github.com/baloise/this-or-that
     * GET
     * path: /{code}/score
 
+@snapend
+
 +++
 
-## Algorithms
+@snap[midpoint span-40]
 
+## Algorithms
 - ImageSelectionAlgorithm
     - selects images from image pool
 - VoteAlgorithm
     - keeps track of votes and calculates score
 
+@snapend
 
 ---
 
