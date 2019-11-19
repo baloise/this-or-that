@@ -1,4 +1,10 @@
----?image=/img/bin/iconset/logo.iconset/icon_512x512.png&size=50%&position=center
+---
+
+@snap[midpoint span-40]
+
+![title](/img/bin/iconset/logo.iconset/icon_512x512.png)
+
+@snapend
 
 +++
 
