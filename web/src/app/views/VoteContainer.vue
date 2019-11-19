@@ -14,7 +14,7 @@
                             <span class="title"
                                   v-if="voteResponse"
                                   style="margin-bottom: 0; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
-                                {{ voteResponse.perspective }} <small>(Votes: {{submittedVotes}})</small>
+                                {{ voteResponse.perspective }} <small>(Votes: {{submittedVotes}} SurveyCode: {{this.$route.params.surveyCode}})</small>
                             </span>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                          v-if="isOver || (voteResponse &&voteResponse.id1 == null)">
                         <div class="column">
                             <h1 class="title">Its over ...</h1>
-                            <h1 class="subtitle">... survay has already finished, but you can view the results</h1>
+                            <h1 class="subtitle">... survey has already finished, but you can view the results</h1>
 
                             <b-button type="is-info"
                                       size="is-medium"
