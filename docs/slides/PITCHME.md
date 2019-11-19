@@ -101,6 +101,21 @@ https://github.com/baloise/this-or-that
 @snapend
 
 +++
+@snap[midpoint span-60]
+
+<img src="https://camo.githubusercontent.com/12136cf9daa20a57168a9bdee376f2e83e13c5b1/68747470733a2f2f7069636f636c692e696e666f2f696d616765732f737072696e672d626f6f742e706e67" alt="spring boot" width="200"/>
+### Why Spring Boot
+- easy to set up
+- easy to run on cloud
+- less code
+- less dependencies
+- more standards
+
+
+@snapend
+
++++
+
 @snap[north span-60]
 
 ### REST
@@ -151,6 +166,18 @@ https://github.com/baloise/this-or-that
     - selects images from image pool
 - VoteAlgorithm
     - keeps track of votes and calculates score
+
+@snapend
+
++++
+
+@snap[midpoint span-80]
+
+### Azure
+- cloud solution from Microsoft
+- app service based Tomcat 9
+- deployment with ftp (only outside of baloise net)
+- monitoring with the azure portal (only inside baloise net)
 
 @snapend
 
