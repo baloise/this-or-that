@@ -225,6 +225,9 @@ https://github.com/baloise/this-or-that
 - Can use web push notifications
 
 +++
+
+### manifest.json
+
 @snap[text-08]
 ```json
 {
