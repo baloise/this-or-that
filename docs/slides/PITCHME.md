@@ -15,7 +15,7 @@
 
 +++
 
-@snap[midpoint span-60]
+@snap[midpoint span-50]
 
 ### Idea
 ![customer journey](/docs/slides/img/this_or_that_customer_jouney.png)
@@ -50,7 +50,7 @@
 
 +++
 
-@snap[midpoint span-60]
+@snap[midpoint span-50]
 
 ### Result
 ![result](/docs/slides/img/this_or_that_result.jpg)
