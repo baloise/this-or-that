@@ -1,4 +1,4 @@
----?color=linear-gradient(100deg, white 50%, #039 50.2%)
+---?color=linear-gradient(100deg, white 50%, #1871e4 50.2%)
 
 @snap[west span-40]
 ![logo](/web/src/assets/logo.png)
