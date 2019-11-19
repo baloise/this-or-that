@@ -125,9 +125,9 @@ https://github.com/baloise/this-or-that
 
 +++?image=/docs/slides/img/js-frameworks-stat.png
 
-## Why
++++
 
-- 
+asdf
 
 ---
 
