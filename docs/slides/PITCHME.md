@@ -2,10 +2,10 @@
 
 +++
 
-### Bet
 
 @snap[midpoint span-40]
 
+### Bet
 - submitted as bet
 - goal
     - tool for simple and instant voting
@@ -15,7 +15,7 @@
 
 +++
 
-@snap[midpoint span-40]
+@snap[midpoint span-60]
 
 ### Idea
 ![customer journey](/docs/slides/img/this_or_that_customer_jouney.png)
@@ -23,7 +23,7 @@
 
 +++
 
-@snap[midpoint span-40]
+@snap[midpoint span-60]
 
 ### Create Survey
 ![create survey](/docs/slides/img/this_or_that_create_survey.png)
@@ -32,7 +32,7 @@
 
 +++
 
-@snap[midpoint span-40]
+@snap[midpoint span-60]
 
 ### Code - QR
 ![customer journey](/docs/slides/img/this_or_that_survey_code_qr.png)
@@ -41,7 +41,7 @@
 
 +++
 
-@snap[midpoint span-40]
+@snap[midpoint span-60]
 
 ### Voting
 ![voting](/docs/slides/img/this_or_that_voting.png)
@@ -50,7 +50,7 @@
 
 +++
 
-@snap[midpoint span-40]
+@snap[midpoint span-60]
 
 ### Result
 ![result](/docs/slides/img/this_or_that_result.jpg)
@@ -70,7 +70,7 @@ https://github.com/baloise/this-or-that
 
 +++
 
-@snap[midpoint span-40]
+@snap[midpoint span-60]
 
 ### Code Camp Scope
 - new frontend without baloise branding
@@ -82,7 +82,7 @@ https://github.com/baloise/this-or-that
 
 ---
 
-@snap[midpoint span-40]
+@snap[midpoint span-60]
 
 ### Backend
 <img src="https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png" alt="java" width="100"/>
@@ -96,7 +96,7 @@ https://github.com/baloise/this-or-that
 
 +++
 
-@snap[midpoint span-40]
+@snap[midpoint span-60]
 
 ### REST
 1. createSurvey 
@@ -128,7 +128,7 @@ https://github.com/baloise/this-or-that
 
 +++
 
-@snap[midpoint span-40]
+@snap[midpoint span-60]
 
 ### Algorithms
 - ImageSelectionAlgorithm
