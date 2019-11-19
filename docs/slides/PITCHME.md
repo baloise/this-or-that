@@ -138,7 +138,7 @@ https://github.com/baloise/this-or-that
 
 +++
 
-@snap[midpoint span-60]
+@snap[midpoint span-80]
 
 ### Algorithms
 - ImageSelectionAlgorithm
