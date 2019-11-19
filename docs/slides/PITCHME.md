@@ -195,7 +195,7 @@ https://github.com/baloise/this-or-that
 - Can use web push notifications
 
 +++
-
+@snap[text-08]
 ```json
 {
   "name": "this-or-that-web",
@@ -216,7 +216,7 @@ https://github.com/baloise/this-or-that
   "theme_color": "#FFFFFF"
 }
 ```
-
+@snapend
 ---
 
 # Demo
