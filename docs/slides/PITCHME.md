@@ -147,6 +147,7 @@ https://github.com/baloise/this-or-that
 
 ### Vue Component
 
+@snap[text-08]
 ```html
 <template>
   <h1>{{ message }}</h1>
@@ -167,22 +168,15 @@ https://github.com/baloise/this-or-that
   }
 </style>
 ```
+@snapend
 
 +++
-
-@snap[north span-100]
 
 ## PWA
 
 ### Progressive Web App
 
-@snapend
-
-@snap[midpoint span-100]
-
 @fa[quote-left text-gray](PWA is the latest ‘buzzword’)
-
-@snapend
 
 +++
 
