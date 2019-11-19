@@ -139,13 +139,13 @@ https://github.com/baloise/this-or-that
 
 +++?color=linear-gradient(100deg, white 40%, #039 40%)
 
-@snap[west span-30 text-center]
+@snap[west span-30 text-center text-08]
 ## Web Client
 @fa[quote-left text-gray](Only one week time for developing)
 @snapend
 
-@snap[north-east span-50 text-center h4-white text-white text-08]
-#### Deployment as a REST API Gateway
+@snap[east span-50 text-center h3-white text-white text-08]
+### Deployment as a REST API Gateway
 - Simple to learn
 - Easy to deploy (github pages)
 - A good documentation & community
