@@ -142,11 +142,15 @@ https://github.com/baloise/this-or-that
 <template>
     <h1>Hello World</h1>
 </template>
+
 <script lang="ts">
     import { Component, Vue } from 'vue-property-decorator';
     @Component
     export default class HelloWorldComponent extends Vue {}
 </script>
+
+<style lang="scss" scoped>
+</style>
 ```
 
 ---
