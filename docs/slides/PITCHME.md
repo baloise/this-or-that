@@ -130,20 +130,26 @@ https://github.com/baloise/this-or-that
 
 ## Web Client
 
-@fa[quote-left](Only one week time for developing)
+@fa[quote-left text-gray](Only one week time for developing)
 
 @snapend
+
+@snap[midpoint]
 
 - Simple to learn
 - Easy to deploy (github pages)
 - A good documentation & community
 - Progressive Web App (PWA) Support
 
+@snapend
+
 +++?image=/docs/slides/img/js-frameworks-stat.png
 
 +++?image=https://miro.medium.com/max/3920/1*Vc0m5dS9SlhieEbR6n8wFg.jpeg
 
 +++
+
+## Vue Component
 
 ```html
 <template>
