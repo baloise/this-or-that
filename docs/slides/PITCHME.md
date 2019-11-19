@@ -90,7 +90,27 @@ https://github.com/baloise/this-or-that
 
 ---?color=#1871e4
 
+@snap[north-east span-30]
+![IMAGE](https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png)
+@snapend
+
+@snap[east span-30]
+![IMAGE](https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png)
+@snapend
+
+@snap[south-east span-30]
+![IMAGE](https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png)
+@snapend
+
+@snap[north-west span-30]
+![IMAGE](https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png)
+@snapend
+
 @snap[west span-30]
+![IMAGE](https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png)
+@snapend
+
+@snap[south-west span-30]
 ![IMAGE](https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png)
 @snapend
 
