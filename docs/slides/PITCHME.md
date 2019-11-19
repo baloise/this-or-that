@@ -99,6 +99,7 @@ https://github.com/baloise/this-or-that
 @snap[west span-20]
 
 ### REST
+@size[0.5em](
 1. createSurvey 
     * POST
     * path: /create -> surveyCode
@@ -111,7 +112,7 @@ https://github.com/baloise/this-or-that
 4. getVote 
     * GET
     * path: /{code}/vote
-
+)
 @snapend
 
 @snap[east span-20]
