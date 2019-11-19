@@ -102,6 +102,20 @@ https://github.com/baloise/this-or-that
 ![IMAGE](https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png)
 @snapend
 
+
+@snap[north span-30]
+![IMAGE](https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png)
+@snapend
+
+@snap[midpoint span-30]
+### Backend
+@snapend
+
+@snap[south span-30]
+![IMAGE](https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png)
+@snapend
+
+
 @snap[north-west span-30]
 ![IMAGE](https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png)
 @snapend
