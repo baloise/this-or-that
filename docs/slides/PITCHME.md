@@ -90,8 +90,9 @@ https://github.com/baloise/this-or-that
 
 ---?color=#1871e4
 
-@snap[north-east span-30 bg-white]
-![java](https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png)
+@snap[north-east span-30 text-center]
+@box[bg-white](![java](https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png)
+)
 @snapend
 
 @snap[east span-30]
