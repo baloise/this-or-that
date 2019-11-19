@@ -95,10 +95,14 @@ https://github.com/baloise/this-or-that
 @snapend
 
 +++
+@snap[north span-40]
+
+### REST
+
+@snapend
 
 @snap[west span-40 text-05]
 
-### REST
 1. createSurvey 
     * POST
     * path: /create -> surveyCode
