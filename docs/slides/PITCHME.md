@@ -60,7 +60,7 @@
 
 +++
 
-@snap[midpoint span-20]
+@snap[midpoint span-50]
 
 ### Transformation
 ![GitHub](https://i.pinimg.com/600x315/2c/b6/70/2cb670b6ddd8922a1c1b2fee4f6f758c.jpg) 
