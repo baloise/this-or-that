@@ -133,13 +133,13 @@ https://github.com/baloise/this-or-that
 
 # part 2 details
 
----?color=#039
+---?color=#1871e4
 
 @snap[h1-white]
 # Web Client
 @snapend
 
-+++?color=linear-gradient(100deg, white 40%, #039 40%)
++++?color=linear-gradient(100deg, white 40%, #1871e4 40%)
 
 @snap[west span-30 text-center text-08]
 ## Web Client
