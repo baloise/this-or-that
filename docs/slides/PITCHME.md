@@ -252,7 +252,7 @@ https://github.com/baloise/this-or-that
 @snapend
 ---?color=#1871e4
 
-# Demo
+### Demo
 
 ![demo](https://media.giphy.com/media/U3shPfaqOAPFeucjIb/giphy.gif)
 
