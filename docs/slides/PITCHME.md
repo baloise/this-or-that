@@ -176,7 +176,7 @@ https://github.com/baloise/this-or-that
 
 @snapend
 
-@snap[midway span-100]
+@snap[midpoint span-100]
 
 @fa[quote-left text-gray](PWA is the latest ‘buzzword’)
 
