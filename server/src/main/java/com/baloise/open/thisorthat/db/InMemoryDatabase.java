@@ -22,7 +22,7 @@ import com.baloise.open.thisorthat.dto.Vote;
 import com.baloise.open.thisorthat.exception.DeleteFailedException;
 import com.baloise.open.thisorthat.exception.ImageNotFoundException;
 import com.baloise.open.thisorthat.exception.SurveyNotFoundException;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -32,7 +32,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 @Repository
-@Slf4j
+@Log4j2
 public class InMemoryDatabase {
 
     private static final CopyOnWriteArrayList<Survey> surveys = new CopyOnWriteArrayList<>();

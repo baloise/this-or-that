@@ -16,7 +16,7 @@
 package com.baloise.open.thisorthat.service;
 
 import com.baloise.open.thisorthat.job.CleanupJob;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -26,7 +26,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 @WebListener
-@Slf4j
+@Log4j2
 public class BackgroundJobManager implements ServletContextListener {
 
     private ScheduledExecutorService scheduler;

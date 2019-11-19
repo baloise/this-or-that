@@ -18,14 +18,14 @@ package com.baloise.open.thisorthat.job;
 import com.baloise.open.thisorthat.db.InMemoryDatabase;
 import com.baloise.open.thisorthat.dto.Survey;
 import com.baloise.open.thisorthat.exception.DatabaseException;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Calendar;
 import java.util.List;
 
-@Slf4j
+@Log4j2
 @Component
 public class CleanupJob implements Runnable {
 
