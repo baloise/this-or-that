@@ -96,7 +96,7 @@ https://github.com/baloise/this-or-that
 
 +++
 
-@snap[midpoint span-80]
+@snap[midpoint span-99]
 
 ### REST
 1. createSurvey 
