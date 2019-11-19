@@ -1,4 +1,12 @@
----?image=/web/src/assets/logo.png&size=50%&position=center
+---?color=linear-gradient(100deg, white 50%, #039 50.2%)
+
+@snap[west span-40]
+![logo](/web/src/assets/logo.png)
+@snapend
+
+@snap[east span-40 h2-white]
+## This or That
+@snapend
 
 +++
 
