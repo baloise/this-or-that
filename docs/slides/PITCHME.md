@@ -122,6 +122,7 @@ https://github.com/baloise/this-or-that
 # part 2 details
 
 ---
+@snap[north span-40 h3-black]
 
 ## Web Client
 
@@ -131,6 +132,8 @@ https://github.com/baloise/this-or-that
 - Easy to deploy (github pages)
 - A good documentation & community
 - Progressive Web App (PWA) Support
+
+@snapend
 
 +++?image=/docs/slides/img/js-frameworks-stat.png
 
