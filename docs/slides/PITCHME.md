@@ -4,7 +4,7 @@
 ![logo](/web/src/assets/logo.png)
 @snapend
 
-@snap[east span-40 h2-white text-white]
+@snap[east span-40 h3-white h4-white]
 ### This or That
 #### Code-Camp 2019
 @snapend
