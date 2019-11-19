@@ -2,7 +2,7 @@
 
 +++
 
-## Bet
+### Bet
 
 - submitted as bet
 - goal
@@ -13,7 +13,7 @@
 
 @snap[midpoint span-40]
 
-## Idea
+### Idea
 <img src="/docs/slides/img/this_or_that_customer_jouney.png" alt="customer Journey" width="400"/>
 
 @snapend
@@ -22,7 +22,7 @@
 
 @snap[midpoint span-40]
 
-## Create Survey
+### Create Survey
 ![create survey](/docs/slides/img/this_or_that_create_survey.png)
 
 @snapend
@@ -31,7 +31,7 @@
 
 @snap[midpoint span-40]
 
-## Code - QR
+### Code - QR
 <img src="/docs/slides/img/this_or_that_survey_code_qr.png" alt="code" width="600"/>
 
 @snapend
@@ -40,7 +40,7 @@
 
 @snap[midpoint span-40]
 
-## Voting
+### Voting
 ![voting](/docs/slides/img/this_or_that_voting.png)
 
 @snapend
@@ -49,7 +49,7 @@
 
 @snap[midpoint span-40]
 
-## Result
+### Result
 <img src="/docs/slides/img/this_or_that_result.jpg" alt="result" width="600"/>
 
 @snapend
@@ -58,7 +58,7 @@
 
 @snap[midpoint span-40]
 
-## Transformation
+### Transformation
 ![GitHub](https://i.pinimg.com/600x315/2c/b6/70/2cb670b6ddd8922a1c1b2fee4f6f758c.jpg) 
 https://github.com/baloise/this-or-that
 
@@ -68,7 +68,7 @@ https://github.com/baloise/this-or-that
 
 @snap[midpoint span-40]
 
-## Code Camp Scope
+### Code Camp Scope
 - new frontend without baloise branding
 - app for PlayStore and AppleStore
 - backend with Spring Boot
@@ -80,7 +80,7 @@ https://github.com/baloise/this-or-that
 
 @snap[midpoint span-40]
 
-## Backend
+### Backend
 <img src="https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png" alt="java" width="100"/>
 <img src="https://camo.githubusercontent.com/12136cf9daa20a57168a9bdee376f2e83e13c5b1/68747470733a2f2f7069636f636c692e696e666f2f696d616765732f737072696e672d626f6f742e706e67" alt="spring boot" width="200"/>
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Microsoft_Azure_Logo.svg/320px-Microsoft_Azure_Logo.svg.png" alt="java" width="200"/>
@@ -94,7 +94,7 @@ https://github.com/baloise/this-or-that
 
 @snap[midpoint span-40]
 
-## REST
+### REST
 1. createSurvey 
     * POST
     * path: /create -> surveyCode
@@ -126,7 +126,7 @@ https://github.com/baloise/this-or-that
 
 @snap[midpoint span-40]
 
-## Algorithms
+### Algorithms
 - ImageSelectionAlgorithm
     - selects images from image pool
 - VoteAlgorithm
