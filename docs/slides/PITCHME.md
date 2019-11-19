@@ -99,8 +99,8 @@ https://github.com/baloise/this-or-that
 @snapend
 
 
-@snap[north span-50]
-![java](https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png)
+@snap[north span-100]
+# Backend
 @snapend
 
 @snap[midpoint span-30]
