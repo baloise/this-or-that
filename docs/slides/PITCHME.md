@@ -130,7 +130,7 @@ https://github.com/baloise/this-or-that
 - Simple to learn
 - Easy to deploy (github pages)
 - A good documentation & community
-- Progressive Web Application Support
+- Progressive Web App (PWA) Support
 
 +++?image=/docs/slides/img/js-frameworks-stat.png
 
@@ -158,6 +158,15 @@ https://github.com/baloise/this-or-that
     }
 </style>
 ```
+
++++
+
+##  Progressive Web App (PWA)
+@fa[quote-left](PWA is the latest ‘buzzword’ )
+
++++
+
+
 
 ---
 
