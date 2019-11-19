@@ -388,8 +388,3 @@ https://github.com/baloise/this-or-that
 
 - changing to Spring Boot was very easy
 - Azure is not suited for Java Applications
-
-
-+++
-
-# credits
