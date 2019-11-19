@@ -150,6 +150,9 @@ https://github.com/baloise/this-or-that
 </script>
 
 <style lang="scss" scoped>
+    h1 {
+        color: red;
+    }
 </style>
 ```
 
