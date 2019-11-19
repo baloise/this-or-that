@@ -164,7 +164,7 @@ https://github.com/baloise/this-or-that
 ![logo](https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png)
 @snapend
 
-@snap[east span-60 h3-white h4-white text-white]
+@snap[span-60 h3-white h4-white text-white text-08]
 
 ### Vue.js
 
