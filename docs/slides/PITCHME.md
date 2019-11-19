@@ -158,6 +158,17 @@ https://github.com/baloise/this-or-that
 
 +++?image=https://miro.medium.com/max/3920/1*Vc0m5dS9SlhieEbR6n8wFg.jpeg
 
++++?color=linear-gradient(100deg, white 50%, #40b984 50.2%)
+
+@snap[west span-40]
+![logo](https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png)
+@snapend
+
+@snap[east span-40 h3-white h4-white]
+### This or That
+#### Code-Camp 2019
+@snapend
+
 +++
 
 ### Vue Component
@@ -229,10 +240,6 @@ https://github.com/baloise/this-or-that
 ---
 
 # Demo
-
-+++
-
-# part 2 details
 
 ---
 
