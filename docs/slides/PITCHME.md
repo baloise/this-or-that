@@ -1,13 +1,15 @@
----
+---?color=linear-gradient(100deg, white 50%, #1871e4 50.2%)
 
-@snap[midpoint span-40]
+@snap[west span-40]
+![logo](/web/src/assets/logo.png)
+@snapend
 
-![title](/img/bin/iconset/logo.iconset/icon_512x512.png)
-
+@snap[east span-40 h3-white h4-white]
+### This or That
+#### Code-Camp 2019
 @snapend
 
 +++
-
 
 @snap[midpoint span-80]
 
@@ -86,21 +88,40 @@ https://github.com/baloise/this-or-that
 
 @snapend
 
----
+---?color=#1871e4
 
-@snap[midpoint span-60]
+@snap[east span-30]
+![spring](https://spring.io/img/spring-by-pivotal.png)
+@snapend
 
-### Backend
-<img src="https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png" alt="java" width="100"/>
-<img src="https://camo.githubusercontent.com/12136cf9daa20a57168a9bdee376f2e83e13c5b1/68747470733a2f2f7069636f636c692e696e666f2f696d616765732f737072696e672d626f6f742e706e67" alt="spring boot" width="200"/>
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Microsoft_Azure_Logo.svg/320px-Microsoft_Azure_Logo.svg.png" alt="java" width="200"/>
-<img src="https://miro.medium.com/max/269/1*PSmlTRCSmWVXuuNOWtx9DQ.png" alt="lombok" width="200"/>
-<img src="https://webassets.mongodb.com/_com_assets/cms/MongoDB_Logo_FullColorBlack_RGB-4td3yuxzjs.png" alt="lombok" width="200"/>
-<img src="https://www.ictshore.com/wp-content/uploads/2018/08/sfw0002-01-REST_Architecture.png" alt="rest" width="200"/>
+@snap[south-east span-30]
+![lombok](https://miro.medium.com/max/269/1*PSmlTRCSmWVXuuNOWtx9DQ.png)
+@snapend
 
+
+@snap[north span-100]
+# Backend
+@snapend
+
+@snap[midpoint span-30]
+![rest](https://www.ictshore.com/wp-content/uploads/2018/08/sfw0002-01-REST_Architecture.png)
+@snapend
+
+@snap[south span-30]
+![java](https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png)
+@snapend
+
+
+@snap[west span-30]
+![mongo](https://webassets.mongodb.com/_com_assets/cms/MongoDB_Logo_FullColorBlack_RGB-4td3yuxzjs.png)
+@snapend
+
+@snap[south-west span-30]
+![azure](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Microsoft_Azure_Logo.svg/320px-Microsoft_Azure_Logo.svg.png)
 @snapend
 
 +++
+
 @snap[midpoint span-60]
 
 <img src="https://camo.githubusercontent.com/12136cf9daa20a57168a9bdee376f2e83e13c5b1/68747470733a2f2f7069636f636c692e696e666f2f696d616765732f737072696e672d626f6f742e706e67" alt="spring boot" width="200"/>
@@ -110,7 +131,6 @@ https://github.com/baloise/this-or-that
 - less code
 - less dependencies
 - more standards
-
 
 @snapend
 
@@ -138,7 +158,6 @@ https://github.com/baloise/this-or-that
     * path: /{code}/vote
 
 @snapend
-
 
 @snap[east span-60 text-05 text-center]
 
@@ -181,14 +200,15 @@ https://github.com/baloise/this-or-that
 
 @snapend
 
----
+---?color=#1871e4
 
 # Flutter
 
 +++
 
 ## About
-- Open-Source UI Framework 
+
+- Open-Source UI Framework
 - Google, 2017
 - Language: Dart
 - Flutter Engine
@@ -196,23 +216,25 @@ https://github.com/baloise/this-or-that
 +++
 
 ## Flutter-Engine
+
 - ~~Native App~~
 - ~~Web-View~~
 - **Low-Level-Rendering**
-    - Google Skia Graphics Engine
-    - Design: Material, Cupertino, ...
-- Interaction w/ platform API (camera, push, ...) 
+  - Google Skia Graphics Engine
+  - Design: Material, Cupertino, ...
+- Interaction w/ platform API (camera, push, ...)
 
 +++
 
 ## Codecamp
+
 - Scope: This-Or-That app for iOS & Android
 - Features:
-    - QR code scanning
-    - Participate in existing surveys
-    - Create a survey & upload pictures 
-    - Survey results
-    - History of surveys
+  - QR code scanning
+  - Participate in existing surveys
+  - Create a survey & upload pictures
+  - Survey results
+  - History of surveys
 
 +++
 
@@ -229,7 +251,7 @@ https://github.com/baloise/this-or-that
 
 # Demo
 
----
+---?color=#1871e4
 
 # App-Store
 
@@ -237,23 +259,130 @@ https://github.com/baloise/this-or-that
 
 # part 2 details
 
----
+---?color=#1871e4
 
-# Vue
+@snap[h1-white]
+# Web Client
+@snapend
+
++++?color=linear-gradient(100deg, white 40%, #1871e4 40%)
+
+@snap[west span-30 text-center text-08]
+## Web Client
+@snapend
+
+@snap[east span-50 text-center h3-white text-white text-08]
+### Requirement
+- Simple to learn
+- Easy to deploy (github pages)
+- A good documentation & community
+- Progressive Web App (PWA) Support
+    - New Browser Features
+@snapend
 
 +++
 
-# part 2 details
+![stats](/docs/slides/img/js-frameworks-stat.png)
 
----
++++?color=linear-gradient(100deg, white 40%, #40b984 40%)
 
-# Demo
+@snap[west span-30 h2-gray text-center]
+
+![logo](https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png)
+
+## Vue.js
+
+@snapend
+
+@snap[east span-60 text-white text-08 text-center]
+
+- Open-Source Framework
+- Simple & Flexible
+- Small learning curve
+- Ecosystem (Router, Store...)
+- Performance & Package Size
+- Used by => Alibaba, GitLab, 9Gag
+
+@snapend
 
 +++
 
-# part 2 details
+### Vue Component
 
----
+@snap[text-08]
+```html
+<template>
+  <h1>{{ message }}</h1>
+</template>
+
+<script lang="ts">
+  import { Component, Vue, Prop } from "vue-property-decorator";
+
+  @Component
+  export default class HelloWorldComponent extends Vue {
+    @Prop() message!: string;
+  }
+</script>
+
+<style lang="scss" scoped>
+  h1 {
+    color: red;
+  }
+</style>
+```
+@snapend
+
++++
+
+## PWA
+
+### Progressive Web App
+
+@fa[quote-left text-gray](PWA is the latest ‘buzzword’)
+
++++
+
+## PWA
+
+- Are written in HTML, CSS & JS
+- Can be installed to the mobile home screen
+- Runs in the browser but with access to the device features
+- Can be used offline
+- Can use web push notifications
+
++++
+
+### manifest.json
+
+@snap[text-08]
+```json
+{
+  "name": "this-or-that-web",
+  "short_name": "this-or-that-web",
+  "icons": [
+    {
+      "src": "./img/icons/android-chrome-192x192.png",
+      "sizes": "192x192", "type": "image/png"
+    },
+    {
+      "src": "./img/icons/android-chrome-512x512.png",
+      "sizes": "512x512", "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF"
+}
+```
+@snapend
+---?color=#1871e4
+
+### Demo
+
+![demo](https://media.giphy.com/media/U3shPfaqOAPFeucjIb/giphy.gif)
+
+---?color=#1871e4
 
 # LL
 
