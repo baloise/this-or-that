@@ -9,7 +9,7 @@
 +++
 
 
-@snap[midpoint span-40]
+@snap[midpoint span-80]
 
 ### Bet
 - submitted as bet
