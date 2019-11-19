@@ -121,9 +121,7 @@ https://github.com/baloise/this-or-that
 
 # part 2 details
 
----
-
-# Vue
+---?image=https://www.clientresourcesinc.com/wp-content/uploads/2018/06/vuejs_logo.png
 
 +++
 
