@@ -1,4 +1,4 @@
----?image=/img/bin/iconset/logo.iconset/icon_512x512.png&size=50%&position=center
+---?image=/web/src/assets/logo.png&size=50%&position=center
 
 +++
 
