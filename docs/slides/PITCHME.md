@@ -184,8 +184,40 @@ https://github.com/baloise/this-or-that
 
 @snapend
 
++++
+
+## PWA
+
+- Are written in HTML, CSS & JS
+- Can be installed to the mobile home screen
+- Runs in the browser but with access to the device features
+- Can be used offline
+- Can use web push notifications
 
 +++
+
+```json
+{
+  "name": "this-or-that-web",
+  "short_name": "this-or-that-web",
+  "icons": [
+    {
+      "src": "./img/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./img/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF"
+}
+```
 
 ---
 
