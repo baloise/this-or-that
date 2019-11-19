@@ -123,9 +123,11 @@ https://github.com/baloise/this-or-that
 
 ---?image=https://miro.medium.com/max/3920/1*Vc0m5dS9SlhieEbR6n8wFg.jpeg
 
-+++
++++?image=/docs/slides/img/js-frameworks-stat.png
 
-# part 2 details
+## Why
+
+- 
 
 ---
 
