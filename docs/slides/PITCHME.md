@@ -122,18 +122,18 @@ https://github.com/baloise/this-or-that
 # part 2 details
 
 ---
-@snap[north span-40 h3-black]
+@snap[north]
 
 ## Web Client
 
 @fa[quote-left](Only one week time for developing)
 
+@snapend
+
 - Simple to learn
 - Easy to deploy (github pages)
 - A good documentation & community
 - Progressive Web App (PWA) Support
-
-@snapend
 
 +++?image=/docs/slides/img/js-frameworks-stat.png
 
