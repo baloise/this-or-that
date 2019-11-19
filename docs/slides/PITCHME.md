@@ -139,7 +139,9 @@ https://github.com/baloise/this-or-that
 - A good documentation & community
 - Progressive Web App (PWA) Support
 
-+++?image=/docs/slides/img/js-frameworks-stat.png
++++
+
+![stats](/docs/slides/img/js-frameworks-stat.png)
 
 +++?image=https://miro.medium.com/max/3920/1*Vc0m5dS9SlhieEbR6n8wFg.jpeg
 
