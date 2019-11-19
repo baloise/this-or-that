@@ -1,63 +1,96 @@
----?image=/img/bin/iconset/logo.iconset/icon_512x512.png&size=50%&position=center
+---
+
+@snap[midpoint span-40]
+
+![title](/img/bin/iconset/logo.iconset/icon_512x512.png)
+
+@snapend
 
 +++
 
-## Bet
 
+@snap[midpoint span-80]
+
+### Bet
 - submitted as bet
 - goal
     - tool for simple and instant voting
 - was implemented in two days
 
-+++
-
-## Idea
-
-<img src="/docs/slides/img/this_or_that_customer_jouney.png" alt="customer Journey" width="400"/>
+@snapend
 
 +++
 
-## Create Survey
+@snap[midpoint span-50]
 
+### Idea
+![customer journey](/docs/slides/img/this_or_that_customer_jouney.png)
+@snapend
+
++++
+
+@snap[midpoint span-60]
+
+### Create Survey
 ![create survey](/docs/slides/img/this_or_that_create_survey.png)
 
-+++
-
-## Code - QR
-
-<img src="/docs/slides/img/this_or_that_survey_code_qr.png" alt="code" width="600"/>
+@snapend
 
 +++
 
-## Voting
+@snap[midpoint span-60]
 
+### Code - QR
+![customer journey](/docs/slides/img/this_or_that_survey_code_qr.png)
+
+@snapend
+
++++
+
+@snap[midpoint span-60]
+
+### Voting
 ![voting](/docs/slides/img/this_or_that_voting.png)
 
-+++
-
-## Result
-
-<img src="/docs/slides/img/this_or_that_result.jpg" alt="result" width="600"/>
-
+@snapend
 
 +++
 
-## Transformation
+@snap[midpoint span-50]
 
+### Result
+![result](/docs/slides/img/this_or_that_result.jpg)
+
+
+@snapend
+
++++
+
+@snap[midpoint span-60]
+
+### Transformation
 ![GitHub](https://i.pinimg.com/600x315/2c/b6/70/2cb670b6ddd8922a1c1b2fee4f6f758c.jpg) 
 https://github.com/baloise/this-or-that
 
+@snapend
+
 +++
 
-## Code Camp Scope
+@snap[midpoint span-80]
+
+### Code Camp Scope
 - new frontend without baloise branding
 - app for PlayStore and AppleStore
 - backend with Spring Boot
 - improve Azure Cloud hosting
 
+@snapend
+
 ---
 
-## Backend
+@snap[midpoint span-60]
+
+### Backend
 <img src="https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png" alt="java" width="100"/>
 <img src="https://camo.githubusercontent.com/12136cf9daa20a57168a9bdee376f2e83e13c5b1/68747470733a2f2f7069636f636c692e696e666f2f696d616765732f737072696e672d626f6f742e706e67" alt="spring boot" width="200"/>
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Microsoft_Azure_Logo.svg/320px-Microsoft_Azure_Logo.svg.png" alt="java" width="200"/>
@@ -65,9 +98,32 @@ https://github.com/baloise/this-or-that
 <img src="https://webassets.mongodb.com/_com_assets/cms/MongoDB_Logo_FullColorBlack_RGB-4td3yuxzjs.png" alt="lombok" width="200"/>
 <img src="https://www.ictshore.com/wp-content/uploads/2018/08/sfw0002-01-REST_Architecture.png" alt="rest" width="200"/>
 
+@snapend
+
++++
+@snap[midpoint span-60]
+
+<img src="https://camo.githubusercontent.com/12136cf9daa20a57168a9bdee376f2e83e13c5b1/68747470733a2f2f7069636f636c692e696e666f2f696d616765732f737072696e672d626f6f742e706e67" alt="spring boot" width="200"/>
+### Why Spring Boot?
+- easy to set up
+- easy to run on cloud
+- less code
+- less dependencies
+- more standards
+
+
+@snapend
+
 +++
 
-## REST
+@snap[north span-60 text-center]
+
+### REST
+
+@snapend
+
+@snap[west span-60 text-05 text-center]
+
 1. createSurvey 
     * POST
     * path: /create -> surveyCode
@@ -77,20 +133,21 @@ https://github.com/baloise/this-or-that
 3. startSurvey 
     * POST
     * path: /{code}/start
-    
-+++
-
 4. getVote 
     * GET
     * path: /{code}/vote
+
+@snapend
+
+
+@snap[east span-60 text-05 text-center]
+
 5. getImageFromSurvey 
     * GET
     * path: /{code}/image/{imageId}
 6. setVote 
     * POST
     * path: /{code}/vote
-    
-+++
 7. stopSurvey
     * POST 
     * path: /{code}/stop
@@ -98,15 +155,31 @@ https://github.com/baloise/this-or-that
     * GET
     * path: /{code}/score
 
+@snapend
+
 +++
 
-## Algorithms
+@snap[midpoint span-80]
 
+### Algorithms
 - ImageSelectionAlgorithm
     - selects images from image pool
 - VoteAlgorithm
     - keeps track of votes and calculates score
 
+@snapend
+
++++
+
+@snap[midpoint span-80]
+
+### Azure
+- cloud solution from Microsoft
+- app service based Tomcat 9
+- deployment with ftp (only outside of baloise net)
+- monitoring with the azure portal (only inside baloise net)
+
+@snapend
 
 ---
 
