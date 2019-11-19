@@ -4,19 +4,20 @@
 
 ## Bet
 
-- Wurde eingereicht als Bet
-- Ziel schnell und einfach Entscheiden (instant vote)
-- Wurde in 2 Tagen umgesetzt
+- submitted as bet
+- goal
+    - tool for simple and instant voting
+- was implemented in two days
 
 +++
 
-## Idee
+## Idea
 
 <img src="/docs/slides/img/this_or_that_customer_jouney.png" alt="customer Journey" width="400"/>
 
 +++
 
-## Umfrage erstellen
+## Create Survey
 
 ![create survey](/docs/slides/img/this_or_that_create_survey.png)
 
@@ -28,13 +29,13 @@
 
 +++
 
-## Abstimmen
+## Voting
 
 ![voting](/docs/slides/img/this_or_that_voting.png)
 
 +++
 
-## Resultat
+## Result
 
 <img src="/docs/slides/img/this_or_that_result.jpg" alt="result" width="600"/>
 
@@ -49,10 +50,10 @@ https://github.com/baloise/this-or-that
 +++
 
 ## Code Camp Scope
-- Neues Frontend ohne Baloise Branding
-- App für PlayStore und AppleStore
-- Backend mit Spring Boot
-- Betrieb mit Azure Cloud verbessern
+- new frontend without baloise branding
+- app for PlayStore and AppleStore
+- backend with Spring Boot
+- improve Azure Cloud hosting
 
 ---
 
@@ -63,6 +64,43 @@ https://github.com/baloise/this-or-that
 <img src="https://miro.medium.com/max/269/1*PSmlTRCSmWVXuuNOWtx9DQ.png" alt="lombok" width="200"/>
 <img src="https://webassets.mongodb.com/_com_assets/cms/MongoDB_Logo_FullColorBlack_RGB-4td3yuxzjs.png" alt="lombok" width="200"/>
 <img src="https://www.ictshore.com/wp-content/uploads/2018/08/sfw0002-01-REST_Architecture.png" alt="rest" width="200"/>
+
++++
+
+## REST
+1. createSurvey 
+    * POST
+    * path: /create -> surveyCode
+2. addImageToSurvey 
+    * POST
+    * path: /{code}/image
+3. startSurvey 
+    * POST
+    * path: /{code}/start
+4. getVote 
+    * GET
+    * path: /{code}/vote
+5. getImageFromSurvey 
+    * GET
+    * path: /{code}/image/{imageId}
+6. setVote 
+    * POST
+    * path: /{code}/vote
+7. stopSurvey
+    * POST 
+    * path: /{code}/stop
+8. getScore 
+    * GET
+    * path: /{code}/score
+
++++
+
+## Algorithms
+
+- ImageSelectionAlgorithm
+    - selects images from image pool
+- VoteAlgorithm
+    - keeps track of votes and calculates score
 
 
 ---
