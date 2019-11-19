@@ -133,7 +133,7 @@ https://github.com/baloise/this-or-that
 
 # part 2 details
 
----
+---?color=#039
 
 # Web Client
 
@@ -141,11 +141,12 @@ https://github.com/baloise/this-or-that
 
 @snap[west span-30 text-center text-08]
 ## Web Client
-@fa[quote-left text-gray](Only one week time for developing)
 @snapend
 
 @snap[east span-50 text-center h3-white text-white text-08]
-### Deployment as a REST API Gateway
+
+@fa[quote-left text-gray](Only one week time for developing)
+
 - Simple to learn
 - Easy to deploy (github pages)
 - A good documentation & community
