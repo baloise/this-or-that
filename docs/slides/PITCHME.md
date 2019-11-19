@@ -137,31 +137,30 @@ https://github.com/baloise/this-or-that
 
 # Web Client
 
-+++
++++?color=linear-gradient(100deg, white 50%, #039 50%)
 
-@snap[north]
 
+@snap[west span-40 text-center]
 ## Web Client
-
 @fa[quote-left text-gray](Only one week time for developing)
-
 @snapend
 
+@snap[north-east span-40 text-center text-white]
+#### Deployment as a REST API Gateway
 - Simple to learn
 - Easy to deploy (github pages)
 - A good documentation & community
 - Progressive Web App (PWA) Support
     - New Browser Features
+@snapend
 
 +++
 
 ![stats](/docs/slides/img/js-frameworks-stat.png)
 
-+++?image=https://miro.medium.com/max/3920/1*Vc0m5dS9SlhieEbR6n8wFg.jpeg
-
 +++?color=linear-gradient(100deg, white 40%, #40b984 40.2%)
 
-@snap[west span-30 h2-gray]
+@snap[west span-30 h2-gray text-center]
 
 ![logo](https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png)
 
@@ -169,7 +168,7 @@ https://github.com/baloise/this-or-that
 
 @snapend
 
-@snap[east span-60 text-white text-08]
+@snap[east span-60 text-white text-08 text-center]
 
 - Open-Source Framework
 - Simple & Flexible
