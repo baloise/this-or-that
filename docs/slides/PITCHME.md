@@ -158,7 +158,7 @@ https://github.com/baloise/this-or-that
 
 +++?image=https://miro.medium.com/max/3920/1*Vc0m5dS9SlhieEbR6n8wFg.jpeg
 
-+++?color=linear-gradient(100deg, white 40%, #40b984 60.2%)
++++?color=linear-gradient(100deg, white 40%, #40b984 40.2%)
 
 @snap[west span-30]
 ![logo](https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png)
