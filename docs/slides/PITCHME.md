@@ -134,14 +134,10 @@ https://github.com/baloise/this-or-that
 
 @snapend
 
-@snap[midpoint]
-
 - Simple to learn
 - Easy to deploy (github pages)
 - A good documentation & community
 - Progressive Web App (PWA) Support
-
-@snapend
 
 +++?image=/docs/slides/img/js-frameworks-stat.png
 
