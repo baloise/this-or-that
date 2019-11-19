@@ -140,13 +140,16 @@ https://github.com/baloise/this-or-that
 
 ```html
 <template>
-    <h1>Hello World</h1>
+    <h1>{{ message }}</h1>
 </template>
 
 <script lang="ts">
-    import { Component, Vue } from 'vue-property-decorator';
+    import { Component, Vue, Prop } from 'vue-property-decorator';
+
     @Component
-    export default class HelloWorldComponent extends Vue {}
+    export default class HelloWorldComponent extends Vue {
+        @Prop() message!: string;
+    }
 </script>
 
 <style lang="scss" scoped>
