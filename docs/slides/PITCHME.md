@@ -4,18 +4,21 @@
 
 ### Bet
 
+@snap[midpoint span-40]
+
 - submitted as bet
 - goal
     - tool for simple and instant voting
 - was implemented in two days
+
+@snapend
 
 +++
 
 @snap[midpoint span-40]
 
 ### Idea
-<img src="/docs/slides/img/this_or_that_customer_jouney.png" alt="customer Journey" width="400"/>
-
+![customer journey](/docs/slides/img/this_or_that_customer_jouney.png)
 @snapend
 
 +++
@@ -32,7 +35,7 @@
 @snap[midpoint span-40]
 
 ### Code - QR
-<img src="/docs/slides/img/this_or_that_survey_code_qr.png" alt="code" width="600"/>
+![customer journey](/docs/slides/img/this_or_that_survey_code_qr.png)
 
 @snapend
 
@@ -50,7 +53,8 @@
 @snap[midpoint span-40]
 
 ### Result
-<img src="/docs/slides/img/this_or_that_result.jpg" alt="result" width="600"/>
+![result](/docs/slides/img/this_or_that_result.jpg)
+
 
 @snapend
 
