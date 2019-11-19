@@ -170,7 +170,7 @@ https://github.com/baloise/this-or-that
 
 ###  Progressive Web App
 
-@fa[quote-left](PWA is the latest ‘buzzword’ )
+@fa[quote-left text-gray](PWA is the latest ‘buzzword’ )
 
 @snapend
 
