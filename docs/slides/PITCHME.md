@@ -95,13 +95,13 @@ https://github.com/baloise/this-or-that
 @snapend
 
 +++
-@snap[north span-40]
+@snap[north span-60]
 
 ### REST
 
 @snapend
 
-@snap[west span-40 text-05]
+@snap[west span-60 text-05]
 
 1. createSurvey 
     * POST
@@ -119,7 +119,7 @@ https://github.com/baloise/this-or-that
 @snapend
 
 
-@snap[east span-40 text-05]
+@snap[east span-60 text-05]
 
 5. getImageFromSurvey 
     * GET
