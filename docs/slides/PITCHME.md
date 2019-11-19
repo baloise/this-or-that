@@ -96,7 +96,7 @@ https://github.com/baloise/this-or-that
 
 +++
 
-@snap[midpoint span-60]
+@snap[midpoint span-60 text-06]
 
 ### REST
 * createSurvey 
@@ -116,7 +116,7 @@ https://github.com/baloise/this-or-that
 
 +++
 
-@snap[midpoint span-60 text-04]
+@snap[midpoint span-60 text-06]
 
 * getImageFromSurvey 
     * GET
@@ -135,7 +135,7 @@ https://github.com/baloise/this-or-that
 
 +++
 
-@snap[midpoint span-60 text-04]
+@snap[midpoint span-60]
 
 ### Algorithms
 - ImageSelectionAlgorithm
