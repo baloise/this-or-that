@@ -137,15 +137,14 @@ https://github.com/baloise/this-or-that
 
 # Web Client
 
-+++?color=linear-gradient(100deg, white 50%, #039 50%)
++++?color=linear-gradient(100deg, white 40%, #039 40%)
 
-
-@snap[west span-40 text-center]
+@snap[west span-30 text-center]
 ## Web Client
 @fa[quote-left text-gray](Only one week time for developing)
 @snapend
 
-@snap[north-east span-40 text-center text-white]
+@snap[north-east span-50 text-center h4-white text-white text-08]
 #### Deployment as a REST API Gateway
 - Simple to learn
 - Easy to deploy (github pages)
@@ -158,7 +157,7 @@ https://github.com/baloise/this-or-that
 
 ![stats](/docs/slides/img/js-frameworks-stat.png)
 
-+++?color=linear-gradient(100deg, white 40%, #40b984 40.2%)
++++?color=linear-gradient(100deg, white 40%, #40b984 40%)
 
 @snap[west span-30 h2-gray text-center]
 
