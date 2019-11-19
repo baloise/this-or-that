@@ -145,7 +145,7 @@ https://github.com/baloise/this-or-that
 
 +++
 
-## Vue Component
+### Vue Component
 
 ```html
 <template>
