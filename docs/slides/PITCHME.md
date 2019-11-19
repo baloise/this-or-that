@@ -74,7 +74,7 @@ https://github.com/baloise/this-or-that
 <img src="https://webassets.mongodb.com/_com_assets/cms/MongoDB_Logo_FullColorBlack_RGB-4td3yuxzjs.png" alt="lombok" width="200"/>
 <img src="https://www.ictshore.com/wp-content/uploads/2018/08/sfw0002-01-REST_Architecture.png" alt="rest" width="200"/>
 
----
+---?color=#1871e4
 
 # Flutter
 
@@ -125,7 +125,7 @@ https://github.com/baloise/this-or-that
 
 # Demo
 
----
+---?color=#1871e4
 
 # App-Store
 
@@ -250,11 +250,13 @@ https://github.com/baloise/this-or-that
 }
 ```
 @snapend
----
+---?color=#1871e4
 
 # Demo
 
----
+![demo](https://media.giphy.com/media/U3shPfaqOAPFeucjIb/giphy.gif)
+
+---?color=#1871e4
 
 # LL
 
