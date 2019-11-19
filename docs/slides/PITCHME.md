@@ -127,7 +127,14 @@ https://github.com/baloise/this-or-that
 
 +++
 
-asdf
+## Why
+
+### Only one week time for developing
+
+- Simple to learn
+- Easy to deploy (github pages)
+- A good documentation & community
+- Progressive Web Application Support
 
 ---
 
