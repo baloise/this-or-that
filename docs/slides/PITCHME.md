@@ -77,6 +77,9 @@ https://github.com/baloise/this-or-that
 3. startSurvey 
     * POST
     * path: /{code}/start
+    
++++
+
 4. getVote 
     * GET
     * path: /{code}/vote
@@ -86,6 +89,8 @@ https://github.com/baloise/this-or-that
 6. setVote 
     * POST
     * path: /{code}/vote
+    
++++
 7. stopSurvey
     * POST 
     * path: /{code}/stop
