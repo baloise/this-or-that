@@ -129,7 +129,7 @@ https://github.com/baloise/this-or-that
 
 ## Why
 
-### Only one week time for developing
+#### Only one week time for developing
 
 - Simple to learn
 - Easy to deploy (github pages)
