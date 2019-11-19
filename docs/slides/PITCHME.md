@@ -168,7 +168,12 @@ https://github.com/baloise/this-or-that
 
 ### Vue.js
 
-- adf
+- Open-Source Framework
+- Simple & Flexible
+- Small learning curve
+- Ecosystem (Router, Store...)
+- Performance & Package Size
+- Used by => Alibaba, GitLab, 9Gag
 
 @snapend
 
