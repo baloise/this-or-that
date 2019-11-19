@@ -96,7 +96,7 @@ https://github.com/baloise/this-or-that
 
 +++
 
-@snap[west span-99]
+@snap[west span-60]
 
 ### REST
 1. createSurvey 
@@ -114,7 +114,7 @@ https://github.com/baloise/this-or-that
 
 @snapend
 
-@snap[east span-99]
+@snap[east span-60]
 
 5. getImageFromSurvey 
     * GET
