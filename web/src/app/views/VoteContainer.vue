@@ -57,11 +57,11 @@
 </template>
 
 <script lang="ts">
-    import {Component, Vue} from "vue-property-decorator";
-    import {getImageURL, getVote, setVote} from "@/app/api/survey.api";
-    import {VoteRequest} from "@/app/models/vote-request";
-    import {VoteResponse} from "@/app/models/vote-response";
-    import VoteImage from "@/app/components/VoteImage.vue";
+    import {Component, Vue} from 'vue-property-decorator';
+    import {getImageURL, getVote, setVote} from '@/app/api/survey.api';
+    import {VoteRequest} from '@/app/models/vote-request';
+    import {VoteResponse} from '@/app/models/vote-response';
+    import VoteImage from '@/app/components/VoteImage.vue';
 
     @Component({
         components: {VoteImage},
