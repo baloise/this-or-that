@@ -146,9 +146,7 @@ https://github.com/baloise/this-or-that
 @snapend
 
 @snap[east span-50 text-center h3-white text-white text-08]
-
-@fa[north quote-left text-white](Only one week time for developing)
-
+### Requirement
 - Simple to learn
 - Easy to deploy (github pages)
 - A good documentation & community
