@@ -96,37 +96,37 @@ https://github.com/baloise/this-or-that
 
 +++
 
-@snap[west span-60 text-06]
+@snap[west span-40 text-06]
 
 ### REST
-* createSurvey 
+1. createSurvey 
     * POST
     * path: /create -> surveyCode
-* addImageToSurvey 
+2. addImageToSurvey 
     * POST
     * path: /{code}/image
-* startSurvey 
+3. startSurvey 
     * POST
     * path: /{code}/start
-* getVote 
+4. getVote 
     * GET
     * path: /{code}/vote
 
 @snapend
 
 
-@snap[east span-60 text-06]
+@snap[east span-40 text-06]
 
-* getImageFromSurvey 
+5. getImageFromSurvey 
     * GET
     * path: /{code}/image/{imageId}
-* setVote 
+6. setVote 
     * POST
     * path: /{code}/vote
-* stopSurvey
+7. stopSurvey
     * POST 
     * path: /{code}/stop
-* getScore 
+8. getScore 
     * GET
     * path: /{code}/score
 
