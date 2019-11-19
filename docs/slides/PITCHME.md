@@ -151,6 +151,7 @@ https://github.com/baloise/this-or-that
 - Easy to deploy (github pages)
 - A good documentation & community
 - Progressive Web App (PWA) Support
+    - New Browser Features
 
 +++
 
