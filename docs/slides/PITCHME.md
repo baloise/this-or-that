@@ -38,17 +38,17 @@
 
 <img src="/docs/slides/img/this_or_that_result.jpg" alt="result" width="600"/>
 
-
 +++
 
 ## Transformation
 
-![GitHub](https://i.pinimg.com/600x315/2c/b6/70/2cb670b6ddd8922a1c1b2fee4f6f758c.jpg) 
+![GitHub](https://i.pinimg.com/600x315/2c/b6/70/2cb670b6ddd8922a1c1b2fee4f6f758c.jpg)
 https://github.com/baloise/this-or-that
 
 +++
 
 ## Code Camp Scope
+
 - Neues Frontend ohne Baloise Branding
 - App für PlayStore und AppleStore
 - Backend mit Spring Boot
@@ -57,13 +57,13 @@ https://github.com/baloise/this-or-that
 ---
 
 ## Backend
+
 <img src="https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png" alt="java" width="100"/>
 <img src="https://camo.githubusercontent.com/12136cf9daa20a57168a9bdee376f2e83e13c5b1/68747470733a2f2f7069636f636c692e696e666f2f696d616765732f737072696e672d626f6f742e706e67" alt="spring boot" width="200"/>
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Microsoft_Azure_Logo.svg/320px-Microsoft_Azure_Logo.svg.png" alt="java" width="200"/>
 <img src="https://miro.medium.com/max/269/1*PSmlTRCSmWVXuuNOWtx9DQ.png" alt="lombok" width="200"/>
 <img src="https://webassets.mongodb.com/_com_assets/cms/MongoDB_Logo_FullColorBlack_RGB-4td3yuxzjs.png" alt="lombok" width="200"/>
 <img src="https://www.ictshore.com/wp-content/uploads/2018/08/sfw0002-01-REST_Architecture.png" alt="rest" width="200"/>
-
 
 ---
 
@@ -72,7 +72,8 @@ https://github.com/baloise/this-or-that
 +++
 
 ## About
-- Open-Source UI Framework 
+
+- Open-Source UI Framework
 - Google, 2017
 - Language: Dart
 - Flutter Engine
@@ -80,23 +81,25 @@ https://github.com/baloise/this-or-that
 +++
 
 ## Flutter-Engine
+
 - ~~Native App~~
 - ~~Web-View~~
 - **Low-Level-Rendering**
-    - Google Skia Graphics Engine
-    - Design: Material, Cupertino, ...
-- Interaction w/ platform API (camera, push, ...) 
+  - Google Skia Graphics Engine
+  - Design: Material, Cupertino, ...
+- Interaction w/ platform API (camera, push, ...)
 
 +++
 
 ## Codecamp
+
 - Scope: This-Or-That app for iOS & Android
 - Features:
-    - QR code scanning
-    - Participate in existing surveys
-    - Create a survey & upload pictures 
-    - Survey results
-    - History of surveys
+  - QR code scanning
+  - Participate in existing surveys
+  - Create a survey & upload pictures
+  - Survey results
+  - History of surveys
 
 +++
 
@@ -122,6 +125,7 @@ https://github.com/baloise/this-or-that
 # part 2 details
 
 ---
+
 @snap[north]
 
 ## Web Client
@@ -143,22 +147,22 @@ https://github.com/baloise/this-or-that
 
 ```html
 <template>
-    <h1>{{ message }}</h1>
+  <h1>{{ message }}</h1>
 </template>
 
 <script lang="ts">
-    import { Component, Vue, Prop } from 'vue-property-decorator';
+  import { Component, Vue, Prop } from "vue-property-decorator";
 
-    @Component
-    export default class HelloWorldComponent extends Vue {
-        @Prop() message!: string;
-    }
+  @Component
+  export default class HelloWorldComponent extends Vue {
+    @Prop() message!: string;
+  }
 </script>
 
 <style lang="scss" scoped>
-    h1 {
-        color: red;
-    }
+  h1 {
+    color: red;
+  }
 </style>
 ```
 
@@ -166,17 +170,15 @@ https://github.com/baloise/this-or-that
 
 @snap[north span-100]
 
-##  PWA
+## PWA
 
-###  Progressive Web App
+### Progressive Web App
 
-@fa[quote-left text-gray](PWA is the latest ‘buzzword’ )
+@fa[quote-left text-gray](PWA is the latest ‘buzzword’)
 
 @snapend
 
 +++
-
-
 
 ---
 
