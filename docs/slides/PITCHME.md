@@ -352,6 +352,7 @@ https://github.com/baloise/this-or-that
 
 +++
 
+## PWA
 ### manifest.json
 
 @snap[text-08]
@@ -379,7 +380,8 @@ https://github.com/baloise/this-or-that
 
 +++
 
-## Browser Features
+## PWA
+### Browser Features
 
 @snap[text-08]
 ```typescript
