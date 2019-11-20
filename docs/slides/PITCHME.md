@@ -258,7 +258,7 @@ https://github.com/baloise/this-or-that
 +++?color=linear-gradient(100deg, white 50%, #1871e4 50.2%)
 
 @snap[west span-40]
-![logo](https://www.google.com/imgres?imgurl=https%3A%2F%2Fimage.flaticon.com%2Ficons%2Fpng%2F512%2F831%2F831276.png&imgrefurl=https%3A%2F%2Fwww.flaticon.com%2Ffree-icon%2Fapp-store_831276&docid=V5wpVnKPt7u6_M&tbnid=jSSLSchUL1HgaM%3A&vet=10ahUKEwjcq5yx3_jlAhVKKuwKHeMQBisQMwh1KAYwBg..i&w=512&h=512&client=firefox-b-d&bih=781&biw=1440&q=app%20store%20png&ved=0ahUKEwjcq5yx3_jlAhVKKuwKHeMQBisQMwh1KAYwBg&iact=mrc&uact=8)
+![logo](https://seeklogo.net/wp-content/uploads/2018/04/apple-app-store-logo.png)
 
 ## Apple App Store
 
