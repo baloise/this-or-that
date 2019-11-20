@@ -380,8 +380,10 @@ https://github.com/baloise/this-or-that
 
 +++
 
+@snap[north span-100]
 ## PWA
 ### Browser Features
+@snapend
 
 @snap[text-08]
 ```typescript
