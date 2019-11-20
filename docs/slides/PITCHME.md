@@ -125,8 +125,8 @@ https://github.com/baloise/this-or-that
 
 +++?color=linear-gradient(100deg, white 50%, #1871e4 50.2%)
 
-@snap[west span-80 text-center]
-<img src="https://camo.githubusercontent.com/12136cf9daa20a57168a9bdee376f2e83e13c5b1/68747470733a2f2f7069636f636c692e696e666f2f696d616765732f737072696e672d626f6f742e706e67" alt="spring boot" width="200"/>
+@snap[west span-40 text-center]
+![spring](https://spring.io/img/spring-by-pivotal.png)
 @snapend
 
 @snap[east span-40 text-center text-white h3-white]
