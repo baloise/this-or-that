@@ -105,7 +105,7 @@ https://github.com/baloise/this-or-that
 @snapend
 
 @snap[span-40]
-![java](https://spng.pinpng.com/pngs/s/146-1469136_java-logo-transparent-png-java-jdk-logo-png.png)
+![java](https://www.clearbyte.ch/wp-content/uploads/2018/11/java-logo-hrz-840x473.jpg)
 @snapend
 
 @snap[span-40]
