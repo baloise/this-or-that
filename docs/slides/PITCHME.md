@@ -251,14 +251,21 @@ https://github.com/baloise/this-or-that
 
 # Demo
 
----?color=#1871e4
+---?color=linear-gradient(100deg, white 50%, #1871e4 50.2%)
 
-# App-Store
+@snap[west span-40 text-center text-08]
+![logo](https://seeklogo.net/wp-content/uploads/2018/04/apple-app-store-logo.png)
 
-+++
+## Apple App Store
 
-# part 2 details
+@snapend
 
+@snap[east span-40 text-center h2-white text-08]
+![logo](https://cnet3.cbsistatic.com/img/eBJSY1Bs6ZzDpzNQGURVqMblZec=/1092x0/2017/05/11/c4c06fe6-4534-416b-948d-7928acdd5c0a/googleplaystorelogo.png)
+
+## Google Play Store
+
+@snapend
 ---?color=#1871e4
 
 @snap[h1-white]
@@ -352,8 +359,10 @@ https://github.com/baloise/this-or-that
 
 +++
 
+@snap[north span-100]
 ## PWA
 ### manifest.json
+@snapend
 
 @snap[text-08]
 ```json
