@@ -352,6 +352,7 @@ https://github.com/baloise/this-or-that
 
 +++
 
+## PWA
 ### manifest.json
 
 @snap[text-08]
@@ -376,6 +377,28 @@ https://github.com/baloise/this-or-that
 }
 ```
 @snapend
+
++++
+
+@snap[north span-100]
+## PWA
+### Browser Features
+@snapend
+
+@snap[text-08]
+```typescript
+@Ref('preview') public video!: HTMLVideoElement;
+
+public async scan() {
+    this.isScanEnabled = true;
+    this.stream = await navigator.mediaDevices.getUserMedia({audio: false, video: {facingMode: 'environment'}});
+    this.video.srcObject = this.stream;
+    await this.video.play();
+    requestAnimationFrame(this.tick);
+}
+```
+@snapend
+
 ---?color=#1871e4
 
 ### Demo
