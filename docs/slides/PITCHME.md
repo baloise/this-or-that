@@ -90,13 +90,10 @@ https://github.com/baloise/this-or-that
 
 ---?color=linear-gradient(100deg, #1871e4 50%, white 50.2%)
 
-@snap[east span-50]
+@snap[east span-40]
 
 @snap[span-40]
 ![spring](https://spring.io/img/spring-by-pivotal.png)
-@snapend
-
-@snap[span-40]
 ![lombok](https://miro.medium.com/max/269/1*PSmlTRCSmWVXuuNOWtx9DQ.png)
 @snapend
 
@@ -110,9 +107,6 @@ https://github.com/baloise/this-or-that
 
 @snap[span-40]
 ![mongo](https://webassets.mongodb.com/_com_assets/cms/MongoDB_Logo_FullColorBlack_RGB-4td3yuxzjs.png)
-@snapend
-
-@snap[span-40]
 ![azure](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Microsoft_Azure_Logo.svg/320px-Microsoft_Azure_Logo.svg.png)
 @snapend
 
