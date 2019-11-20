@@ -4,9 +4,9 @@
         <section class="hero is-info is-bold is-fullheight-with-navbar">
             <div class="hero-body">
                 <div class="container">
-                    <div class="has-text-centered">
+                    <div class="has-text-centered" v-if="score">
                         <h3 class="title is-3">Your survey: {{ this.$route.params.surveyCode }}</h3>
-                        <h4 class="subtitle is-4">{{ this.score.perspective }}</h4>
+                        <h4 class="subtitle is-4">{{ score.perspective }}</h4>
                         <b-button type="is-info"
                                   size="is-medium"
                                   inverted
@@ -18,21 +18,21 @@
                             <div class="level-item has-text-centered">
                                 <div>
                                     <p class="heading">Participants</p>
-                                    <p class="title">{{this.score.numberOfUsers}}</p>
+                                    <p class="title">{{score.numberOfUsers}}</p>
                                 </div>
                             </div>
                             <div class="level-item has-text-centered">
                                 <div>
                                     <p class="heading">Votes</p>
-                                    <p class="title">{{this.score.numberOfVotes}}</p>
+                                    <p class="title">{{score.numberOfVotes}}</p>
                                 </div>
                             </div>
                         </nav>
 
                         <hr>
 
-                        <div class="columns is-mobile is-multiline" v-if="score && score.scores">
-                            <div class="column is-half-mobile is-one-quarter" v-for="(item, index) in score.scores"
+                        <div class="columns is-multiline" v-if="score && score.scores">
+                            <div class="column is-half-tablet is-one-quarter" v-for="(item, index) in score.scores"
                                  :key="item.imageId">
                                 <figure class="image is-square" style="position: relative">
                                     <img :src="getImageURL(item.imageId)" :alt="'Image ' + (index+1)">

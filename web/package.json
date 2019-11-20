@@ -22,8 +22,6 @@
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
-    "vue-cropperjs": "^4.0.1",
-    "vue-i18n": "^8.14.1",
     "vue-property-decorator": "^8.1.0",
     "vue-router": "^3.0.3",
     "vuelidate": "^0.7.4",
