@@ -261,6 +261,7 @@ https://github.com/baloise/this-or-that
 @snap[span-50]
 ![logo](https://seeklogo.net/wp-content/uploads/2018/04/apple-app-store-logo.png)
 @snapend
+
 ## Apple App Store
 
 @snapend
