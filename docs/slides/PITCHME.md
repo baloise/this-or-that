@@ -13,7 +13,7 @@
 
 @snap[midpoint span-80]
 
-### Bet
+## Bet
 - submitted as bet
 - goal
     - tool for simple and instant voting
@@ -25,7 +25,7 @@
 
 @snap[midpoint span-50]
 
-### Idea
+## Idea
 ![customer journey](/docs/slides/img/this_or_that_customer_jouney.png)
 @snapend
 
@@ -33,7 +33,7 @@
 
 @snap[midpoint span-60]
 
-### Create Survey
+## Create Survey
 ![create survey](/docs/slides/img/this_or_that_create_survey.png)
 
 @snapend
@@ -42,7 +42,7 @@
 
 @snap[midpoint span-60]
 
-### Code - QR
+## Code - QR
 ![customer journey](/docs/slides/img/this_or_that_survey_code_qr.png)
 
 @snapend
@@ -51,7 +51,7 @@
 
 @snap[midpoint span-60]
 
-### Voting
+## Voting
 ![voting](/docs/slides/img/this_or_that_voting.png)
 
 @snapend
@@ -60,7 +60,7 @@
 
 @snap[midpoint span-50]
 
-### Result
+## Result
 ![result](/docs/slides/img/this_or_that_result.jpg)
 
 
@@ -68,7 +68,7 @@
 
 +++
 
-@snap[midpoint span-60]
+@snap[midpoint span-60 h3-blue]
 
 ### Transformation
 ![GitHub](https://i.pinimg.com/600x315/2c/b6/70/2cb670b6ddd8922a1c1b2fee4f6f758c.jpg) 
@@ -80,7 +80,7 @@ https://github.com/baloise/this-or-that
 
 @snap[midpoint span-80]
 
-### Code Camp Scope
+## Code Camp Scope
 - new frontend without baloise branding
 - app for PlayStore and AppleStore
 - backend with Spring Boot
@@ -88,57 +88,61 @@ https://github.com/baloise/this-or-that
 
 @snapend
 
----?color=#1871e4
+---?color=linear-gradient(100deg, #1871e4 50%, white 50.2%)
 
-@snap[east span-30]
+@snap[east span-40]
+
+@snap[span-40]
 ![spring](https://spring.io/img/spring-by-pivotal.png)
 @snapend
 
-@snap[south-east span-30]
+@snap[span-40]
 ![lombok](https://miro.medium.com/max/269/1*PSmlTRCSmWVXuuNOWtx9DQ.png)
 @snapend
 
-
-@snap[north span-100]
-# Backend
-@snapend
-
-@snap[midpoint span-30]
+@snap[span-40]
 ![rest](https://www.ictshore.com/wp-content/uploads/2018/08/sfw0002-01-REST_Architecture.png)
 @snapend
 
-@snap[south span-30]
-![java](https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png)
+@snap[span-40]
+![java](https://www.clearbyte.ch/wp-content/uploads/2018/11/java-logo-hrz-840x473.jpg)
 @snapend
 
-
-@snap[west span-30]
+@snap[span-40]
 ![mongo](https://webassets.mongodb.com/_com_assets/cms/MongoDB_Logo_FullColorBlack_RGB-4td3yuxzjs.png)
 @snapend
 
-@snap[south-west span-30]
+@snap[span-40]
 ![azure](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Microsoft_Azure_Logo.svg/320px-Microsoft_Azure_Logo.svg.png)
 @snapend
 
-+++
+@snapend
 
-@snap[midpoint span-60]
+@snap[west span-50 text-center h2-white]
+## Backend
+@snapend
 
-<img src="https://camo.githubusercontent.com/12136cf9daa20a57168a9bdee376f2e83e13c5b1/68747470733a2f2f7069636f636c692e696e666f2f696d616765732f737072696e672d626f6f742e706e67" alt="spring boot" width="200"/>
+
++++?color=linear-gradient(100deg, white 50%, #1871e4 50.2%)
+
+@snap[west span-40 text-center]
+![spring](https://camo.githubusercontent.com/12136cf9daa20a57168a9bdee376f2e83e13c5b1/68747470733a2f2f7069636f636c692e696e666f2f696d616765732f737072696e672d626f6f742e706e67)
+@snapend
+
+@snap[east span-40 text-center text-white h3-white]
 ### Why Spring Boot?
 - easy to set up
 - easy to run on cloud
 - less code
 - less dependencies
 - more standards
-
 @snapend
 
 +++
 
 @snap[north span-60 text-center]
 
-### REST
+## REST
 
 @snapend
 
@@ -180,7 +184,7 @@ https://github.com/baloise/this-or-that
 
 @snap[midpoint span-80]
 
-### Algorithms
+## Algorithms
 - ImageSelectionAlgorithm
     - selects images from image pool
 - VoteAlgorithm
@@ -192,7 +196,7 @@ https://github.com/baloise/this-or-that
 
 @snap[midpoint span-80]
 
-### Azure
+## Azure
 - cloud solution from Microsoft
 - app service based Tomcat 9
 - deployment with ftp (only outside of baloise net)
@@ -202,7 +206,7 @@ https://github.com/baloise/this-or-that
 
 +++
 
-### Lesson Learned
+## Lesson Learned
 
 - changing to Spring Boot was very easy
 - Azure is not suited for Java Applications
