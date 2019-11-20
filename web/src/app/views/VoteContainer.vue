@@ -136,10 +136,6 @@
             }
         }
 
-        private requestVote() {
-
-        }
-
         public async vote(selectedImage: number) {
             this.isLoading = true;
             try {
