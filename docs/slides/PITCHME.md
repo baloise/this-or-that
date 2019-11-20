@@ -13,7 +13,7 @@
 
 @snap[midpoint span-80]
 
-### Bet
+## Bet
 - submitted as bet
 - goal
     - tool for simple and instant voting
@@ -25,7 +25,7 @@
 
 @snap[midpoint span-50]
 
-### Idea
+## Idea
 ![customer journey](/docs/slides/img/this_or_that_customer_jouney.png)
 @snapend
 
@@ -33,7 +33,7 @@
 
 @snap[midpoint span-60]
 
-### Create Survey
+## Create Survey
 ![create survey](/docs/slides/img/this_or_that_create_survey.png)
 
 @snapend
@@ -42,7 +42,7 @@
 
 @snap[midpoint span-60]
 
-### Code - QR
+## Code - QR
 ![customer journey](/docs/slides/img/this_or_that_survey_code_qr.png)
 
 @snapend
@@ -51,7 +51,7 @@
 
 @snap[midpoint span-60]
 
-### Voting
+## Voting
 ![voting](/docs/slides/img/this_or_that_voting.png)
 
 @snapend
@@ -60,7 +60,7 @@
 
 @snap[midpoint span-50]
 
-### Result
+## Result
 ![result](/docs/slides/img/this_or_that_result.jpg)
 
 
@@ -70,7 +70,7 @@
 
 @snap[midpoint span-60]
 
-### Transformation
+## Transformation
 ![GitHub](https://i.pinimg.com/600x315/2c/b6/70/2cb670b6ddd8922a1c1b2fee4f6f758c.jpg) 
 https://github.com/baloise/this-or-that
 
@@ -80,7 +80,7 @@ https://github.com/baloise/this-or-that
 
 @snap[midpoint span-80]
 
-### Code Camp Scope
+## Code Camp Scope
 - new frontend without baloise branding
 - app for PlayStore and AppleStore
 - backend with Spring Boot
@@ -142,7 +142,7 @@ https://github.com/baloise/this-or-that
 
 @snap[north span-60 text-center]
 
-### REST
+## REST
 
 @snapend
 
@@ -184,7 +184,7 @@ https://github.com/baloise/this-or-that
 
 @snap[midpoint span-80]
 
-### Algorithms
+## Algorithms
 - ImageSelectionAlgorithm
     - selects images from image pool
 - VoteAlgorithm
@@ -196,7 +196,7 @@ https://github.com/baloise/this-or-that
 
 @snap[midpoint span-80]
 
-### Azure
+## Azure
 - cloud solution from Microsoft
 - app service based Tomcat 9
 - deployment with ftp (only outside of baloise net)
@@ -206,7 +206,7 @@ https://github.com/baloise/this-or-that
 
 +++
 
-### Lesson Learned
+## Lesson Learned
 
 - changing to Spring Boot was very easy
 - Azure is not suited for Java Applications
