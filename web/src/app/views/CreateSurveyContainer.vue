@@ -98,10 +98,10 @@
     import Header from '@/app/components/Header.vue';
 
     interface ImageObject {
-        originalFile: File
-        isProcessing: boolean
-        index?: number
-        source?: string
+        originalFile: File;
+        isProcessing: boolean;
+        index?: number;
+        source?: string;
     }
 
     @Component({
@@ -176,7 +176,7 @@
         private async processNextImage() {
             const newImages = this.images.filter(image => image.isProcessing);
             if (newImages.length > 0) {
-                let newImage = newImages[0];
+                const newImage = newImages[0];
                 newImage.source = await this.readImage(newImage.originalFile);
                 const imageElement = await this.createImage(newImage.source);
                 newImage.source = await this.resizeImage(imageElement);
@@ -220,13 +220,13 @@
                 let newHeight;
                 let aspectRadio = image.height / image.width;
                 if (image.height < image.width) {
-                    //horizontal
+                    // horizontal
                     aspectRadio = image.width / image.height;
                     newHeight = height;
                     newWidth = aspectRadio * height;
                     xStart = -(newWidth - width) / 2;
                 } else {
-                    //vertical
+                    // vertical
                     newWidth = width;
                     newHeight = aspectRadio * width;
                     yStart = -(newHeight - height) / 2;
