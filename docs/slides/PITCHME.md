@@ -88,37 +88,21 @@ https://github.com/baloise/this-or-that
 
 @snapend
 
----?color=#1871e4
+---?color=linear-gradient(100deg, white 50%, #1871e4 50.2%)
 
 @snap[east span-30]
 ![spring](https://spring.io/img/spring-by-pivotal.png)
-@snapend
-
-@snap[south-east span-30]
 ![lombok](https://miro.medium.com/max/269/1*PSmlTRCSmWVXuuNOWtx9DQ.png)
+![rest](https://www.ictshore.com/wp-content/uploads/2018/08/sfw0002-01-REST_Architecture.png)
+![java](https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png)
+![mongo](https://webassets.mongodb.com/_com_assets/cms/MongoDB_Logo_FullColorBlack_RGB-4td3yuxzjs.png)
+![azure](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Microsoft_Azure_Logo.svg/320px-Microsoft_Azure_Logo.svg.png)
 @snapend
 
-
-@snap[north span-100]
+@snap[west span-100]
 # Backend
 @snapend
 
-@snap[midpoint span-30]
-![rest](https://www.ictshore.com/wp-content/uploads/2018/08/sfw0002-01-REST_Architecture.png)
-@snapend
-
-@snap[south span-30]
-![java](https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png)
-@snapend
-
-
-@snap[west span-30]
-![mongo](https://webassets.mongodb.com/_com_assets/cms/MongoDB_Logo_FullColorBlack_RGB-4td3yuxzjs.png)
-@snapend
-
-@snap[south-west span-30]
-![azure](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Microsoft_Azure_Logo.svg/320px-Microsoft_Azure_Logo.svg.png)
-@snapend
 
 +++
 
