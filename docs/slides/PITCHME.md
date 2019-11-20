@@ -68,9 +68,9 @@
 
 +++
 
-@snap[midpoint span-60]
+@snap[midpoint span-60 h3-blue]
 
-## Transformation
+### Transformation
 ![GitHub](https://i.pinimg.com/600x315/2c/b6/70/2cb670b6ddd8922a1c1b2fee4f6f758c.jpg) 
 https://github.com/baloise/this-or-that
 
