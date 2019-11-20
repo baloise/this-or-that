@@ -105,7 +105,7 @@ https://github.com/baloise/this-or-that
 @snapend
 
 @snap[span-40]
-![java](https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png)
+![java](https://spng.pinpng.com/pngs/s/146-1469136_java-logo-transparent-png-java-jdk-logo-png.png)
 @snapend
 
 @snap[span-40]
