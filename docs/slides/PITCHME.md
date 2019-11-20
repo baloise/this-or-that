@@ -200,6 +200,13 @@ https://github.com/baloise/this-or-that
 
 @snapend
 
++++
+
+### Lesson Learned
+
+- changing to Spring Boot was very easy
+- Azure is not suited for Java Applications
+
 ---?color=#1871e4
 
 # Flutter
@@ -228,7 +235,6 @@ https://github.com/baloise/this-or-that
 
 ## Codecamp
 
-- Scope: This-Or-That app for iOS & Android
 - Features:
   - QR code scanning
   - Participate in existing surveys
@@ -416,7 +422,3 @@ public async scan() {
 
 ---?color=#1871e4
 
-### Lesson Learned
-
-- changing to Spring Boot was very easy
-- Azure is not suited for Java Applications
