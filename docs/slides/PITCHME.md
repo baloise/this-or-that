@@ -257,8 +257,8 @@ https://github.com/baloise/this-or-that
 
 +++?color=linear-gradient(100deg, white 50%, #1871e4 50.2%)
 
-@snap[west span-40]
-@snap[span-50]
+@snap[west span-40 text-center]
+@snap[span-70]
 ![logo](https://seeklogo.net/wp-content/uploads/2018/04/apple-app-store-logo.png)
 @snapend
 
@@ -266,8 +266,8 @@ https://github.com/baloise/this-or-that
 
 @snapend
 
-@snap[east span-40 h3-white h4-white]
-@snap[span-50]
+@snap[east span-40 text-center h3-white h4-white]
+@snap[span-70]
 ![logo](https://cnet3.cbsistatic.com/img/eBJSY1Bs6ZzDpzNQGURVqMblZec=/1092x0/2017/05/11/c4c06fe6-4534-416b-948d-7928acdd5c0a/googleplaystorelogo.png)
 @snapend
 
