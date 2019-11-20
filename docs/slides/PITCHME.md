@@ -381,7 +381,10 @@ https://github.com/baloise/this-or-that
 
 ## Browser Features
 
+@snap[text-08]
 ```typescript
+@Ref('preview') public video!: HTMLVideoElement;
+
 public async scan() {
     this.isScanEnabled = true;
     this.stream = await navigator.mediaDevices.getUserMedia({audio: false, video: {facingMode: 'environment'}});
@@ -390,6 +393,7 @@ public async scan() {
     requestAnimationFrame(this.tick);
 }
 ```
+@snapend
 
 ---?color=#1871e4
 
