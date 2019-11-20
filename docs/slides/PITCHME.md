@@ -92,27 +92,27 @@ https://github.com/baloise/this-or-that
 
 @snap[east span-40]
 
-@snap[east span-40]
+@snap[span-40]
 ![spring](https://spring.io/img/spring-by-pivotal.png)
 @snapend
 
-@snap[east span-40]
+@snap[span-40]
 ![lombok](https://miro.medium.com/max/269/1*PSmlTRCSmWVXuuNOWtx9DQ.png)
 @snapend
 
-@snap[east span-40]
+@snap[span-40]
 ![rest](https://www.ictshore.com/wp-content/uploads/2018/08/sfw0002-01-REST_Architecture.png)
 @snapend
 
-@snap[east span-40]
+@snap[span-40]
 ![java](https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png)
 @snapend
 
-@snap[east span-40]
+@snap[span-40]
 ![mongo](https://webassets.mongodb.com/_com_assets/cms/MongoDB_Logo_FullColorBlack_RGB-4td3yuxzjs.png)
 @snapend
 
-@snap[east span-40]
+@snap[span-40]
 ![azure](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Microsoft_Azure_Logo.svg/320px-Microsoft_Azure_Logo.svg.png)
 @snapend
 
