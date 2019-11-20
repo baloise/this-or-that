@@ -90,8 +90,10 @@ https://github.com/baloise/this-or-that
 
 ---?color=linear-gradient(100deg, #1871e4 50%, white 50.2%)
 
-@snap[east span-30]
+@snap[east span-40]
+@snap[east span-40]
 ![spring](https://spring.io/img/spring-by-pivotal.png)
+@snapend
 ![lombok](https://miro.medium.com/max/269/1*PSmlTRCSmWVXuuNOWtx9DQ.png)
 ![rest](https://www.ictshore.com/wp-content/uploads/2018/08/sfw0002-01-REST_Architecture.png)
 ![java](https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/127px-Java-Logo.svg.png)
