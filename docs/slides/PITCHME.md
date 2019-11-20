@@ -99,8 +99,8 @@ https://github.com/baloise/this-or-that
 ![azure](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Microsoft_Azure_Logo.svg/320px-Microsoft_Azure_Logo.svg.png)
 @snapend
 
-@snap[west span-30 text-center h1-white]
-# Backend
+@snap[west span-30 text-center h2-white]
+## Backend
 @snapend
 
 
