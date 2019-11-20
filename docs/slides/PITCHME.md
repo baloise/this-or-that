@@ -90,7 +90,7 @@ https://github.com/baloise/this-or-that
 
 ---?color=linear-gradient(100deg, #1871e4 50%, white 50.2%)
 
-@snap[east span-40]
+@snap[east span-50]
 
 @snap[span-40]
 ![spring](https://spring.io/img/spring-by-pivotal.png)
