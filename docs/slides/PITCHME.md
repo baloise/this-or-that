@@ -251,11 +251,7 @@ https://github.com/baloise/this-or-that
 
 # Demo
 
----?color=#1871e4
-
-# App-Store
-
-+++?color=linear-gradient(100deg, white 50%, #1871e4 50.2%)
+---?color=linear-gradient(100deg, white 50%, #1871e4 50.2%)
 
 @snap[west span-40 text-center text-08]
 ![logo](https://seeklogo.net/wp-content/uploads/2018/04/apple-app-store-logo.png)
