@@ -31,8 +31,8 @@
 
                         <hr>
 
-                        <div class="columns is-multiline" v-if="score && score.scores">
-                            <div class="column is-half-tablet is-one-quarter" v-for="(item, index) in score.scores"
+                        <div class="columns is-mobile is-multiline" v-if="score && score.scores">
+                            <div class="column is-half is-one-quarter-desktop" v-for="(item, index) in score.scores"
                                  :key="item.imageId">
                                 <figure class="image is-square" style="position: relative">
                                     <img :src="getImageURL(item.imageId)" :alt="'Image ' + (index+1)">

@@ -29,7 +29,7 @@
             </div>
             <p class="label" v-if="images && images.length > 0">Images</p>
             <div class="columns is-mobile is-multiline">
-                <div class="column is-half-mobile is-one-quarter" v-for="(item, index) in images"
+                <div class="column is-half is-one-quarter-desktop" v-for="(item, index) in images"
                      :key="index">
                     <figure class="image is-square" style="position: relative">
                         <div style="position: absolute; z-index: 100; top: 15px; width: 100%; text-align: center; font-size: 3em;">
