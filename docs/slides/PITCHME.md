@@ -376,6 +376,21 @@ https://github.com/baloise/this-or-that
 }
 ```
 @snapend
+
++++
+
+## Browser Features
+
+```typescript
+public async scan() {
+    this.isScanEnabled = true;
+    this.stream = await navigator.mediaDevices.getUserMedia({audio: false, video: {facingMode: 'environment'}});
+    this.video.srcObject = this.stream;
+    await this.video.play();
+    requestAnimationFrame(this.tick);
+}
+```
+
 ---?color=#1871e4
 
 ### Demo

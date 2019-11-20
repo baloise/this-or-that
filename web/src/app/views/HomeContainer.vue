@@ -113,14 +113,14 @@
         @Ref('canvas')
         public canvasElement!: HTMLCanvasElement;
 
-        public async scan() {
-            this.isScanEnabled = true;
-            this.stream = await navigator.mediaDevices.getUserMedia({audio: false, video: {facingMode: 'environment'}});
-            this.video.srcObject = this.stream;
-            this.video.setAttribute('playsinline', true as any); // required to tell iOS safari we don't want fullscreen
-            await this.video.play();
-            requestAnimationFrame(this.tick);
-        }
+public async scan() {
+    this.isScanEnabled = true;
+    this.stream = await navigator.mediaDevices.getUserMedia({audio: false, video: {facingMode: 'environment'}});
+    this.video.srcObject = this.stream;
+    this.video.setAttribute('playsinline', true as any); // required to tell iOS safari we don't want fullscreen
+    await this.video.play();
+    requestAnimationFrame(this.tick);
+}
 
         private tick() {
             if (this.video.readyState === this.video.HAVE_ENOUGH_DATA) {
