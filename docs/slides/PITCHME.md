@@ -257,10 +257,6 @@ https://github.com/baloise/this-or-that
 - No framework issues
 - Styling similar to Web, Layout is not
 
-+++
-
-# Demo
-
 ---?color=linear-gradient(100deg, white 50%, #1871e4 50.2%)
 
 @snap[west span-40 text-center text-08]
