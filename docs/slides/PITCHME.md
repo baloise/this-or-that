@@ -253,7 +253,7 @@ https://github.com/baloise/this-or-that
 - Short time to market
 - Good IDE support
 - Libraries for Plattform API integration
-- Comfortable development (Emulator & instant refresh)
+- Comfortable development (Emulator & hot reload)
 - No framework issues
 - Styling similar to Web, Layout is not
 
