@@ -71,7 +71,7 @@
 @snap[midpoint span-60 h3-blue]
 
 ### Transformation
-![GitHub](https://i.pinimg.com/600x315/2c/b6/70/2cb670b6ddd8922a1c1b2fee4f6f758c.jpg) 
+![GitHub](https://i.pinimg.com/600x315/2c/b6/70/2cb670b6ddd8922a1c1b2fee4f6f758c.jpg)
 https://github.com/baloise/this-or-that
 
 @snapend
@@ -148,16 +148,16 @@ https://github.com/baloise/this-or-that
 
 @snap[west span-60 text-05 text-center]
 
-1. createSurvey 
+1. createSurvey
     * POST
     * path: /create -> surveyCode
-2. addImageToSurvey 
+2. addImageToSurvey
     * POST
     * path: /{code}/image
-3. startSurvey 
+3. startSurvey
     * POST
     * path: /{code}/start
-4. getVote 
+4. getVote
     * GET
     * path: /{code}/vote
 
@@ -165,16 +165,16 @@ https://github.com/baloise/this-or-that
 
 @snap[east span-60 text-05 text-center]
 
-5. getImageFromSurvey 
+5. getImageFromSurvey
     * GET
     * path: /{code}/image/{imageId}
-6. setVote 
+6. setVote
     * POST
     * path: /{code}/vote
 7. stopSurvey
-    * POST 
+    * POST
     * path: /{code}/stop
-8. getScore 
+8. getScore
     * GET
     * path: /{code}/score
 
@@ -425,4 +425,3 @@ public async scan() {
 ![demo](https://media.giphy.com/media/U3shPfaqOAPFeucjIb/giphy.gif)
 
 ---?color=#1871e4
-
