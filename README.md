@@ -41,6 +41,5 @@ http://this-or-that-api.azurewebsites.net/this-or-that
  * Dart
   
 ##### iOS
-[![](http://api.qrserver.com/v1/create-qr-code/?color=000000&bgcolor=FFFFFF&data=https%3A%2F%2Ftestflight.apple.com%2Fjoin%2FQGgj2A7e&qzone=1&margin=0&size=200x200&ecc=L)](https://testflight.apple.com/join/QGgj2A7e)
  * Xcode
  * cocoapods
