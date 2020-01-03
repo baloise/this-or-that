@@ -11,9 +11,11 @@
             </b-field>
 
             <label class="label">Upload your Images! (Only PNG & JPG are supported)</label>
-            <div class="field" v-if="!imageSource" style="max-height: 200px">
+            <div class="field" style="max-height: 200px">
                 <b-field class="custom-upload-expanded" :expanded="true">
-                    <b-upload accept="image/x-png,image/png,image/jpeg" drag-drop v-model="imageFile">
+                    <b-upload accept="image/x-png,image/png,image/jpeg"
+                              :multiple="true"
+                              drag-drop v-model="imageFiles">
                         <section class="section">
                             <div class="content has-text-centered">
                                 <p>
@@ -25,40 +27,21 @@
                     </b-upload>
                 </b-field>
             </div>
-            <div class="columns is-centered" v-show="imageSource && imageSource.length > 0">
-                <div class="column is-half" style="max-width: 512px">
-                    <vue-cropper ref="cropper"
-                                 :src="imageSource"
-                                 :aspect-ratio="1 / 1"
-                                 :view-mode="3"
-                                 alt="">
-                    </vue-cropper>
-
-                    <br>
-                    <div class="buttons">
-                        <b-button type="is-info"
-                                  :disabled="isImageProcessing"
-                                  :loading="isImageProcessing"
-                                  @click="cropImage()">Add Image to Survey
-                        </b-button>
-                        <b-button type="is-danger"
-                                  :disabled="isImageProcessing"
-                                  :loading="isImageProcessing"
-                                  @click="cancelCrop()">Cancel
-                        </b-button>
-                    </div>
-                </div>
-            </div>
-
-            <p class="label" v-if="imageSources && imageSources.length > 0">Images</p>
+            <p class="label" v-if="images && images.length > 0">Images</p>
             <div class="columns is-mobile is-multiline">
-                <div class="column is-half-mobile is-one-quarter" v-for="(imageSource, index) in imageSources"
-                     :key="imageSource">
+                <div class="column is-half is-one-quarter-desktop" v-for="(item, index) in images"
+                     :key="index">
                     <figure class="image is-square" style="position: relative">
-                        <button class="delete is-large"
+                        <div style="position: absolute; z-index: 100; top: 15px; width: 100%; text-align: center; font-size: 3em;">
+                            <font-awesome-icon v-if="item.isProcessing" size="lg" icon="spinner" spin/>
+                        </div>
+                        <button v-if="!item.isProcessing"
+                                class="delete is-large"
                                 @click="deleteImage(index)"
                                 style="position: absolute; z-index: 100; top: 5px; right: 5px"></button>
-                        <img :src="imageSource" :alt="'Preview ' + (index+1)">
+                        <img v-if="item.source"
+                             :src="item.source"
+                             :alt="'Preview ' + (index+1)">
                     </figure>
                 </div>
             </div>
@@ -67,7 +50,7 @@
 
             <div class="buttons">
                 <b-button type="is-primary"
-                          :disabled="this.imageSources.length < 2 || isLoading"
+                          :disabled="!isFormValid"
                           :loading="isLoading"
                           @click="create()"
                           size="is-medium">Create Survey
@@ -103,7 +86,6 @@
             </div>
         </section>
         <b-loading :active.sync="isLoading" :is-full-page="true"></b-loading>
-        <b-loading :active.sync="isImageProcessing" :is-full-page="true"></b-loading>
     </section>
 </template>
 
@@ -113,64 +95,48 @@
     import {CreateSurveyRequest} from '@/app/models/create-survey-request';
     import {CreateImageRequest} from '@/app/models/create-image-request';
     import QrcodeVue from 'qrcode.vue';
-    import VueCropper from 'vue-cropperjs';
-    import 'cropperjs/dist/cropper.css';
     import Header from '@/app/components/Header.vue';
 
+    interface ImageObject {
+        originalFile: File;
+        isProcessing: boolean;
+        index?: number;
+        source?: string;
+    }
+
     @Component({
-        components: {Header, QrcodeVue, VueCropper},
+        components: {Header, QrcodeVue},
     })
     export default class CreateSurveyContainer extends Vue {
         public perspective: string = '';
         public surveyCode: string = '';
         public qrCodeUrl: string = '';
         public isLoading = false;
-        public imageFile: File | null = null;
-        public imageSource = '';
-        public imageSources: string[] = [];
-        public isImageProcessing = false;
 
-        @Ref('cropper')
-        public cropperElement!: any;
+        public imageFiles: File[] | null = null;
+        public images: ImageObject[] = [];
 
-        @Watch('imageFile')
+        get isFormValid(): boolean {
+            return !!this.perspective && this.images.filter(image => !image.isProcessing).length > 2;
+        }
+
+        @Watch('imageFiles')
         public fileInput() {
-            if (this.imageFile) {
-                const file = this.imageFile;
-                if (file.type.indexOf('image/') === -1) {
-                    alert('Please select an image file');
-                    return;
-                }
-                if (typeof FileReader === 'function') {
-                    const reader = new FileReader();
-                    reader.onload = (event) => {
-                        if (event && event.target) {
-                            this.imageSource = event.target.result as any;
-                            this.cropperElement.replace(event.target.result);
-                        }
-                    };
-                    reader.readAsDataURL(file);
-                } else {
-                    alert('Sorry, FileReader API not supported');
-                }
+            if (this.imageFiles) {
+                const newImages: ImageObject[] = this.imageFiles
+                    .map(file => ({
+                        originalFile: file,
+                        isProcessing: true,
+                    }));
+                this.imageFiles = null;
+                this.images = this.images.concat(newImages).map((image, index) => ({
+                    ...image,
+                    index,
+                }));
+                setTimeout(() => {
+                    this.processNextImage();
+                }, 100);
             }
-        }
-
-        public cancelCrop() {
-            this.imageFile = null;
-            this.imageSource = '';
-        }
-
-        public async cropImage() {
-            this.isImageProcessing = true;
-            setTimeout(async () => {
-                const croppedImageSource = this.cropperElement.getCroppedCanvas().toDataURL();
-                const image = await this.createImage(croppedImageSource);
-                const resizedImageSource = await this.resizeImage(image);
-                this.cancelCrop();
-                this.imageSources.push(resizedImageSource);
-                this.isImageProcessing = false;
-            }, 50);
         }
 
         public async create() {
@@ -184,8 +150,8 @@
                 const href = window.location.href;
                 this.qrCodeUrl = href.split('#')[0] + '#/' + this.surveyCode + '/vote';
                 await Promise.all(
-                    this.imageSources.map(async file => {
-                        const createImageRequest: CreateImageRequest = {file};
+                    this.images.map(async image => {
+                        const createImageRequest: CreateImageRequest = {file: image.source as string};
                         await createImage(createImageRequest, response.code);
                     }),
                 );
@@ -196,19 +162,81 @@
         }
 
         public deleteImage(index: number) {
-            this.imageSources.splice(index, 1);
+            this.images.splice(index, 1);
         }
 
         public back() {
             this.$router.push('/');
         }
 
-        public manageSurvey() {
-            this.$router.push(this.surveyCode + '/admin');
-        }
-
         public vote() {
             this.$router.push(this.surveyCode + '/vote');
+        }
+
+        private async processNextImage() {
+            const newImages = this.images.filter(image => image.isProcessing);
+            if (newImages.length > 0) {
+                const newImage = newImages[0];
+                newImage.source = await this.readImage(newImage.originalFile);
+                const imageElement = await this.createImage(newImage.source);
+                newImage.source = await this.resizeImage(imageElement);
+                this.images[newImage.index as number] = {...newImage, isProcessing: false};
+                this.images = [...this.images];
+
+                setTimeout(() => {
+                    this.processNextImage();
+                }, 100);
+            }
+        }
+
+        private readImage(file: File): Promise<string> {
+            return new Promise((resolve, reject) => {
+                if (typeof FileReader === 'function') {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        if (event && event.target) {
+                            resolve(event.target.result as any);
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    alert('Sorry, FileReader API not supported');
+                    reject();
+                }
+            });
+        }
+
+        private async resizeImage(image: HTMLImageElement) {
+            const mainCanvas = document.createElement('canvas');
+            const width = 480;
+            const height = 480;
+            mainCanvas.width = width;
+            mainCanvas.height = height;
+            const ctx = mainCanvas.getContext('2d');
+            if (ctx) {
+                let xStart = 0;
+                let yStart = 0;
+                let newWidth;
+                let newHeight;
+                let aspectRadio = image.height / image.width;
+                if (image.height < image.width) {
+                    // horizontal
+                    aspectRadio = image.width / image.height;
+                    newHeight = height;
+                    newWidth = aspectRadio * height;
+                    xStart = -(newWidth - width) / 2;
+                } else {
+                    // vertical
+                    newWidth = width;
+                    newHeight = aspectRadio * width;
+                    yStart = -(newHeight - height) / 2;
+                }
+
+                ctx.fillStyle = '#FFFFFF';
+                ctx.fillRect(0, 0, 480, 480);
+                ctx.drawImage(image, xStart, yStart, newWidth, newHeight);
+            }
+            return mainCanvas.toDataURL('image/jpeg', 1);
         }
 
         private createImage(imageSource: string): Promise<HTMLImageElement> {
@@ -222,17 +250,5 @@
             });
         }
 
-        private resizeImage(image: HTMLImageElement): string {
-            const mainCanvas = document.createElement('canvas');
-            mainCanvas.width = 480;
-            mainCanvas.height = 480;
-            const ctx = mainCanvas.getContext('2d');
-            if (ctx) {
-                ctx.fillStyle = '#FFFFFF';
-                ctx.fillRect(0, 0, 480, 480);
-                ctx.drawImage(image, 0, 0, mainCanvas.width, mainCanvas.height);
-            }
-            return mainCanvas.toDataURL('image/jpeg', 1);
-        }
     }
 </script>

@@ -22,7 +22,7 @@
             </div>
             <div class="hero-body">
                 <div class="container has-text-centered">
-                    <div v-if="voteResponse && voteResponse.id1 != null">
+                    <div v-if="voteResponse && voteResponse.id1 != null && !isOver">
                         <div class="image-container columns is-centered" :class="isLandscape ? 'is-mobile':''">
                             <div class="column is-half">
                                 <VoteImage :src="getImageURL1()" @click.native="vote(1)"></VoteImage>
@@ -159,6 +159,24 @@
                         this.submittedVotes.toString(),
                     );
                 }
+            } catch (error) {
+                if (
+                    'response' in error &&
+                    'status' in error.response &&
+                    error.response.status === 404
+                ) {
+                    this.$router.push('/404');
+                    return;
+                }
+                if (
+                    'response' in error &&
+                    'status' in error.response &&
+                    error.response.status === 400
+                ) {
+                    this.isOver = true;
+                    return;
+                }
+                throw error;
             } finally {
                 this.isLoading = false;
             }
