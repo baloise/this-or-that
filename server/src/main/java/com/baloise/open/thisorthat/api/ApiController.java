@@ -77,7 +77,6 @@ public class ApiController {
     public void stopSurvey(@PathVariable("code") String surveyCode) {
         try {
             surveyService.stopSurvey(surveyCode);
-            surveyService.persistSurvey(surveyCode);
         } catch (Exception e) {
             throw buildError(e);
         }

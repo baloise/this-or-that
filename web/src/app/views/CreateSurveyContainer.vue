@@ -48,6 +48,15 @@
 
             <hr>
 
+            <div class="field">
+                <b-checkbox v-model="checkBox">I agree to the
+                    <router-link to="/tos">Terms of Service</router-link>
+                    and
+                    <router-link to="/privacy">Privacy Policy</router-link>
+                    .
+                </b-checkbox>
+            </div>
+
             <div class="buttons">
                 <b-button type="is-primary"
                           :disabled="!isFormValid"
@@ -90,7 +99,7 @@
 </template>
 
 <script lang="ts">
-    import {Component, Ref, Vue, Watch} from 'vue-property-decorator';
+    import {Component, Vue, Watch} from 'vue-property-decorator';
     import {createImage, createSurvey, startSurvey} from '@/app/api/survey.api';
     import {CreateSurveyRequest} from '@/app/models/create-survey-request';
     import {CreateImageRequest} from '@/app/models/create-image-request';
@@ -112,12 +121,12 @@
         public surveyCode: string = '';
         public qrCodeUrl: string = '';
         public isLoading = false;
-
+        public checkBox = false;
         public imageFiles: File[] | null = null;
         public images: ImageObject[] = [];
 
         get isFormValid(): boolean {
-            return !!this.perspective && this.images.filter(image => !image.isProcessing).length > 2;
+            return !!this.perspective && this.images.filter(image => !image.isProcessing).length > 2 && this.checkBox;
         }
 
         @Watch('imageFiles')
