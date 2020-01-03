@@ -33,15 +33,22 @@ import java.util.stream.Collectors;
 
 @Repository
 @Log4j2
-public class InMemoryDatabase {
+public class InMemoryDatabase implements Database {
 
     private static final CopyOnWriteArrayList<Survey> surveys = new CopyOnWriteArrayList<>();
 
+    @Override
+    public long surveyCount() {
+        return surveys.size();
+    }
+
+    @Override
     public void addSurvey(Survey survey) {
         surveys.add(survey);
         log.info("added survey {}", survey.getId());
     }
 
+    @Override
     public void removeSurvey(String code) {
         boolean removed = surveys.removeIf(survey -> survey.getId().equals(code));
         if (removed) {
@@ -52,6 +59,7 @@ public class InMemoryDatabase {
         }
     }
 
+    @Override
     public Survey getSurvey(String code) {
         Optional<Survey> surveyOptional = surveys.stream().filter(survey -> survey.getId().equals(code)).findFirst();
         if (surveyOptional.isPresent()) {
@@ -62,6 +70,7 @@ public class InMemoryDatabase {
         }
     }
 
+    @Override
     public String addImageToSurvey(String surveyCode, Image image) {
         Survey survey = getSurvey(surveyCode);
         survey.getImages().add(image);
@@ -71,16 +80,19 @@ public class InMemoryDatabase {
         return id;
     }
 
+    @Override
     public void startSurvey(String surveyCode) {
         getSurvey(surveyCode).setStarted(true);
         log.info("started survey {}", surveyCode);
     }
 
+    @Override
     public void stopSurvey(String surveyCode) {
         getSurvey(surveyCode).setStarted(false);
         log.info("closed survey {}", surveyCode);
     }
 
+    @Override
     public Image getImageFromSurvey(String surveyCode, String imageId) {
         Survey survey = getSurvey(surveyCode);
         return survey.getImages().stream()
@@ -89,14 +101,17 @@ public class InMemoryDatabase {
                 .orElseThrow(() -> new ImageNotFoundException("survey" + surveyCode + " image " + imageId + "not found "));
     }
 
+    @Override
     public List<Survey> getSurveysOlderThan(Date cutOffDate) {
         return surveys.stream().filter(s -> s.getCreationDate().before(cutOffDate)).collect(Collectors.toList());
     }
 
+    @Override
     public void addScore(String surveyCode, ScoreItem scoreItem) {
         getSurvey(surveyCode).getScores().add(scoreItem);
     }
 
+    @Override
     public void persistVote(String surveyCode, Vote vote) {
         Survey survey = getSurvey(surveyCode);
         survey.getVotes().add(vote);

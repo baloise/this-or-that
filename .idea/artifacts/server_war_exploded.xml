@@ -45,9 +45,6 @@
           <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-el:9.0.27" />
           <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:9.0.27" />
           <element id="library" level="project" name="Maven: org.hashids:hashids:1.0.3" />
-          <element id="library" level="project" name="Maven: org.mongodb:mongodb-driver:3.8.2" />
-          <element id="library" level="project" name="Maven: org.mongodb:bson:3.8.2" />
-          <element id="library" level="project" name="Maven: org.mongodb:mongodb-driver-core:3.8.2" />
           <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.13" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-maven-plugin:2.1.9.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-loader-tools:2.1.9.RELEASE" />

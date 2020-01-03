@@ -96,9 +96,6 @@
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:9.0.27" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.projectlombok:lombok:1.18.10" level="project" />
     <orderEntry type="library" name="Maven: org.hashids:hashids:1.0.3" level="project" />
-    <orderEntry type="library" name="Maven: org.mongodb:mongodb-driver:3.8.2" level="project" />
-    <orderEntry type="library" name="Maven: org.mongodb:bson:3.8.2" level="project" />
-    <orderEntry type="library" name="Maven: org.mongodb:mongodb-driver-core:3.8.2" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.13" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-maven-plugin:2.1.9.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-loader-tools:2.1.9.RELEASE" level="project" />

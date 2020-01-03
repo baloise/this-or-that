@@ -36,7 +36,7 @@ public class CleanupJob implements Runnable {
     public void run() {
         log.info("ENTRY CleanupJob RUN()");
         Calendar yesterday = Calendar.getInstance();
-        yesterday.add(Calendar.DAY_OF_MONTH, -7);
+        yesterday.add(Calendar.DAY_OF_MONTH, -1);
         List<Survey> oldSurveys = inMemoryDatabase.getSurveysOlderThan(yesterday.getTime());
         log.info("Removing {} surveys", oldSurveys.size());
         for (Survey survey : oldSurveys) {

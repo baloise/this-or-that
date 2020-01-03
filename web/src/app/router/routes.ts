@@ -21,6 +21,14 @@ export const routes: RouteConfig[] = [
         component: () => import('@/app/views/NotFound.vue'),
     },
     {
+        path: '/privacy',
+        component: () => import('@/app/views/PrivacyContainer.vue'),
+    },
+    {
+        path: '/tos',
+        component: () => import('@/app/views/TermOfServiceContainer.vue'),
+    },
+    {
         path: '/:surveyCode/vote',
         name: 'vote',
         component: () => import('@/app/views/VoteContainer.vue'),

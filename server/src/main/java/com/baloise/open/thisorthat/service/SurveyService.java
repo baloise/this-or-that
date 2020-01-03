@@ -20,7 +20,6 @@ import com.baloise.open.thisorthat.api.dto.ScoreResponse;
 import com.baloise.open.thisorthat.api.dto.VoteRequest;
 import com.baloise.open.thisorthat.api.dto.VoteResponse;
 import com.baloise.open.thisorthat.db.InMemoryDatabase;
-import com.baloise.open.thisorthat.db.MongoDatabaseService;
 import com.baloise.open.thisorthat.dto.Image;
 import com.baloise.open.thisorthat.dto.Survey;
 import com.baloise.open.thisorthat.dto.VoteItem;
@@ -37,30 +36,20 @@ import java.util.stream.Collectors;
 public class SurveyService {
 
     private final InMemoryDatabase inMemoryDatabase;
-    private final MongoDatabaseService mongoDatabaseService;
 
     private final SimpleVoteAlgorithm randomAlgorithm;
 
-
     public SurveyService(InMemoryDatabase inMemoryDatabase,
-                         MongoDatabaseService mongoDatabaseService,
                          SimpleVoteAlgorithm randomAlgorithm) {
         this.inMemoryDatabase = inMemoryDatabase;
-        this.mongoDatabaseService = mongoDatabaseService;
         this.randomAlgorithm = randomAlgorithm;
     }
 
     public Survey createSurvey(String perspective) {
         log.info("create survey with perspective {}", perspective);
-        long index = mongoDatabaseService.surveyCount();
+        long index = inMemoryDatabase.surveyCount();
         String code = CodeCreator.createCode(index);
         log.info("code created: {}", code);
-        mongoDatabaseService.initializeSurvey(Survey.builder()
-                .id(code)
-                .creationDate(new Date())
-                .started(false)
-                .build());
-        log.info("added empty survey to mongo");
         Survey survey = Survey.builder()
                 .id(code)
                 .creationDate(new Date())
@@ -140,14 +129,7 @@ public class SurveyService {
     }
 
     private Survey getSurvey(String surveyCode) {
-        Survey survey;
-        try {
-            survey = inMemoryDatabase.getSurvey(surveyCode);
-        } catch (SurveyNotFoundException error) {
-            log.warn("survey not found in memory looking for in database surveyCode {}", surveyCode);
-            survey = mongoDatabaseService.getSurvey(surveyCode);
-        }
-        return survey;
+        return inMemoryDatabase.getSurvey(surveyCode);
     }
 
     private Image getImageFromSurvey(Survey survey, String imageId) {
@@ -172,17 +154,6 @@ public class SurveyService {
         checkIfSurveyIsStopped(surveyCode);
         log.info("survey {} deleted", surveyCode);
         inMemoryDatabase.removeSurvey(surveyCode);
-        mongoDatabaseService.removeSurvey(surveyCode);
-    }
-
-    public void persistSurvey(String surveyCode) {
-        Survey survey = inMemoryDatabase.getSurvey(surveyCode);
-        if (survey.getStarted()) {
-            log.error("survey {} is not stopped", survey.getId());
-            throw new DatabaseException("survey " + surveyCode + "is not stopped");
-        }
-        mongoDatabaseService.persistSurvey(survey);
-        log.info("survey {} persist", surveyCode);
     }
 
     private void checkIfSurveyIsAlreadyStarted(String surveyCode) {
