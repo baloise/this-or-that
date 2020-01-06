@@ -36,16 +36,18 @@ import java.util.stream.Collectors;
 public class InMemoryDatabase implements Database {
 
     private static final CopyOnWriteArrayList<Survey> surveys = new CopyOnWriteArrayList<>();
+    private static long createdSurveyCounter = 0L;
 
     @Override
     public long surveyCount() {
-        return surveys.size();
+        return createdSurveyCounter;
     }
 
     @Override
     public void addSurvey(Survey survey) {
         surveys.add(survey);
-        log.info("added survey {}", survey.getId());
+        log.info("added survey {} at index: {}", survey.getId(), createdSurveyCounter);
+        createdSurveyCounter++;
     }
 
     @Override
