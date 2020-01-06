@@ -1,4 +1,6 @@
 FROM openjdk:8-jdk-alpine
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+USER appuser
 VOLUME /tmp
 ARG DEPENDENCY=target/this-or-that
 COPY ${DEPENDENCY}/META-INF /app/META-INF
