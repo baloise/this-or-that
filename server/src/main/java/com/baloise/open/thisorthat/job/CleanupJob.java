@@ -20,6 +20,7 @@ import com.baloise.open.thisorthat.dto.Survey;
 import com.baloise.open.thisorthat.exception.DatabaseException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.Calendar;
@@ -32,7 +33,7 @@ public class CleanupJob implements Runnable {
     @Autowired
     private InMemoryDatabase inMemoryDatabase;
 
-    @Override
+    @Scheduled(fixedDelay = 3600000, initialDelay = 3600000)
     public void run() {
         log.info("ENTRY CleanupJob RUN()");
         Calendar yesterday = Calendar.getInstance();
