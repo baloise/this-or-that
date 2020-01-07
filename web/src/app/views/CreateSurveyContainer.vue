@@ -48,6 +48,13 @@
 
             <hr>
 
+            <b-notification
+                    :closable="false"
+                    role="alert"
+                    type="is-warning">
+                Please be advised that your survey and all connected data will be deleted automatically after 24 hours.
+            </b-notification>
+
             <div class="field">
                 <b-checkbox v-model="checkBox">I agree to the
                     <router-link to="/tos">Terms of Service</router-link>
