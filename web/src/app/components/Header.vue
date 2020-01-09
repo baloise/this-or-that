@@ -9,6 +9,9 @@
             <b-navbar-item @click.native="home()">
                 Home
             </b-navbar-item>
+            <b-navbar-item @click.native="howitworks()">
+                How does it work?
+            </b-navbar-item>
             <b-navbar-item @click.native="about()">
                 About
             </b-navbar-item>
@@ -27,6 +30,10 @@
 
         public about() {
             this.$router.push('/about');
+        }
+
+        public howitworks() {
+            this.$router.push('/howitworks');
         }
     }
 </script>

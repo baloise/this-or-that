@@ -17,6 +17,11 @@ export const routes: RouteConfig[] = [
         component: () => import('@/app/views/CreateSurveyContainer.vue'),
     },
     {
+        path: '/howitworks',
+        name: 'howitworks',
+        component: () => import('@/app/views/HowItWorksContainer.vue'),
+    },
+    {
         path: '/404',
         component: () => import('@/app/views/NotFound.vue'),
     },
