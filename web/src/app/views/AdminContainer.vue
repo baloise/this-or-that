@@ -45,6 +45,7 @@
             </div>
             <b-loading :active.sync="isLoading" :can-cancel="true" :is-full-page="true"></b-loading>
         </section>
+        <Footer></Footer>
     </section>
 </template>
 
@@ -54,9 +55,10 @@
     import {ScoreResponse} from '@/app/models/score-response';
     import QrcodeVue from 'qrcode.vue';
     import Header from '@/app/components/Header.vue';
+    import Footer from '@/app/components/Footer.vue';
 
     @Component({
-        components: {Header, QrcodeVue},
+        components: {Footer, Header, QrcodeVue},
     })
     export default class AdminContainer extends Vue {
         public isLoading = false;

@@ -102,6 +102,7 @@
             </div>
         </section>
         <b-loading :active.sync="isLoading" :is-full-page="true"></b-loading>
+        <Footer></Footer>
     </section>
 </template>
 
@@ -112,6 +113,7 @@
     import {CreateImageRequest} from '@/app/models/create-image-request';
     import QrcodeVue from 'qrcode.vue';
     import Header from '@/app/components/Header.vue';
+    import Footer from '@/app/components/Footer.vue';
 
     interface ImageObject {
         originalFile: File;
@@ -121,7 +123,7 @@
     }
 
     @Component({
-        components: {Header, QrcodeVue},
+        components: {Footer, Header, QrcodeVue},
     })
     export default class CreateSurveyContainer extends Vue {
         public perspective: string = '';

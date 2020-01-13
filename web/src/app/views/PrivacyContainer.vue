@@ -1,5 +1,6 @@
 <template>
     <section id="privacy">
+        <Header></Header>
         <section class="section">
             <div class="container content">
                 <h1>Privacy Policy for ThisOrThat</h1>
@@ -86,12 +87,17 @@
             </div>
 
         </section>
+        <Footer></Footer>
     </section>
 
 </template>
 
 <script>
+    import Header from '../components/Header';
+    import Footer from '../components/Footer';
+
     export default {
         name: 'PrivacyContainer',
+        components: {Footer, Header},
     };
 </script>

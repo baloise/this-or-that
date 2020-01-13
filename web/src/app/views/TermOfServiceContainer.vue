@@ -1,5 +1,6 @@
 <template>
     <section class="section">
+        <Header></Header>
         <div class="container content">
             <h1>Terms and Conditions</h1>
 
@@ -101,13 +102,18 @@
             <p>If you have any questions about these Terms, please contact us.</p>
 
         </div>
+        <Footer></Footer>
     </section>
 
 
 </template>
 
 <script>
+    import Header from '../components/Header';
+    import Footer from '../components/Footer';
+
     export default {
         name: 'TermOfServiceContainer',
+        components: {Footer, Header},
     };
 </script>

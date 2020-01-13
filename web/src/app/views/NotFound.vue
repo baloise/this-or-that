@@ -12,15 +12,18 @@
                 </div>
             </div>
         </section>
+        <Footer></Footer>
     </section>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import Header from '@/app/components/Header.vue';
+    import {Component, Vue} from 'vue-property-decorator';
+    import Header from '@/app/components/Header.vue';
+    import Footer from '@/app/components/Footer.vue';
 
-@Component({
-    components: {Header},
-})
-export default class NotFound extends Vue {}
+    @Component({
+        components: {Footer, Header},
+    })
+    export default class NotFound extends Vue {
+    }
 </script>

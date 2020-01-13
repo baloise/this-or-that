@@ -22,14 +22,17 @@
                 </div>
             </div>
         </section>
+        <Footer></Footer>
     </section>
 </template>
 
 <script lang="ts">
     import {Component, Vue} from 'vue-property-decorator';
     import Header from '@/app/components/Header.vue';
+    import Footer from '@/app/components/Footer.vue';
+
     @Component({
-        components: {Header},
+        components: {Footer, Header},
     })
     export default class About extends Vue {
 

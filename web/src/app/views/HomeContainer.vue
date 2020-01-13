@@ -1,7 +1,6 @@
 <template>
     <section id="home">
         <Header></Header>
-
         <section class="hero is-info is-medium is-bold">
             <div class="hero-body">
                 <div class="container has-text-centered">
@@ -90,7 +89,7 @@
                 </div>
             </div>
         </section>
-
+        <Footer></Footer>
     </section>
 </template>
 
@@ -98,9 +97,10 @@
     import {Component, Ref, Vue} from 'vue-property-decorator';
     import Header from '@/app/components/Header.vue';
     import jsQR from 'jsqr';
+    import Footer from '@/app/components/Footer.vue';
 
     @Component({
-        components: {Header},
+        components: {Footer, Header},
     })
     export default class HomeContainer extends Vue {
         public surveyCode = '';
