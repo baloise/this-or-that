@@ -4,8 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/server/server.iml" filepath="$PROJECT_DIR$/server/server.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/this-or-that.iml" filepath="$PROJECT_DIR$/.idea/this-or-that.iml" />
-      <module fileurl="file://$PROJECT_DIR$/this-or-that-client/this-or-that-client.iml" filepath="$PROJECT_DIR$/this-or-that-client/this-or-that-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web/web.iml" filepath="$PROJECT_DIR$/web/web.iml" />
     </modules>
   </component>
 </project>
