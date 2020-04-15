@@ -15,13 +15,6 @@ Each participant of the voting can make votes based on image by selecting one of
 ### Client
 https://baloise.github.io/this-or-that
 
-### Server
-
-#### Test
-https://this-or-that-test.azurewebsites.net/this-or-that
-#### Prod
-http://this-or-that-api.azurewebsites.net/this-or-that
-
 ## Requirements
 
 ### Server
@@ -34,12 +27,4 @@ http://this-or-that-api.azurewebsites.net/this-or-that
 #### Web
 [![](http://api.qrserver.com/v1/create-qr-code/?color=000000&bgcolor=FFFFFF&data=https%3A%2F%2Fbaloise.github.io%2Fthis-or-that%2F&qzone=1&margin=0&size=200x200&ecc=L)](https://baloise.github.io/this-or-that/)
  * NodeJS
- * NPM 
-
-#### Apps
- * Flutter
- * Dart
-  
-##### iOS
- * Xcode
- * cocoapods
+ * NPM
