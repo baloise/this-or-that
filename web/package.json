@@ -14,7 +14,7 @@
     "axios": "^0.19.0",
     "buefy": "^0.8.4",
     "bulma": "^0.7.5",
-    "class-transformer": "^0.2.3",
+    "class-transformer": "^0.3.1",
     "jsqr": "^1.2.0",
     "logdown": "^3.2.8",
     "qrcode.vue": "^1.6.3",
