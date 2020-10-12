@@ -166,7 +166,7 @@ public class SurveyService {
 
     private void checkIfSurveyIsStopped(String surveyCode) {
         Survey survey = inMemoryDatabase.getSurvey(surveyCode);
-        if (survey.getStarted() != null && !survey.getStarted()) {
+        if (survey == null || !survey.getStarted()) {
             log.warn("survey {} is not running", surveyCode);
             throw new SurveyStoppedException("survey " + surveyCode + " is already stopped");
         }

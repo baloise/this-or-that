@@ -90,7 +90,6 @@ public class SurveyServiceTest {
 
     @Test(expected = SurveyStoppedException.class)
     public void stopSurvey_survey_stopped_expect_exception() {
-        doNothing().when(randomAlgorithmMock).calculateScoresAndStopSurvey(anyString());
         Survey survey = Survey.builder()
                 .started(false)
                 .build();
@@ -98,9 +97,32 @@ public class SurveyServiceTest {
         surveyService.stopSurvey("surveyCode");
     }
 
-    @Test
-    public void getVote() {
+    @Test(expected = SurveyStoppedException.class)
+    public void stopSurvey_survey_null_expect_exception() {
+        when(inMemoryDatabaseMock.getSurvey(anyString())).thenReturn(null);
+        surveyService.stopSurvey("surveyCode");
     }
+
+    @Test(expected = SurveyStoppedException.class)
+    public void getVote_null_expect_exception() {
+        when(inMemoryDatabaseMock.getSurvey(anyString())).thenReturn(null);
+        surveyService.getVote("", "");
+    }
+
+    @Test(expected = SurveyStoppedException.class)
+    public void getVote_stopped_expect_exception() {
+        Survey survey = Survey.builder()
+                .started(false)
+                .build();
+        when(inMemoryDatabaseMock.getSurvey(anyString())).thenReturn(survey);
+        surveyService.getVote("", "");
+    }
+
+    @Test()
+    public void getVote() {
+
+    }
+
 
     @Test
     public void setVote() {
