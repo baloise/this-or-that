@@ -157,14 +157,16 @@ public class SurveyService {
     }
 
     private void checkIfSurveyIsAlreadyStarted(String surveyCode) {
-        if (inMemoryDatabase.getSurvey(surveyCode).getStarted() != null && inMemoryDatabase.getSurvey(surveyCode).getStarted()) {
-            log.warn("survey {} is not running", surveyCode);
+        Survey survey = inMemoryDatabase.getSurvey(surveyCode);
+        if (survey == null || survey.getStarted()) {
+            log.warn("survey {} is already started", surveyCode);
             throw new SurveyAlreadyStartedException("survey " + surveyCode + " is already started");
         }
     }
 
     private void checkIfSurveyIsStopped(String surveyCode) {
-        if (inMemoryDatabase.getSurvey(surveyCode).getStarted() != null && !inMemoryDatabase.getSurvey(surveyCode).getStarted()) {
+        Survey survey = inMemoryDatabase.getSurvey(surveyCode);
+        if (survey.getStarted() != null && !survey.getStarted()) {
             log.warn("survey {} is not running", surveyCode);
             throw new SurveyStoppedException("survey " + surveyCode + " is already stopped");
         }
