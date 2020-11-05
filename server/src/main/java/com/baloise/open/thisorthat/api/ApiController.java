@@ -24,8 +24,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
-import javax.xml.bind.DatatypeConverter;
+import java.util.Base64;
 
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -136,7 +135,7 @@ public class ApiController {
         try {
             Image image = surveyService.getImageFromSurvey(surveyCode, imageId);
             String base64Image = image.getFile().split(",")[1];
-            return DatatypeConverter.parseBase64Binary(base64Image);
+            return Base64.getDecoder().decode(base64Image);
         } catch (Exception e) {
             throw buildError(e);
         }
